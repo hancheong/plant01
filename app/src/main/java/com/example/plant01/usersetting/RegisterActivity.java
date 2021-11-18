@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity
 {
@@ -84,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity
         String strBirth = mEtBirth.getText().toString();
         String strNick = mEtNick.getText().toString();
         String strPost = mEtPostcode.getText().toString();
+        String strPh = mEtPh.getText().toString();
 
         //젠더 버튼
         mRgGender = (RadioGroup)findViewById(R.id.rg_gender);
@@ -106,11 +108,14 @@ public class RegisterActivity extends AppCompatActivity
                 if(task.isSuccessful())
                 {
                     FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
                     UserAccount account = new UserAccount();
                     account.setIdToken(firebaseUser.getUid());
                     account.setUserEmail(firebaseUser.getEmail());
                     account.setUserPassword(strPwd);
                     account.setUserBirth(strBirth);
+                    account.setUserPh(strPh);
                     account.setUserGender(UserGender);
                     account.setUserNick(strNick);
                     account.setUserPostalCode(strPost);
@@ -118,6 +123,7 @@ public class RegisterActivity extends AppCompatActivity
 
                     //setvalue 데이터베이스에 삽입하는 행위
                     mDatabaseRef.child("User").child(firebaseUser.getUid()).setValue(account);
+                    db.collection("User").document(firebaseUser.getUid()).set(account);
 
                     Log.e("성공","성공");
 

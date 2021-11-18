@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-//0000
+
 public class MainActivity extends AppCompatActivity
 {
    RecyclerView recview;

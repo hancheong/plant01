@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.plant01.R;
@@ -23,8 +25,15 @@ public class RegisterActivity extends AppCompatActivity
 {
     private FirebaseAuth mFirebaseAuth;  //파이어베이스 인증
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
-    private EditText mEtEmail, mEtPwd;
+    private EditText mEtEmail;
+    private EditText mEtPwd;
+    private String mEtPh;
+    private String mEtPostcode;
+    private String mEtBirth;
+    private String mEtNick;
     private Button mBtnRegister;
+    public  String UserGender;
+    private RadioGroup mRgGender;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -36,9 +45,26 @@ public class RegisterActivity extends AppCompatActivity
 
         mEtEmail = findViewById(R.id.et_email);
         mEtPwd = findViewById(R.id.et_pwd);
-        mBtnRegister = findViewById(R.id.btn_register);
 
+        mBtnRegister = findViewById(R.id.btn_register);
         mBtnRegister.setOnClickListener(onClickListener);
+
+
+        mRgGender = (RadioGroup)findViewById(R.id.rg_gender);
+        int mEtGenderID = mRgGender.getCheckedRadioButtonId();
+        UserGender =((RadioButton)findViewById(mEtGenderID)).getText().toString();
+        mRgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int i) {
+                RadioButton genderButton = (RadioButton) findViewById(i);
+                UserGender = genderButton.getText().toString();
+            }
+        });
+        mEtNick = ((EditText)findViewById(R.id.et_nick)).getText().toString();
+        mEtPh = ((EditText) findViewById(R.id.et_ph)).getText().toString();
+        mEtPostcode = ((EditText) findViewById(R.id.et_postcode)).getText().toString();
+        mEtBirth = ((EditText) findViewById(R.id.et_birth)).getText().toString();
+
 
 
     }
@@ -72,8 +98,12 @@ public class RegisterActivity extends AppCompatActivity
                     FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
                     UserAccount account = new UserAccount();
                     account.setIdToken(firebaseUser.getUid());
-                    account.setEmailId(firebaseUser.getEmail());
-                    account.setPassword(strPwd);
+                    account.setUserEmail(firebaseUser.getEmail());
+                    account.setUserPassword(strPwd);
+                    account.setUserBirth(mEtBirth);
+//                    account.setUserNick(mEtNick);
+//                    account.setUserPh(mEtPh);
+//                    account.setUserPostalCode(mEtPostcode);
 
                     //setvalue 데이터베이스에 삽입하는 행위
                     mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
@@ -91,4 +121,29 @@ public class RegisterActivity extends AppCompatActivity
             }
         });
     }
+
+//   public void enterUser(){
+//       mRgGender = (RadioGroup)findViewById(R.id.rg_gender);
+//       int mEtGenderID = mRgGender.getCheckedRadioButtonId();
+//       UserGender =((RadioButton)findViewById(mEtGenderID)).getText().toString();
+//       mRgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//           @Override
+//           public void onCheckedChanged(RadioGroup group, int i) {
+//               RadioButton genderButton = (RadioButton) findViewById(i);
+//               UserGender = genderButton.getText().toString();
+//           }
+//       });
+//       mEtNick = ((EditText)findViewById(R.id.et_nick)).getText().toString();
+//       mEtPh = ((EditText) findViewById(R.id.et_ph)).getText().toString();
+//       mEtPostcode = ((EditText) findViewById(R.id.et_postcode)).getText().toString();
+//       mEtBirth = ((EditText) findViewById(R.id.et_birth)).getText().toString();
+//
+//       //유저의 토큰아이디와 다른 정보들을 저장장
+//      FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//       mDatabaseRef = FirebaseDatabase.getInstance().getReference();
+//
+//       User2
+//
+//
+//   }
 }

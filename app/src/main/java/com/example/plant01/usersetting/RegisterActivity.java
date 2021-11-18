@@ -82,6 +82,20 @@ public class RegisterActivity extends AppCompatActivity
         String strEmail = mEtEmail.getText().toString();
         String strPwd = mEtPwd.getText().toString();
         String strBirth = mEtBirth.getText().toString();
+        String strNick = mEtNick.getText().toString();
+        String strPost = mEtPostcode.getText().toString();
+
+        //젠더 버튼
+        mRgGender = (RadioGroup)findViewById(R.id.rg_gender);
+        int mEtGenderID = mRgGender.getCheckedRadioButtonId();
+        UserGender =((RadioButton)findViewById(mEtGenderID)).getText().toString();
+        mRgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int i) {
+                RadioButton genderButton = (RadioButton) findViewById(i);
+                UserGender = genderButton.getText().toString();
+            }
+        });
 
         //firebase auth진행
         mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>()
@@ -97,10 +111,13 @@ public class RegisterActivity extends AppCompatActivity
                     account.setUserEmail(firebaseUser.getEmail());
                     account.setUserPassword(strPwd);
                     account.setUserBirth(strBirth);
+                    account.setUserGender(UserGender);
+                    account.setUserNick(strNick);
+                    account.setUserPostalCode(strPost);
 
 
                     //setvalue 데이터베이스에 삽입하는 행위
-                    mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+                    mDatabaseRef.child("User").child(firebaseUser.getUid()).setValue(account);
 
                     Log.e("성공","성공");
 

@@ -25,12 +25,7 @@ public class RegisterActivity extends AppCompatActivity
 {
     private FirebaseAuth mFirebaseAuth;  //파이어베이스 인증
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
-    private EditText mEtEmail;
-    private EditText mEtPwd;
-    private String mEtPh;
-    private String mEtPostcode;
-    private String mEtBirth;
-    private String mEtNick;
+    private EditText mEtEmail,mEtPwd, mEtPh ,mEtPostcode ,mEtBirth, mEtNick;
     private Button mBtnRegister;
     public  String UserGender;
     private RadioGroup mRgGender;
@@ -60,10 +55,10 @@ public class RegisterActivity extends AppCompatActivity
                 UserGender = genderButton.getText().toString();
             }
         });
-        mEtNick = ((EditText)findViewById(R.id.et_nick)).getText().toString();
-        mEtPh = ((EditText) findViewById(R.id.et_ph)).getText().toString();
-        mEtPostcode = ((EditText) findViewById(R.id.et_postcode)).getText().toString();
-        mEtBirth = ((EditText) findViewById(R.id.et_birth)).getText().toString();
+        mEtNick = findViewById(R.id.et_nick);
+        mEtPh =  findViewById(R.id.et_ph);
+        mEtPostcode =  findViewById(R.id.et_postcode);
+        mEtBirth = findViewById(R.id.et_birth);
 
 
 
@@ -86,6 +81,7 @@ public class RegisterActivity extends AppCompatActivity
     private void register(){
         String strEmail = mEtEmail.getText().toString();
         String strPwd = mEtPwd.getText().toString();
+        String strBirth = mEtBirth.getText().toString();
 
         //firebase auth진행
         mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>()
@@ -100,10 +96,8 @@ public class RegisterActivity extends AppCompatActivity
                     account.setIdToken(firebaseUser.getUid());
                     account.setUserEmail(firebaseUser.getEmail());
                     account.setUserPassword(strPwd);
-                    account.setUserBirth(mEtBirth);
-//                    account.setUserNick(mEtNick);
-//                    account.setUserPh(mEtPh);
-//                    account.setUserPostalCode(mEtPostcode);
+                    account.setUserBirth(strBirth);
+
 
                     //setvalue 데이터베이스에 삽입하는 행위
                     mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);

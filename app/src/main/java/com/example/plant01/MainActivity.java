@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity
 
 //        recview=(RecyclerView)findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(this));
-
+//  test
     }
 
 }

@@ -11,45 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.plant01">
-
         <activity
-            android:name="com.example.plant01.usersetting.LoginActivity"
+            android:name=".trash"
             android:exported="true" />
         <activity
-            android:name="com.example.plant01.usersetting.RegisterActivity"
+            android:name=".usersetting.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".usersetting.RegisterActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".home.Home"
+            android:exported="true"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".store.MainActivity" />
+        <activity android:name=".home.ActionBar" />
+        <activity
+            android:name=".postpage.PostMain"
+            android:exported="true" />
+        <activity
+            android:name=".postpage.WritePost"
+            android:exported="true" />
+        <activity
+            android:name=".store.SubActivity"
+            android:label="SubActivity" />
+        <activity
+            android:name=".store.intro"
             android:exported="true">
-
-        </activity>
-
-        <activity
-            android:name="com.example.plant01.home.Home"
-            android:exported="true">
-
-
-        </activity>
-
-        <activity
-            android:name="com.example.plant01.MainActivity" />
-
-        <activity
-            android:name="com.example.plant01.store.MainActivity"/>
-
-        <activity
-            android:name="com.example.plant01.home.ActionBar" />
-
-        <activity
-            android:name="com.example.plant01.postpage.PostMain"
-            android:exported="true"/>
-        <activity
-            android:name="com.example.plant01.postpage.WritePost"
-            android:exported="true"/>
-
-        <activity android:name="com.example.plant01.store.SubActivity"
-            android:label="SubActivity"/>
-
-
-        // 인트로 화면을 위한 액티비티
-        <activity android:name="com.example.plant01.store.intro" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,7 +45,5 @@
             </intent-filter>
         </activity>
     </application>
-
-   
 
 </manifest>

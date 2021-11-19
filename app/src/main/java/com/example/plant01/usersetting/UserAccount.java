@@ -2,17 +2,30 @@ package com.example.plant01.usersetting;
 
 public class UserAccount {
     private String idToken;
-    public String userNick;
-    public String userPh;
-    public String userGender;
-    public String userImg;
-    public String userBirth;
-    public String userEmail;
-    public String userPassword;
-    public String userPostalCode;
-    public String userAdr;
+    public String UserNick;
+    public String UserPh;
+    public String UserGender;
+    public String UserImg;
+    public String UserBirth;
+    public String UserEmail;
+    public String UserPassword;
+    public String UserPostalCode;
+    public String UserAdr;
 
     public UserAccount(){}
+//    public UserAccount(String idToken, String userNick, String userPh, String userGender
+//            , String userImg, String userBirth, String userEmail, String userPassword, String userPostalCode, String userAdr) {
+//        this.idToken = idToken;
+//        UserNick = userNick;
+//        UserPh = userPh;
+//        UserGender = userGender;
+//        UserImg = userImg;
+//        UserBirth = userBirth;
+//        UserEmail = userEmail;
+//        UserPassword = userPassword;
+//        UserPostalCode = userPostalCode;
+////        UserAdr = userAdr;
+//    }
 
     public String getIdToken() {
         return idToken;
@@ -23,74 +36,74 @@ public class UserAccount {
     }
 
     public String getUserNick() {
-        return userNick;
+        return UserNick;
     }
 
     public void setUserNick(String userNick) {
-        this.userNick = userNick;
+        UserNick = userNick;
     }
 
     public String getUserPh() {
-        return userPh;
+        return UserPh;
     }
 
     public void setUserPh(String userPh) {
-        this.userPh = userPh;
+        UserPh = userPh;
     }
 
     public String getUserGender() {
-        return userGender;
+        return UserGender;
     }
 
     public void setUserGender(String userGender) {
-        this.userGender = userGender;
+        UserGender = userGender;
     }
 
     public String getUserImg() {
-        return userImg;
+        return UserImg;
     }
 
     public void setUserImg(String userImg) {
-        this.userImg = userImg;
+        UserImg = userImg;
     }
 
     public String getUserBirth() {
-        return userBirth;
+        return UserBirth;
     }
 
     public void setUserBirth(String userBirth) {
-        this.userBirth = userBirth;
+        UserBirth = userBirth;
     }
 
     public String getUserEmail() {
-        return userEmail;
+        return UserEmail;
     }
 
     public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+        UserEmail = userEmail;
     }
 
     public String getUserPassword() {
-        return userPassword;
+        return UserPassword;
     }
 
     public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+        UserPassword = userPassword;
     }
 
     public String getUserPostalCode() {
-        return userPostalCode;
+        return UserPostalCode;
     }
 
     public void setUserPostalCode(String userPostalCode) {
-        this.userPostalCode = userPostalCode;
+        UserPostalCode = userPostalCode;
     }
 
     public String getUserAdr() {
-        return userAdr;
+        return UserAdr;
     }
 
     public void setUserAdr(String userAdr) {
-        this.userAdr = userAdr;
+        UserAdr = userAdr;
     }
 }

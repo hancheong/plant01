@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-//테스트 주석
+
 public class MainActivity extends AppCompatActivity
 {
    RecyclerView recview;
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity
 
 //        recview=(RecyclerView)findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(this));
-//  test
+
     }
 
 }

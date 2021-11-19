@@ -11,9 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.plant01">
-        <activity
-            android:name=".trash"
-            android:exported="true" />
+        
         <activity
             android:name=".usersetting.LoginActivity"
             android:exported="true" />
@@ -24,7 +22,8 @@
             android:name=".home.Home"
             android:exported="true"></activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".store.MainActivity" />
+        <activity android:name=".store.MainActivity"
+            android:exported="true"/>
         <activity android:name=".home.ActionBar" />
         <activity
             android:name=".postpage.PostMain"

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plant01.R;
 
-//게시판 페이지
+//게시판 페이지 123123
 public class MainActivity extends AppCompatActivity {
 
     Button button;

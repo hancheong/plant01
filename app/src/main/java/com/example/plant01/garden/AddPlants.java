@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.plant01.R;
+import com.example.plant01.home.Home;
 
 public class AddPlants extends AppCompatActivity {
 
@@ -36,7 +37,7 @@ public class AddPlants extends AppCompatActivity {
         cl = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                in = new Intent(AddPlants.this, Home.class);
             }
         };
         btnSave.setOnClickListener(cl);

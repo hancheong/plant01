@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../PlanT/app/src/main/res/layouts/loginout/layout/activity_add_plants.xml" value="0.25" />
         <entry key="..\:/Users/K/Documents/GitHub/plant01/app/src/main/res/drawable-anydpi/setting.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/K/Documents/GitHub/plant01/app/src/main/res/layout/activity_login.xml" value="0.2046875" />
         <entry key="..\:/Users/K/Documents/GitHub/plant01/app/src/main/res/layout/activity_main.xml" value="0.2046875" />

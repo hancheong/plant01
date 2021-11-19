@@ -11,19 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.plant01">
-
+        <activity
+            android:name=".garden.AddPlants"
+            android:exported="false" />
         <activity
             android:name=".usersetting.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".usersetting.RegisterActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".home.Home"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".store.MainActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".store.MainActivity"
+            android:exported="true" />
         <activity android:name=".home.ActionBar" />
         <activity
             android:name=".postpage.PostMain"

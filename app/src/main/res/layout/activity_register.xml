@@ -97,7 +97,7 @@
                 android:layout_marginLeft="30dp"
                 android:ems="10"
                 android:hint="닉네임"
-                android:inputType="textPassword" />
+                android:inputType="textPersonName" />
 
         </TableRow>
 

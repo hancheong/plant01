@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/tvimg"
+            android:id="@+id/iv_plantImg"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:adjustViewBounds="true"
@@ -29,24 +29,12 @@
             android:layout_height="wrap_content"
 
             android:textAlignment="center"
-            android:id="@+id/tvfirstName"
+            android:id="@+id/tv_plantName"
             android:text="스투키"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
 
-            android:textAlignment="center"
-            android:id="@+id/tvlastName"
-            android:text="스투키"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
 
-            android:textAlignment="center"
-            android:id="@+id/tvage"
-            android:text="스투키"/>
 
 
     </LinearLayout>

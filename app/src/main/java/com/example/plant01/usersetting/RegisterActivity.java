@@ -122,8 +122,8 @@ public class RegisterActivity extends AppCompatActivity
 
 
                     //setvalue 데이터베이스에 삽입하는 행위
-                    mDatabaseRef.child("User").child(firebaseUser.getUid()).setValue(account);
-                    db.collection("User").document(firebaseUser.getUid()).set(account);
+                    mDatabaseRef.child("Users").child(firebaseUser.getUid()).setValue(account);
+                    db.collection("Users").document(firebaseUser.getUid()).set(account);
 
                     Log.e("성공","성공");
 

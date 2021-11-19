@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    //김진민김진민김진민김진민김진민김진민김진민김진민김진민김진민김진민김진민김진민김진민김진민
-
-    // 햄버거 목록 아이콘
-
-    // 스토어 타이틀
-
-    // 검색창
-
-    // 카테고리 가로 스크롤바를 위한 프레임
-
     <FrameLayout
         android:id="@+id/CategoryFrame"
         android:layout_width="match_parent"
@@ -45,18 +35,6 @@
     </HorizontalScrollView>
     </FrameLayout>
     // 프레임 안에 가로 스크롤이 있기 때문에 프레임으로 겉을 감쌈
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/const_vp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/CategoryFrame">
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/ViewPage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
     android:layout_width="wrap_content"

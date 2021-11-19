@@ -51,137 +51,383 @@
 
     </SearchView>
 
-<FrameLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="700dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck">
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
 
-
-        <FrameLayout
-            android:id="@+id/store_frame"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.165">// 카테고리 밑 이벤트배너 가로 스크롤바 프레임
+            android:orientation="vertical">
 
-            <HorizontalScrollView
+            <FrameLayout
+                android:id="@+id/store_frame"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">// 가로 스크롤바
+                android:layout_height="wrap_content">// 카테고리 밑 이벤트배너 가로 스크롤바 프레임
 
-                <LinearLayout
+                <HorizontalScrollView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">// 레이아웃 설정
+                    android:layout_height="wrap_content">// 가로 스크롤바
 
-                    // 이벤트 배너 1
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">// 레이아웃 설정
 
-                    <ImageButton
-                        android:id="@+id/StoreEvent1"
-                        android:layout_width="300dp"
-                        android:layout_height="150dp"
-                        android:layout_below="@+id/BestGoods"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginTop="8dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/store_img1" />
+                        // 이벤트 배너 1
 
-                    // 이벤트 배너 2
+                        <ImageButton
+                            android:id="@+id/StoreEvent1"
+                            android:layout_width="300dp"
+                            android:layout_height="150dp"
+                            android:layout_below="@+id/BestGoods"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="8dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/store_img1" />
 
-                    <ImageButton
-                        android:id="@+id/StoreEvent2"
-                        android:layout_width="300dp"
-                        android:layout_height="150dp"
-                        android:layout_below="@+id/BestGoods"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/store_img2" />
+                        // 이벤트 배너 2
 
-                </LinearLayout>
-            </HorizontalScrollView>
-        </FrameLayout>
+                        <ImageButton
+                            android:id="@+id/StoreEvent2"
+                            android:layout_width="300dp"
+                            android:layout_height="150dp"
+                            android:layout_below="@+id/BestGoods"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="8dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/store_img2" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="7dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.381"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447">
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </FrameLayout>
 
-        <ImageButton
-            android:id="@+id/recommend_img1"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/store_img6" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="7dp">
 
-        <TextView
-            android:id="@+id/recommend_store1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
-            android:layout_toRightOf="@+id/recommend_img1"
-            android:text="No.1 화분마켓"
-            android:textSize="12dp" />
+                <ImageButton
+                    android:id="@+id/recommend_img1"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/store_img6" />
 
-        <TextView
-            android:id="@+id/recommend_title1"
-            android:layout_width="207dp"
-            android:layout_height="44dp"
-            android:layout_below="@+id/recommend_store1"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="-25dp"
-            android:layout_toRightOf="@+id/recommend_img1"
-            android:text="[깜짝특가]선인장인선인장인선인장인선인장인선인장인선인장인"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/recommend_store1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/recommend_img1"
+                    android:text="No.1 화분마켓"
+                    android:textSize="12dp" />
 
-        <TextView
-            android:id="@+id/recommend_review1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/recommend_title1"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
-            android:layout_toRightOf="@+id/recommend_img1"
-            android:text="리뷰 1,557"
-            android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/recommend_title1"
+                    android:layout_width="207dp"
+                    android:layout_height="44dp"
+                    android:layout_below="@+id/recommend_store1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="-25dp"
+                    android:layout_toRightOf="@+id/recommend_img1"
+                    android:text="[깜짝특가]선인장인선인장인선인장인선인장인선인장인선인장인"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
 
-        <TextView
-            android:id="@+id/recommend_price1"
-            android:layout_width="207dp"
-            android:layout_height="44dp"
-            android:layout_below="@+id/recommend_review1"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="-30dp"
-            android:layout_toRightOf="@+id/recommend_img1"
-            android:text="350,000"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/recommend_review1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recommend_title1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/recommend_img1"
+                    android:text="리뷰 1,557"
+                    android:textSize="12dp" />
 
-      </ScrollView>
-</FrameLayout>
+                <TextView
+                    android:id="@+id/recommend_price1"
+                    android:layout_width="207dp"
+                    android:layout_height="44dp"
+                    android:layout_below="@+id/recommend_review1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="-30dp"
+                    android:layout_toRightOf="@+id/recommend_img1"
+                    android:text="350,000"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="7dp">
+
+                <ImageButton
+                    android:id="@+id/recommend_img2"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/store_img7" />
+
+                <TextView
+                    android:id="@+id/recommend_store2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/recommend_img2"
+                    android:text="No.1 화분마켓"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/recommend_title2"
+                    android:layout_width="207dp"
+                    android:layout_height="44dp"
+                    android:layout_below="@+id/recommend_store2"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="-25dp"
+                    android:layout_toRightOf="@+id/recommend_img2"
+                    android:text="[깜짝특가]선인장인선인장인선인장인선인장인선인장인선인장인"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/recommend_review2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recommend_title2"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/recommend_img2"
+                    android:text="리뷰 1,557"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/recommend_price2"
+                    android:layout_width="207dp"
+                    android:layout_height="44dp"
+                    android:layout_below="@+id/recommend_review2"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="-30dp"
+                    android:layout_toRightOf="@+id/recommend_img2"
+                    android:text="350,000"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="7dp">
+
+                <ImageButton
+                    android:id="@+id/recommend_img3"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/store_img8" />
+
+                <TextView
+                    android:id="@+id/recommend_store3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/recommend_img3"
+                    android:text="No.1 화분마켓"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/recommend_title3"
+                    android:layout_width="207dp"
+                    android:layout_height="44dp"
+                    android:layout_below="@+id/recommend_store3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="-25dp"
+                    android:layout_toRightOf="@+id/recommend_img3"
+                    android:text="[깜짝특가]선인장인선인장인선인장인선인장인선인장인선인장인"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/recommend_review3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recommend_title3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/recommend_img3"
+                    android:text="리뷰 1,557"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/recommend_price3"
+                    android:layout_width="207dp"
+                    android:layout_height="44dp"
+                    android:layout_below="@+id/recommend_review3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="-30dp"
+                    android:layout_toRightOf="@+id/recommend_img3"
+                    android:text="350,000"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="7dp">
+
+                <ImageButton
+                    android:id="@+id/recommend_img4"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/store_img3" />
+
+                <TextView
+                    android:id="@+id/recommend_store4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/recommend_img4"
+                    android:text="No.1 화분마켓"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/recommend_title4"
+                    android:layout_width="207dp"
+                    android:layout_height="44dp"
+                    android:layout_below="@+id/recommend_store4"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="-25dp"
+                    android:layout_toRightOf="@+id/recommend_img4"
+                    android:text="[깜짝특가]선인장인선인장인선인장인선인장인선인장인선인장인"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/recommend_review4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recommend_title4"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/recommend_img4"
+                    android:text="리뷰 1,557"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/recommend_price4"
+                    android:layout_width="207dp"
+                    android:layout_height="44dp"
+                    android:layout_below="@+id/recommend_review4"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="-30dp"
+                    android:layout_toRightOf="@+id/recommend_img4"
+                    android:text="350,000"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="7dp">
+
+                <ImageButton
+                    android:id="@+id/recommend_img5"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/store_img4" />
+
+                <TextView
+                    android:id="@+id/recommend_store5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/recommend_img5"
+                    android:text="No.1 화분마켓"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/recommend_title5"
+                    android:layout_width="207dp"
+                    android:layout_height="44dp"
+                    android:layout_below="@+id/recommend_store5"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="-25dp"
+                    android:layout_toRightOf="@+id/recommend_img5"
+                    android:text="[깜짝특가]선인장인선인장인선인장인선인장인선인장인선인장인"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/recommend_review5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recommend_title5"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/recommend_img5"
+                    android:text="리뷰 1,557"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/recommend_price5"
+                    android:layout_width="207dp"
+                    android:layout_height="44dp"
+                    android:layout_below="@+id/recommend_review5"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="-30dp"
+                    android:layout_toRightOf="@+id/recommend_img5"
+                    android:text="350,000"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

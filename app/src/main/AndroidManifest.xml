@@ -36,7 +36,15 @@
             android:exported="true" />
         <activity
             android:name=".store.SubActivity"
+            android:exported="true"
             android:label="SubActivity" />
+        <activity
+            android:name=".store.Recommend"
+            android:exported="true" />
+        <activity
+            android:name=".store.Store_RecommendList"
+            android:exported="true" />
+
         <activity
             android:name=".store.intro"
             android:exported="true">

@@ -1,13 +1,10 @@
 package com.example.plant01.home;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.plant01.R;
 import com.example.plant01.adaptor.MyAdapter;
@@ -17,15 +14,13 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-//import com.google.firebase.firestore.auth.User;
+//import com.google.firebase.firestore.auth.Users;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,7 +35,7 @@ public class Home extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
-    ArrayList<User> userArrayList;
+    ArrayList<Users> usersArrayList;
     MyAdapter myAdapter;
     FirebaseFirestore db;
 
@@ -71,8 +66,8 @@ public class Home extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         db = FirebaseFirestore.getInstance();
-        userArrayList = new ArrayList<User>();
-        myAdapter = new MyAdapter(Home.this,userArrayList);
+        usersArrayList = new ArrayList<Users>();
+        myAdapter = new MyAdapter(Home.this, usersArrayList);
 
         recyclerView.setAdapter(myAdapter);
 
@@ -110,7 +105,7 @@ public class Home extends AppCompatActivity {
 //                        }
                         for (DocumentChange dc : value.getDocumentChanges()){
                             if (dc.getType() == DocumentChange.Type.ADDED){
-                                userArrayList.add(dc.getDocument().toObject(User.class));
+                                usersArrayList.add(dc.getDocument().toObject(Users.class));
 
                             }
                             myAdapter.notifyDataSetChanged();

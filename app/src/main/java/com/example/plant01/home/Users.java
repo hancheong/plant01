@@ -1,16 +1,16 @@
 package com.example.plant01.home;
 
-public class User {
+public class Users {
 
     public String firstName;
     public String lastName;
     String userImg;
     public long age;
 
-    public User() {
+    public Users() {
     }
 
-    public User(String firstName, String lastName, long age, String userImg) {
+    public Users(String firstName, String lastName, long age, String userImg) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;

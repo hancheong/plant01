@@ -12,20 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
-import com.example.plant01.home.User;
+import com.example.plant01.home.Users;
+
 
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<User> userArrayList;
+    ArrayList<Users> userArrayList;
 
-//    public MyAdapter(Context context, ArrayList<User> userArrayList) {
+//    public MyAdapter(Context context, ArrayList<Users> userArrayList) {
 //
 //    }
 
-    public MyAdapter(Context context, ArrayList<User> userArrayList) {
+    public MyAdapter(Context context, ArrayList<Users> userArrayList) {
         this.context = context;
         this.userArrayList = userArrayList;
     }
@@ -44,7 +45,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        User user = userArrayList.get(position);
+        //holder에서 준 변수명, User에서 준 변수명
+        //
+        Users user = userArrayList.get(position);
 
         holder.firstName.setText(user.firstName);
         holder.lastName.setText(user.lastName);
@@ -69,10 +72,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            firstName = itemView.findViewById(R.id.tvfirstName);
-            lastName = itemView.findViewById(R.id.tvlastName);
-            Age = itemView.findViewById(R.id.tvage);
-            Image = itemView.findViewById(R.id.tvimg);
+            firstName = itemView.findViewById(R.id.tv_plantName);
+            Image = itemView.findViewById(R.id.iv_plantImg);
         }
     }
 }

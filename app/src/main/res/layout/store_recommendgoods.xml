@@ -236,7 +236,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024">//초보집사
 
-        <ImageView
+        <Button
+            android:id="@+id/store_recommend_btn"
             android:layout_width="67dp"
             android:layout_height="53dp"
             android:scaleType="fitXY"

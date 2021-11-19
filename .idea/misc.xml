@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         <entry key="../PlanT/app/src/main/res/layouts/loginout/layout/activity_add_plants.xml" value="0.25" />
 =======
         <entry key="..\:/Users/K/Desktop/plant01_new/app/src/main/res/layout/store_recommendgoods.xml" value="0.2046875" />
 >>>>>>> 0192cf6e4220867a4e4ffbb7c4a36d3dd3a91f14
+=======
+        <entry key="..\:/Users/K/Desktop/plant01_new/app/src/main/res/layout/activity_store_recommend_list.xml" value="0.33" />
+        <entry key="..\:/Users/K/Desktop/plant01_new/app/src/main/res/layout/home_activity.xml" value="0.3442028985507246" />
+        <entry key="..\:/Users/K/Desktop/plant01_new/app/src/main/res/layout/store_recommendgoods.xml" value="0.2046875" />
+        <entry key="..\:/Users/K/Desktop/plant01_new/app/src/main/res/layout/store_store.xml" value="0.2046875" />
+>>>>>>> Stashed changes
         <entry key="..\:/Users/K/Documents/GitHub/plant01/app/src/main/res/drawable-anydpi/setting.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/K/Documents/GitHub/plant01/app/src/main/res/layout/activity_login.xml" value="0.2046875" />
         <entry key="..\:/Users/K/Documents/GitHub/plant01/app/src/main/res/layout/activity_main.xml" value="0.2046875" />

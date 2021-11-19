@@ -14,6 +14,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.plant01.R;
+import com.example.plant01.home.Home;
+import com.example.plant01.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private HomeFragment HomeFragment;
     private home home;
     private plant plant;
     private board board;
@@ -121,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        home = new home();
+//        home = new home();
+        HomeFragment = new HomeFragment();
         plant = new plant();
         board = new board();
         store = new store();
@@ -136,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         ft = fm.beginTransaction();
         switch (n) {
             case 0:
-                ft.replace(R.id.Frame, home);
+                ft.replace(R.id.Frame, HomeFragment);
                 ft.commit();
                 break;
             case 1:

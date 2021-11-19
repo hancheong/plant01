@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+//클론 테스트
 public class MainActivity extends AppCompatActivity
 {
    RecyclerView recview;

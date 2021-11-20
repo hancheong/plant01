@@ -15,12 +15,16 @@ import android.widget.Toast;
 import com.example.plant01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity
 {
@@ -86,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity
         String strNick = mEtNick.getText().toString();
         String strPost = mEtPostcode.getText().toString();
         String strPh = mEtPh.getText().toString();
+        Date strdt = Timestamp.now().toDate();
 
         //젠더 버튼
         mRgGender = (RadioGroup)findViewById(R.id.rg_gender);
@@ -107,8 +112,10 @@ public class RegisterActivity extends AppCompatActivity
             {
                 if(task.isSuccessful())
                 {
+                    //현재 정보 저장
                     FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
                     UserAccount account = new UserAccount();
                     account.setIdToken(firebaseUser.getUid());
@@ -119,6 +126,7 @@ public class RegisterActivity extends AppCompatActivity
                     account.setUserGender(UserGender);
                     account.setUserNick(strNick);
                     account.setUserPostalCode(strPost);
+                    account.setJoinDate(strdt.toString());
 
 
                     //setvalue 데이터베이스에 삽입하는 행위
@@ -139,28 +147,5 @@ public class RegisterActivity extends AppCompatActivity
         });
     }
 
-//   public void enterUser(){
-//       mRgGender = (RadioGroup)findViewById(R.id.rg_gender);
-//       int mEtGenderID = mRgGender.getCheckedRadioButtonId();
-//       UserGender =((RadioButton)findViewById(mEtGenderID)).getText().toString();
-//       mRgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//           @Override
-//           public void onCheckedChanged(RadioGroup group, int i) {
-//               RadioButton genderButton = (RadioButton) findViewById(i);
-//               UserGender = genderButton.getText().toString();
-//           }
-//       });
-//       mEtNick = ((EditText)findViewById(R.id.et_nick)).getText().toString();
-//       mEtPh = ((EditText) findViewById(R.id.et_ph)).getText().toString();
-//       mEtPostcode = ((EditText) findViewById(R.id.et_postcode)).getText().toString();
-//       mEtBirth = ((EditText) findViewById(R.id.et_birth)).getText().toString();
-//
-//       //유저의 토큰아이디와 다른 정보들을 저장장
-//      FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//       mDatabaseRef = FirebaseDatabase.getInstance().getReference();
-//
-//       User2
-//
-//
-//   }
+
 }

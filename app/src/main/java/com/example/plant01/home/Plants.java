@@ -2,13 +2,12 @@ package com.example.plant01.home;
 
 public class Plant {
     String plantName, plantImg, plantTip, plantWaterD, plantSize, plantSun, plantOrigin;
-    String plantTem, plantHum, plantLevel;
-    int plantWaterC;
+    String plantTem, plantHum, plantLevel, plantKeyWord, plantWaterC;
 
     Plant(){}
 
-    public Plant(String plantName, String plantImg, String plantTip, String plantWaterD, String plantSize
-            , String plantSun, String plantOrigin, String plantTem, String plantHum, String plantLevel, int plantWaterC) {
+    public Plant(String plantName, String plantImg, String plantTip, String plantWaterD, String plantSize, String plantSun
+            , String plantOrigin, String plantTem, String plantHum, String plantLevel, String plantKeyWord, String plantWaterC) {
         this.plantName = plantName;
         this.plantImg = plantImg;
         this.plantTip = plantTip;
@@ -19,6 +18,7 @@ public class Plant {
         this.plantTem = plantTem;
         this.plantHum = plantHum;
         this.plantLevel = plantLevel;
+        this.plantKeyWord = plantKeyWord;
         this.plantWaterC = plantWaterC;
     }
 
@@ -102,11 +102,19 @@ public class Plant {
         this.plantLevel = plantLevel;
     }
 
-    public int getPlantWaterC() {
+    public String getPlantKeyWord() {
+        return plantKeyWord;
+    }
+
+    public void setPlantKeyWord(String plantKeyWord) {
+        this.plantKeyWord = plantKeyWord;
+    }
+
+    public String getPlantWaterC() {
         return plantWaterC;
     }
 
-    public void setPlantWaterC(int plantWaterC) {
+    public void setPlantWaterC(String plantWaterC) {
         this.plantWaterC = plantWaterC;
     }
 }

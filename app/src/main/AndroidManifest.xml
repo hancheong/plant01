@@ -16,7 +16,7 @@
             android:exported="true" />
         <activity
             android:name=".garden.AddPlants"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".usersetting.LoginActivity"
             android:exported="true" />
@@ -24,12 +24,14 @@
             android:name=".usersetting.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".home.Home"
-            android:exported="true" />
-        <activity android:name=".MainActivity" />
+            android:name=".home.Home" />
+
+        <activity
+            android:name=".MainActivity" />
         <activity
             android:name=".store.MainActivity"
             android:exported="true" />
+
         <activity android:name=".home.ActionBar" />
         <activity
             android:name=".postpage.PostMain"
@@ -47,6 +49,9 @@
         <activity
             android:name=".store.Store_RecommendList"
             android:exported="true" />
+
+
+
         <activity
             android:name=".store.intro"
             android:exported="true">

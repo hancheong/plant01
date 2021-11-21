@@ -21,7 +21,7 @@ public class PostMain extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.post_post);
+        setContentView(R.layout.post_diary);
 
         search = (ImageButton) findViewById(R.id.search_button);
         more = (ImageButton) findViewById(R.id.more);
@@ -32,7 +32,7 @@ public class PostMain extends AppCompatActivity {
         cl = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), WritePost.class);
+                Intent intent = new Intent(getApplicationContext(), Post_write.class);
                 startActivity(intent);
             }
         };

@@ -36,8 +36,10 @@
         <activity
             android:name=".postpage.PostMain"
             android:exported="true" />
+        <activity android:name=".postpage.MainActivity"
+            android:exported="true"/>
         <activity
-            android:name=".postpage.WritePost"
+            android:name=".postpage.Post_write"
             android:exported="true" />
         <activity
             android:name=".store.SubActivity"

@@ -12,6 +12,11 @@ public class UserAccount {
     public String userPostalCode;
     public String userAdr, joinDate;
 
+    public UserAccount(String userNick, String userImg) {
+        this.userNick = userNick;
+        this.userImg = userImg;
+    }
+
     public UserAccount(){}
 //    public UserAccount(String idToken, String userNick, String userPh, String userGender
 //            , String userImg, String userBirth, String userEmail, String userPassword, String userPostalCode, String userAdr) {

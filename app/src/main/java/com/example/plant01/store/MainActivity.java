@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.plant01.R;
-import com.example.plant01.home.Home;
 import com.example.plant01.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;

@@ -23,8 +23,6 @@
         <activity
             android:name=".usersetting.RegisterActivity"
             android:exported="true" />
-        <activity
-            android:name=".home.Home" />
 
         <activity
             android:name=".MainActivity" />

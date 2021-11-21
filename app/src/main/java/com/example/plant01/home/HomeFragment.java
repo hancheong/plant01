@@ -1,24 +1,38 @@
 package com.example.plant01.home;
 
+import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 import com.example.plant01.adaptor.SliderAdapter;
 import com.example.plant01.adaptor.home_PlantAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -27,7 +41,10 @@ import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnima
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import java.net.URI;
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class HomeFragment extends Fragment {
@@ -41,13 +58,16 @@ public class HomeFragment extends Fragment {
     ArrayList<Plants> plantsArrayList;
     home_PlantAdapter plantAdapter;
     FirebaseDatabase database;
+    FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
     DatabaseReference databaserf;
     FirebaseFirestore db;
+    View.OnClickListener cl;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.home_activity, container, false);
+        return inflater.inflate(R.layout.home_fragment, container, false);
 
     }
 
@@ -59,6 +79,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         sliderView = getView().findViewById(R.id.main_slider);
 
@@ -69,21 +90,26 @@ public class HomeFragment extends Fragment {
         sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
         sliderView.startAutoCycle();
 
-        //
+/*----------------추천상품 부분 -------------------------------*/
         recyclerView = getView().findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
-        //드로워
+
+/*------------------드로워부분-------------------*/
         final DrawerLayout drawerLayout1 = (DrawerLayout) getView().findViewById(R.id.drawerLayout);
+        NavigationView navigationView = getView().findViewById(R.id.nv_homedrawer);
 
 
-        getView().findViewById(R.id.imagemenu).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawerLayout1.openDrawer(GravityCompat.START);
-            }
-        });
+
+
+
+//        getView().findViewById(R.id.imagemenu).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                drawerLayout1.openDrawer(GravityCompat.START);
+//            }
+//        });
 
 
 
@@ -93,13 +119,32 @@ public class HomeFragment extends Fragment {
 
         recyclerView.setAdapter(plantAdapter);
         db = FirebaseFirestore.getInstance();
-//        database = FirebaseDatabase.getInstance();// firebaseDatabase에서 객체가져옴
+
+
         showRecomendPlant();
 
-//        recyclerView.setAdapter(plantAdapter); // 리사이클러뷰에 어댑터 연결
+
+
+
+/*--------- 클릭 이벤트 -------------*/
+        cl = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()){
+                    case R.id.imagemenu: //햄버거 버튼
+                        showUserProfile();
+                        drawerLayout1.openDrawer(GravityCompat.START);
+                }
+
+            }
+        };
+        getView().findViewById(R.id.imagemenu).setOnClickListener(cl);
+
     }
 
 
+
+    /*------------------추천상품 보여주는 부분----------------------------------*/
     public  void  showRecomendPlant() {
         db.collection("Plants").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -118,7 +163,34 @@ public class HomeFragment extends Fragment {
     }
 
 
-}
+
+    /*-----------------드로워 유저 프로필 보여주는 부분분---------------------------*/
+    public void showUserProfile(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //부분업데이트?어떻게
+        CircleImageView userprofile = getView().findViewById(R.id.iv_userProfile);
+        TextView usernick = getView().findViewById(R.id.tv_userNick);
+        db.collection("Users").document("Qord9WQq0KW3frMfpzZy6ASgnCw1").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+                    //해당 필드의 값 받아오기
+                    String userImg = (String) doc.get("userImg");
+                    String userNick = (String) doc.get("userNick");
+
+                    usernick.setText(userNick);
+                    Glide.with(getContext())
+                            .load(Uri.parse(userImg))
+                            .into(userprofile);
+                }
+            }
+
+        } );
+
+
+
+}}
 
 //    private void EventChangeListener() {
 //        db.collection("Plants").addSnapshotListener(new EventListener<QuerySnapshot>() {

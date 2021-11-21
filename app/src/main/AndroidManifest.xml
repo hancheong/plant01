@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.plant01">
         <activity
+            android:name=".garden.MyPlants"
+            android:exported="true" />
+        <activity
+            android:name=".garden.MyGarden"
+            android:exported="true" />
+        <activity
             android:name=".home.home_search_inputtest"
             android:exported="true" />
         <activity
@@ -23,19 +29,19 @@
         <activity
             android:name=".usersetting.RegisterActivity"
             android:exported="true" />
-
-        <activity
-            android:name=".MainActivity" />
+        <activity android:name=".home.Home" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".store.MainActivity"
             android:exported="true" />
-
         <activity android:name=".home.ActionBar" />
         <activity
             android:name=".postpage.PostMain"
             android:exported="true" />
+        <activity android:name=".postpage.MainActivity"
+            android:exported="true"/>
         <activity
-            android:name=".postpage.WritePost"
+            android:name=".postpage.Post_write"
             android:exported="true" />
         <activity
             android:name=".store.SubActivity"
@@ -47,9 +53,6 @@
         <activity
             android:name=".store.Store_RecommendList"
             android:exported="true" />
-
-
-
         <activity
             android:name=".store.intro"
             android:exported="true">

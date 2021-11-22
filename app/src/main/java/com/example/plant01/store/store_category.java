@@ -1,6 +1,7 @@
 package com.example.plant01.store;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +21,8 @@ public class store_category extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.store_activity_sub, container, false);
-
-        return view;
-
+        return inflater.inflate(R.layout.store_activity_sub, container, false);
 
     }
-
-
-
 
 }

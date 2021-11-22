@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.plant01">
         <activity
+            android:name=".usersetting.UserSetting"
+            android:exported="true" />
+        <activity
+            android:name=".home.bell"
+            android:exported="true" />
+        <activity
             android:name=".garden.MyPlants"
             android:exported="false" />
         <activity

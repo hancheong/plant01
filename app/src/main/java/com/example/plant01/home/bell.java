@@ -1,4 +1,4 @@
-package com.example.plant01.usersetting;
+package com.example.plant01.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -10,15 +10,14 @@ import android.view.MenuItem;
 
 import com.example.plant01.R;
 
-public class UserSetting extends AppCompatActivity {
-
+public class bell extends AppCompatActivity {
 
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_setting_user);
+        setContentView(R.layout.home_setting_bell);
         toolbar = findViewById(R.id.toolbar2);
 
         setSupportActionBar(toolbar);

@@ -24,6 +24,7 @@ public class AddPlants extends AppCompatActivity {
     Button btnBack, btnSave;
     ImageView ivPlants;
     View.OnClickListener cl;
+
     private static  final int PLANTS_IMAGE_CODE = 1000;
     private static  final int PERMISSION_CODE = 1001;
 
@@ -44,7 +45,7 @@ public class AddPlants extends AppCompatActivity {
         btnBack = (Button) findViewById(R.id.btnBack);
 
 
-        btnBack.setOnClickListener(new View.OnClickListener() {//뒤로가기 버튼
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyGarden.class);
@@ -66,9 +67,6 @@ public class AddPlants extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
 
     private void PickImageFromGallery() {
@@ -84,8 +82,8 @@ public class AddPlants extends AppCompatActivity {
 
         super.onActivityResult(requestCode,resultCode,data);
         if (resultCode == RESULT_OK && requestCode == PLANTS_IMAGE_CODE) {
-            //set Image into ImageView
-//            ImageView.setImageURI(data.getData());
+            //set Image into ivPlants (ImageView)
+            ivPlants.setImageURI(data.getData());
         }
     }
 }

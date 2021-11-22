@@ -24,6 +24,7 @@ public class AddPlants extends AppCompatActivity {
     Button btnBack, btnSave;
     ImageView ivPlants;
     View.OnClickListener cl;
+
     private static  final int PLANTS_IMAGE_CODE = 1000;
     private static  final int PERMISSION_CODE = 1001;
 
@@ -85,7 +86,7 @@ public class AddPlants extends AppCompatActivity {
         super.onActivityResult(requestCode,resultCode,data);
         if (resultCode == RESULT_OK && requestCode == PLANTS_IMAGE_CODE) {
             //set Image into ImageView
-//            ImageView.setImageURI(data.getData());
+            ivPlants.setImageURI(data.getData());
         }
     }
 }

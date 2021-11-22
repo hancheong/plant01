@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.plant01">
         <activity
+            android:name=".usersetting.UserSetting"
+            android:exported="true" />
+        <activity
+            android:name=".home.bell"
+            android:exported="true" />
+        <activity
             android:name=".garden.MyPlants"
             android:exported="true" />
         <activity
@@ -38,8 +44,9 @@
         <activity
             android:name=".postpage.PostMain"
             android:exported="true" />
-        <activity android:name=".postpage.MainActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".postpage.MainActivity"
+            android:exported="true" />
         <activity
             android:name=".postpage.Post_write"
             android:exported="true" />

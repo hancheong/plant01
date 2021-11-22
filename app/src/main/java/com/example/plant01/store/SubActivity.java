@@ -21,7 +21,6 @@ public class SubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_activity_sub);
 
-
         // 뷰페이저 세팅
         ViewPager viewPager = findViewById(R.id.ViewPager);
         fragmentPagerAdapter = new store_categoryadapter(getSupportFragmentManager());

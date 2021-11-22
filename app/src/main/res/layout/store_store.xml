@@ -6,40 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <FrameLayout
-        android:id="@+id/CategoryFrame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp">
-
-        // 가로 스크롤바
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        // 레이아웃 설정
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp">
-
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tabIndicatorColor="#878787"
-                app:tabTextColor="#878787"/>
-
-
-        </RelativeLayout>
-    </HorizontalScrollView>
-    </FrameLayout>
     // 프레임 안에 가로 스크롤이 있기 때문에 프레임으로 겉을 감쌈
 
     <FrameLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/CategoryFrame">// 카테고리 밑부분부터 세로 스크롤바를 만들기 위한 프레임
+    android:layout_height="wrap_content">// 카테고리 밑부분부터 세로 스크롤바를 만들기 위한 프레임
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -66,6 +37,7 @@
 
                             <ImageButton
                                 android:id="@+id/StoreEvent1"
+                                android:background="@android:color/transparent"
                                 android:layout_width="300dp"
                                 android:layout_height="150dp"
                                 android:layout_below="@+id/BestGoods"
@@ -77,6 +49,7 @@
                             // 이벤트 배너 2
                             <ImageButton
                                 android:id="@+id/StoreEvent2"
+                                android:background="@android:color/transparent"
                                 android:layout_width="300dp"
                                 android:layout_height="150dp"
                                 android:layout_below="@+id/BestGoods"
@@ -145,6 +118,7 @@
 
                             <ImageButton
                                 android:id="@+id/RecentlyGoods4"
+                                android:background="@android:color/transparent"
                                 android:layout_width="160dp"
                                 android:layout_height="160dp"
                                 android:scaleType="fitXY"
@@ -175,6 +149,7 @@
 
                         <ImageButton
                             android:id="@+id/RecentlyGoods5"
+                            android:background="@android:color/transparent"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
                             android:layout_alignParentStart="true"
@@ -209,6 +184,7 @@
 
                         <ImageButton
                             android:id="@+id/RecentlyGoods6"
+                            android:background="@android:color/transparent"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
                             android:scaleType="fitXY"
@@ -261,6 +237,7 @@
             // 나를 위한 추천상품 1
             <ImageButton
                 android:id="@+id/UserRecommendGoods1"
+                android:background="@android:color/transparent"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_below="@+id/UserRecommend"
@@ -322,6 +299,7 @@
             // 나를 위한 추천상품 2
             <ImageButton
                 android:id="@+id/UserRecommendGoods2"
+                android:background="@android:color/transparent"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_below="@+id/UserRecommendGoods1"
@@ -382,6 +360,7 @@
             // 나를 위한 추천상품 3
                 <ImageButton
                     android:id="@+id/UserRecommendGoods3"
+                    android:background="@android:color/transparent"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_below="@+id/UserRecommendGoods2"
@@ -443,12 +422,14 @@
             // ------- 여기까지가 사용자에게 보이는 스토어 메인 화면----------------
 
 
-            // 네비게이션바 공백 채우기용, 네비게이션바 세로 56dp, 가로 match_parent
+            // 네비게이션바 공백 채우기용, 네비게이션바 세로 30dp, 가로 match_parent
             // 네비게이션바는 액티브메인에 있는 화면을 가져오기때문에
             // 그만큼의 공백을 채우지 않으면 네비바 뒤로 화면이 가려짐
+
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:background="@android:color/transparent"
+                android:layout_height="30dp"
                 android:layout_below="@+id/UserRecommendGoods3"
                 android:src="@drawable/store_img6" />
 

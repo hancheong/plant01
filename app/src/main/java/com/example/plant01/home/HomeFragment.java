@@ -1,5 +1,6 @@
 package com.example.plant01.home;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 import com.example.plant01.adaptor.SliderAdapter;
 import com.example.plant01.adaptor.home_PlantAdapter;
+import com.example.plant01.usersetting.UserSetting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -67,7 +69,7 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.home_fragment, container, false);
+        return inflater.inflate(R.layout.home_main_fragment, container, false);
 
     }
 
@@ -96,9 +98,29 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
 
+
 /*------------------드로워부분-------------------*/
         final DrawerLayout drawerLayout1 = (DrawerLayout) getView().findViewById(R.id.drawerLayout);
         NavigationView navigationView = getView().findViewById(R.id.nv_homedrawer);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.btn_profile:
+                        Intent intent1 = new Intent(getActivity(), UserSetting.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.btn_bell:
+                        Intent intent2 = new Intent(getActivity(), bell.class);
+                        startActivity(intent2);
+
+                        break;
+
+
+                }
+                return true;
+            }
+        });
 
 
 

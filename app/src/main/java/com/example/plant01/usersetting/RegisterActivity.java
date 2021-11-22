@@ -3,6 +3,7 @@ package com.example.plant01.usersetting;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
@@ -46,20 +46,22 @@ public class RegisterActivity extends AppCompatActivity
         mEtEmail = findViewById(R.id.et_email);
         mEtPwd = findViewById(R.id.et_pwd);
 
-        mBtnRegister = findViewById(R.id.btn_register);
+        mBtnRegister = findViewById(R.id.btn_intoRegister);
         mBtnRegister.setOnClickListener(onClickListener);
 
+        findViewById(R.id.btn_cancle).setOnClickListener(onClickListener);
 
-        mRgGender = (RadioGroup)findViewById(R.id.rg_gender);
-        int mEtGenderID = mRgGender.getCheckedRadioButtonId();
-        UserGender =((RadioButton)findViewById(mEtGenderID)).getText().toString();
-        mRgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int i) {
-                RadioButton genderButton = (RadioButton) findViewById(i);
-                UserGender = genderButton.getText().toString();
-            }
-        });
+//
+//        mRgGender = (RadioGroup)findViewById(R.id.rg_gender);
+//        int mEtGenderID = mRgGender.getCheckedRadioButtonId();
+//        UserGender =((RadioButton)findViewById(mEtGenderID)).getText().toString();
+//        mRgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int i) {
+//                RadioButton genderButton = (RadioButton) findViewById(i);
+//                UserGender = genderButton.getText().toString();
+//            }
+//        });
         mEtNick = findViewById(R.id.et_nick);
         mEtPh =  findViewById(R.id.et_ph);
         mEtPostcode =  findViewById(R.id.et_postcode);
@@ -69,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity
 
     }
 
+    /*----------클릭이벤트-----------------------*/
     View.OnClickListener onClickListener = new View.OnClickListener()
     {
         @Override
@@ -76,12 +79,18 @@ public class RegisterActivity extends AppCompatActivity
         {
             switch (v.getId())
             {
-                case R.id.btn_register:
+                case R.id.btn_intoRegister:
                     register();
+                    break;
+                case  R.id.btn_cancle:
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
                     break;
             }
         }
     };
+
+
 
     private void register(){
         String strEmail = mEtEmail.getText().toString();
@@ -92,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity
         String strPh = mEtPh.getText().toString();
         Date strdt = Timestamp.now().toDate();
 
-        //젠더 버튼
+        /*-----성별 버튼을 String으로 가져오는 것------*/
         mRgGender = (RadioGroup)findViewById(R.id.rg_gender);
         int mEtGenderID = mRgGender.getCheckedRadioButtonId();
         UserGender =((RadioButton)findViewById(mEtGenderID)).getText().toString();
@@ -104,7 +113,8 @@ public class RegisterActivity extends AppCompatActivity
             }
         });
 
-        //firebase auth진행
+
+        /*--------------------파이어베이스 회원가입 기능을 이용한 회원가입과, firestore에 정보저장------------------------------*/
         mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>()
         {
             @Override

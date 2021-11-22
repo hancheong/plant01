@@ -28,8 +28,6 @@ public class Post_write extends AppCompatActivity {
 
 
 //    private static final String TAG = "WritePost";
-//    사용자
-//    private FirebaseUser user;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,14 +52,14 @@ public class Post_write extends AppCompatActivity {
             @Override
             public void onClick(View view) {
         //액티비티에서 프래그먼트 이동 아직 미완,,
-//                androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//                androidx.fragment.app.FragmentManager supportFragmentManager = null;
-//                supportFragmentManager.beginTransaction()
-//                        .replace(R.id.postbtn, Post_diary.class, null)
-//                        .setReorderingAllowed(true)
-//                        .addToBackStack(null)
-////                        .setMaxLifecycle()
-//                        .commit();
+                androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                androidx.fragment.app.FragmentManager supportFragmentManager = null;
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.postbtn, Post_diary.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+//                        .setMaxLifecycle()
+                        .commit();
 //
 //                Post_diary fragment =
 //                        (Post_diary) fragmentManager.findFragmentById(R.id.postbtn);

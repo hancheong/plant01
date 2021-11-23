@@ -92,20 +92,24 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
+
+                    //식물추천
+
                     <androidx.cardview.widget.CardView
                         android:id="@+id/myplant_manage_card"
                         android:layout_width="450dp"
-                        android:layout_height="156dp"
+                        android:layout_height="142dp"
                         android:layout_below="@+id/myplant_manage"
-                        android:layout_centerInParent="true"
-                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="3dp"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="20dp">
 
                         <ImageView
-                            android:id="@+id/main_myplant_im"
-                            android:layout_width="190dp"
+                            android:id="@+id/imageView4"
+                            android:layout_width="170dp"
                             android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
                             android:scaleType="fitXY"
                             android:src="@drawable/five" />
 
@@ -116,13 +120,10 @@
                             android:layout_gravity="bottom|right"
                             android:layout_margin="10dp"
                             android:adjustViewBounds="true"
-                            android:scaleType="fitCenter"
+                            android:scaleType="fitXY"
                             android:src="@drawable/home_ic_more" />
 
                     </androidx.cardview.widget.CardView>
-
-
-                    //식물추천
 
                     <TextView
                         android:id="@+id/myplant_manage2"
@@ -145,7 +146,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="5dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -159,8 +160,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/recyclerView"
                         android:layout_alignParentStart="true"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="5dp"
                         android:text="BEST 게시판"
                         android:textColor="#151515"
                         android:textSize="20sp"
@@ -168,7 +169,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="389dp"
-                        android:layout_height="300dp"
+                        android:layout_height="290dp"
                         android:layout_below="@+id/recommand_com"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="3dp"
@@ -176,7 +177,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:orientation="vertical">
 
                             <TextView
@@ -299,7 +300,7 @@
                                 android:layout_height="100dp">
 
                                 <com.makeramen.roundedimageview.RoundedImageView
-                                    android:id="@+id/userpf1"
+                                    android:id="@+id/quest_userprofile"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:layout_alignParentTop="true"
@@ -311,22 +312,22 @@
                                     app:riv_corner_radius="10dp" />
 
                                 <TextView
-                                    android:id="@+id/freeDetail1"
+                                    android:id="@+id/quset_content"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_below="@id/userpf1"
-                                    android:layout_alignLeft="@id/userpf1"
+                                    android:layout_below="@id/quest_userprofile"
+                                    android:layout_alignLeft="@id/quest_userprofile"
                                     android:layout_marginLeft="0dp"
                                     android:layout_marginTop="8dp"
                                     android:text="꽃이 피었어요!"
                                     android:textColor="#151515" />
 
                                 <TextView
-                                    android:id="@+id/usernic1"
+                                    android:id="@+id/quest_usernick"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignLeft="@+id/userpf1"
-                                    android:layout_alignBottom="@id/userpf1"
+                                    android:layout_alignLeft="@+id/quest_userprofile"
+                                    android:layout_alignBottom="@id/quest_userprofile"
 
                                     android:layout_marginStart="46dp"
                                     android:layout_marginLeft="46dp"
@@ -346,7 +347,7 @@
                                     android:src="@drawable/home_ic_like" />
 
                                 <TextView
-                                    android:id="@+id/likecount1"
+                                    android:id="@+id/quest_likecount"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
@@ -381,19 +382,15 @@
 
                             </RelativeLayout>
 
-
                             <View
                                 android:id="@+id/view1"
                                 android:layout_width="370dp"
                                 android:layout_height="3dp"
-                                android:layout_alignParentBottom="true"
                                 android:layout_gravity="center"
                                 android:background="#787474" />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
-
-
                 </RelativeLayout>
             </ScrollView>
 

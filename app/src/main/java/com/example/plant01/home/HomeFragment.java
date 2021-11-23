@@ -204,23 +204,28 @@ public class HomeFragment extends Fragment {
 
     public void showBoard(){
         RoundedImageView freeuserprofile = getView().findViewById(R.id.free_userpfile);
-
         TextView free_content = getView().findViewById(R.id.freeDetail);
         TextView free_count = getView().findViewById(R.id.free_likecount);
+        TextView free_usernick = getView().findViewById(R.id.free_usernic);
 
-        //like필드를 ??오름차순???
+        RoundedImageView questuserprofile = getView().findViewById(R.id.quest_userprofile);
+        TextView quest_content = getView().findViewById(R.id.quset_content);
+        TextView quest_count = getView().findViewById(R.id.quest_likecount);
+        TextView quest_usernick = getView().findViewById(R.id.quest_usernick);
+
 
         /*----------------자유게시판 불러오는 쿼리 -------------------------*/
 
-        Query freeboard = db .collection("Posts").whereEqualTo("board","1");
-        Query query = db.collection("Posts").whereEqualTo("board","자유게시판").orderBy("likes", Query.Direction.DESCENDING).limit(1);
+        Query freeboard = db.collection("Posts").whereEqualTo("board","자유게시판").orderBy("likes", Query.Direction.DESCENDING).limit(1);
 
         /*-------------------질문 게시판 불러오는 쿼리 ---------------------------*/
-        Query questboard = db .collection("Posts").whereEqualTo("board","2");
-        Query query1 = freeboard.orderBy("likes", Query.Direction.DESCENDING).limit(1);
+        Query questboard = db.collection("Posts").whereEqualTo("board","질문게시판").orderBy("likes", Query.Direction.DESCENDING).limit(1);
+
         //postUserUID 가져오는 방법?
         //postLike의 documentID가져옴.
-       query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+/*-------------------자유게시판 중 베스트-----------------------------------*/
+       freeboard.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
            @Override
            public void onComplete(@NonNull Task<QuerySnapshot> task) {
                if (task.isSuccessful()) {
@@ -233,18 +238,29 @@ public class HomeFragment extends Fragment {
                        free_count.setText(likes);
                        
                        //컨텐츠 내용 가져오기
+                       String content = (String)document.get("postContent");
+                       free_content.setText(content);
 
                        //postUserID로 userNick가져오기
                        String UserUID = (String) document.get("postUserUID");
-                       TextView free_usernick = getView().findViewById(R.id.free_usernic);
                        db.collection("Users").document(UserUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                            @Override
                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                if (task.isSuccessful()) {
                                    DocumentSnapshot doc = task.getResult();
+
+                                   // 닉네임과 이미지
                                    String userNick = (String) doc.get("userNick");
                                    free_usernick.setText(userNick);
+                                   String userImg = (String) doc.get("userImg");
+                                   if(userImg != null){
+                                       Glide.with(getContext())
+                                               .load(Uri.parse(userImg))
+                                               .into(freeuserprofile);
+                                   }
+
                                    Log.d(TAG, doc.getId() + " " + UserUID + userNick);
+
 
 
                                }
@@ -260,6 +276,55 @@ public class HomeFragment extends Fragment {
 
            }
        });
+
+/*------------질문 게시판 중 베스트--------------------------*/
+
+        questboard.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        ArrayList list = (ArrayList)document.getData().get("likes");
+
+
+                        //int를 String으로 바꾸는 방법
+                        String  likes = String.valueOf(list.size());
+                        quest_count.setText(likes);
+
+                        //컨텐츠 내용 가져오기
+                        String content = (String)document.get("postContent");
+                        quest_content.setText(content);
+
+                        //postUserID로 userNick가져오기
+                        String UserUID = (String) document.get("postUserUID");
+                        db.collection("Users").document(UserUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot doc = task.getResult();
+                                    String userNick = (String) doc.get("userNick");
+                                    quest_usernick.setText(userNick);
+
+                                    String userImg = (String) doc.get("userImg");
+                                    if(userImg != null){
+                                        Glide.with(getContext())
+                                                .load(Uri.parse(userImg))
+                                                .into(questuserprofile);
+                                    }
+                                    Log.d(TAG, doc.getId() + " " + UserUID + userNick);
+                                }
+                            }
+                        });
+                        Log.d(TAG, document.getId() + " => " + document.getData()+ " " + UserUID + " "  );
+                    }
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+
+            }
+        });
+
+
     }
 }
 

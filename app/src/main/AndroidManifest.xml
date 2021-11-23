@@ -5,6 +5,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
 
     <application
@@ -37,6 +41,9 @@
             android:exported="true" />
         <activity
             android:name=".usersetting.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".usersetting.CameraActivity"
             android:exported="true" />
 
         <activity android:name=".MainActivity" />

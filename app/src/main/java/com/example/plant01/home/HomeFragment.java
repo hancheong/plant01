@@ -38,18 +38,24 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class HomeFragment extends Fragment {
+    private static final String TAG = "HomeFragment";
 
     SliderView sliderView;
     int[] images = {R.drawable.home_ad1,
@@ -129,6 +135,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        ///
+        showBoard();
+
 
         /*--------- 클릭 이벤트 -------------*/
         cl = new View.OnClickListener() {
@@ -180,7 +189,6 @@ public class HomeFragment extends Fragment {
                     //해당 필드의 값 받아오기
                     String userImg = (String) doc.get("userImg");
                     String userNick = (String) doc.get("userNick");
-
                     usernick.setText(userNick);
                     Glide.with(getContext())
                             .load(Uri.parse(userImg))
@@ -189,8 +197,69 @@ public class HomeFragment extends Fragment {
             }
 
         });
+    }
 
 
+    /*-------------인기게시판 불러오는 곳------------------*/
+
+    public void showBoard(){
+        RoundedImageView freeuserprofile = getView().findViewById(R.id.free_userpfile);
+
+        TextView free_content = getView().findViewById(R.id.freeDetail);
+        TextView free_count = getView().findViewById(R.id.free_likecount);
+
+        //like필드를 ??오름차순???
+
+        /*----------------자유게시판 불러오는 쿼리 -------------------------*/
+
+        Query freeboard = db .collection("Posts").whereEqualTo("board","1");
+        Query query = db.collection("Posts").orderBy("likes", Query.Direction.ASCENDING).limit(1);
+
+        /*-------------------질문 게시판 불러오는 쿼리 ---------------------------*/
+        Query questboard = db .collection("Posts").whereEqualTo("board","2");
+        Query query1 = freeboard.orderBy("likes", Query.Direction.ASCENDING).limit(1);
+        //postUserUID 가져오는 방법?
+        //postLike의 documentID가져옴.
+       query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+           @Override
+           public void onComplete(@NonNull Task<QuerySnapshot> task) {
+               if (task.isSuccessful()) {
+                   for (QueryDocumentSnapshot document : task.getResult()) {
+                       ArrayList list = (ArrayList)document.getData().get("likes");
+
+
+                       //int를 String으로 바꾸는 방법
+                       String  likes = String.valueOf(list.size());
+                       free_count.setText(likes);
+                       
+                       //컨텐츠 내용 가져오기
+
+                       //postUserID로 userNick가져오기
+                       String UserUID = (String) document.get("postUserUID");
+                       TextView free_usernick = getView().findViewById(R.id.free_usernic);
+                       db.collection("Users").document(UserUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                           @Override
+                           public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                               if (task.isSuccessful()) {
+                                   DocumentSnapshot doc = task.getResult();
+                                   String userNick = (String) doc.get("userNick");
+                                   free_usernick.setText(userNick);
+                                   Log.d(TAG, doc.getId() + " " + UserUID + userNick);
+
+
+                               }
+                           }
+                       });
+
+
+                       Log.d(TAG, document.getId() + " => " + document.getData()+ " " + UserUID + " "  );
+                   }
+               } else {
+                   Log.d(TAG, "Error getting documents: ", task.getException());
+               }
+
+           }
+       });
     }
 }
 

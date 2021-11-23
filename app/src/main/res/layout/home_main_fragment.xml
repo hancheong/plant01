@@ -183,15 +183,17 @@
                                 android:id="@+id/free"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
                                 android:text="자유게시판"
-                                android:textColor="#395A22" />
+                                android:textColor="#395A22"
+                                android:textStyle="bold" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
 
                                 <com.makeramen.roundedimageview.RoundedImageView
-                                    android:id="@+id/userpf"
+                                    android:id="@+id/free_userpfile"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:layout_alignParentTop="true"
@@ -206,19 +208,19 @@
                                     android:id="@+id/freeDetail"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_below="@id/userpf"
-                                    android:layout_alignLeft="@id/userpf"
+                                    android:layout_below="@id/free_userpfile"
+                                    android:layout_alignLeft="@id/free_userpfile"
                                     android:layout_marginLeft="0dp"
                                     android:layout_marginTop="8dp"
                                     android:text="꽃이 피었어요!"
                                     android:textColor="#151515" />
 
                                 <TextView
-                                    android:id="@+id/usernic"
+                                    android:id="@+id/free_usernic"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignLeft="@+id/userpf"
-                                    android:layout_alignBottom="@id/userpf"
+                                    android:layout_alignLeft="@+id/free_userpfile"
+                                    android:layout_alignBottom="@id/free_userpfile"
 
                                     android:layout_marginStart="46dp"
                                     android:layout_marginLeft="46dp"
@@ -238,7 +240,7 @@
                                     android:src="@drawable/home_ic_like" />
 
                                 <TextView
-                                    android:id="@+id/likecount"
+                                    android:id="@+id/free_likecount"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
@@ -287,8 +289,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentTop="true"
+                                android:layout_margin="10dp"
                                 android:text="질문게시판"
-                                android:textColor="#151515" />
+                                android:textColor="#151515"
+                                android:textStyle="bold" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"

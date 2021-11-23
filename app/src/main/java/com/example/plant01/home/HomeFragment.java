@@ -213,11 +213,11 @@ public class HomeFragment extends Fragment {
         /*----------------자유게시판 불러오는 쿼리 -------------------------*/
 
         Query freeboard = db .collection("Posts").whereEqualTo("board","1");
-        Query query = db.collection("Posts").orderBy("likes", Query.Direction.ASCENDING).limit(1);
+        Query query = db.collection("Posts").whereEqualTo("board","자유게시판").orderBy("likes", Query.Direction.DESCENDING).limit(1);
 
         /*-------------------질문 게시판 불러오는 쿼리 ---------------------------*/
         Query questboard = db .collection("Posts").whereEqualTo("board","2");
-        Query query1 = freeboard.orderBy("likes", Query.Direction.ASCENDING).limit(1);
+        Query query1 = freeboard.orderBy("likes", Query.Direction.DESCENDING).limit(1);
         //postUserUID 가져오는 방법?
         //postLike의 documentID가져옴.
        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

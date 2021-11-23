@@ -25,7 +25,7 @@
             android:exported="false" />
         <activity
             android:name=".garden.MyGarden"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".home.home_search_inputtest"
             android:exported="true" />
@@ -38,12 +38,12 @@
         <activity
             android:name=".usersetting.RegisterActivity"
             android:exported="true" />
-        <activity android:name=".home.Home" />
+
         <activity android:name=".MainActivity" />
         <activity
             android:name=".store.MainActivity"
             android:exported="true" />
-        <activity android:name=".home.ActionBar" />
+
         <activity
             android:name=".postpage.PostMain"
             android:exported="true"/>

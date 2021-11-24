@@ -44,7 +44,7 @@ public class Post_free extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        return super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.post_free, container, false);
+//        view = inflater.inflate(R.layout.post_free, container, false);
 //        recyclerView = getView().findViewById(R.id.recyclerview);
 //        recyclerView.setHasFixedSize(true); //리사이클러뷰 기존 성능 강화
 //        layoutManager = new LinearLayoutManager(getActivity());
@@ -72,7 +72,7 @@ public class Post_free extends Fragment {
 //        });
 //        adapter = new post_CustomAdapter(arrayList, getContext());
 //        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
-//        return view;
+
         //작성버튼
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.add_post);
         //작성페이지로 이동하는 버튼

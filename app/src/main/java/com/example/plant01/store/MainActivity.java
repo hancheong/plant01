@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.plant01.R;
 import com.example.plant01.home.HomeFragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private store store;
     private store_category store_category;
     private FragmentPagerAdapter fragmentPagerAdapter;
+
 
     Button bt1, bt2;
     EditText name, title, review, price, inp;

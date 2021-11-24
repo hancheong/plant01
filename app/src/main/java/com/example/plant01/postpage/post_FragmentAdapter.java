@@ -11,6 +11,7 @@ public class post_FragmentAdapter extends FragmentStateAdapter {
 //        super(fragmentActivity);
 //    }
 
+    //카테고리와 연결
     public post_FragmentAdapter(@NonNull FragmentManager fm, @NonNull Lifecycle lifecycle) {
         super(fm, lifecycle);
     }

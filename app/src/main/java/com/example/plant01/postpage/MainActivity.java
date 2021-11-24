@@ -15,30 +15,27 @@ import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
-    //    Button button;
-//    View.OnClickListener cl;
-//    Intent intent;
     TabLayout tabLayout;
     ViewPager2 pager2;
     post_FragmentAdapter adapter;
-    //    FloatingActionButton floatingActionButton;
     public static Stack<Fragment> fragmentStack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_activity_main);
-
+        //post_activitiy_main에서 상단 카테고리 목록
         tabLayout = findViewById(R.id.tab_layout);
+        //게시글 담을 페이지
         pager2 = findViewById(R.id.post_viewpage);
-
+        //FragmentAdapter에서 카테고리 선택하여 페이지 이동
         FragmentManager fm = getSupportFragmentManager();
         adapter = new post_FragmentAdapter(fm, getLifecycle());
         pager2.setAdapter(adapter);
 
 
 
-
+        //카테고리 선택
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -55,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-//        intent = getIntent();
+        //카테고리 선택할 때마다 페이지 이동
         pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -64,14 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        cl = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), WritePost.class);
-//                startActivity(intent);
-//            }
-//        };
-//        floatingActionButton.setOnClickListener(cl);
+
 
     }
 

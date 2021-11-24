@@ -1,33 +1,26 @@
 package com.example.plant01.postpage;
 
 public class Post {
+    private String profile; //user_img
+    private String username; //user_id
+    private String content; //explain
+    private String image; //post_img
+    private String like; //post_like
+    private String chat; //comment
+    private String share; //share
+    private String date; //postdate
+    private int like_num; //like_num
 
-    private int profileIcon;
-    private int postImage;
-    private String username;
-    private String date;
 
-    public Post(int profileIcon, int postImage, String username, String date) {
-        this.profileIcon = profileIcon;
-        this.postImage = postImage;
-        this.username = username;
-        this.date = date;
+
+    public Post(){}
+
+    public String getProfile() {
+        return profile;
     }
 
-    public int getProfileIcon() {
-        return profileIcon;
-    }
-
-    public void setProfileIcon(int profileIcon) {
-        this.profileIcon = profileIcon;
-    }
-
-    public int getPostImage() {
-        return postImage;
-    }
-
-    public void setPostImage(int postImage) {
-        this.postImage = postImage;
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public String getUsername() {
@@ -38,11 +31,59 @@ public class Post {
         this.username = username;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getLike() {
+        return like;
+    }
+
+    public void setLike(String like) {
+        this.like = like;
+    }
+
+    public String getChat() {
+        return chat;
+    }
+
+    public void setChat(String chat) {
+        this.chat = chat;
+    }
+
+    public String getShare() {
+        return share;
+    }
+
+    public void setShare(String share) {
+        this.share = share;
+    }
+
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getLike_num() {
+        return like_num;
+    }
+
+    public void setLike_num(int like_num) {
+        this.like_num = like_num;
     }
 }

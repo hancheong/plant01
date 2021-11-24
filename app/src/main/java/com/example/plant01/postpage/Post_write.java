@@ -71,22 +71,24 @@ public class Post_write extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.img:
+                        //이미지를 갤러리에서 가져옴
                         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                         intent.setType("image/*");
                         startActivity(intent);
                         break;
                     case R.id.vod:
+                        //동영상을 갤러리에서 가져옴
                         Intent intent1 = new Intent();
                         intent1.setType("video/*");
                         intent1.setAction(Intent.ACTION_GET_CONTENT);
                         startActivity(intent1);
                         break;
                     case R.id.postbtn:
-//                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                        // 프래그먼트매니저를 통해 사용
-//                        Post_diary post_diary= new Post_diary(); // 객체 생성
-//                        transaction.replace(R.id.floatingActionButton, post_diary); //layout, 교체될 layout
-//                        transaction.commit(); //commit으로 저장 하지 않으면 화면 전환이 되지 않음
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        // 프래그먼트매니저를 통해 사용
+                        Post_diary post_diary= new Post_diary(); // 객체 생성
+                        transaction.replace(R.id.postbtn, post_diary); //layout, 교체될 layout
+                        transaction.commit(); //commit으로 저장 하지 않으면 화면 전환이 되지 않음
                         break;
                 }
             }

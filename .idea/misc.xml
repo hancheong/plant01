@@ -3,16 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/drawable/drawer_ic_qna.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/drawable/navi_ic_home.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layout/activity_store_recommend_list.xml" value="0.3283514492753623" />
+        <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layout/home_item.xml" value="0.3283514492753623" />
+        <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layout/store_recommendgoods.xml" value="0.3283514492753623" />
+        <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/garden_my_garden.xml" value="0.3283514492753623" />
+        <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/garden_my_plants.xml" value="0.3283514492753623" />
+        <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_best.xml" value="0.3283514492753623" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/activity_login.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/navigaton_bar.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/store_activity_main.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/activity_add_plants.xml" value="0.18177083333333333" />
-<<<<<<< HEAD
-        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/fragment_camera2_basic.xml" value="0.18177083333333333" />
-=======
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/activity_camera.xml" value="0.144" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/fragment_camera2_basic.xml" value="0.4" />
->>>>>>> 10622f49b6c5a725867a02d162e110be0a490aa7
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/garden_my_garden.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/garden_my_plants.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/home_setting_bell.xml" value="0.18177083333333333" />

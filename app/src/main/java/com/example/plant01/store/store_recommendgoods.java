@@ -32,7 +32,7 @@ public class store_recommendgoods extends Fragment {
 
 
         btn_recommend = view.findViewById(R.id.store_recommend_btn);
-        btn_recommend.setOnClickListener(new View.OnClickListener() {
+        btn_recommend.setOnClickListener(new View.OnClickListener() { // 추천상품에서 #초보집사 아이콘을 눌러 해당 카테고리 화면으로 이동
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Store_RecommendList.class);

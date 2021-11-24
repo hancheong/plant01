@@ -82,11 +82,11 @@ public class Post_write extends AppCompatActivity {
                         startActivity(intent1);
                         break;
                     case R.id.postbtn:
-//                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                        // 프래그먼트매니저를 통해 사용
-//                        Post_diary post_diary= new Post_diary(); // 객체 생성
-//                        transaction.replace(R.id.floatingActionButton, post_diary); //layout, 교체될 layout
-//                        transaction.commit(); //commit으로 저장 하지 않으면 화면 전환이 되지 않음
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        // 프래그먼트매니저를 통해 사용
+                        Post_diary post_diary= new Post_diary(); // 객체 생성
+                        transaction.replace(R.id.postbtn, post_diary); //layout, 교체될 layout
+                        transaction.commit(); //commit으로 저장 하지 않으면 화면 전환이 되지 않음
                         break;
                 }
             }

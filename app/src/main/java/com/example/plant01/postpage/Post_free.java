@@ -87,6 +87,7 @@ public class Post_free extends Fragment {
         return view;
 
     }
+    //시도중
 //    @Override
 //    public void onStart() {
 //        super.onStart();

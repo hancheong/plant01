@@ -7,8 +7,12 @@
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/navigaton_bar.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/store_activity_main.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/activity_add_plants.xml" value="0.18177083333333333" />
+<<<<<<< HEAD
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/fragment_camera2_basic.xml" value="0.18177083333333333" />
+=======
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/activity_camera.xml" value="0.144" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/fragment_camera2_basic.xml" value="0.4" />
+>>>>>>> 10622f49b6c5a725867a02d162e110be0a490aa7
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/garden_my_garden.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/garden_my_plants.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/home_setting_bell.xml" value="0.18177083333333333" />
@@ -18,5 +22,5 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="16" project-jdk-type="JavaSDK" />
 </project>

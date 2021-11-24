@@ -53,6 +53,14 @@ public class AddPlants extends AppCompatActivity {
             }
         });
 
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPlants.class);
+                startActivity(intent);
+            }
+        });
+
         ivPlants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +75,7 @@ public class AddPlants extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void PickImageFromGallery() {

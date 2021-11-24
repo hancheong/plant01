@@ -36,73 +36,22 @@ public class MainActivity extends AppCompatActivity {
     private store_category store_category;
     private FragmentPagerAdapter fragmentPagerAdapter;
 
+<<<<<<< HEAD
 
     Button bt1, bt2;
     EditText name, title, review, price, inp;
     TextView result1, result2, result3, result4;
 
 
+=======
+>>>>>>> b3bd7b0790d8d7e1c3e4408da464f655cbc45351
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_activity_main);
 
 
-        bt1 = findViewById(R.id.button);
-        name = findViewById(R.id.StoreName);
-        title = findViewById(R.id.GoodsPageTitle);
-        review = findViewById(R.id.ReviewCount);
-        price = findViewById(R.id.GoodsPrice);
-
-        bt2 = findViewById(R.id.button2);
-        inp = findViewById(R.id.inp);
-        result1 = findViewById(R.id.textView);
-        result2 = findViewById(R.id.textView2);
-        result3 = findViewById(R.id.textView3);
-        result4 = findViewById(R.id.textView4);
-/*
-        bt1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                addgoods(name.getText().toString(), title.getText().toString(), review.getText().toString(), price.getText().toString());
-            }
-        });
-
-        bt2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String a = String.valueOf(inp.getText());
-                getgoods(a);
-            }
-        });
-
-        public void addgoods(String name, String title, String review, String price) {
-            goods goods;
-            goods = new goods(name, title, review, price);
-            databaseReference.child("goods").child(name).setValue(goods);
-        }
-
-        public void getgoods(String s) {
-            DatabaseReference data = databaseReference.child("goods").child(s);
-            data.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    goods value = snapshot.getValue(goods.class);
-                    result1.setText(value.name);
-                    result2.setText(value.title);
-                    result3.setText(value.review);
-                    result4.setText(value.price);
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-*/
-
-
-
-        bottomNavigationView = findViewById(R.id.Navigation);
+        bottomNavigationView = findViewById(R.id.Navigation); // 네비게이션 아이콘을 누를시 해당 화면으로 이동
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

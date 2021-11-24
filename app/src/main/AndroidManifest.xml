@@ -10,7 +10,6 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/appicon"
@@ -18,6 +17,12 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.plant01">
+        <activity
+            android:name=".usersetting.asdas"
+            android:exported="false" />
+        <activity
+            android:name=".home.search"
+            android:exported="true" />
         <activity
             android:name=".usersetting.UserSetting"
             android:exported="true" />
@@ -45,15 +50,13 @@
         <activity
             android:name=".usersetting.CameraActivity"
             android:exported="true" />
-
         <activity android:name=".MainActivity" />
         <activity
             android:name=".store.MainActivity"
             android:exported="true" />
-
         <activity
             android:name=".postpage.PostMain"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".postpage.MainActivity"
             android:exported="true" />

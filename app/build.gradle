@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'kotlin-android'
 }
+
+//project.ext.ASSET_DIR = projectDir.toString() + "/src/main/assets"
+//assert file(project.ext.ASSET.DIR + "/labels.txt").exists()
 
 android {
     compileSdk 31
@@ -43,6 +47,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        mlModelBinding true
     }
 }
 
@@ -67,6 +72,10 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha04'
     implementation 'com.google.android.material:material:1.4.0'
@@ -93,6 +102,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:20.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+//텐서플로우
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
+
+
 
 
 //    noinspection GradleCompatible,GradleCompatible

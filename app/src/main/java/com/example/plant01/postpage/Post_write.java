@@ -71,11 +71,13 @@ public class Post_write extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.img:
+                        //이미지를 갤러리에서 가져옴
                         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                         intent.setType("image/*");
                         startActivity(intent);
                         break;
                     case R.id.vod:
+                        //동영상을 갤러리에서 가져옴
                         Intent intent1 = new Intent();
                         intent1.setType("video/*");
                         intent1.setAction(Intent.ACTION_GET_CONTENT);

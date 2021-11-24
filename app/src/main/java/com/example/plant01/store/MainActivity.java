@@ -36,15 +36,15 @@ public class MainActivity extends AppCompatActivity {
     private store_category store_category;
     private FragmentPagerAdapter fragmentPagerAdapter;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
     Button bt1, bt2;
     EditText name, title, review, price, inp;
     TextView result1, result2, result3, result4;
 
 
-=======
->>>>>>> b3bd7b0790d8d7e1c3e4408da464f655cbc45351
+//=======
+//>>>>>>> b3bd7b0790d8d7e1c3e4408da464f655cbc45351
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

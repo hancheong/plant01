@@ -1,9 +1,7 @@
 package com.example.plant01.usersetting;
 
-import static com.example.plant01.usersetting.Util.INTENT_PATH;
+//import static com.example.plant01.usersetting.Util.INTENT_PATH;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -36,19 +34,19 @@ public class UserSetting extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case 0: {
-                if (resultCode == Activity.RESULT_OK) {
-                    profilePath = data.getStringExtra(INTENT_PATH);
-//                    Glide.with(this).load(profilePath).centerCrop().override(500).into();
-//                    buttonBackgroundLayout.setVisibility(View.GONE);
-                }
-                break;
-            }
-        }
-    }
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        switch (requestCode) {
+//            case 0: {
+//                if (resultCode == Activity.RESULT_OK) {
+//                    profilePath = data.getStringExtra(INTENT_PATH);
+////                    Glide.with(this).load(profilePath).centerCrop().override(500).into();
+////                    buttonBackgroundLayout.setVisibility(View.GONE);
+//                }
+//                break;
+//            }
+//        }
+//    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

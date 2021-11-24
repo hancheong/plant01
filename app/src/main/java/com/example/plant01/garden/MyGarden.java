@@ -34,7 +34,7 @@ public class MyGarden extends AppCompatActivity {
         ibnBack = (ImageButton) findViewById(R.id.ibnBack);
         btnAdd = (Button) findViewById(R.id.btnAdd);
 
- //       setData();
+        setData();
 
         listView.setAdapter(adapter);
 
@@ -46,7 +46,7 @@ public class MyGarden extends AppCompatActivity {
             }
         });
     }
-   /* private void setData() {
+   private void setData() {
         TypedArray arrResId = getResources().obtainTypedArray(R.array.resId);
         String[] titles = getResources().getStringArray(R.array.title);
         String[] contents = getResources().getStringArray(R.array.content);
@@ -59,5 +59,5 @@ public class MyGarden extends AppCompatActivity {
 
             adapter.addItem(dto);
         }
-    }*/
+    }
 }

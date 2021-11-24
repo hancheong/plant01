@@ -63,7 +63,7 @@ public class CustomAdapter extends BaseAdapter {
         TextView textContent;
     }
 
-    // MainActivity에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
+    // Mygarden에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
     public void addItem(CustomDTO dto) {
         listCustom.add(dto);
     }

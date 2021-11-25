@@ -80,6 +80,11 @@ public class Post_free extends Fragment {
 
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
     //시도중
 //    @Override
 //    public void onStart() {

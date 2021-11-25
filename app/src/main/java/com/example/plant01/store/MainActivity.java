@@ -17,6 +17,7 @@ import com.example.plant01.R;
 import com.example.plant01.garden.MyGarden;
 import com.example.plant01.home.HomeFragment;
 
+import com.example.plant01.postpage.PostMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private com.example.plant01.postpage.MainActivity mainActivity;
+    private PostMainActivity mainActivity;
     private HomeFragment HomeFragment;
     private store_category store_category;
     private SubActivity SubActivity;
@@ -76,7 +77,13 @@ public class MainActivity extends AppCompatActivity {
         });
 //        home = new home();
         HomeFragment = new HomeFragment();
+<<<<<<< HEAD
         mainActivity = new com.example.plant01.postpage.MainActivity();
+=======
+        plant = new plant();
+        mainActivity = new PostMainActivity();
+        store = new store();
+>>>>>>> ced7a8756a1fe5769487a1877b13f0221394256b
         store_category = new store_category();
         MyGarden = new MyGarden();
         setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택

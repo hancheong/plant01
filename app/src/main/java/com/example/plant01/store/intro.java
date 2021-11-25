@@ -14,7 +14,7 @@ public class intro extends Activity {
     Runnable r = new Runnable() {
         @Override
         public void run() {
-// 4초뒤에 다음화면(MainActivity)으로 넘어가기 Handler 사용
+// 4초뒤에 다음화면(PostMainActivity)으로 넘어가기 Handler 사용
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent); // 다음화면으로 넘어가기
             finish(); // Activity 화면 제거

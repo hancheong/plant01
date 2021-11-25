@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="resId">
+        <!--<item>@drawable/imagename</item>-->
+        <item>@drawable/store_img1</item>
+        <item>@drawable/store_img2</item>
+        <item>@drawable/store_img3</item>
+
+    </integer-array>
+
+    <string-array name="title">
+        <item>국화</item>
+        <item>수국</item>
+        <item>튤립</item>
+    </string-array>
+
+    <string-array name="content">
+        <item>내용</item>
+        <item>내용</item>
+        <item>내용</item>
+
+    </string-array>
+
+</resources>

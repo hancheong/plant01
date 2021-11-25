@@ -1,18 +1,16 @@
 package com.example.plant01.usersetting;
 
-import static com.example.plant01.usersetting.Util.INTENT_PATH;
-
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.plant01.R;
 
@@ -34,29 +32,32 @@ public class UserSetting extends AppCompatActivity {
         setTitle("회원정보");
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        profileImageVIew = (ImageView) findViewById(R.id.btn_profile);
+        ImageView btnCamera = (ImageView) findViewById(R.id.btn_camera);
+        ImageView btnGallery = (ImageView) findViewById(R.id.btn_gallery);
+
+
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case 0: {
-                if (resultCode == Activity.RESULT_OK) {
-                    profilePath = data.getStringExtra(INTENT_PATH);
-//                    Glide.with(this).load(profilePath).centerCrop().override(500).into();
-//                    buttonBackgroundLayout.setVisibility(View.GONE);
-                }
-                break;
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.btn_profile:
+                    showDialog();
+                    break;
             }
         }
+    };
+
+    public void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(UserSetting.this);
+        View view = LayoutInflater.from(UserSetting.this).inflate(R.layout.home_dialog_camera
+                , (ConstraintLayout)findViewById(R.id.layoutDialogContainer));
+        builder.setView(view);
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                onBackPressed();
-                return  true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 }

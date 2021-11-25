@@ -3,29 +3,39 @@ package com.example.plant01.home;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.media.Image;
+import android.media.ImageReader;
 import android.media.ThumbnailUtils;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plant01.R;
 import com.example.plant01.ml.Model;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -47,11 +57,14 @@ public class search extends AppCompatActivity {
         picture = findViewById(R.id.button);
 
         picture.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 // Launch camera if we have permission
                 if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                     Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+
                     startActivityForResult(cameraIntent, 1);
                 } else {
                     //Request camera permission if we don't have it.
@@ -102,6 +115,7 @@ public class search extends AppCompatActivity {
                 }
             }
 
+
             String[] classes = {"Banana", "Orange", "Pen", "Sticky Notes"};
             result.setText(classes[maxPos]);
 
@@ -132,5 +146,80 @@ public class search extends AppCompatActivity {
             classifyImage(image);
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+
+    private HandlerThread mBackgroundThread;
+
+    /**
+     * A {@link Handler} for running tasks in the background.
+     */
+    private Handler mBackgroundHandler;
+
+    private ImageReader mImageReader;
+
+    /**
+     * This is the output file for our picture.
+     */
+    private File mFile;
+
+    /**
+     * This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
+     * still image is ready to be saved.
+     */
+    private final ImageReader.OnImageAvailableListener mOnImageAvailableListener
+            = new ImageReader.OnImageAvailableListener() {
+
+        @Override
+        public void onImageAvailable(ImageReader reader) {
+            mBackgroundHandler.post(new search.ImageUpLoader(reader.acquireNextImage()));
+        }
+
+    };
+
+    private static class ImageUpLoader implements Runnable {
+
+        /**
+         * The JPEG image
+         */
+        private final Image mImage;
+        /**
+         * The file we save the image into.
+         */
+
+
+        ImageUpLoader(Image image) {
+            mImage = image;
+        }
+
+        @Override
+        public void run() {
+            ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
+            byte[] bytes = new byte[buffer.remaining()];
+            buffer.get(bytes);
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            StorageReference mountainImagesRef = storageRef.child("images/mountains.jpg");
+
+            UploadTask uploadTask = mountainImagesRef.putBytes(bytes);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.e("실패", "실패");
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                    // ...
+                    Log.e("성공", "성공");
+                }
+            });
+
+
+        }
+
     }
 }

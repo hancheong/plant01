@@ -1,8 +1,5 @@
 package com.example.plant01.garden;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plant01.R;
 
@@ -67,6 +67,11 @@ public class AddPlants extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void showCameraBtn(View view){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivity(intent);
     }
 
     private void PickImageFromGallery() {

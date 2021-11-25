@@ -31,10 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
     private com.example.plant01.postpage.MainActivity mainActivity;
     private HomeFragment HomeFragment;
-    private home home;
-    private plant plant;
-    private board board;
-    private store store;
     private store_category store_category;
     private SubActivity SubActivity;
     private MyGarden MyGarden;
@@ -80,9 +76,7 @@ public class MainActivity extends AppCompatActivity {
         });
 //        home = new home();
         HomeFragment = new HomeFragment();
-        plant = new plant();
         mainActivity = new com.example.plant01.postpage.MainActivity();
-        store = new store();
         store_category = new store_category();
         MyGarden = new MyGarden();
         setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택

@@ -238,10 +238,10 @@
 
         <ImageButton
             android:id="@+id/store_recommend_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:layout_width="67dp"
-            android:layout_height="53dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerInside"
             android:src="@drawable/store_recommend1"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="118dp" />

@@ -1,5 +1,6 @@
 package com.example.plant01.usersetting;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,9 +34,11 @@ public class UserSetting extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        profileImageVIew = (ImageView) findViewById(R.id.btn_profile);
+        profileImageVIew = (ImageView) findViewById(R.id.img_setting_user);
         ImageView btnCamera = (ImageView) findViewById(R.id.btn_camera);
         ImageView btnGallery = (ImageView) findViewById(R.id.btn_gallery);
+
+        profileImageVIew.setOnClickListener(onClickListener);
 
 
     }
@@ -44,18 +47,26 @@ public class UserSetting extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.btn_profile:
-                    showDialog();
+                case R.id.img_setting_user:
+                    showcameraDialog();
                     break;
+                case R.id.btn_camera:
+
+
             }
         }
     };
 
-    public void showDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(UserSetting.this);
+    public void showcameraDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(UserSetting.this,R.style.AlterDialogTheme);
         View view = LayoutInflater.from(UserSetting.this).inflate(R.layout.home_dialog_camera
                 , (ConstraintLayout)findViewById(R.id.layoutDialogContainer));
         builder.setView(view);
+        final AlertDialog alterDialog = builder.create();
+        if(alterDialog.getWindow() != null){
+            alterDialog.getWindow().setBackgroundDrawable(new ColorDrawable());
+        }
+        alterDialog.show();
 
     }
 

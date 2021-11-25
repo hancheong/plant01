@@ -11,9 +11,14 @@
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/2/drawable/home_ic_gallery.xml" value="0.12395833333333334" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/drawable/drawer_ic_setting.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/activity_login.xml" value="0.1078125" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/home_toolbar.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/store_activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/home/layout/home_dialog_camera.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/home_dialog_camera.xml" value="0.264" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/home_setting_user.xml" value="0.16" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/test1234.xml" value="0.1" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/view_toolbar.xml" value="0.1" />
       </map>
     </option>
   </component>

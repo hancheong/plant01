@@ -75,17 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-//        home = new home();
         HomeFragment = new HomeFragment();
-<<<<<<< HEAD
-        mainActivity = new com.example.plant01.postpage.MainActivity();
-=======
-        plant = new plant();
         mainActivity = new PostMainActivity();
-        store = new store();
->>>>>>> ced7a8756a1fe5769487a1877b13f0221394256b
-        store_category = new store_category();
         MyGarden = new MyGarden();
+        store_category = new store_category();
         setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택
 
     }

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Shingu/dev/app/src/main/res/layouts/loginout/layout/home_setting_user.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/drawable/drawer_ic_qna.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/drawable/navi_ic_home.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layout/activity_store_recommend_list.xml" value="0.3283514492753623" />
@@ -26,5 +27,6 @@
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="16" project-jdk-type="JavaSDK" />
 </project>

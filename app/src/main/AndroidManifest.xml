@@ -18,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.plant01">
         <activity
+            android:name=".usersetting.asdas"
+            android:exported="false" />
+        <activity
+            android:name=".home.search"
+            android:exported="true" />
+        <activity
             android:name=".usersetting.UserSetting"
             android:exported="true" />
         <activity
@@ -25,7 +31,7 @@
             android:exported="true" />
         <activity
             android:name=".garden.MyPlants"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".garden.MyGarden"
             android:exported="true" />

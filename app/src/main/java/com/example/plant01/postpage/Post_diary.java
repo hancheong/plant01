@@ -20,6 +20,7 @@ public class Post_diary extends Fragment {
 //    private RecyclerView recyclerView;
 //    private ArrayList<Post> list = new ArrayList<>();
 //    private Post_RecyclerAdapter post_recyclerAdapter;
+    Post_diary(){}
 
     public static Post_diary newInstance(){
         Post_diary post_diary = new Post_diary();

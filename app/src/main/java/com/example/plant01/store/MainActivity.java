@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.plant01.R;
+import com.example.plant01.garden.MyGarden;
 import com.example.plant01.home.HomeFragment;
 
 import com.example.plant01.postpage.PostMainActivity;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private store store;
     private store_category store_category;
     private SubActivity SubActivity;
+    private MyGarden MyGarden;
     private FragmentPagerAdapter fragmentPagerAdapter;
 
 //<<<<<<< HEAD
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         mainActivity = new PostMainActivity();
         store = new store();
         store_category = new store_category();
-        SubActivity = new SubActivity();
+        MyGarden = new MyGarden();
         setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택
 
     }
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.Frame, plant);
+                ft.replace(R.id.Frame, MyGarden);
                 ft.commit();
                 break;
             case 2:

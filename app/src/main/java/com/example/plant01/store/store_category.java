@@ -37,7 +37,7 @@ public class store_category extends Fragment {
 
         // 뷰페이저 세팅
         ViewPager viewPager = view.findViewById(R.id.ViewPager);
-        fragmentPagerAdapter = new store_categoryadapter(getFragmentManager());
+        fragmentPagerAdapter = new store_categoryadapter(getChildFragmentManager());
 
         TabLayout tabLayout = view.findViewById(R.id.tabla);
         viewPager.setAdapter(fragmentPagerAdapter);

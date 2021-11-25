@@ -40,4 +40,9 @@ public class Post_info extends Fragment {
         floatingActionButton.setOnClickListener(cl);
         return view;
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
 }

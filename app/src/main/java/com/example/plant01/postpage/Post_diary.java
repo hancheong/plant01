@@ -72,4 +72,8 @@ public class Post_diary extends Fragment {
 //        return null;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
 }

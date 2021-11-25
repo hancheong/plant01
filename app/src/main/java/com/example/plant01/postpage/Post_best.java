@@ -29,13 +29,6 @@ public class Post_best extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        return super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.post_best, container, false);
-
-        return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.add_post);
         //작성페이지로 이동하는 버튼
         cl = new View.OnClickListener() {
@@ -46,5 +39,14 @@ public class Post_best extends Fragment {
             }
         };
         floatingActionButton.setOnClickListener(cl);
+
+        return view;
+    }
+
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 }

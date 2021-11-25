@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private com.example.plant01.postpage.MainActivity mainActivity;
     private HomeFragment HomeFragment;
     private home home;
     private plant plant;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 //        home = new home();
         HomeFragment = new HomeFragment();
         plant = new plant();
-        board = new board();
+        mainActivity = new com.example.plant01.postpage.MainActivity();
         store = new store();
         store_category = new store_category();
         setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 2:
-                ft.replace(R.id.Frame, board);
+                ft.replace(R.id.Frame, mainActivity);
                 ft.commit();
                 break;
             case 3:

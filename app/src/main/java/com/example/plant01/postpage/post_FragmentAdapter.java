@@ -12,9 +12,11 @@ public class post_FragmentAdapter extends FragmentStateAdapter {
 //    }
 
     //카테고리와 연결
+
     public post_FragmentAdapter(@NonNull FragmentManager fm, @NonNull Lifecycle lifecycle) {
         super(fm, lifecycle);
     }
+
 
     @NonNull
     @Override
@@ -40,4 +42,6 @@ public class post_FragmentAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return 4;
     }
+
+
 }

@@ -30,80 +30,20 @@ public class store_category extends Fragment {
     private FragmentPagerAdapter fragmentPagerAdapter;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public View onCreateView(@Nullable LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.store_activity_sub, container, false);
-        category1 = new store();
-        category2 = new store_recommendgoods();
-        viewPager=(ViewPager)view.findViewById(R.id.ViewPager);
-        viewPager.setAdapter(new PagerAdapter(getChildFragmentManager()));
-        viewPager.setCurrentItem(0);
+
+        // 뷰페이저 세팅
+        ViewPager viewPager = view.findViewById(R.id.ViewPager);
+        fragmentPagerAdapter = new store_categoryadapter(getFragmentManager());
+
+        TabLayout tabLayout = view.findViewById(R.id.tabla);
+        viewPager.setAdapter(fragmentPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+
         return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-    }
-    private class PagerAdapter extends FragmentPagerAdapter {
-        public PagerAdapter(FragmentManager fm){
-            super(fm);
-            getItem(0);
-        }
-        public Fragment getItem(int position) {
-            if (position == 0) {
-                return category1;
-            } else if (position == 1) {
-                return category2;
-            }
-            return null;
-        }
-        public int getCount(){
-            return 2;
-        }
 
     }
 }

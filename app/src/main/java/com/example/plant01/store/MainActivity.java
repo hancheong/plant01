@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private board board;
     private store store;
     private store_category store_category;
+    private SubActivity SubActivity;
     private FragmentPagerAdapter fragmentPagerAdapter;
 
 //<<<<<<< HEAD
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         board = new board();
         store = new store();
         store_category = new store_category();
+        SubActivity = new SubActivity();
         setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택
 
     }

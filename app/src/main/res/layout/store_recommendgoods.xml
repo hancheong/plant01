@@ -242,7 +242,7 @@
             android:layout_width="67dp"
             android:layout_height="53dp"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/store_recommend1"
+            android:src="@drawable/store_recommend1"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="118dp" />
 

@@ -136,7 +136,7 @@
                     android:layout_marginEnd="30dp"
                     android:layout_marginBottom="30dp"
                     android:layout_toRightOf="@+id/recommend_img1"
-                    android:text="No.1 화분마켓"
+                    android:text=""
                     android:textSize="12dp" />
 
                 <TextView
@@ -147,7 +147,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="-25dp"
                     android:layout_toRightOf="@+id/recommend_img1"
-                    android:text="[깜짝특가]선인장인선인장인선인장인선인장인선인장인선인장인"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
@@ -160,7 +160,7 @@
                     android:layout_marginEnd="30dp"
                     android:layout_marginBottom="30dp"
                     android:layout_toRightOf="@+id/recommend_img1"
-                    android:text="리뷰 1,557"
+                    android:text=""
                     android:textSize="12dp" />
 
                 <TextView
@@ -171,7 +171,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="-30dp"
                     android:layout_toRightOf="@+id/recommend_img1"
-                    android:text="350,000"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="15dp" />
             </RelativeLayout>
@@ -248,10 +248,10 @@
 
                 <ImageButton
                     android:id="@+id/recommend_img3"
-                    android:background="@android:color/transparent"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="10dp"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     android:src="@drawable/store_img8" />
 
@@ -434,6 +434,11 @@
                     android:textSize="15dp" />
 
             </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
     </ScrollView>

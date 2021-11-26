@@ -223,15 +223,16 @@
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/RecentFrame"
-                    android:layout_marginStart="430dp"
-                    android:layout_marginTop="10dp"
+            <TextView
+                android:id="@+id/store_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RecentFrame"
+                android:layout_marginStart="430dp"
+                android:layout_marginTop="10dp"
 
-                    android:layout_marginBottom="300dp"
-                    android:text="더보기" />
+                android:layout_marginBottom="300dp"
+                android:text="더보기" />
 
 
             // 나를 위한 추천상품 1

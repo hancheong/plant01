@@ -20,9 +20,10 @@
         app:layout_constraintVertical_bias="0.182">//수경식물
 
         <ImageView
-            android:layout_width="67dp"
-            android:layout_height="53dp"
-            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
             app:srcCompat="@drawable/store_recommend8"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="118dp" />
@@ -51,9 +52,10 @@
         app:layout_constraintVertical_bias="0.182">//씨앗/모종
 
         <ImageView
-            android:layout_width="67dp"
-            android:layout_height="53dp"
-            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
             app:srcCompat="@drawable/store_recommend5"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="118dp" />
@@ -77,15 +79,16 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.633"
+        app:layout_constraintHorizontal_bias="0.61"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.182">
 
         <ImageView
-            android:layout_width="67dp"
-            android:layout_height="53dp"
-            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/store_recommend7"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="118dp" />
@@ -109,15 +112,16 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintHorizontal_bias="0.27"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182">//선인장
+        app:layout_constraintVertical_bias="0.181">//선인장
 
         <ImageView
-            android:layout_width="67dp"
-            android:layout_height="53dp"
-            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/store_recommend6"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="118dp" />
@@ -146,9 +150,10 @@
         app:layout_constraintVertical_bias="0.024">//다육식물
 
         <ImageView
-            android:layout_width="67dp"
-            android:layout_height="53dp"
-            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
             app:srcCompat="@drawable/store_recommend4"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="118dp" />
@@ -170,15 +175,16 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.671"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024">//공기정화
 
         <ImageView
-            android:layout_width="67dp"
-            android:layout_height="53dp"
-            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/store_recommend3"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="118dp" />
@@ -200,15 +206,16 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.354"
+        app:layout_constraintHorizontal_bias="0.34"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024">//인테리어
 
         <ImageView
-            android:layout_width="67dp"
-            android:layout_height="53dp"
-            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/store_recommend2"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="118dp" />
@@ -240,8 +247,8 @@
             android:id="@+id/store_recommend_btn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"
             android:scaleType="centerInside"
+            android:background="@android:color/transparent"
             android:src="@drawable/store_recommend1"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="118dp" />
@@ -253,13 +260,12 @@
             android:textAlignment="center"
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="181dp" />
-
     </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="400dp"
-        android:layout_height="400dp"
+        android:layout_height="380dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -278,10 +284,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintHorizontal_bias="0.143"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintVertical_bias="0.427" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

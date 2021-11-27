@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.plant01.R;
@@ -49,8 +48,8 @@ public class PostMainActivity extends Fragment {
             //게시글 담을 페이지
             pager2 = getView().findViewById(R.id.post_viewpage);
             //FragmentAdapter에서 카테고리 선택하여 페이지 이동
-            FragmentManager fm = getFragmentManager();
-            adapter = new post_FragmentAdapter(fm, getActivity().getLifecycle());
+//            FragmentManager fm = getFragmentManager();
+            adapter = new post_FragmentAdapter(getChildFragmentManager(), getActivity().getLifecycle());
             pager2.setAdapter(adapter);
             //카테고리 선택
 

@@ -15,9 +15,13 @@
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/drawable/drawer_ic_setting.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/activity_login.xml" value="0.1078125" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/home_item.xml" value="0.4" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/home_main_fragment.xml" value="0.28599033816425123" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/home_toolbar.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/store_activity_main.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/store_activity_sub.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/store_recommendgoods.xml" value="0.1766304347826087" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/store_store.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/home/layout/home_dialog_camera.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/garden_item.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/garden_my_garden.xml" value="0.1" />
@@ -31,10 +35,11 @@
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/post_list_item.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/post_main_fragment.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/post_main_fragmetn.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/regoods.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/test1234.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/view_toolbar.xml" value="0.1" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="16" project-jdk-type="JavaSDK" />
 </project>

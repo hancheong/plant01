@@ -14,13 +14,16 @@
         <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/regoods.xml" value="0.3079710144927536" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/2/drawable/home_ic_camera.xml" value="0.12395833333333334" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/2/drawable/home_ic_gallery.xml" value="0.12395833333333334" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/drawable-v24/post_ic_chat.xml" value="0.265625" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/drawable/drawer_ic_setting.xml" value="0.1" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/drawable/post_ic_list.xml" value="0.265625" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/activity_login.xml" value="0.1078125" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/home_toolbar.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/store_activity_main.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/store_activity_sub.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/home/layout/home_dialog_camera.xml" value="0.1" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/drawable/post_btn.xml" value="0.265625" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/garden_item.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/garden_my_garden.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/home_dialog_camera.xml" value="0.264" />
@@ -38,5 +41,5 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="16" project-jdk-type="JavaSDK" />
 </project>

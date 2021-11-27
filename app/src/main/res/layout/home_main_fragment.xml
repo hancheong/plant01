@@ -279,49 +279,57 @@
                                     android:text="마음" />
 
 
-                                <ImageView
-                                    android:id="@+id/btn_like"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_alignParentEnd="true"
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="36dp"
+                                    android:layout_below="@id/freeDetail"
                                     android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="111dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:adjustViewBounds="true"
-                                    android:src="@drawable/home_ic_like" />
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="0dp">
 
-                                <TextView
-                                    android:id="@+id/free_likecount"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="85dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="124"
-                                    android:textColor="#151515" />
+                                    <TextView
+                                        android:id="@+id/replycount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_marginStart="5dp"
+                                        android:text="3"
+                                        android:textAlignment="textStart"
+                                        android:textColor="#151515"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/btn_reply" />
 
-                                <ImageView
-                                    android:id="@+id/btn_reply"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="54dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:adjustViewBounds="true"
-                                    android:src="@drawable/home_ic_reply" />
+                                    <ImageView
+                                        android:id="@+id/btn_reply"
+                                        android:layout_width="0dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginStart="12dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/home_ic_reply"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/free_likecount" />
 
-                                <TextView
-                                    android:id="@+id/replycount"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="38dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="3"
-                                    android:textColor="#151515" />
+                                    <TextView
+                                        android:id="@+id/free_likecount"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:text="124"
+                                        android:textAlignment="textStart"
+                                        android:textColor="#151515"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/btn_like"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <ImageView
+                                        android:id="@+id/btn_like"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="20dp"
+                                        android:layout_marginStart="280dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/home_ic_like"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                             </RelativeLayout>
@@ -332,6 +340,7 @@
                                 android:layout_height="3dp"
                                 android:layout_alignParentBottom="true"
                                 android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
                                 android:background="#787474" />
 
 

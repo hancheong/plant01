@@ -65,10 +65,6 @@
             android:name=".postpage.Post_write"
             android:exported="true" />
         <activity
-            android:name=".store.SubActivity"
-            android:exported="true"
-            android:label="SubActivity" />
-        <activity
             android:name=".store.Recommend"
             android:exported="true" />
         <activity

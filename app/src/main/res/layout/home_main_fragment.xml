@@ -189,7 +189,7 @@
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerView"
+                        android:id="@+id/homerecyclerView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/myplant_manage2"
@@ -208,7 +208,7 @@
                         android:id="@+id/recommand_com"
                         android:layout_width="136dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/recyclerView"
+                        android:layout_below="@id/homerecyclerView"
                         android:layout_alignParentStart="true"
                         android:layout_marginStart="13dp"
                         android:layout_marginTop="5dp"

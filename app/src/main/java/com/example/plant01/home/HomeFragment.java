@@ -51,20 +51,20 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
 
-    SliderView sliderView;
-    int[] images = {R.drawable.home_ad1,
+    private SliderView sliderView;
+    private int[] images = {R.drawable.home_ad1,
             R.drawable.home_ad2,};
 
 
-    RecyclerView recyclerView;
-    ArrayList<Plants> plantsArrayList;
-    home_PlantAdapter plantAdapter;
-    FirebaseDatabase database;
-    FirebaseUser firebaseUser;
-    FirebaseAuth firebaseAuth;
-    DatabaseReference databaserf;
-    FirebaseFirestore db;
-    View.OnClickListener cl;
+    private RecyclerView recyclerView;
+    private ArrayList<Plants> plantsArrayList;
+    private home_PlantAdapter plantAdapter;
+    private FirebaseDatabase database;
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaserf;
+    private FirebaseFirestore db;
+    private View.OnClickListener cl;
 
     @Nullable
     @Override
@@ -97,7 +97,7 @@ public class HomeFragment extends Fragment {
 
         /*----------------추천상품 부분 -------------------------------*/
 
-        recyclerView = getView().findViewById(R.id.recyclerView);
+        recyclerView = getView().findViewById(R.id.homerecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         plantsArrayList = new ArrayList<Plants>();

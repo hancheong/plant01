@@ -4,7 +4,12 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+<<<<<<< HEAD
+    tools:context=".postpage.MainActivity"
+    tools:ignore="MissingDefaultResource">
+=======
     tools:context=".postpage.PostMainActivity">
+>>>>>>> 0dded5bafe6fed865758b267af0c8facd58e638a
 
     <RelativeLayout
         android:layout_width="match_parent"

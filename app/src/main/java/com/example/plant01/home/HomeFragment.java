@@ -143,6 +143,7 @@ public class HomeFragment extends Fragment {
                     case R.id.imagemenu: //햄버거 버튼
                         drawerLayout1.openDrawer(GravityCompat.START);
                         showUserProfile();
+                        break;
                 }
 
             }

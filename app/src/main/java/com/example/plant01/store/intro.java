@@ -6,24 +6,37 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.plant01.R;
+import com.example.plant01.usersetting.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class intro extends Activity {
 
     Handler handler = new Handler();
+    FirebaseAuth firebaseAuth;
     Runnable r = new Runnable() {
         @Override
         public void run() {
 // 4초뒤에 다음화면(PostMainActivity)으로 넘어가기 Handler 사용
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent); // 다음화면으로 넘어가기
-            finish(); // Activity 화면 제거
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if(user != null){
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent); // 다음화면으로 넘어가기
+                finish(); // Activity 화면 제거
+            }else {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent); // 다음화면으로 넘어가기
+                finish(); // Activity 화면 제거
+            }
+
         }
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro); // xml과 java소스를 연결
+
     } // end of onCreate
 
     @Override

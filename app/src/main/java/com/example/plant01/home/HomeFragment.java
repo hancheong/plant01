@@ -105,6 +105,8 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(plantAdapter);
         db = FirebaseFirestore.getInstance();
         showRecomendPlant();
+        /*----------베스트 게시판 보여줌 ------------*/
+        showBoard();
 
 
 
@@ -130,7 +132,7 @@ public class HomeFragment extends Fragment {
         });
 
         ///
-        showBoard();
+
 
 
         /*--------- 클릭 이벤트 -------------*/
@@ -139,8 +141,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.imagemenu: //햄버거 버튼
-//                        showUserProfile();
                         drawerLayout1.openDrawer(GravityCompat.START);
+                        showUserProfile();
                 }
 
             }
@@ -187,6 +189,8 @@ public class HomeFragment extends Fragment {
                     Glide.with(getContext())
                             .load(Uri.parse(userImg))
                             .into(userprofile);
+
+                    Log.e("드로워", userImg + "   " +userNick);
                 }
             }
 
@@ -253,7 +257,7 @@ public class HomeFragment extends Fragment {
                                                .into(freeuserprofile);
                                    }
 
-                                   Log.d(TAG, doc.getId() + " " + UserUID + userNick);
+                                   Log.e(TAG, doc.getId() + " " + UserUID + userNick);
 
 
 
@@ -262,7 +266,7 @@ public class HomeFragment extends Fragment {
                        });
 
 
-                       Log.d(TAG, document.getId() + " => " + document.getData()+ " " + UserUID + " "  );
+                       Log.e(TAG, "자유게시판"+document.getId() + " => " + document.getData()+ " " + UserUID + " "  );
                    }
                } else {
                    Log.d(TAG, "Error getting documents: ", task.getException());

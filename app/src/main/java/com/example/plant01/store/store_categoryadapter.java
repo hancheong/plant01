@@ -20,6 +20,12 @@ public class store_categoryadapter extends FragmentPagerAdapter {
                 return store.newInstance();
             case 1 :
                 return store_recommendgoods.newInstance();
+            case 2 :
+                return store_recommendgoods.newInstance();
+            case 3 :
+                return store_recommendgoods.newInstance();
+            case 4 :
+                return store_recommendgoods.newInstance();
             default :
                 return null;
         }
@@ -27,7 +33,7 @@ public class store_categoryadapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 5;
     }
 
     // 상단의 탭 레이아웃 인디케이터 쪽에 텍스트를 선언해주는 곳
@@ -39,6 +45,13 @@ public class store_categoryadapter extends FragmentPagerAdapter {
                 return "메인";
             case 1 :
                 return "추천상품";
+            case 2 :
+                return "소형식물";
+            case 3 :
+                return "대형식물";
+            case 4 :
+                return "공기정화";
+
             default:
                 return null;
         }

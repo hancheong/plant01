@@ -1,10 +1,13 @@
 package com.example.plant01.garden;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -14,7 +17,7 @@ import com.example.plant01.R;
 import com.example.plant01.home.HomeFragment;
 
 
-public class MyGarden extends AppCompatActivity {
+public class MyGarden extends Fragment {
 
     TextView tvGarden;
     ImageButton ibnBack;
@@ -22,16 +25,18 @@ public class MyGarden extends AppCompatActivity {
     ListView listView;
     CustomAdapter adapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    //@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.garden_my_garden);
+        //setContentView(R.layout.garden_my_garden);
+
+        View view = inflater.inflate(R.layout.garden_my_garden, container, false);
 
         adapter = new CustomAdapter();
-        listView = (ListView) findViewById(R.id.listView);
-        tvGarden = (TextView) findViewById(R.id.tvGarden);
-        ibnBack = (ImageButton) findViewById(R.id.ibnBack);
-        btnAdd = (Button) findViewById(R.id.btnAdd);
+        listView = (ListView) view.findViewById(R.id.listView);
+        tvGarden = (TextView) view.findViewById(R.id.tvGarden);
+        ibnBack = (ImageButton) view.findViewById(R.id.ibnBack);
+        btnAdd = (Button) view.findViewById(R.id.btnAdd);
 
         setData();
 
@@ -40,10 +45,11 @@ public class MyGarden extends AppCompatActivity {
         ibnBack.setOnClickListener(new View.OnClickListener() {//뒤로가기 버튼
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeFragment.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), HomeFragment.class);
                 startActivity(intent);
             }
         });
+        return view;
     }
    private void setData() {
         TypedArray arrResId = getResources().obtainTypedArray(R.array.resId);

@@ -14,8 +14,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.plant01.R;
+import com.example.plant01.garden.MyGarden;
 import com.example.plant01.home.HomeFragment;
 
+import com.example.plant01.postpage.PostMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,13 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private com.example.plant01.postpage.MainActivity mainActivity;
+    private PostMainActivity mainActivity;
     private HomeFragment HomeFragment;
-    private home home;
-    private plant plant;
-    private board board;
-    private store store;
     private store_category store_category;
+    private MyGarden MyGarden;
     private FragmentPagerAdapter fragmentPagerAdapter;
 
 //<<<<<<< HEAD
@@ -75,11 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-//        home = new home();
         HomeFragment = new HomeFragment();
-        plant = new plant();
-        mainActivity = new com.example.plant01.postpage.MainActivity();
-        store = new store();
+        mainActivity = new PostMainActivity();
+        MyGarden = new MyGarden();
         store_category = new store_category();
         setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택
 
@@ -95,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.Frame, plant);
+                ft.replace(R.id.Frame, MyGarden);
                 ft.commit();
                 break;
             case 2:

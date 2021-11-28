@@ -35,7 +35,7 @@ public class post_FragmentAdapter extends FragmentStateAdapter {
 //                return null;
         }
 
-        return new Post_diary();
+        return createFragment(0);
     }
 
     @Override

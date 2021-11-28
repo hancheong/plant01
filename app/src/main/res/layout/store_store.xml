@@ -223,15 +223,16 @@
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/RecentFrame"
-                    android:layout_marginStart="430dp"
-                    android:layout_marginTop="10dp"
+            <TextView
+                android:id="@+id/store_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RecentFrame"
+                android:layout_marginStart="430dp"
+                android:layout_marginTop="10dp"
 
-                    android:layout_marginBottom="300dp"
-                    android:text="더보기" />
+                android:layout_marginBottom="300dp"
+                android:text="더보기" />
 
 
             // 나를 위한 추천상품 1
@@ -418,44 +419,6 @@
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
-
-            // ------- 여기까지가 사용자에게 보이는 스토어 메인 화면----------------
-
-
-            // 네비게이션바 공백 채우기용, 네비게이션바 세로 30dp, 가로 match_parent
-            // 네비게이션바는 액티브메인에 있는 화면을 가져오기때문에
-            // 그만큼의 공백을 채우지 않으면 네비바 뒤로 화면이 가려짐
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:background="@android:color/transparent"
-                android:layout_height="30dp"
-                android:layout_below="@+id/UserRecommendGoods3"
-                android:src="@drawable/store_img6" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="0dp" />
-
-
-            <!-- 뷰페이저
-<me.relex.circleindicator.CircleIndicator
-    android:layout_below="@+id/BestGoods"
-    android:id="@+id/indicator"
-    android:layout_height="48dp"
-    android:layout_width="match_parent"
-    app:ci_drawable="@drawable/black_radius"
-    app:ci_height="7dp"
-    app:ci_width="7dp"
-    app:ci_margin="4dp" />
-
-<androidx.viewpager.widget.ViewPager
-    android:id="@+id/viewpager"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
-뷰페이저-->
         </RelativeLayout>
     </ScrollView>
 </FrameLayout>

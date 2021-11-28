@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera" />
@@ -63,10 +64,6 @@
         <activity
             android:name=".postpage.Post_write"
             android:exported="true" />
-        <activity
-            android:name=".store.SubActivity"
-            android:exported="true"
-            android:label="SubActivity" />
         <activity
             android:name=".store.Recommend"
             android:exported="true" />

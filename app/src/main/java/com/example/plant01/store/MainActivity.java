@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private PostMainActivity mainActivity;
     private HomeFragment HomeFragment;
     private store_category store_category;
-    private SubActivity SubActivity;
     private MyGarden MyGarden;
     private FragmentPagerAdapter fragmentPagerAdapter;
 

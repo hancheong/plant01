@@ -1,10 +1,12 @@
 package com.example.plant01.usersetting;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.media.ImageReader;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -24,14 +26,23 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.plant01.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URI;
 import java.nio.ByteBuffer;
 
 public class UserSetting extends AppCompatActivity {
@@ -40,7 +51,10 @@ public class UserSetting extends AppCompatActivity {
     private RelativeLayout loaderLayout;
     private RelativeLayout buttonBackgroundLayout;
     private String profilePath;
+    private FirebaseStorage storage;
+    private FirebaseFirestore db;
     Toolbar toolbar;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,18 +121,14 @@ public class UserSetting extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-
+            profilePath = data.getStringExtra("profilePath");
             FirebaseStorage storage = FirebaseStorage.getInstance();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            db = FirebaseFirestore.getInstance();
 
-            // [START upload_create_reference]
-            // Create a storage reference from our app
             StorageReference storageRef = storage.getReference();
 
-//            // Create a reference to "mountains.jpg"
-//            StorageReference mountainsRef = storageRef.child("mountains.png");
-//
-//            // Create a reference to 'images/mountains.jpg'
-            StorageReference mountainImagesRef = storageRef.child("images/mountains.png");
+            StorageReference mountainImagesRef = storageRef.child("userprofile/"+user.getUid()+"/profile.jpg");
 
             //
 
@@ -127,101 +137,23 @@ public class UserSetting extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] data1 = baos.toByteArray();
 
+
             UploadTask uploadTask = mountainImagesRef.putBytes(data1);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
+            mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle unsuccessful uploads
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                    // ...
+                public void onSuccess(Uri uri) {
+                    Log.e("이미지주소", uri.toString());
+                    db.collection("Users").document(user.getUid())
+                            .update("userImg", uri.toString());
                 }
             });
+
+
+
             profileImageVIew.setImageBitmap(bitmap);
 
 
         }
     }
 
-
-    private HandlerThread mBackgroundThread;
-
-    /**
-     * A {@link Handler} for running tasks in the background.
-     */
-    private Handler mBackgroundHandler;
-
-    /**
-     * An {@link ImageReader} that handles still image capture.
-     */
-    private ImageReader mImageReader;
-
-    /**
-     * This is the output file for our picture.
-     */
-    private File mFile;
-
-    /**
-     * This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
-     * still image is ready to be saved.
-     */
-    private final ImageReader.OnImageAvailableListener mOnImageAvailableListener
-            = new ImageReader.OnImageAvailableListener() {
-
-        @Override
-        public void onImageAvailable(ImageReader reader) {
-            mBackgroundHandler.post(new UserSetting.ImageUpLoader(reader.acquireNextImage()));
-        }
-
-    };
-
-
-    private static class ImageUpLoader implements Runnable {
-
-        /**
-         * The JPEG image
-         */
-        private final Image mImage;
-
-        /**
-         * The file we save the image into.
-         */
-
-        ImageUpLoader(Image image) {
-            mImage = image;
-        }
-
-        @Override
-        public void run() {
-            ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
-            byte[] bytes = new byte[buffer.remaining()];
-            buffer.get(bytes);
-
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference storageRef = storage.getReference();
-            StorageReference mountainImagesRef = storageRef.child("images/mountains.jpg");
-
-            UploadTask uploadTask = mountainImagesRef.putBytes(bytes);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    Log.e("실패", "실패");
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                    // ...
-                    Log.e("성공", "성공");
-                }
-            });
-
-
-        }
-
-
-    }
 }

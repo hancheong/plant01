@@ -18,9 +18,11 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.plant01">
+
         <activity
-            android:name=".usersetting.asdas"
-            android:exported="false" />
+            android:name=".test.testPostData"
+            android:exported="true" />
+
         <activity
             android:name=".home.search"
             android:exported="true" />
@@ -36,9 +38,7 @@
         <activity
             android:name=".garden.MyGarden"
             android:exported="true" />
-        <activity
-            android:name=".home.home_search_inputtest"
-            android:exported="true" />
+
         <activity
             android:name=".garden.AddPlants"
             android:exported="true" />
@@ -59,7 +59,7 @@
             android:name=".postpage.PostMain"
             android:exported="true" />
         <activity
-            android:name=".postpage.MainActivity"
+            android:name=".postpage.PostMainActivity"
             android:exported="true" />
         <activity
             android:name=".postpage.Post_write"

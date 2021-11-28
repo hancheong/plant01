@@ -73,15 +73,15 @@ public class post_CustomAdapter extends RecyclerView.Adapter<post_CustomAdapter.
         TextView like_num;
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.user_img = itemView.findViewById(R.id.user_img);
+            this.user_img = itemView.findViewById(R.id.post_user_img);
             this.post_img = itemView.findViewById(R.id.post_img);
             this.post_like = itemView.findViewById(R.id.post_like);
-            this.comment = itemView.findViewById(R.id.comment);
-            this.share = itemView.findViewById(R.id.share);
-            this.userid = itemView.findViewById(R.id.userid);
+            this.comment = itemView.findViewById(R.id.post_comment);
+            this.share = itemView.findViewById(R.id.post_share);
+            this.userid = itemView.findViewById(R.id.post_usernick);
             this.postdate = itemView.findViewById(R.id.post_date);
             this.explain = itemView.findViewById(R.id.explain);
-            this.like_num = itemView.findViewById(R.id.like_num);
+            this.like_num = itemView.findViewById(R.id.post_like_num);
         }
     }
 }

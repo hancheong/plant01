@@ -25,9 +25,8 @@ public class Post_free extends Fragment {
     private View.OnClickListener cl;
 //리사이클러뷰 > 파이어베이스
     private RecyclerView recyclerView;
-    private PostAdapter postAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<PostItem> postItemArrayList;
+
     private FirebaseFirestore database;
 
     public static Post_free newInstance(){
@@ -41,13 +40,13 @@ public class Post_free extends Fragment {
 //        return super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.post_free, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerview);
-        recyclerView.setHasFixedSize(false); //리사이클러뷰 기존 성능 강화
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        recyclerView = view.findViewById(R.id.recyclerview);
+//        recyclerView.setHasFixedSize(false); //리사이클러뷰 기존 성능 강화
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 //
 ////        layoutManager = new LinearLayoutManager(getActivity());
 ////        recyclerView.setLayoutManager(layoutManager);
-        postAdapter = new PostAdapter(getContext(), postItemArrayList);
+
 
 
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.add_post);

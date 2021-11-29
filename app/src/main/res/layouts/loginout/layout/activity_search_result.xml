@@ -1,32 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.SearchResult">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="369dp"
-        android:text="하아아아아아아아ㅏㅇ아아ㅏㅇ"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_result_img" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
 
-    <ImageView
-        android:id="@+id/search_result_img"
-        android:layout_width="134dp"
-        android:layout_height="146dp"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="155dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/store_ic_foreground" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:background="@color/maincolor">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/maincolor"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+
+            app:toolbarId="@+id/toolbar">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="34dp"
+                    android:text="# 덩굴식물"
+                    android:textColor="#053D10"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/textView18"
+                    tools:layout_editor_absoluteY="154dp" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:text="# 덩굴식물"
+                    android:textColor="#053D10"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/textView19"
+                    tools:layout_editor_absoluteY="154dp" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:text="# 키우기쉬운"
+                    android:textColor="#053D10"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/textView13"
+                    tools:layout_editor_absoluteY="154dp" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/search_result_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"></androidx.appcompat.widget.Toolbar>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="8dp"
+                    android:text="TextView"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/search_result_toolbar" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="23dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="담쟁이 덩쿨로 포도과의 다년생 낙엽 덩굴성 식물"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="# 키우기쉬운"
+                    android:textColor="#053D10"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="154dp" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="좋아요"
+                    android:textColor="#03E729"
+                    app:layout_constraintEnd_toEndOf="@+id/textView23"
+                    app:layout_constraintHorizontal_bias="0.473"
+                    app:layout_constraintStart_toStartOf="@+id/textView23"
+                    tools:layout_editor_absoluteY="209dp" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="TextView"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView5"
+                    app:layout_constraintTop_toTopOf="@+id/imageView5"
+                    app:layout_constraintVertical_bias="0.363" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="59dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="56dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView22"
+                    app:layout_constraintStart_toEndOf="@+id/textView22"
+                    app:layout_constraintTop_toTopOf="@+id/textView22"
+                    app:layout_constraintVertical_bias="0.454"
+                    app:srcCompat="@mipmap/store_ic_round" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="TextView"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="235dp" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="TextView"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView21"
+                    app:layout_constraintStart_toEndOf="@+id/textView21"
+                    app:layout_constraintTop_toTopOf="@+id/textView21"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="햇빛"
+                    android:textColor="#03E729"
+                    app:layout_constraintEnd_toEndOf="@+id/textView22"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView22"
+                    tools:layout_editor_absoluteY="209dp" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="물주기"
+                    android:textColor="#03E729"
+                    app:layout_constraintEnd_toEndOf="@+id/textView21"
+                    app:layout_constraintHorizontal_bias="0.631"
+                    app:layout_constraintStart_toStartOf="@+id/textView21"
+                    tools:layout_editor_absoluteY="209dp" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="난이도"
+                    android:textColor="#03E729"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                    app:layout_constraintHorizontal_bias="0.6"
+                    app:layout_constraintStart_toStartOf="@+id/imageView5"
+                    tools:layout_editor_absoluteY="209dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroud"
+
+
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".home.SearchResult">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/result_plant_img"
+                android:layout_width="328dp"
+                android:layout_height="309dp"
+                android:layout_marginTop="32dp"
+                android:src="@mipmap/store_ic_round"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_corner_radius="20dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="373dp"
+                android:layout_height="266dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView24"
+                app:layout_constraintTop_toStartOf="@+id/result_plant_img">
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="관리Tip"
+                android:textSize="25dp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="361dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

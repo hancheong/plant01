@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -28,14 +29,20 @@ public class SearchResult extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
+        toolbar = findViewById(R.id.search_result_toolbar);
 
-
-        Intent intent = getIntent(); /*데이터 수신*/
-
-        String getplantname = intent.getExtras().getString("plantName");
-        Log.e("식물이름", getplantname);
+        setSupportActionBar(toolbar);
+        setTitle("검색결과");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         plantImg = (ImageView)findViewById(R.id.search_result_img);
 
+        /*-------분석에서 결과 받아오기 ------*/
+        Intent intent = getIntent(); /*데이터 수신*/
+        String getplantname = intent.getExtras().getString("plantName");
+
+
+        /*-------파이어스토어와 연결----*/
         db = FirebaseFirestore.getInstance();
 
         Query plantinfo = db.collection("Plant").whereEqualTo("plantName", getplantname);

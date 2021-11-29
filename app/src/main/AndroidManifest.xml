@@ -18,11 +18,18 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.plant01">
-
+        <activity
+            android:name=".home.SearchResult"
+            android:exported="false" />
+        <activity
+            android:name=".home.SearchPlantPage"
+            android:exported="false" />
+        <activity
+            android:name=".home.search2"
+            android:exported="true" />
         <activity
             android:name=".test.testPostData"
             android:exported="true" />
-
         <activity
             android:name=".home.search"
             android:exported="true" />
@@ -38,7 +45,6 @@
         <activity
             android:name=".garden.MyGarden"
             android:exported="true" />
-
         <activity
             android:name=".garden.AddPlants"
             android:exported="true" />

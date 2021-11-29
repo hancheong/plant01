@@ -236,29 +236,30 @@
 
 
             // 나를 위한 추천상품 1
+
             <ImageButton
                 android:id="@+id/UserRecommendGoods1"
-                android:background="@android:color/transparent"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_below="@+id/UserRecommend"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/store_img6"
-                android:scaleType="fitXY"/>
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/store_img6" />
 
-                <TextView
-                    android:id="@+id/RecommendStore1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/UserRecommend"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_toRightOf="@+id/UserRecommendGoods1"
-                    android:text="No.1 화분마켓"
-                    android:textSize="12dp" />
+            <TextView
+                android:id="@+id/RecommendStore1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/UserRecommend"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_toRightOf="@+id/UserRecommendGoods1"
+                android:text="No.1 화분마켓"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/RecommendStore1Title"

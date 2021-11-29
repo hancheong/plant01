@@ -2,9 +2,11 @@ package com.example.plant01.postpage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,178 +15,103 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plant01.R;
+import com.example.plant01.test.PostItem;
+import com.example.plant01.test.PostItemAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class Post_free extends Fragment {
-    private static final String TAG = "Post_free";
+public class Post_free extends  Fragment {
     private View view;
-    private FloatingActionButton floatingActionButton;
-    private View.OnClickListener cl;
-//리사이클러뷰 > 파이어베이스
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-
-    private FirebaseFirestore database;
-
-    public static Post_free newInstance(){
-        Post_free post_free = new Post_free();
-        return post_free;
-    }
+    private RecyclerView mRecyclerView;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firestore;
+    private FloatingActionButton fab;
+    private PostItemAdapter adapter;
+    private ArrayList<PostItem> postItemArrayList;
+    private Query query;
+    private ListenerRegistration listenerRegistration;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        return super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.post_free, container, false);
+        view = inflater.inflate(R.layout.test_post_data, container, false);
+        view.findViewById(R.id.add_post).setOnClickListener(onClickListener);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
-//        recyclerView = view.findViewById(R.id.recyclerview);
-//        recyclerView.setHasFixedSize(false); //리사이클러뷰 기존 성능 강화
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        /*--------------------게시판 보여주는 리사이클러뷰와 클래스  --------------------------*/
+        mRecyclerView = view.findViewById(R.id.post_recyclerview);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        postItemArrayList = new ArrayList<PostItem>();
+        adapter = new PostItemAdapter(getContext(),postItemArrayList);
+        mRecyclerView.setAdapter(adapter);
+        showPost();
 //
-////        layoutManager = new LinearLayoutManager(getActivity());
-////        recyclerView.setLayoutManager(layoutManager);
-
-
-
-        floatingActionButton = (FloatingActionButton) view.findViewById(R.id.add_post);
-        //작성페이지로 이동하는 버튼
-        cl = new View.OnClickListener() {
+        /*------------보여지는 게시글이 끝나면 END라고 뜨게함 ---------*/
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Post_write.class);
-                startActivity(intent);
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Boolean isBottom = !mRecyclerView.canScrollVertically(1);
+                if (isBottom) {
+                    Toast.makeText(getContext(), "END", Toast.LENGTH_SHORT).show();
+                }
             }
-        };
-        floatingActionButton.setOnClickListener(cl);
+        });
+
+
         return view;
+    }
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.add_post:
+                    //startActivity(new Intent(testPostData.this, Post_write.class));
+                    myStartActivity(Post_write.class);
+                    break;
+            }
+        }
+    };
 
-//        recyclerView = getView().findViewById(R.id.recyclerview);
-//        recyclerView.setHasFixedSize(true); //리사이클러뷰 기존 성능 강화
-//        layoutManager = new LinearLayoutManager(getActivity());
-//        recyclerView.setLayoutManager(layoutManager);
-//        arrayList = new ArrayList<Post>(); // Post객체를 담을 어레이 리스트 (어뎁터쪽)
-//
-//        database = FirebaseDatabase.getInstance(); //파이어베이스 데이터베이스 연동
-//        databaseReference = database.getReference("Post"); //DB 테이블 연결
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                //파이어베이스 데이터베이스의 데이터를 받아오는 곳
-//                arrayList.clear(); //기존 배열 초기화
-//                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                    Post post = snapshot.getValue(Post.class);
-//                    arrayList.add(post);
-//                }
-//                adapter.notifyDataSetChanged(); //리스트 저장 및 새로고침
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Log.e("Post", String.valueOf(error.toException())); //에러문 출력
-//            }
-//        });
-//        adapter = new post_CustomAdapter(arrayList, getContext());
-//        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
+    /*-----------------어댑터와 데이터 연결----------------------*/
+    public void showPost(){
+        /*----------날짜내림차순---------*/
+        query = firestore.collection("Post")
+                .orderBy("postDate",Query.Direction.DESCENDING);
+        query.addSnapshotListener(/*getActivity(), */new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException e) {
+                postItemArrayList.clear();
+                for (DocumentChange doc : value.getDocumentChanges()) {
+                    if (doc.getType() == DocumentChange.Type.ADDED) {
+                        PostItem postItem = doc.getDocument().toObject(PostItem.class);
+                        postItemArrayList.add(postItem);
+                        adapter.notifyDataSetChanged();
+                        Log.e("포스트 ", value.getDocuments().toString());
+                    } else {
+                        adapter.notifyDataSetChanged();
+                    }
+                }
 
-        //작성버튼
-
-
+            }
+        });
+    }
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(getActivity(), c);
+        startActivityForResult(intent, 0);
     }
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-//        postItemArrayList = new ArrayList<PostItem>(); // Post객체를 담을 어레이 리스트 (어뎁터쪽)
-//
-////        database = FirebaseDatabase.getInstance(); //파이어베이스 데이터베이스 연동
-//       database = FirebaseFirestore.getInstance();
-//       showPost();
-//        databaseReference = database.getReference("Post"); //DB 테이블 연결
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                //파이어베이스 데이터베이스의 데이터를 받아오는 곳
-//                arrayList.clear(); //기존 배열 초기화
-//                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                    Post post = snapshot.getValue(Post.class);
-//                    arrayList.add(post);
-//                }
-//                adapter.notifyDataSetChanged(); //리스트 저장 및 새로고침
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Log.e("Post", String.valueOf(error.toException())); //에러문 출력
-//            }
-//        });
-//        adapter = new post_CustomAdapter(arrayList, getContext());
-//        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
-//        return;
-    }
-
-    private void showPost() {
-//        database.collection("post")
-//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable QuerySnapshot value,
-//                                        @Nullable FirebaseFirestoreException e) {
-//                        if (e != null) {
-//                            Log.e(TAG, "Listen failed.", e);
-//                            return;
-//                        }
-//
-//                        List<String> cities = new ArrayList<>();
-//                        for (QueryDocumentSnapshot doc : value) {
-//                            if (doc.get("contentImg") != null) {
-//                                cities.add(doc.getString("contentImg"));
-//                            }
-//                        }
-//                        Log.d(TAG, "contentImg: " + cities);
-//                    }
-//                });
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
-
-    //시도중
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        recyclerView = getView().findViewById(R.id.recyclerview);
-//        recyclerView.setHasFixedSize(true); //리사이클러뷰 기존 성능 강화
-//        layoutManager = new LinearLayoutManager(getActivity());
-//        recyclerView.setLayoutManager(layoutManager);
-//        arrayList = new ArrayList<Post>(); // Post객체를 담을 어레이 리스트 (어뎁터쪽)
-//
-//        database = FirebaseDatabase.getInstance(); //파이어베이스 데이터베이스 연동
-//        databaseReference = database.getReference("Post"); //DB 테이블 연결
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                //파이어베이스 데이터베이스의 데이터를 받아오는 곳
-//                arrayList.clear(); //기존 배열 초기화
-//                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                    Post post = snapshot.getValue(Post.class);
-//                    arrayList.add(post);
-//                }
-//                adapter.notifyDataSetChanged(); //리스트 저장 및 새로고침
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Log.e("Post", String.valueOf(error.toException())); //에러문 출력
-//            }
-//        });
-//        adapter = new post_CustomAdapter(arrayList, getContext());
-//        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
-//        return;
-//    }
 }
+

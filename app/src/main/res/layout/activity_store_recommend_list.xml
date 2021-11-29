@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -12,8 +12,8 @@
         android:layout_height="46dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/back"
         android:background="@android:color/transparent"
+        android:src="@drawable/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -49,81 +49,83 @@
         app:layout_constraintHorizontal_bias="0.955"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" >
+        app:layout_constraintVertical_bias="0.023">
 
     </SearchView>
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="700dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6">
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="700dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintVertical_bias="0.0">
 
-            <FrameLayout
-                android:id="@+id/store_frame"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">// 카테고리 밑 이벤트배너 가로 스크롤바 프레임
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <HorizontalScrollView
+                <FrameLayout
+                    android:id="@+id/store_frame"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">// 가로 스크롤바
+                    android:layout_height="wrap_content">// 카테고리 밑 이벤트배너 가로 스크롤바 프레임
 
-                    <LinearLayout
+                    <HorizontalScrollView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">// 레이아웃 설정
+                        android:layout_height="wrap_content">// 가로 스크롤바
 
-                        // 이벤트 배너 1
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">// 레이아웃 설정
 
-                        <ImageButton
-                            android:id="@+id/StoreEvent1"
-                            android:background="@android:color/transparent"
-                            android:layout_width="300dp"
-                            android:layout_height="150dp"
-                            android:layout_below="@+id/BestGoods"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginTop="8dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/store_img1" />
+                                // 이벤트 배너 1
 
-                        // 이벤트 배너 2
+                                <ImageButton
+                                    android:id="@+id/StoreEvent1"
+                                    android:layout_width="300dp"
+                                    android:layout_height="150dp"
+                                    android:layout_below="@+id/BestGoods"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@android:color/transparent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/store_img1" />
 
-                        <ImageButton
-                            android:id="@+id/StoreEvent2"
-                            android:background="@android:color/transparent"
-                            android:layout_width="300dp"
-                            android:layout_height="150dp"
-                            android:layout_below="@+id/BestGoods"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="8dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/store_img2" />
+                                // 이벤트 배너 2
 
-                    </LinearLayout>
-                </HorizontalScrollView>
-            </FrameLayout>
+                                <ImageButton
+                                    android:id="@+id/StoreEvent2"
+                                    android:layout_width="300dp"
+                                    android:layout_height="150dp"
+                                    android:layout_below="@+id/BestGoods"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@android:color/transparent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/store_img2" />
+
+                            </LinearLayout>
+                        </HorizontalScrollView>
+                    </FrameLayout>
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="450dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="100dp"
                     android:layout_marginBottom="7dp">
 
                     <ImageButton
                         android:id="@+id/recommend_img1"
-                        android:background="@android:color/transparent"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginTop="10dp"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitXY"
                         android:src="@drawable/store_img6" />
 
@@ -141,7 +143,7 @@
 
                     <TextView
                         android:id="@+id/recommend_title1"
-                        android:layout_width="207dp"
+                        android:layout_width="450dp"
                         android:layout_height="44dp"
                         android:layout_below="@+id/recommend_store1"
                         android:layout_marginStart="10dp"
@@ -177,17 +179,17 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="450dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="100dp"
                     android:layout_marginBottom="7dp">
 
                     <ImageButton
                         android:id="@+id/recommend_img2"
-                        android:background="@android:color/transparent"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginTop="10dp"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitXY"
                         android:src="@drawable/store_img7" />
 
@@ -205,7 +207,7 @@
 
                     <TextView
                         android:id="@+id/recommend_title2"
-                        android:layout_width="207dp"
+                        android:layout_width="450dp"
                         android:layout_height="44dp"
                         android:layout_below="@+id/recommend_store2"
                         android:layout_marginStart="10dp"
@@ -241,7 +243,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="450dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="100dp"
                     android:layout_marginBottom="7dp">
@@ -269,7 +271,7 @@
 
                     <TextView
                         android:id="@+id/recommend_title3"
-                        android:layout_width="207dp"
+                        android:layout_width="450dp"
                         android:layout_height="44dp"
                         android:layout_below="@+id/recommend_store3"
                         android:layout_marginStart="10dp"
@@ -306,17 +308,17 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="450dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="100dp"
                     android:layout_marginBottom="7dp">
 
                     <ImageButton
                         android:id="@+id/recommend_img4"
-                        android:background="@android:color/transparent"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginTop="10dp"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitXY"
                         android:src="@drawable/store_img3" />
 
@@ -334,7 +336,7 @@
 
                     <TextView
                         android:id="@+id/recommend_title4"
-                        android:layout_width="207dp"
+                        android:layout_width="450dp"
                         android:layout_height="44dp"
                         android:layout_below="@+id/recommend_store4"
                         android:layout_marginStart="10dp"
@@ -371,17 +373,17 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="450dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="100dp"
                     android:layout_marginBottom="7dp">
 
                     <ImageButton
                         android:id="@+id/recommend_img5"
-                        android:background="@android:color/transparent"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginTop="10dp"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitXY"
                         android:src="@drawable/store_img4" />
 
@@ -399,7 +401,7 @@
 
                     <TextView
                         android:id="@+id/recommend_title5"
-                        android:layout_width="207dp"
+                        android:layout_width="450dp"
                         android:layout_height="44dp"
                         android:layout_below="@+id/recommend_store5"
                         android:layout_marginStart="10dp"
@@ -435,12 +437,16 @@
 
                 </RelativeLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
             </LinearLayout>
         </ScrollView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/store_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="230dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,13 @@
 package com.example.plant01.store;
 
 public class StoreGoods {
-    String StoreName, GoodsTitle, GoodsReview, GoodsPrice, goodsImg;
+    String GoodsID, StoreName, GoodsTitle, GoodsReview, GoodsPrice, goodsImg;
 
-    StoreGoods(){}
+    public StoreGoods(String GoodsID, String storeName, String goodsTitle, String goodsReview, String goodsPrice){}
+//    public StoreGoods(){};
 
-    public StoreGoods(String StoreName, String GoodsTitle, String GoodsReview, String GoodsPrice, String goodsImg) {
+    public StoreGoods(String GoodsID, String StoreName, String GoodsTitle, String GoodsReview, String GoodsPrice, String goodsImg) {
+        this.GoodsID = GoodsID;
         this.StoreName = StoreName;
         this.GoodsTitle = GoodsTitle;
         this.GoodsReview = GoodsReview;
@@ -17,25 +19,47 @@ public class StoreGoods {
         return StoreName;
     }
 
-    public void setStoreName(String StoreName) { this.StoreName = StoreName; }
+    public void setStoreName(String storeName) {
+        this.StoreName = storeName;
+    }
 
-    public String getGoodsTitle() { return GoodsTitle; }
+    public String getGoodsTitle() {
+        return GoodsTitle;
+    }
 
-    public void setGoodsTitle(String GoodsTitle) { this.GoodsTitle = GoodsTitle; }
+    public void setGoodsTitle(String goodsTitle) {
+        this.GoodsTitle = goodsTitle;
+    }
 
     public String getGoodsReview() {
         return GoodsReview;
     }
 
-    public void setGoodsReview(String GoodsReview) { this.GoodsReview = GoodsReview; }
+    public void setGoodsReview(String goodsReview) {
+        this.GoodsReview = goodsReview;
+    }
 
-    public String getGoodsPrice() { return GoodsPrice; }
+    public String getGoodsPrice() {
+        return GoodsPrice;
+    }
 
-    public void setGoodsPrice(String GoodsPrice) { this.GoodsPrice = GoodsPrice; }
+    public void setGoodsPrice(String goodsPrice) {
+        this.GoodsPrice = goodsPrice;
+    }
 
-    public String getgoodsImg() { return goodsImg; }
+    public String getGoodsImg() {
+        return goodsImg;
+    }
 
-    public void setgoodsImg(String goodsImg) { this.goodsImg = goodsImg; }
+    public void setGoodsImg(String goodsImg) {
+        this.goodsImg = goodsImg;
+    }
 
+    public String getGoodsID() {
+        return GoodsID;
+    }
 
+    public void setGoodsID(String goodsID) {
+        this.GoodsID = goodsID;
+    }
 }

@@ -1,9 +1,12 @@
 package com.example.plant01.home;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -12,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +32,8 @@ public class SearchResult extends AppCompatActivity {
     ListView tiplistView;
     String[] tips;
     RecyclerView recyclerView;
+    ImageView level;
+    TextView sun,water, like, plantshort, plantname;
     RoundedImageView plantImg;
     Toolbar toolbar;
     searchAdapter adapter;
@@ -40,6 +46,11 @@ public class SearchResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_activity);
         toolbar = findViewById(R.id.search_result_toolbar);
+        sun = (TextView)findViewById(R.id.search_plantSun);
+        water = (TextView)findViewById(R.id.search_plantWater);
+        plantshort = (TextView)findViewById(R.id.search_plantShort);
+        plantname = (TextView)findViewById(R.id.search_plantName);
+        level = (ImageView)findViewById(R.id.search_plantLevel);
 
         setSupportActionBar(toolbar);
         setTitle("검색결과");
@@ -114,18 +125,14 @@ public class SearchResult extends AppCompatActivity {
 ////                            Log.e("TEST", "data["+i+"] > " + list.get(i).toString());
 //                            tips[i] = list.get(i).toString();
 //                        }
-//                        String plantImgurl = (String) document.get("plantImg");
-//                        Log.e("식물테이블", plantImgurl);
-//                        Glide.with(SearchResult.this)
-//                                .load(Uri.parse(plantImgurl))
-//                                .into(plantImg);
+//
 //                    }
 //                }
 //            }
 //        });
 
     }
-
+/*----------------검색결과 보여주기-------------------------------*/
     public void recivetip(){
         /*-------분석에서 결과 받아오기 ------*/
 //        tiplistView = findViewById(R.id.tipListview);
@@ -140,49 +147,44 @@ public class SearchResult extends AppCompatActivity {
             @Override
             public  void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-
                     tipArrayList.clear();
                     for (QueryDocumentSnapshot document : task.getResult()) {
 
                         ArrayList list = (ArrayList) document.getData().get("plantTip");
-//                      tring[] dbtips = new String[list.size()];  S
-//                        if (dcument.getType() == DocumentChange.Type.ADDED) {
-//                            plantsArrayList.add(dc.getDocument().toObject(Plants.class));
-//                        }
+                        String plantsuntxt = (String) document.get("plantSun");
+                        sun.setText(plantsuntxt);
+
+                        String plantwatertxt = (String) document.get("plantWater");
+                        water.setText(plantwatertxt);
+
+                        String plantnametxt = (String) document.get("plantName");
+                        plantname.setText(plantnametxt);
+
+                        String plantshorttxt = (String) document.get("plantShort");
+                        plantshort.setText(plantshorttxt);
+
+                        String plantImgurl = (String) document.get("plantImg");
+                        Glide.with(SearchResult.this)
+                                .load(Uri.parse(plantImgurl))
+                                .into(plantImg);
+
+                        String levelurl = (String) document.get("plantLevel");
+                        Glide.with(SearchResult.this)
+                                .load(Uri.parse(levelurl))
+                                .into(level);
+
                         for (int i = 0; i < list.size(); i++) {
-//
                             tipArrayList.add(list.get(i).toString());
                         }
                         Log.e("TEST",  tipArrayList.toString());
                         adapter = new searchAdapter(tipArrayList) ;
                         recyclerView.setAdapter(adapter) ;
-
-//                        adapter.notifyDataSetChanged();
-//                        Log.e("String[] ", Arrays.toString(dbtips));
-//                        ArrayAdapter tipAdapter = new ArrayAdapter(SearchResult.this, R.layout.result_tip_item,R.id.tip,dbtips);
-//                        tipAdapter.notifyDataSetChanged();
-//                        tiplistView.setAdapter(tipAdapter);
-
                     }
-
-
-
             }
         });
     }
 
-//    public void recivetip() {
-//        db = FirebaseFirestore.getInstance();
-//        Intent intent = getIntent(); /*데이터 수신*/
-//        String getplantname = intent.getExtras().getString("plantName");
-//        Query plantinfo = db.collection("Plant").whereEqualTo("plantName", getplantname);
-//        plantinfo.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//            @Override
-//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//
-//            }
-//        });
-//    }
+
 
 //    public String[] returnString(){
 //        db = FirebaseFirestore.getInstance();

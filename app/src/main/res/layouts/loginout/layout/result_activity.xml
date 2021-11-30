@@ -17,7 +17,6 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="30dp"
             app:contentScrim="@color/maincolor"
 
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
@@ -65,12 +64,12 @@
                     android:text="# 키우기쉬운"
                     android:textColor="#053D10"
                     android:textSize="12dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView13"
-                    app:layout_constraintStart_toEndOf="@+id/textView13"
-                    app:layout_constraintTop_toTopOf="@+id/textView13" />
+                    app:layout_constraintBottom_toBottomOf="@+id/search_plantKeyword1"
+                    app:layout_constraintStart_toEndOf="@+id/search_plantKeyword1"
+                    app:layout_constraintTop_toTopOf="@+id/search_plantKeyword1" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/search_plantName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -83,7 +82,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/search_result_toolbar" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/search_plantShort"
                     android:layout_width="wrap_content"
                     android:layout_height="23dp"
                     android:layout_marginStart="30dp"
@@ -92,10 +91,10 @@
                     android:textColor="#FFFFFF"
                     android:textSize="15dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/search_plantName" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/search_plantKeyword1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -104,105 +103,103 @@
                     android:textColor="#053D10"
                     android:textSize="12dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    app:layout_constraintTop_toBottomOf="@+id/search_plantShort" />
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
                     android:text="좋아요"
                     android:textColor="#03E729"
                     app:layout_constraintBottom_toBottomOf="@+id/textView16"
-                    app:layout_constraintEnd_toEndOf="@+id/textView23"
-                    app:layout_constraintHorizontal_bias="0.473"
-                    app:layout_constraintStart_toStartOf="@+id/textView23"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView16" />
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/search_plantLikes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="41dp"
-                    android:layout_marginEnd="30dp"
                     android:text="TextView"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView5"
-                    app:layout_constraintTop_toTopOf="@+id/imageView5"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_plantLevel"
+                    app:layout_constraintEnd_toEndOf="@+id/textView17"
+                    app:layout_constraintStart_toStartOf="@+id/textView17"
+                    app:layout_constraintTop_toTopOf="@+id/search_plantLevel"
                     app:layout_constraintVertical_bias="0.363" />
 
                 <ImageView
-                    android:id="@+id/imageView5"
+                    android:id="@+id/search_plantLevel"
                     android:layout_width="59dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="41dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView22"
-                    app:layout_constraintStart_toEndOf="@+id/textView22"
-                    app:layout_constraintTop_toTopOf="@+id/textView22"
-                    app:layout_constraintVertical_bias="0.454"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_plantSun"
+                    app:layout_constraintEnd_toEndOf="@+id/textView16"
+                    app:layout_constraintStart_toStartOf="@+id/textView16"
+                    app:layout_constraintTop_toTopOf="@+id/search_plantSun"
+                    app:layout_constraintVertical_bias="0.545"
                     app:srcCompat="@mipmap/store_ic_round" />
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/search_plantSun"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="6dp"
                     android:text="TextView"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView21"
-                    app:layout_constraintStart_toEndOf="@+id/textView21"
-                    app:layout_constraintTop_toTopOf="@+id/textView21"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_plantWater"
+                    app:layout_constraintEnd_toEndOf="@+id/textView15"
+                    app:layout_constraintStart_toStartOf="@+id/textView15"
+                    app:layout_constraintTop_toTopOf="@+id/search_plantWater"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="63dp"
                     android:text="햇빛"
                     android:textColor="#03E729"
                     app:layout_constraintBottom_toBottomOf="@+id/textView14"
-                    app:layout_constraintEnd_toEndOf="@+id/textView22"
-                    app:layout_constraintStart_toStartOf="@+id/textView22"
+                    app:layout_constraintEnd_toStartOf="@+id/textView16"
                     app:layout_constraintTop_toTopOf="@+id/textView14" />
 
                 <TextView
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="63dp"
                     android:text="물주기"
                     android:textColor="#03E729"
-                    app:layout_constraintEnd_toEndOf="@+id/textView21"
-                    app:layout_constraintHorizontal_bias="0.473"
-                    app:layout_constraintStart_toStartOf="@+id/textView21"
-                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                    app:layout_constraintEnd_toStartOf="@+id/textView15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/search_plantKeyword1" />
+
+                <TextView
+                    android:id="@+id/search_plantWater"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="@+id/textView14"
+                    app:layout_constraintStart_toStartOf="@+id/textView14"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="63dp"
                     android:text="난이도"
                     android:textColor="#03E729"
                     app:layout_constraintBottom_toBottomOf="@+id/textView15"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView5"
-                    app:layout_constraintHorizontal_bias="0.6"
-                    app:layout_constraintStart_toStartOf="@+id/imageView5"
-                    app:layout_constraintTop_toTopOf="@+id/textView15" />
+                    app:layout_constraintEnd_toStartOf="@+id/textView17"
+                    app:layout_constraintTop_toTopOf="@+id/textView15"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -222,15 +219,25 @@
             android:layout_height="match_parent"
             tools:context=".home.SearchResult">
 
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@color/maincolor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/result_plant_img"
+                android:layout_width="360dp"
+                android:layout_height="359dp"
+                android:layout_marginTop="8dp"
+                android:padding="10dp"
                 android:scaleType="fitXY"
-                android:layout_width="330dp"
-                android:layout_height="330dp"
-                android:layout_marginTop="32dp"
                 android:src="@mipmap/store_ic_round"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintHorizontal_bias="0.49"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:riv_corner_radius="20dp" />
@@ -239,6 +246,7 @@
                 android:layout_width="373dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                app:contentPaddingBottom="15dp"
                 android:orientation="vertical"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"

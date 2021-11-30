@@ -2,78 +2,115 @@ package com.example.plant01.postpage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plant01.R;
+import com.example.plant01.test.PostItem;
+import com.example.plant01.test.PostItemAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 public class Post_diary extends Fragment {
     private View view;
-    private FloatingActionButton floatingActionButton;
-    private View.OnClickListener cl;
-//    private RecyclerView recyclerView;
-//    private ArrayList<Post> list = new ArrayList<>();
-//    private Post_RecyclerAdapter post_recyclerAdapter;
-    Post_diary(){}
-
-    public static Post_diary newInstance(){
-        Post_diary post_diary = new Post_diary();
-        return post_diary;
-    }
-
-
+    private RecyclerView mRecyclerView;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firestore;
+    private FloatingActionButton fab;
+    private PostItemAdapter adapter;
+    private ArrayList<PostItem> postItemArrayList;
+    private Query query;
+    private ListenerRegistration listenerRegistration;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        return super.onCreateView(inflater, container, savedInstanceState);
-//        ViewGroup viewGroup = (ViewGroup)inflater.inflate(R.layout.post_diary11, container, false);
-//        recyclerView.setHasFixedSize(true);
-//        post_recyclerAdapter = new Post_RecyclerAdapter(getActivity(), list);
-        view = inflater.inflate(R.layout.post_diary, container, false);
+        view = inflater.inflate(R.layout.test_post_data, container, false);
+        view.findViewById(R.id.add_post).setOnClickListener(onClickListener);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
-//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FragmentActivity activitiy = null;
-//                FragmentManager manager = activitiy.getSupportFragmentManager();
-//                int stackCount = manager.getBackStackEntryCount();
+
+        /*--------------------게시판 보여주는 리사이클러뷰와 클래스  --------------------------*/
+        mRecyclerView = view.findViewById(R.id.post_recyclerview);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        postItemArrayList = new ArrayList<PostItem>();
+        adapter = new PostItemAdapter(getContext(),postItemArrayList);
+        mRecyclerView.setAdapter(adapter);
+        showPost();
 //
-//                // 내가 찾고자 하는 fragment가 있을 때 까지 끈다.
-//                for ( int i = stackCount -1; i >=0; i-- ) {
-//                    if ( !manager.getBackStackEntryAt(i).getName().equals("post")) {
-//                        manager.popBackStack();
-//                    }
-//                    else {
-//                        break;
-//                    }
-//                }
-//        }
-// });
-
-        floatingActionButton = (FloatingActionButton) view.findViewById(R.id.add_post);
-        //작성페이지로 이동하는 버튼
-        cl = new View.OnClickListener() {
+        /*------------보여지는 게시글이 끝나면 END라고 뜨게함 ---------*/
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(getActivity(), Post_write.class);
-                startActivity(intent);
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Boolean isBottom = !mRecyclerView.canScrollVertically(1);
+                if (isBottom) {
+                    Toast.makeText(getContext(), "END", Toast.LENGTH_SHORT).show();
+                }
             }
-        };
-        floatingActionButton.setOnClickListener(cl);
+        });
+
+
         return view;
-//        return null;
+    }
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.add_post:
+                    myStartActivity(Post_write.class);
+                    break;
+            }
+        }
+    };
+
+    /*-----------------어댑터와 데이터 연결----------------------*/
+    public void showPost(){
+        /*----------날짜내림차순---------*/
+        query = firestore.collection("Post")
+                .orderBy("postDate",Query.Direction.DESCENDING);
+        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException e) {
+                postItemArrayList.clear();
+                for (DocumentChange doc : value.getDocumentChanges()) {
+                    if (doc.getType() == DocumentChange.Type.ADDED) {
+                        PostItem postItem = doc.getDocument().toObject(PostItem.class);
+                        postItemArrayList.add(postItem);
+                        adapter.notifyDataSetChanged();
+                        Log.e("포스트 ", value.getDocuments().toString());
+                    } else {
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+
+            }
+        });
+    }
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(getActivity(), c);
+        startActivityForResult(intent, 0);
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
 }
+

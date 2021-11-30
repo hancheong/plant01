@@ -18,10 +18,4 @@ public class goods {  // 테스트 상품 페이지 테이블 클래스
 
     public void setName(String name) {this.name = name;}
 
-    public goods(String name, String title, String review, String price){
-        this.name = name;
-        this.title = title;
-        this.review = review;
-        this.price = price;
-    }
 }

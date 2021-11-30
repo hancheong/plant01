@@ -65,6 +65,12 @@
             android:name=".postpage.PostMain"
             android:exported="true" />
         <activity
+            android:name=".postpage.GalleryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".postpage.BasicActivity"
+            android:exported="true" />
+        <activity
             android:name=".postpage.PostMainActivity"
             android:exported="true" />
         <activity

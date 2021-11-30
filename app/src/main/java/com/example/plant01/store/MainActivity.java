@@ -18,6 +18,8 @@ import com.example.plant01.garden.MyGarden;
 import com.example.plant01.home.HomeFragment;
 
 import com.example.plant01.postpage.PostMainActivity;
+import com.example.plant01.postpage.Post_diary;
+import com.example.plant01.postpage.Post_info;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,15 +38,11 @@ public class MainActivity extends AppCompatActivity {
     private MyGarden MyGarden;
     private FragmentPagerAdapter fragmentPagerAdapter;
 
-//<<<<<<< HEAD
 
     Button bt1, bt2;
     EditText name, title, review, price, inp;
     TextView result1, result2, result3, result4;
 
-
-//=======
-//>>>>>>> b3bd7b0790d8d7e1c3e4408da464f655cbc45351
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,14 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
 
-
-
         }
-
-
-
-
-
     }
-
 }

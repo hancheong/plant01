@@ -19,6 +19,7 @@
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/drawable/post_ic_list.xml" value="0.265625" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/activity_login.xml" value="0.1078125" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/home_item.xml" value="0.13229166666666667" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/home_main_fragment.xml" value="0.3453496755587599" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/home_toolbar.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layout/store_activity_main.xml" value="0.264" />
@@ -42,11 +43,13 @@
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/post_list_item.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/post_main_fragment.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/post_main_fragmetn.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/result_activity.xml" value="0.2740021574973031" />
+        <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/result_tip_item.xml" value="0.4" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/test1234.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/test_post_data.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/Documents/plant01/app/src/main/res/layouts/loginout/layout/view_toolbar.xml" value="0.1" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="16" project-jdk-type="JavaSDK" />
 </project>

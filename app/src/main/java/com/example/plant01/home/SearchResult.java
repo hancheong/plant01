@@ -3,13 +3,14 @@ package com.example.plant01.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plant01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,14 +22,16 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SearchResult extends AppCompatActivity {
     private FirebaseFirestore db;
     ListView tiplistView;
     String[] tips;
+    RecyclerView recyclerView;
     RoundedImageView plantImg;
     Toolbar toolbar;
+    searchAdapter adapter;
+    private ArrayList<String> tipArrayList;
 
     public SearchResult() { }
 
@@ -43,6 +46,22 @@ public class SearchResult extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         plantImg = (RoundedImageView)findViewById(R.id.result_plant_img);
+
+        // 리사이클러뷰에 표시할 데이터 리스트 생성.
+        tipArrayList = new ArrayList<String>();
+//        for (int i=0; i<10; i++) {
+//            tipArrayList.add(String.format("TEXT %d", i)) ;
+//        }
+//        Log.e("tipArraylist[] ", tipArrayList.toString());
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+
+
+        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+
+//        searchAdapter adapter = new searchAdapter(tipArrayList) ;
+//        recyclerView.setAdapter(adapter) ;
+        recivetip();
+
 
 //        tiplistView = findViewById(R.id.tipListview);
 //        RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
@@ -64,7 +83,7 @@ public class SearchResult extends AppCompatActivity {
 //        }
 
 //        tips = new String[]{};
-        recivetip();
+
 //        Log.e("String[] ",Arrays.toString(tips));
 
 //
@@ -109,8 +128,10 @@ public class SearchResult extends AppCompatActivity {
 
     public void recivetip(){
         /*-------분석에서 결과 받아오기 ------*/
-        tiplistView = findViewById(R.id.tipListview);
+//        tiplistView = findViewById(R.id.tipListview);
         db = FirebaseFirestore.getInstance();
+        recyclerView = findViewById(R.id.tipRecyclerview) ;
+        recyclerView.setLayoutManager(new LinearLayoutManager(SearchResult.this)) ;
         Intent intent = getIntent(); /*데이터 수신*/
         String getplantname = intent.getExtras().getString("plantName");
         Query plantinfo = db.collection("Plant").whereEqualTo("plantName", getplantname);
@@ -119,24 +140,49 @@ public class SearchResult extends AppCompatActivity {
             @Override
             public  void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                if (task.isSuccessful()) {
+
+                    tipArrayList.clear();
                     for (QueryDocumentSnapshot document : task.getResult()) {
+
                         ArrayList list = (ArrayList) document.getData().get("plantTip");
-                        String[] dbtips = new String[list.size()];
+//                      tring[] dbtips = new String[list.size()];  S
+//                        if (dcument.getType() == DocumentChange.Type.ADDED) {
+//                            plantsArrayList.add(dc.getDocument().toObject(Plants.class));
+//                        }
                         for (int i = 0; i < list.size(); i++) {
-//                            Log.e("TEST", "data["+i+"] > " + list.get(i).toString());
-                            dbtips[i] = list.get(i).toString();
+//
+                            tipArrayList.add(list.get(i).toString());
                         }
-                        Log.e("String[] ", Arrays.toString(dbtips));
-                        ArrayAdapter tipAdapter = new ArrayAdapter(SearchResult.this, R.layout.result_tip_item,R.id.tip,dbtips);
-                        tiplistView.setAdapter(tipAdapter);
+                        Log.e("TEST",  tipArrayList.toString());
+                        adapter = new searchAdapter(tipArrayList) ;
+                        recyclerView.setAdapter(adapter) ;
+
+//                        adapter.notifyDataSetChanged();
+//                        Log.e("String[] ", Arrays.toString(dbtips));
+//                        ArrayAdapter tipAdapter = new ArrayAdapter(SearchResult.this, R.layout.result_tip_item,R.id.tip,dbtips);
+//                        tipAdapter.notifyDataSetChanged();
+//                        tiplistView.setAdapter(tipAdapter);
+
                     }
 
-                }
+
 
             }
         });
     }
+
+//    public void recivetip() {
+//        db = FirebaseFirestore.getInstance();
+//        Intent intent = getIntent(); /*데이터 수신*/
+//        String getplantname = intent.getExtras().getString("plantName");
+//        Query plantinfo = db.collection("Plant").whereEqualTo("plantName", getplantname);
+//        plantinfo.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//            @Override
+//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//
+//            }
+//        });
+//    }
 
 //    public String[] returnString(){
 //        db = FirebaseFirestore.getInstance();

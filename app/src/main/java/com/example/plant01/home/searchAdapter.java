@@ -15,11 +15,10 @@ import java.util.ArrayList;
 
 public class searchAdapter extends RecyclerView.Adapter<searchAdapter.TipViewHolder> {
 
-    Context context;
-    ArrayList<String> tipArrayList;
 
-    public searchAdapter(Context context, ArrayList<String> tipArrayList) {
-        this.context = context;
+    ArrayList<String> tipArrayList = null;
+
+    public searchAdapter(ArrayList<String> tipArrayList) {
         this.tipArrayList = tipArrayList;
     }
 
@@ -28,15 +27,20 @@ public class searchAdapter extends RecyclerView.Adapter<searchAdapter.TipViewHol
     @NonNull
     @Override
     public searchAdapter.TipViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view  = LayoutInflater.from(context).inflate(R.layout.result_tip_item, viewGroup,false);
+        Context context = viewGroup.getContext() ;
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
 
-        return new TipViewHolder(view);
+        View view = inflater.inflate(R.layout.result_tip_item,viewGroup, false) ;
+        searchAdapter.TipViewHolder vh = new searchAdapter.TipViewHolder(view) ;
+
+
+        return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull searchAdapter.TipViewHolder tipViewHolder, int position) {
         String text = tipArrayList.get(position) ;
-        tipViewHolder.textView1.setText(text) ;
+        tipViewHolder.tip.setText(text) ;
 //        tipViewHolder.tip.setText(tipArrayList.get(position).getTip());
     }
 
@@ -52,20 +56,20 @@ public class searchAdapter extends RecyclerView.Adapter<searchAdapter.TipViewHol
             tip = itemView.findViewById(R.id.tip);
         }
     }
-
-    private class Tip {
-        String tip;
-
-        public Tip(String tip) {
-            this.tip = tip;
-        }
-
-        public String getTip() {
-            return tip;
-        }
-
-        public void setTip(String tip) {
-            this.tip = tip;
-        }
-    }
+//
+//    private class Tip {
+//        String tip;
+//
+//        public Tip(String tip) {
+//            this.tip = tip;
+//        }
+//
+//        public String getTip() {
+//            return tip;
+//        }
+//
+//        public void setTip(String tip) {
+//            this.tip = tip;
+//        }
+//    }
 }

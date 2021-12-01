@@ -63,96 +63,85 @@ public class Post_best extends Fragment {
         }
     };
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        /*----------베스트 게시판 보여줌 ------------*/
-//        showBoard();
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        db = FirebaseFirestore.getInstance();
+        /*----------베스트 게시판 보여줌 ------------*/
+        showBoard();
+    }
+    /*-------------인기게시판 불러오는 곳------------------*/
+    public void showBoard() {
+        ImageView post_user_img = getView().findViewById(R.id.post_user_img);
+        TextView explain = getView().findViewById(R.id.explain);
+        TextView post_like_num = getView().findViewById(R.id.post_like_num);
+        TextView post_usernick = getView().findViewById(R.id.post_usernick);
 
-//    /*-------------인기게시판 불러오는 곳------------------*/
-//
-//    public void showBoard() {
-//        ImageView post_user_img = getView().findViewById(R.id.post_user_img);
-//        TextView explain = getView().findViewById(R.id.explain);
-//        TextView post_like_num = getView().findViewById(R.id.post_like_num);
-//        TextView post_usernick = getView().findViewById(R.id.post_usernick);
-//
 //        RoundedImageView questuserprofile = getView().findViewById(R.id.quest_userprofile);
 //        TextView quest_content = getView().findViewById(R.id.quset_content);
 //        TextView quest_count = getView().findViewById(R.id.quest_likecount);
 //        TextView quest_usernick = getView().findViewById(R.id.quest_usernick);
 
+        /*----------------자유게시판 불러오는 쿼리 -------------------------*/
+        Query freepost = db.collection("Posts").whereEqualTo("board", "자유게시판").orderBy("likes", Query.Direction.DESCENDING).limit(1);
 
-//        /*----------------자유게시판 불러오는 쿼리 -------------------------*/
-//
-//        Query freeboard = db.collection("Posts").whereEqualTo("board", "자유게시판").orderBy("likes", Query.Direction.DESCENDING).limit(1);
-//
 //        /*-------------------질문 게시판 불러오는 쿼리 ---------------------------*/
-//        Query questboard = db.collection("Posts").whereEqualTo("board", "질문게시판").orderBy("likes", Query.Direction.DESCENDING).limit(1);
-//
-//
-//        /*-------------------자유게시판 중 베스트-----------------------------------*/
-//        freeboard.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    for (QueryDocumentSnapshot document : task.getResult()) {
-//                        ArrayList list = (ArrayList) document.getData().get("likes");
-//
-//
-//                        //int를 String으로 바꾸는 방법
-//                        String likes = String.valueOf(list.size());
-//                        post_like_num.setText(likes);
-//
-//                        //컨텐츠 내용 가져오기
-//                        String content = (String) document.get("postContent");
-//                        explain.setText(content);
-//
-//                        //postUserID로 userNick가져오기
-//                        String UserUID = (String) document.get("postUserUID");
-//                        db.collection("Users").document(UserUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                if (task.isSuccessful()) {
-//                                    DocumentSnapshot doc = task.getResult();
-//
-//                                    // 닉네임과 이미지
-//                                    String userNick = (String) doc.get("userNick");
-//                                    post_usernick.setText(userNick);
-//                                    String userImg = (String) doc.get("userImg");
-//                                    if (userImg != null) {
-//                                        Glide.with(getContext())
-//                                                .load(Uri.parse(userImg))
-//                                                .into(post_user_img);
-//                                    }
-//
-//                                    Log.e(TAG, doc.getId() + " " + UserUID + userNick);
-//
-//
-//                                }
-//                            }
-//                        });
-//
-//
-//                        Log.e(TAG, "자유게시판" + document.getId() + " => " + document.getData() + " " + UserUID + " ");
-//                    }
-//                } else {
-//                    Log.d(TAG, "Error getting documents: ", task.getException());
-//                }
-//
-//            }
-//        });
+//        Query questpost = db.collection("Posts").whereEqualTo("board", "질문게시판").orderBy("likes", Query.Direction.DESCENDING).limit(1);
+
+        /*-------------------자유게시판 중 베스트-----------------------------------*/
+        freepost.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        ArrayList list = (ArrayList) document.getData().get("likes");
+
+                        //int를 String으로 바꾸는 방법
+                        String likes = String.valueOf(list.size());
+                        post_like_num.setText(likes);
+
+                        //컨텐츠 내용 가져오기
+                        String content = (String) document.get("postContent");
+                        explain.setText(content);
+
+                        //postUserID로 userNick가져오기
+                        String UserUID = (String) document.get("postUserUID");
+                        db.collection("Users").document(UserUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot doc = task.getResult();
+
+                                    // 닉네임과 이미지
+                                    String userNick = (String) doc.get("userNick");
+                                    post_usernick.setText(userNick);
+                                    String userImg = (String) doc.get("userImg");
+                                    if (userImg != null) {
+                                        Glide.with(getContext())
+                                                .load(Uri.parse(userImg))
+                                                .into(post_user_img);
+                                    }
+
+                                    Log.e(TAG, doc.getId() + " " + UserUID + userNick);
+                                }
+                            }
+                        });
+                        Log.e(TAG, "자유게시판" + document.getId() + " => " + document.getData() + " " + UserUID + " ");
+                    }
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
 
 //        /*------------질문 게시판 중 베스트--------------------------*/
 //
-//        questboard.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//        questpost.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 //            @Override
 //            public void onComplete(@NonNull Task<QuerySnapshot> task) {
 //                if (task.isSuccessful()) {
 //                    for (QueryDocumentSnapshot document : task.getResult()) {
 //                        ArrayList list = (ArrayList) document.getData().get("likes");
-//
 //
 //                        //int를 String으로 바꾸는 방법
 //                        String likes = String.valueOf(list.size());
@@ -187,10 +176,9 @@ public class Post_best extends Fragment {
 //                } else {
 //                    Log.d(TAG, "Error getting documents: ", task.getException());
 //                }
-//
 //            }
 //        });
-//    }
+    }
 
 
         @Override

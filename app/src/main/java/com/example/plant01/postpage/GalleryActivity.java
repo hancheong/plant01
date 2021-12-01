@@ -40,7 +40,6 @@ public class GalleryActivity extends BasicActivity {
                     1);
             if (ActivityCompat.shouldShowRequestPermissionRationale(GalleryActivity.this,
                     Manifest.permission.READ_EXTERNAL_STORAGE)) {
-
             } else {
                 showToast(GalleryActivity.this, getResources().getString(R.string.please_grant_permission));
             }

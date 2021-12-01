@@ -57,7 +57,7 @@ public class Post_diary extends Fragment {
         adapter = new PostItemAdapter(getContext(),postItemArrayList);
         mRecyclerView.setAdapter(adapter);
         showPost();
-//
+
         /*------------보여지는 게시글이 끝나면 END라고 뜨게함 ---------*/
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -69,8 +69,6 @@ public class Post_diary extends Fragment {
                 }
             }
         });
-
-
         return view;
     }
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -107,6 +105,7 @@ public class Post_diary extends Fragment {
             }
         });
     }
+
     private void myStartActivity(Class c) {
         Intent intent = new Intent(getActivity(), c);
         startActivityForResult(intent, 0);

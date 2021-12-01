@@ -173,12 +173,6 @@ public class Post_write extends BasicActivity {
                         break;
                     case R.id.postbtn:
                         storageUpload();
-//                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                            // 프래그먼트매니저를 통해 사용
-//                            PostMainActivity postMainActivity= new PostMainActivity(); // 객체 생성
-////                            transaction.replace(R.id.postwrite, postMainActivity); //layout, 교체될 layout
-//                            transaction.addToBackStack(null);
-//                            transaction.commit(); //commit으로 저장 하지 않으면 화면 전환이 되지 않음
                         break;
                     case R.id.bottonsBackgroundlayout:
                         if (bottonsBackgroundlayout.getVisibility() == View.VISIBLE) {
@@ -227,7 +221,7 @@ public class Post_write extends BasicActivity {
             StorageReference storageReference = storage.getReference();
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
             final DocumentReference documentReference = firebaseFirestore.collection("posts").document();
-
+            //게시글 작성 연동과정
             for(int i = 0; i < parent.getChildCount(); i++){
                 LinearLayout linearLayout = (LinearLayout) parent.getChildAt(i);
                 for(int ii = 0; ii<linearLayout.getChildCount(); ii++) {
@@ -283,10 +277,10 @@ public class Post_write extends BasicActivity {
             }
 
         } else {
-            startToast("제목을 입력해주세요.");
+            startToast("제목을 입력해주세요."); //제목 입력을 하지 않을 경우
         }
     }
-
+    //이미지&사진 업로드
     private void storeUpload(DocumentReference documentReference, Writeinfo writeinfo) {
         documentReference.set(writeinfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -73,6 +73,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
                 android:src="@drawable/post_ic_eplant" />
+
          </androidx.cardview.widget.CardView>
 
       </LinearLayout>

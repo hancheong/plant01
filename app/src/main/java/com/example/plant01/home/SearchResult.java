@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,49 +29,130 @@ import java.util.ArrayList;
 
 public class SearchResult extends AppCompatActivity {
     private FirebaseFirestore db;
-    ListView tiplistView;
-    String[] tips;
     RecyclerView recyclerView;
     ImageView level;
-    TextView sun,water, like, plantshort, plantname;
+    TextView sun, water, like, plantshort, plantname;
     RoundedImageView plantImg;
     Toolbar toolbar;
     searchAdapter adapter;
     private ArrayList<String> tipArrayList;
 
-    public SearchResult() { }
+    public SearchResult() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_activity);
         toolbar = findViewById(R.id.search_result_toolbar);
-        sun = (TextView)findViewById(R.id.search_plantSun);
-        water = (TextView)findViewById(R.id.search_plantWater);
-        plantshort = (TextView)findViewById(R.id.search_plantShort);
-        plantname = (TextView)findViewById(R.id.search_plantName);
-        level = (ImageView)findViewById(R.id.search_plantLevel);
+        sun = (TextView) findViewById(R.id.search_plantSun);
+        water = (TextView) findViewById(R.id.search_plantWater);
+        plantshort = (TextView) findViewById(R.id.search_plantShort);
+        plantname = (TextView) findViewById(R.id.search_plantName);
+        level = (ImageView) findViewById(R.id.search_plantLevel);
 
         setSupportActionBar(toolbar);
         setTitle("검색결과");
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        plantImg = (RoundedImageView)findViewById(R.id.result_plant_img);
+        plantImg = (RoundedImageView) findViewById(R.id.result_plant_img);
 
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         tipArrayList = new ArrayList<String>();
-//        for (int i=0; i<10; i++) {
-//            tipArrayList.add(String.format("TEXT %d", i)) ;
-//        }
-//        Log.e("tipArraylist[] ", tipArrayList.toString());
-        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-
-
-        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-
-//        searchAdapter adapter = new searchAdapter(tipArrayList) ;
-//        recyclerView.setAdapter(adapter) ;
         recivetip();
+
+
+    }
+
+    /*----------------검색결과 보여주기-------------------------------*/
+    public void recivetip() {
+        /*-------분석에서 결과 받아오기 ------*/
+        db = FirebaseFirestore.getInstance();
+
+        recyclerView = findViewById(R.id.tipRecyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(SearchResult.this));
+        Intent intent = getIntent(); /*데이터 수신*/
+        String getplantname = intent.getExtras().getString("plantName");
+        Query plantinfo = db.collection("Plant").whereEqualTo("plantName", getplantname);
+
+        plantinfo.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                tipArrayList.clear();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+
+                    ArrayList list = (ArrayList) document.getData().get("plantTip");
+                    String plantsuntxt = (String) document.get("plantSun");
+                    sun.setText(plantsuntxt);
+
+                    String plantwatertxt = (String) document.get("plantWater");
+                    water.setText(plantwatertxt);
+
+                    String plantnametxt = (String) document.get("plantName");
+                    plantname.setText(plantnametxt);
+
+                    String plantshorttxt = (String) document.get("plantShort");
+                    plantshort.setText(plantshorttxt);
+
+                    String plantImgurl = (String) document.get("plantImg");
+                    Glide.with(SearchResult.this)
+                            .load(Uri.parse(plantImgurl))
+                            .into(plantImg);
+
+                    String levelurl = (String) document.get("plantLevel");
+                    Glide.with(SearchResult.this)
+                            .load(Uri.parse(levelurl))
+                            .into(level);
+
+                    for (int i = 0; i < list.size(); i++) {
+                        tipArrayList.add(list.get(i).toString());
+                    }
+                    Log.e("TEST", tipArrayList.toString());
+                    adapter = new searchAdapter(tipArrayList);
+                    recyclerView.setAdapter(adapter);
+                }
+            }
+        });
+    }
+/*-------------뒤로가기----------------*/
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+}
+//    public String[] returnString(){
+//        db = FirebaseFirestore.getInstance();
+//        final String[] dbtips;
+//        Intent intent = getIntent(); /*데이터 수신*/
+//        String getplantname = intent.getExtras().getString("plantName");
+//        Query plantinfo = db.collection("Plant").whereEqualTo("plantName", getplantname);
+//
+//        plantinfo.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public  void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                        ArrayList list = (ArrayList) document.getData().get("plantTip");
+//                         dbtipas = new String[list.size()];
+////                        Convert to ArrayList
+////                        List<String> testList = new ArrayList<>(Arrays.asList(t));
+//                        for (int i = 0; i < list.size(); i++) {
+////                            Log.e("TEST", "data["+i+"] > " + list.get(i).toString());
+//                            dbtips[i] = list.get(i).toString();
+//                        }
+//
+//                    }
+//                }
+//            }
+//        });
+//        return dbtips;
+//    }
 
 
 //        tiplistView = findViewById(R.id.tipListview);
@@ -107,7 +188,7 @@ public class SearchResult extends AppCompatActivity {
 //        tiplistView.setAdapter(tipAdapter);
 
 
-        /*-------파이어스토어와 연결----*/
+/*-------파이어스토어와 연결----*/
 
 
 //        Query plantinfo = db.collection("Plant").whereEqualTo("plantName", getplantname);
@@ -130,87 +211,3 @@ public class SearchResult extends AppCompatActivity {
 //                }
 //            }
 //        });
-
-    }
-/*----------------검색결과 보여주기-------------------------------*/
-    public void recivetip(){
-        /*-------분석에서 결과 받아오기 ------*/
-//        tiplistView = findViewById(R.id.tipListview);
-        db = FirebaseFirestore.getInstance();
-        recyclerView = findViewById(R.id.tipRecyclerview) ;
-        recyclerView.setLayoutManager(new LinearLayoutManager(SearchResult.this)) ;
-        Intent intent = getIntent(); /*데이터 수신*/
-        String getplantname = intent.getExtras().getString("plantName");
-        Query plantinfo = db.collection("Plant").whereEqualTo("plantName", getplantname);
-
-        plantinfo.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public  void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                    tipArrayList.clear();
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-
-                        ArrayList list = (ArrayList) document.getData().get("plantTip");
-                        String plantsuntxt = (String) document.get("plantSun");
-                        sun.setText(plantsuntxt);
-
-                        String plantwatertxt = (String) document.get("plantWater");
-                        water.setText(plantwatertxt);
-
-                        String plantnametxt = (String) document.get("plantName");
-                        plantname.setText(plantnametxt);
-
-                        String plantshorttxt = (String) document.get("plantShort");
-                        plantshort.setText(plantshorttxt);
-
-                        String plantImgurl = (String) document.get("plantImg");
-                        Glide.with(SearchResult.this)
-                                .load(Uri.parse(plantImgurl))
-                                .into(plantImg);
-
-                        String levelurl = (String) document.get("plantLevel");
-                        Glide.with(SearchResult.this)
-                                .load(Uri.parse(levelurl))
-                                .into(level);
-
-                        for (int i = 0; i < list.size(); i++) {
-                            tipArrayList.add(list.get(i).toString());
-                        }
-                        Log.e("TEST",  tipArrayList.toString());
-                        adapter = new searchAdapter(tipArrayList) ;
-                        recyclerView.setAdapter(adapter) ;
-                    }
-            }
-        });
-    }
-
-
-
-//    public String[] returnString(){
-//        db = FirebaseFirestore.getInstance();
-//        final String[] dbtips;
-//        Intent intent = getIntent(); /*데이터 수신*/
-//        String getplantname = intent.getExtras().getString("plantName");
-//        Query plantinfo = db.collection("Plant").whereEqualTo("plantName", getplantname);
-//
-//        plantinfo.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public  void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    for (QueryDocumentSnapshot document : task.getResult()) {
-//                        ArrayList list = (ArrayList) document.getData().get("plantTip");
-//                         dbtipas = new String[list.size()];
-////                        Convert to ArrayList
-////                        List<String> testList = new ArrayList<>(Arrays.asList(t));
-//                        for (int i = 0; i < list.size(); i++) {
-////                            Log.e("TEST", "data["+i+"] > " + list.get(i).toString());
-//                            dbtips[i] = list.get(i).toString();
-//                        }
-//
-//                    }
-//                }
-//            }
-//        });
-//        return dbtips;
-//    }
-}

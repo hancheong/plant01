@@ -1,15 +1,10 @@
 package com.example.plant01.usersetting;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
-import android.media.ImageReader;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -26,10 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.plant01.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,12 +29,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.net.URI;
-import java.nio.ByteBuffer;
 
 public class UserSetting extends AppCompatActivity {
 
@@ -125,12 +110,9 @@ public class UserSetting extends AppCompatActivity {
             FirebaseStorage storage = FirebaseStorage.getInstance();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             db = FirebaseFirestore.getInstance();
-
             StorageReference storageRef = storage.getReference();
-
             StorageReference mountainImagesRef = storageRef.child("userprofile/"+user.getUid()+"/profile.jpg");
 
-            //
 
             Bitmap bitmap = (Bitmap) data.getParcelableExtra("data");
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -147,11 +129,7 @@ public class UserSetting extends AppCompatActivity {
                             .update("userImg", uri.toString());
                 }
             });
-
-
-
             profileImageVIew.setImageBitmap(bitmap);
-
 
         }
     }

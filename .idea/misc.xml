@@ -3,10 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/activity_gallery.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/activity_main.xml" value="0.291213768115942" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/home_activity_recycler_item.xml" value="0.13171225937183384" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/home_drawer_header.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/home_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/home_main_fragment.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/home_slider_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/home_toolbar.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/navigaton_bar.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/post_item_write.xml" value="0.14678899082568808" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/post_itemgallery.xml" value="0.17299898682877407" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layout/post_write.xml" value="0.27447916666666666" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/home/layout/home_dialog_camera.xml" value="0.20471014492753623" />
         <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/garden_my_garden.xml" value="0.3194444444444444" />
         <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/garden_my_plants.xml" value="0.3194444444444444" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/home_search_input.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/home_setting_bell.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/home_setting_user.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_activity_main.xml" value="0.17299898682877407" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_best.xml" value="0.20294117647058824" />
         <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_content.xml" value="0.22916666666666666" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_diary.xml" value="0.17299898682877407" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_drawer_notice.xml" value="0.20471014492753623" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_free.xml" value="0.20625" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_info.xml" value="0.17299898682877407" />
         <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_list_item.xml" value="0.35572916666666665" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_main_fragment.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/post_viewloader.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/layouts/loginout/layout/test_post_data.xml" value="0.11388888888888889" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/menu/drawer_menu.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/plant01/app/src/main/res/menu/post_drawer_menu.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layout/activity_store_recommend_list.xml" value="0.3079710144927536" />
         <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layout/home_drawer_header.xml" value="0.3134057971014493" />
         <entry key="..\:/Users/K/AndroidStudioProjects/plant01/app/src/main/res/layout/store_recommendgoods.xml" value="0.33" />
@@ -51,5 +78,9 @@
       </map>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="16" project-jdk-type="JavaSDK" />
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="16" project-jdk-type="JavaSDK" />
+>>>>>>> 0fb640ae5896fee5e44300d9917e8ed805d44b85
 </project>

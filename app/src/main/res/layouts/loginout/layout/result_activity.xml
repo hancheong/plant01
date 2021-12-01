@@ -33,77 +33,80 @@
                     android:layout_height="?attr/actionBarSize"></androidx.appcompat.widget.Toolbar>
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/search_plantKeyword4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="34dp"
-                    android:text="# 덩굴식물"
+                    android:layout_marginStart="27dp"
                     android:textColor="#053D10"
-                    android:textSize="12dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView18"
-                    app:layout_constraintStart_toEndOf="@+id/textView18"
-                    app:layout_constraintTop_toTopOf="@+id/textView18" />
+                    android:textSize="14dp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_plantKeyword3"
+                    app:layout_constraintStart_toEndOf="@+id/search_plantKeyword3"
+                    app:layout_constraintTop_toTopOf="@+id/search_plantKeyword3"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/search_plantKeyword3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:text="# 덩굴식물"
+                    android:layout_marginStart="26dp"
                     android:textColor="#053D10"
-                    android:textSize="12dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView19"
-                    app:layout_constraintStart_toEndOf="@+id/textView19"
-                    app:layout_constraintTop_toTopOf="@+id/textView19" />
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_plantKeyword2"
+                    app:layout_constraintStart_toEndOf="@+id/search_plantKeyword2"
+                    app:layout_constraintTop_toTopOf="@+id/search_plantKeyword2"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/search_plantKeyword1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:text="# 키우기쉬운"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="12dp"
                     android:textColor="#053D10"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/search_plantShort" />
+
+                <TextView
+                    android:id="@+id/search_plantKeyword2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="26dp"
+                    android:textColor="#053D10"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="@+id/search_plantKeyword1"
                     app:layout_constraintStart_toEndOf="@+id/search_plantKeyword1"
-                    app:layout_constraintTop_toTopOf="@+id/search_plantKeyword1" />
+                    app:layout_constraintTop_toTopOf="@+id/search_plantKeyword1"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/search_plantName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
                     android:text="TextView"
                     android:textColor="#FFFFFF"
-                    android:textSize="25dp"
+                    android:textSize="30dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/search_result_toolbar" />
 
                 <TextView
                     android:id="@+id/search_plantShort"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="23dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginEnd="30dp"
                     android:text="담쟁이 덩쿨로 포도과의 다년생 낙엽 덩굴성 식물"
                     android:textColor="#FFFFFF"
-                    android:textSize="15dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/search_plantName" />
-
-                <TextView
-                    android:id="@+id/search_plantKeyword1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="12dp"
-                    android:text="# 키우기쉬운"
-                    android:textColor="#053D10"
-                    android:textSize="12dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/search_plantShort" />
 
                 <TextView
                     android:id="@+id/textView17"
@@ -112,6 +115,7 @@
                     android:layout_marginEnd="40dp"
                     android:text="좋아요"
                     android:textColor="#03E729"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView16" />
@@ -160,6 +164,7 @@
                     android:layout_marginEnd="63dp"
                     android:text="햇빛"
                     android:textColor="#03E729"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView14"
                     app:layout_constraintEnd_toStartOf="@+id/textView16"
                     app:layout_constraintTop_toTopOf="@+id/textView14" />
@@ -169,10 +174,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="63dp"
                     android:text="물주기"
                     android:textColor="#03E729"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/textView15"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/search_plantKeyword1" />
@@ -196,6 +202,7 @@
                     android:layout_marginEnd="63dp"
                     android:text="난이도"
                     android:textColor="#03E729"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView15"
                     app:layout_constraintEnd_toStartOf="@+id/textView17"
                     app:layout_constraintTop_toTopOf="@+id/textView15"
@@ -231,24 +238,23 @@
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/result_plant_img"
                 android:layout_width="360dp"
-                android:layout_height="359dp"
-                android:layout_marginTop="8dp"
-                android:padding="10dp"
+                android:layout_height="364dp"
+                android:layout_marginTop="20dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/store_ic_round"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintHorizontal_bias="0.509"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:riv_corner_radius="20dp" />
 
             <androidx.cardview.widget.CardView
-                android:layout_width="373dp"
+                android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:contentPaddingBottom="15dp"
                 android:orientation="vertical"
                 app:cardCornerRadius="20dp"
+                app:contentPaddingBottom="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView24">

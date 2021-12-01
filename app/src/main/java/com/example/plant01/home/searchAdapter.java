@@ -1,6 +1,13 @@
 package com.example.plant01.home;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +47,26 @@ public class searchAdapter extends RecyclerView.Adapter<searchAdapter.TipViewHol
     @Override
     public void onBindViewHolder(@NonNull searchAdapter.TipViewHolder tipViewHolder, int position) {
         String text = tipArrayList.get(position) ;
-        tipViewHolder.tip.setText(text) ;
+
+//        for(int i=0; i< tipArrayList.size(); i++){
+//            String[]  words = {"햇빛", "흙","물주기","온도","비료","해충","독성"};
+//            String substr2 = text.substring(0, 4);
+//            if (substr2 == words[i]){
+//                return words[i];
+//            }
+//
+//        }
+
+        SpannableString spannableString = new SpannableString(text);
+        String word ="햇빛";
+        int start = 0;
+        int end = 5;
+        spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#2b5d5b")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new RelativeSizeSpan(1.3f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+        tipViewHolder.tip.setText(spannableString) ;
 //        tipViewHolder.tip.setText(tipArrayList.get(position).getTip());
     }
 

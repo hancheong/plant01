@@ -31,7 +31,7 @@ public class SearchResult extends AppCompatActivity {
     private FirebaseFirestore db;
     RecyclerView recyclerView;
     ImageView level;
-    TextView sun, water, like, plantshort, plantname;
+    TextView sun, water, like, plantshort, plantname, keyword0, keyword1, keyword2, keyword3;
     RoundedImageView plantImg;
     Toolbar toolbar;
     searchAdapter adapter;
@@ -50,6 +50,10 @@ public class SearchResult extends AppCompatActivity {
         plantshort = (TextView) findViewById(R.id.search_plantShort);
         plantname = (TextView) findViewById(R.id.search_plantName);
         level = (ImageView) findViewById(R.id.search_plantLevel);
+        keyword0 = (TextView)findViewById(R.id.search_plantKeyword1);
+        keyword1 = (TextView)findViewById(R.id.search_plantKeyword2);
+        keyword2 = (TextView)findViewById(R.id.search_plantKeyword3);
+        keyword3 = (TextView)findViewById(R.id.search_plantKeyword4);
 
         setSupportActionBar(toolbar);
         setTitle("검색결과");
@@ -68,7 +72,6 @@ public class SearchResult extends AppCompatActivity {
     public void recivetip() {
         /*-------분석에서 결과 받아오기 ------*/
         db = FirebaseFirestore.getInstance();
-
         recyclerView = findViewById(R.id.tipRecyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchResult.this));
         Intent intent = getIntent(); /*데이터 수신*/
@@ -82,7 +85,13 @@ public class SearchResult extends AppCompatActivity {
                 tipArrayList.clear();
                 for (QueryDocumentSnapshot document : task.getResult()) {
 
-                    ArrayList list = (ArrayList) document.getData().get("plantTip");
+
+                    ArrayList keyword = (ArrayList) document.getData().get("plantKeyword");
+                    keyword0.setText(keyword.get(0).toString());
+                    keyword1.setText(keyword.get(1).toString());
+                    keyword2.setText(keyword.get(2).toString());
+                    keyword3.setText(keyword.get(3).toString());
+
                     String plantsuntxt = (String) document.get("plantSun");
                     sun.setText(plantsuntxt);
 
@@ -105,7 +114,9 @@ public class SearchResult extends AppCompatActivity {
                             .load(Uri.parse(levelurl))
                             .into(level);
 
+                    ArrayList list = (ArrayList) document.getData().get("plantTip");
                     for (int i = 0; i < list.size(); i++) {
+                        String string = list.get(i).toString();
                         tipArrayList.add(list.get(i).toString());
                     }
                     Log.e("TEST", tipArrayList.toString());

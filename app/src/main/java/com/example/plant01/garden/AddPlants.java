@@ -2,23 +2,26 @@ package com.example.plant01.garden;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.SharedPreferences;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.plant01.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class AddPlants extends AppCompatActivity {
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = database.getReference();
 
     EditText etName, etLocation, etDate;
     TextView tvTitle;
@@ -51,28 +54,26 @@ public class AddPlants extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyGarden.class);
+                Intent intent = new Intent(AddPlants.this, MyGarden.class);
                 startActivity(intent);
+                return;
             }
         });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent.putExtra("name", etName.getText().toString());
-                intent.putExtra("location", etLocation.getText().toString());
-                intent.putExtra("date", etDate.getText().toString());
-                startActivityForResult(intent, REQUEST_CODE);
-
+                addplants(etName.getText().toString(),etLocation.getText().toString(),etDate.getText().toString());
             }
         });
+
 
         ivPlants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_DENIED) {
+                            == PackageManager.PERMISSION_DENIED) {
                         String [] permission = {Manifest.permission.READ_EXTERNAL_STORAGE};
                         requestPermissions(permission, PERMISSION_CODE);
                     }
@@ -81,6 +82,11 @@ public class AddPlants extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    private void addplants(String name, String location, String date) {
+        PlantsDB plantsDB = new PlantsDB(name, location, date);
 
     }
 

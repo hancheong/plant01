@@ -1,70 +1,65 @@
 package com.example.plant01.garden;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.example.plant01.R;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomHolder> {
 
-    private ArrayList<CustomDTO> listCustom = new ArrayList<>();
+    private ArrayList<PlantsDB> arrayList;
+    private Context context;
 
-    // ListView에 보여질 Item 수
-    @Override
-    public int getCount() {
-        return listCustom.size();
+    public CustomAdapter(ArrayList<PlantsDB> arrayList, Context context) {
+        this.arrayList = arrayList;
+        this.context = context;
     }
 
-    // 하나의 Item(ImageView 1, TextView 2)
+    @NonNull
     @Override
-    public Object getItem(int position) {
-        return listCustom.get(position);
+    public CustomHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.garden_item,parent,false);
+        CustomHolder holder = new CustomHolder(view);
+        return holder;
     }
 
-    // Item의 id : Item을 구별하기 위한 것으로 position 사용
     @Override
-    public long getItemId(int position) {
-        return position;
+    public void onBindViewHolder(@NonNull CustomHolder holder, int position) {
+        Glide.with(holder.itemView)
+                .load(arrayList.get(position).getProfile())
+                .into(holder.iv_PlantsProfile);
+        holder.tv_Name.setText(arrayList.get(position).getName());
+        holder.tv_Location.setText(arrayList.get(position).getLocation());
+        holder.tv_Date.setText(String.valueOf(arrayList.get(position).getDate()));
+
     }
 
-    // 실제로 Item이 보여지는 부분
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        CustomViewHolder holder;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.garden_item, null, false);
+    public int getItemCount() {
+        return (arrayList != null ? arrayList.size() : 0);
+    }
 
-            holder = new CustomViewHolder();
-            holder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
-            holder.textTitle = (TextView) convertView.findViewById(R.id.text_title);
-            holder.textContent = (TextView) convertView.findViewById(R.id.text_content);
+    public class CustomHolder extends RecyclerView.ViewHolder {
+        ImageView iv_PlantsProfile;
+        TextView tv_Name;
+        TextView tv_Location;
+        TextView tv_Date;
 
-            convertView.setTag(holder);
-        } else {
-            holder = (CustomViewHolder) convertView.getTag();
+        public CustomHolder(@NonNull View itemView) {
+            super(itemView);
+            this.iv_PlantsProfile = itemView.findViewById(R.id.iv_PlantsProfile);
+            this.tv_Name = itemView.findViewById(R.id.tv_Name);
+            this.tv_Location = itemView.findViewById(R.id.tv_Location);
+            this.tv_Date = itemView.findViewById(R.id.tv_Date);
         }
-
-        CustomDTO dto = listCustom.get(position);
-
-        holder.imageView.setImageResource(dto.getResId());
-        holder.textTitle.setText(dto.getTitle());
-        holder.textContent.setText(dto.getContent());
-
-        return convertView;
-    }
-
-    class CustomViewHolder {
-        ImageView imageView;
-        TextView textTitle;
-        TextView textContent;
-    }
-
-    // Mygarden에서 Adapter에있는 ArrayList에 data를 추가시켜주는 함수
-    public void addItem(CustomDTO dto) {
-        listCustom.add(dto);
     }
 }

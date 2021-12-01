@@ -53,12 +53,12 @@ public class MyGarden extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존 성능 강화
-        layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // user 객체를 담을 어레이 리스트 (to adaptor)
         database = FirebaseDatabase.getInstance();
 
-        databaseReference = database.getReference("PlantDB"); // db테이블 연결
+        databaseReference = database.getReference("Myplants"); // db테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -79,7 +79,7 @@ public class MyGarden extends Fragment {
                 Log.e("MyGarden", String.valueOf(error.toException())); //에러문 출력
             }
         });
-        adapter = new CustomAdapter(arrayList, getActivity().getApplicationContext());
+        adapter = new CustomAdapter(arrayList, getContext());
         recyclerView.setAdapter(adapter);//리사이클러뷰에 adaptor 연결
 
 

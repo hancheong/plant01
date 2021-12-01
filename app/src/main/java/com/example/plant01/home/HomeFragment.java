@@ -1,5 +1,7 @@
 package com.example.plant01.home;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -54,7 +56,7 @@ public class HomeFragment extends Fragment {
     private SliderView sliderView;
     private int[] images = {R.drawable.home_ad1,
             R.drawable.home_ad2,};
-
+    private Uri searchimg;
 
     private RecyclerView recyclerView;
     private ArrayList<Plants> plantsArrayList;
@@ -62,6 +64,7 @@ public class HomeFragment extends Fragment {
     private FirebaseDatabase database;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
+    private static  final int PERMISSION_CODE = 1001;
     private DatabaseReference databaserf;
     private FirebaseFirestore db;
     private View.OnClickListener cl;
@@ -144,13 +147,50 @@ public class HomeFragment extends Fragment {
                         drawerLayout1.openDrawer(GravityCompat.START);
                         showUserProfile();
                         break;
+                    case R.id.home_btn_search:
+                        PickImageFromGallery();
+
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//                            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+//                                    == PackageManager.PERMISSION_DENIED) {
+//                                String [] permission = {Manifest.permission.READ_EXTERNAL_STORAGE};
+//                                requestPermissions(permission, PERMISSION_CODE);
+//                            }
+//
+//                            else {PickImageFromGallery();}
+//                        }
+//                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                        startActivityForResult(intent, 1);
+                        break;
                 }
 
             }
         };
         getView().findViewById(R.id.imagemenu).setOnClickListener(cl);
+        getView().findViewById(R.id.home_btn_search).setOnClickListener(cl);
 
     }
+
+    private void PickImageFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent,1 );
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+
+            searchimg = data.getData();
+            Intent intent = new Intent(getActivity(),search2.class);
+            intent.putExtra("uri",searchimg);
+            startActivity(intent);
+
+        }
+    }
+
 
 
     /*------------------추천상품 보여주는 부분----------------------------------*/

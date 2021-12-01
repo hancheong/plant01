@@ -4,7 +4,10 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a225abe6c016a7271ff1dbc18581a545d5abe0b
     tools:ignore="MissingDefaultResource"
     tools:context=".postpage.PostMainActivity">
 

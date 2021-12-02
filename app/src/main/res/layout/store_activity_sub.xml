@@ -6,11 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    // 스토어 타이틀
-
-    // 검색창
-
-
+<!-- 사용자 설정 -->
     <ImageView
         android:id="@+id/HamBurger"
         android:layout_width="74dp"
@@ -24,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
-
+<!--로고-->
     <TextView
         android:id="@+id/StoreTitle"
         android:layout_width="wrap_content"
@@ -43,18 +39,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
-
-    <SearchView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+<!--검색창-->
+    <ImageButton
+        android:id="@+id/store_search"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
+        app:layout_constraintVertical_bias="0.025"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/post_search" />
+<!--카테고리-->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabla"
         android:layout_width="match_parent"
@@ -92,7 +93,7 @@
 
 
     </com.google.android.material.tabs.TabLayout>
-
+<!--카테고리에 따라 스토어 화면 넘겨주는 뷰페이저-->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/ViewPager"
         android:layout_width="match_parent"

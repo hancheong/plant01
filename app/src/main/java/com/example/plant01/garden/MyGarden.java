@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.content.res.TypedArray;
 import com.example.plant01.R;
 import com.example.plant01.home.HomeFragment;
+import com.example.plant01.postpage.Post_write;
 import com.google.android.exoplayer2.util.Log;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,7 +54,7 @@ public class MyGarden extends Fragment {
 
 
         View view = inflater.inflate(R.layout.garden_my_garden, container, false);
-
+        view.findViewById(R.id.btnMove).setOnClickListener(onClickListener);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존 성능 강화
@@ -92,13 +93,15 @@ public class MyGarden extends Fragment {
         btnAdd = (Button) view.findViewById(R.id.btnAdd);
         btnMove = (Button) view.findViewById(R.id.btnMove);
 
-        btnMove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MyMainActivity.class);
-                startActivity(intent);
-            }
-        });
+//        btnMove.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), MyMainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+
 
         ibnBack.setOnClickListener(new View.OnClickListener() {//뒤로가기 버튼
             @Override
@@ -110,5 +113,23 @@ public class MyGarden extends Fragment {
 
         return view;
     }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.btnMove:
+                    myStartActivity(MyMainActivity.class);
+                    break;
+            }
+        }
+    };
+
+
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(getActivity(), c);
+        startActivityForResult(intent, 0);
+    }
+
 
 }

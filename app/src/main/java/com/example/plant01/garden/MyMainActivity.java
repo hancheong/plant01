@@ -30,7 +30,7 @@ public class MyMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_my_main);
 
 
         mTitle = (EditText) findViewById(R.id.edit_title);
@@ -73,7 +73,7 @@ public class MyMainActivity extends AppCompatActivity {
             map.put("title" , title);
             map.put("desc" , desc);
 
-            db.collection("Documents").document(id).set(map)
+            db.collection("Document").document(id).set(map)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

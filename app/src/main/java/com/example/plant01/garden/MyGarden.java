@@ -1,6 +1,7 @@
 package com.example.plant01.garden;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,21 +32,24 @@ import java.util.ArrayList;
 
 public class MyGarden extends Fragment {
 
-    RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
-    RecyclerView.LayoutManager layoutManager;
-    ArrayList<PlantsDB> arrayList;
-    FirebaseDatabase database;
-    DatabaseReference databaseReference;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<PlantsDB> arrayList;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+
     TextView tvGarden;
     ImageButton ibnBack;
-    Button btnAdd;
+    Button btnAdd, btnMove;
     ListView listView;
     //CustomAdapter adapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
 
         View view = inflater.inflate(R.layout.garden_my_garden, container, false);
@@ -53,7 +57,7 @@ public class MyGarden extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존 성능 강화
-        layoutManager = new LinearLayoutManager(getContext());
+        layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // user 객체를 담을 어레이 리스트 (to adaptor)
         database = FirebaseDatabase.getInstance();
@@ -67,9 +71,9 @@ public class MyGarden extends Fragment {
                 arrayList.clear(); // 기존 배열 초기화
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
                     PlantsDB plantsDB = snapshot1.getValue(PlantsDB.class);//만든 객체에 데이터 담기
-                    arrayList.add(plantsDB);
+                    arrayList.add(plantsDB);// 담은 데이터들을 배열 리스트에 넣고 리사이클러뷰로 보낼 준비
                 }
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();// 리스트 저장 및 새로고침
 
             }
 
@@ -79,14 +83,22 @@ public class MyGarden extends Fragment {
                 Log.e("MyGarden", String.valueOf(error.toException())); //에러문 출력
             }
         });
-        adapter = new CustomAdapter(arrayList, getContext());
+        adapter = new CustomAdapter(arrayList, getActivity());
         recyclerView.setAdapter(adapter);//리사이클러뷰에 adaptor 연결
 
 
         tvGarden = (TextView) view.findViewById(R.id.tvGarden);
         ibnBack = (ImageButton) view.findViewById(R.id.ibnBack);
         btnAdd = (Button) view.findViewById(R.id.btnAdd);
+        btnMove = (Button) view.findViewById(R.id.btnMove);
 
+        btnMove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyMainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ibnBack.setOnClickListener(new View.OnClickListener() {//뒤로가기 버튼
             @Override
@@ -95,6 +107,7 @@ public class MyGarden extends Fragment {
                 startActivity(intent);
             }
         });
+
         return view;
     }
 

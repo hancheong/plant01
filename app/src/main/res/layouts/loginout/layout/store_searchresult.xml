@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/store_resultview1"
+        android:id="@+id/store_resultview"
         android:layout_width="409dp"
         android:layout_height="593dp"
         tools:layout_editor_absoluteX="1dp"

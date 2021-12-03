@@ -75,6 +75,11 @@ public class StoreSearch extends AppCompatActivity {
         list.add("자동완성 테스트 4");
         list.add("자동완성 테스트 5");
         list.add("자동완성 테스트 6");
+        list.add("test 1");
+        list.add("test 2");
+        list.add("test 3");
+        list.add("test 4");
+        list.add("test 5");
     }
 }
 

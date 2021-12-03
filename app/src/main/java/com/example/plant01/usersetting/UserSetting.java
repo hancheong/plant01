@@ -99,6 +99,7 @@ public class UserSetting extends AppCompatActivity {
     }
 
 
+
     /*-------------카메라 사진 보여주기---------------------*/
 
     @Override
@@ -107,8 +108,11 @@ public class UserSetting extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             profilePath = data.getStringExtra("profilePath");
+            //파이어스토리지와 연결
             FirebaseStorage storage = FirebaseStorage.getInstance();
+            //현재 유저 받아오기
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            //파이어스토어와 연결
             db = FirebaseFirestore.getInstance();
             StorageReference storageRef = storage.getReference();
             StorageReference mountainImagesRef = storageRef.child("userprofile/"+user.getUid()+"/profile.jpg");

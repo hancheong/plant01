@@ -227,9 +227,12 @@ public class HomeFragment extends Fragment {
                     String userImg = (String) doc.get("userImg");
                     String userNick = (String) doc.get("userNick");
                     usernick.setText(userNick);
-                    Glide.with(getContext())
-                            .load(Uri.parse(userImg))
-                            .into(userprofile);
+                    if( userImg != null){
+                        Glide.with(getContext())
+                                .load(Uri.parse(userImg))
+                                .into(userprofile);
+
+                    }
 
                     Log.e("드로워", userImg + "   " +userNick);
                 }

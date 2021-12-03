@@ -1,8 +1,5 @@
 package com.example.plant01.usersetting;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +9,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plant01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity
 {
     private FirebaseAuth mFirebaseAuth;  //파이어베이스 인증
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
-    private EditText mEtEmail,mEtPwd, mEtPh ,mEtPostcode ,mEtBirth, mEtNick;
+    private EditText mEtEmail,mEtPwd, mEtPh ,mEtPostcode ,mEtBirth, mEtNick, mEtAdr;
     private Button mBtnRegister;
     public  String UserGender;
     private RadioGroup mRgGender;
@@ -66,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity
         mEtPh =  findViewById(R.id.et_ph);
         mEtPostcode =  findViewById(R.id.et_postcode);
         mEtBirth = findViewById(R.id.et_birth);
+        mEtAdr = findViewById(R.id.et_adr);
 
 
 
@@ -99,6 +100,7 @@ public class RegisterActivity extends AppCompatActivity
         String strNick = mEtNick.getText().toString();
         String strPost = mEtPostcode.getText().toString();
         String strPh = mEtPh.getText().toString();
+        String strAdr = mEtAdr.getText().toString();
         Date strdt = Timestamp.now().toDate();
 
         /*-----성별 버튼을 String으로 가져오는 것------*/
@@ -137,6 +139,7 @@ public class RegisterActivity extends AppCompatActivity
                     account.setUserNick(strNick);
                     account.setUserPostalCode(strPost);
                     account.setJoinDate(strdt.toString());
+                    account.setUserAdr(strAdr);
 
 
                     //setvalue 데이터베이스에 삽입하는 행위

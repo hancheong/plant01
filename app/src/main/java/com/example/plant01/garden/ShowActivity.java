@@ -47,13 +47,13 @@ public class ShowActivity extends AppCompatActivity {
 
     private void  showData(){
 
-        db.collection("Document").get()
+        db.collection("Myplants").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            Model model = new Model(snapshot.getString("id"),snapshot.getString("profile"),snapshot.getString("name"),snapshot.getString("location"),snapshot.getString("date"));
+                            Model model = new Model(snapshot.getString("id"),snapshot.getString("profileUri"),snapshot.getString("name"),snapshot.getString("location"),snapshot.getString("date"));
                             list.add(model);
                         }
                         adapter.notifyDataSetChanged();

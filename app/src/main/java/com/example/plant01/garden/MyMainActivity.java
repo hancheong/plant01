@@ -38,7 +38,7 @@ public class MyMainActivity extends AppCompatActivity {
     private ProgressBar progressBar2;
     private ImageView mProfile;
     private Button mSaveBtn, mShowBtn;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Document");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Myplants");
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     private Uri imageUri;
     private FirebaseFirestore db;
@@ -92,7 +92,8 @@ public class MyMainActivity extends AppCompatActivity {
                 String location = mLocation.getText().toString();
                 String date = mDate.getText().toString();
                 String id = UUID.randomUUID().toString();
-                saveToFireStore(id, name, location, date);
+                String profileUri = imageUri.toString();
+                saveToFireStore(id, name, location, date, profileUri);
             }
         });
 
@@ -111,17 +112,17 @@ public class MyMainActivity extends AppCompatActivity {
         }
     }
 
-    private void saveToFireStore(String id , String name , String location, String date){
+    private void saveToFireStore(String id , String name , String location, String date, String profileUri){
 
         if (!name.isEmpty() && !location.isEmpty()){
             HashMap<String , Object> map = new HashMap<>();
             map.put("id" , id);
-//            map.put("profile" , profile);
+            map.put("profileUri" ,profileUri );
             map.put("name" , name);
             map.put("location" , location);
             map.put("date" , date);
 
-            db.collection("Document").document(id).set(map)
+            db.collection("Myplants").document(id).set(map)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

@@ -22,14 +22,26 @@
                 android:id="@+id/top"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                android:background="#5CCD92">
+                android:background="@color/backgroud">
 
                 <ImageView
                     android:id="@+id/imagemenu"
                     android:layout_width="51dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/toolbar_ic_menu"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/store_ic_hamburger"
+                    android:tint="@color/colortext"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/logo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +57,7 @@
                     app:layout_constraintStart_toEndOf="@+id/imagemenu"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/post_search"
-                    app:tint="#FFFFFF" />
+                    app:tint="@color/colortext" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -60,7 +72,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
 
 
                     //내 식물 관리
@@ -121,7 +132,7 @@
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
-                            android:src="@drawable/five" />
+                            android:src="@drawable/store_img6" />
 
                         <ImageView
                             android:id="@+id/btn_et_myplant"

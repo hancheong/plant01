@@ -17,6 +17,18 @@ public class UserAccount {
         this.userImg = userImg;
     }
 
+//    public UserAccount(String userNick, String userPh, String userGender, String userImg, String userBirth, String userEmail, String userPassword, String userPostalCode, String userAdr) {
+//        this.userNick = userNick;
+//        this.userPh = userPh;
+//        this.userGender = userGender;
+//        this.userImg = userImg;
+//        this.userBirth = userBirth;
+//        this.userEmail = userEmail;
+//        this.userPassword = userPassword;
+//        this.userPostalCode = userPostalCode;
+//        this.userAdr = userAdr;
+//    }
+
     public UserAccount(){}
 //    public UserAccount(String idToken, String userNick, String userPh, String userGender
 //            , String userImg, String userBirth, String userEmail, String userPassword, String userPostalCode, String userAdr) {

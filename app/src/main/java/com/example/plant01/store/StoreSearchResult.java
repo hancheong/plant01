@@ -71,7 +71,7 @@ public class StoreSearchResult extends AppCompatActivity {
 
     }
 
-    Query search = db.collection("StoreGoods").whereEqualTo("goodsKind","선인장");
+//    Query search = db.collection("StoreGoods").whereEqualTo("goodsKind","선인장");
 
 
 

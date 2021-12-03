@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ public class store_category extends Fragment {
     ViewPager viewPager;
     private store category1;
     private store_recommendgoods category2;
+    private ImageButton btn_search;
     public store_category(){
     }
     private FragmentPagerAdapter fragmentPagerAdapter;
@@ -43,8 +45,14 @@ public class store_category extends Fragment {
         viewPager.setAdapter(fragmentPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        btn_search = view.findViewById(R.id.store_search);
+        btn_search.setOnClickListener(new View.OnClickListener() { // 검색 버튼 눌러서 검색페이지 이동
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), StoreSearch.class);
+                startActivity(intent);
+            }
+        });
         return view;
-
     }
 }
-

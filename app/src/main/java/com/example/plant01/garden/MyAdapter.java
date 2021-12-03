@@ -3,11 +3,13 @@ package com.example.plant01.garden;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 
 import java.util.List;
@@ -34,20 +36,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.title.setText(mList.get(position).getTitle());
-        holder.desc.setText(mList.get(position).getDesc());
+        Glide.with(activity).load(mList.get(position).getProfileUri()).into(holder.profile);
+        holder.name.setText(mList.get(position).getName());
+        holder.location.setText(mList.get(position).getLocation());
+        holder.date.setText(mList.get(position).getDate());
+
 
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView title, desc;
+        TextView name, location, date;
+        ImageView profile;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            title = itemView.findViewById(R.id.title_text);
-            desc = itemView.findViewById(R.id.desc_text);
+            profile = itemView.findViewById(R.id.iv_PlantsProfile);
+            name = itemView.findViewById(R.id.name_text);
+            location = itemView.findViewById(R.id.location_text);
+            date = itemView.findViewById(R.id.date_text);
         }
     }
 }

@@ -2,13 +2,17 @@ package com.example.plant01.garden;
 
 public class Model {
 
-    String id, title, desc;
-    public Model(){}
+    String id, profileUri , name, location, date;
+    public Model(String s){}
 
-    public Model(String id, String title, String desc){
+
+    public Model(String id, String profileUri, String name, String location, String date){
         this.id = id;
-        this.title = title;
-        this.desc = desc;
+        this.name = name;
+        this.location = location;
+        this.date = date;
+        this.profileUri = profileUri;
+
     }
 
     public String getId() {
@@ -19,19 +23,35 @@ public class Model {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getProfileUri() {
+        return profileUri;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setProfileUri(String profileUri) {
+        this.profileUri = profileUri;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getName() {
+        return name;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

@@ -1,17 +1,23 @@
 package com.example.plant01.store;
 
 public class StoreGoods {
-    String GoodsID, StoreName, GoodsTitle, GoodsReview, GoodsPrice, goodsImg;
+    String goodsImg, StoreName, GoodsTitle, GoodsReview, GoodsPrice;
 
-    public StoreGoods(String GoodsID, String storeName, String goodsTitle, String goodsReview, String goodsPrice){}
-//    public StoreGoods(){};
+//    public StoreGoods(String storeName, String goodsTitle, String goodsReview, String goodsPrice){}
+    public StoreGoods(String s){}
 
-    public StoreGoods(String GoodsID, String StoreName, String GoodsTitle, String GoodsReview, String GoodsPrice, String goodsImg) {
-        this.GoodsID = GoodsID;
+    public StoreGoods(String goodsImg, String StoreName, String GoodsTitle, String GoodsReview, String GoodsPrice) {
+        this.goodsImg = goodsImg;
         this.StoreName = StoreName;
         this.GoodsTitle = GoodsTitle;
         this.GoodsReview = GoodsReview;
         this.GoodsPrice = GoodsPrice;
+    }
+    public String getGoodsImg() {
+        return goodsImg;
+    }
+
+    public void setGoodsImg(String goodsPrice) {
         this.goodsImg = goodsImg;
     }
 
@@ -47,19 +53,4 @@ public class StoreGoods {
         this.GoodsPrice = goodsPrice;
     }
 
-    public String getGoodsImg() {
-        return goodsImg;
-    }
-
-    public void setGoodsImg(String goodsImg) {
-        this.goodsImg = goodsImg;
-    }
-
-    public String getGoodsID() {
-        return GoodsID;
-    }
-
-    public void setGoodsID(String goodsID) {
-        this.GoodsID = goodsID;
-    }
 }

@@ -11,7 +11,7 @@
         android:layout_marginBottom="7dp">
 
         <ImageButton
-            android:id="@+id/recommend_img1"
+            android:id="@+id/recommend_img0"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
@@ -27,7 +27,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-            android:layout_toRightOf="@+id/recommend_img1"
+            android:layout_toRightOf="@+id/recommend_img0"
             android:text="스토어이름"
             android:textSize="12dp" />
 
@@ -38,7 +38,7 @@
             android:layout_below="@+id/recommend_store0"
             android:layout_marginStart="10dp"
             android:layout_marginTop="-25dp"
-            android:layout_toRightOf="@+id/recommend_img1"
+            android:layout_toRightOf="@+id/recommend_img0"
             android:text="상품제목"
             android:textColor="@color/black"
             android:textSize="15dp" />
@@ -51,7 +51,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-            android:layout_toRightOf="@+id/recommend_img1"
+            android:layout_toRightOf="@+id/recommend_img0"
             android:text="리뷰수"
             android:textSize="12dp" />
 
@@ -62,7 +62,7 @@
             android:layout_below="@+id/recommend_review0"
             android:layout_marginStart="10dp"
             android:layout_marginTop="-30dp"
-            android:layout_toRightOf="@+id/recommend_img1"
+            android:layout_toRightOf="@+id/recommend_img0"
             android:text="상품가격"
             android:textColor="@color/black"
             android:textSize="15dp" />

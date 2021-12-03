@@ -56,7 +56,7 @@ import java.util.Map;
 
 public class Store_RecommendList extends AppCompatActivity {
 
-    private ImageButton store_back;
+    ImageButton store_back, img1, img2, img3, img4, img5;
     private RecyclerView recyclerView;
     private FirebaseFirestore db;
     private store_GoodsAdapter store_goodsAdapter;
@@ -90,7 +90,7 @@ public class Store_RecommendList extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         list = new ArrayList<>();
-        store_goodsAdapter = new store_GoodsAdapter(this, list);
+//        store_goodsAdapter = new store_GoodsAdapter(this, list);
         recyclerView.setAdapter(store_goodsAdapter);
 
         showData();
@@ -99,6 +99,7 @@ public class Store_RecommendList extends AppCompatActivity {
 
     private void showData() {
 
+        img1 = (ImageButton) findViewById(R.id.recommend_img1);
         store1 = (TextView) findViewById(R.id.recommend_store1);
         title1 = (TextView) findViewById(R.id.recommend_title1);
         review1 = (TextView) findViewById(R.id.recommend_review1);
@@ -133,6 +134,8 @@ public class Store_RecommendList extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//                        String storeImg1 = (String) document.get("goodsImg");  // 상품 이미지 지정
+//                        img1.getImage(storeImg1);
                         String storeName1 = (String) document.get("StoreName");  // 스토어 이름 지정
                         store1.setText(storeName1);
                         String goodsTitle1 = (String) document.get("GoodsTitle"); // 상품 제목 지정

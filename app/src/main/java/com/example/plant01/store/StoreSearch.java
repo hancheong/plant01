@@ -7,6 +7,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,13 +18,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StoreSearch extends AppCompatActivity {
+
     private List<String> list;          // 데이터를 넣은 리스트변수
     private AutoCompleteTextView search;
+    private ImageButton store_searchback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_search);
+
+        store_searchback = (ImageButton) findViewById(R.id.store_searchback);
+        store_searchback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // 리스트를 생성한다.
         list = new ArrayList<String>();

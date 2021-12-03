@@ -48,13 +48,12 @@
 
             <ImageButton
                 android:id="@+id/search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:background="#fff"
-                app:srcCompat="@android:drawable/ic_search_category_default"
-                app:tint="#5A5A5A"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/post_search" />
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
@@ -76,12 +75,12 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="자유게시판" />
+                android:text="질문게시판" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="정보게시판" />
+                android:text="자유게시판" />
         </com.google.android.material.tabs.TabLayout>
 
         <LinearLayout

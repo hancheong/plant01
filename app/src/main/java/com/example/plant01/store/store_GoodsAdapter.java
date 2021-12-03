@@ -35,10 +35,10 @@ public class store_GoodsAdapter extends RecyclerView.Adapter<store_GoodsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull store_viewholder holder, int position) {
-        holder.store1.setText(goodsList.get(position).getStoreName());
-        holder.title1.setText(goodsList.get(position).getGoodsTitle());
-        holder.review1.setText(goodsList.get(position).getGoodsReview());
-        holder.price1.setText(goodsList.get(position).getGoodsPrice());
+        holder.store0.setText(goodsList.get(position).getStoreName());
+        holder.title0.setText(goodsList.get(position).getGoodsTitle());
+        holder.review0.setText(goodsList.get(position).getGoodsReview());
+        holder.price0.setText(goodsList.get(position).getGoodsPrice());
     }
 
     @Override
@@ -48,15 +48,15 @@ public class store_GoodsAdapter extends RecyclerView.Adapter<store_GoodsAdapter.
 
     public static class store_viewholder extends RecyclerView.ViewHolder{
 
-        TextView store1, title1, review1, price1;
+        TextView store0, title0, review0, price0;
 
         public store_viewholder(@NonNull View itemView) {
             super(itemView);
 
-            store1 = itemView.findViewById(R.id.recommend_store1);
-            title1 = itemView.findViewById(R.id.recommend_title1);
-            review1 = itemView.findViewById(R.id.recommend_review1);
-            price1 = itemView.findViewById(R.id.recommend_price1);
+            store0 = itemView.findViewById(R.id.recommend_store0);
+            title0 = itemView.findViewById(R.id.recommend_title0);
+            review0 = itemView.findViewById(R.id.recommend_review0);
+            price0 = itemView.findViewById(R.id.recommend_price0);
         }
     }
 }

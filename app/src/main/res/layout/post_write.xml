@@ -17,13 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <ImageButton
                 android:id="@+id/post_back"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/back"
+                android:background="#fff"
                 android:scaleType="fitXY"
-                android:background="#fff"/>
+                android:src="@drawable/back"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <EditText
                 android:id="@+id/title"

@@ -51,6 +51,8 @@ public class Post_info extends Fragment {
         return post_info;
     }
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -95,6 +97,37 @@ public class Post_info extends Fragment {
 
         return view;
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        db.collection("WritePosts")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful()){
+//                            ArrayList<Writeinfo> postList = new ArrayList<>();
+//                            for(QueryDocumentSnapshot document : task.getResult()) {
+//                                Log.d(TAG, document.getId()+ "=>" + document.getData());
+//                                postList.add(new Writeinfo(document.getData().get("UserId").toString(),
+//                                        document.getData().get("Title").toString(),
+//                                        document.getData().get("Contents").toString()));
+//                            }
+//                            RecyclerView recyclerView = view.findViewById(R.id.post_recyclerView);
+//                            LinearLayoutManager manager = new LinearLayoutManager(getContext());
+//                            recyclerView.setLayoutManager(manager);
+//                            recyclerView.setHasFixedSize(true);
+//                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+//                            RecyclerView.Adapter madapter = new PostWriteAdapter(getActivity(), postList);
+//                            recyclerView.setAdapter(madapter);
+//                        }else{
+//                            Log.d(TAG, "Error", task.getException());
+//                        }
+//                    }
+//                });
+//    }
 
     private void showData(){
 

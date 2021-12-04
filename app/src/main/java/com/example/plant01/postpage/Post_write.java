@@ -57,8 +57,19 @@ public class Post_write extends AppCompatActivity {
     private ImageButton back;
     private FirebaseFirestore db;
     View.OnClickListener cl;
+    private Object Post_write;
 
 
+    @Override
+    public void onBackPressed() {
+//        if(Post_write != null){ //상세정보창 프래그먼트를 킨 상태면 뒤로가기했을 때 해당 프래그먼트를 삭제해줌
+//            getSupportFragmentManager().beginTransaction().remove((Fragment) Post_write).commit();
+//            Post_write = null;
+//        }else {
+//            super.onBackPressed();
+//        }
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +89,10 @@ public class Post_write extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+//                finish();
+                onBackPressed();
             }
         });
-        Intent intent = getIntent();
 
         Image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +135,7 @@ public class Post_write extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(Post_write.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Post_write.this, "Post Data!!", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -136,6 +147,7 @@ public class Post_write extends AppCompatActivity {
                 }
             }
         });
+
 
 
 

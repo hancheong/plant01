@@ -70,6 +70,7 @@ public class PostMainActivity extends Fragment {
             //FragmentAdapter에서 카테고리 선택하여 페이지 이동
             FragmentManager fm = getFragmentManager();
             adapter = new post_FragmentAdapter(fm, getActivity().getLifecycle());
+//            fm.beginTransaction().addToBackStack(null).commit();
             pager2.setAdapter(adapter);
             //카테고리 선택
 

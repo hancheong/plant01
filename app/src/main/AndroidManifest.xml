@@ -82,6 +82,9 @@
         <activity
             android:name=".postpage.Post_write"
             android:exported="true" />
+        <activity android:name=".postpage.PostNotice"
+            android:exported="true"/>
+
         <activity
             android:name=".store.Recommend"
             android:exported="true" />

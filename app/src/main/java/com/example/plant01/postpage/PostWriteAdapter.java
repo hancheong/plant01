@@ -12,55 +12,69 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PostWriteAdapter extends RecyclerView.Adapter<PostWriteAdapter.PostViewHolder> {
-    private ArrayList<Writeinfo> mDataset;
-    private Activity activity;
+    private Post_info activity;
+    private FragmentActivity factivity;
+    private List<Writeinfo> mList;
 
-    static class PostViewHolder extends RecyclerView.ViewHolder {
-        CardView cardView;
-        PostViewHolder(CardView v) {
-            super(v);
-            cardView = v;
-        }
-    }
-
-    public PostWriteAdapter(Activity activity, ArrayList<Writeinfo> myDataset) {
-        mDataset = myDataset;
+    public PostWriteAdapter(Post_info activity, List<Writeinfo> mList){
         this.activity = activity;
+        this.mList = mList;
     }
+
+    public PostWriteAdapter(FragmentActivity factivity, List<Writeinfo> list) {
+        this.factivity = factivity;
+        this.mList = list;
+    }
+
+//    static class PostViewHolder extends RecyclerView.ViewHolder {
+//        CardView cardView;
+//        PostViewHolder(CardView v) {
+//            super(v);
+//            cardView = v;
+//        }
+//    }
 
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.post_item_write, parent, false);
-        final PostViewHolder galleryViewHolder = new PostViewHolder(cardView);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-
-        return galleryViewHolder;
+        View view = LayoutInflater.from(factivity).inflate(R.layout.post_item_write, parent, false);
+        return new PostViewHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull final PostViewHolder holder, int position) {
-        CardView cardView = holder.cardView;
-        TextView textView = cardView.findViewById(R.id.titleTextView);
-        textView.setText(mDataset.get(position).getTitle());
 
-    }
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return mList.size();
+    }
+    @Override
+    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
+        holder.userID.setText(mList.get(position).getTitle());
+        holder.title.setText(mList.get(position).getTitle());
+        holder.contents.setText(mList.get(position).getcontents());
+    }
+
+    public static class PostViewHolder extends RecyclerView.ViewHolder{
+
+        TextView title, contents, userID;
+
+        public PostViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            title = itemView.findViewById(R.id.titleTextView);
+            contents = itemView.findViewById(R.id.contnetsTextView);
+            userID = itemView.findViewById(R.id.post_user);
+        }
     }
 }
 

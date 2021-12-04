@@ -75,10 +75,8 @@ public class UserSetting extends AppCompatActivity {
         profileImageView.setOnClickListener(onClickListener);
         showuser();
 
-
-
-
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){

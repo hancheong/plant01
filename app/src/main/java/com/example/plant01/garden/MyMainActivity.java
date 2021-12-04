@@ -1,9 +1,5 @@
 package com.example.plant01.garden;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plant01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -72,12 +72,12 @@ public class MyMainActivity extends AppCompatActivity {
 
 
 
-        mShowBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyMainActivity.this, ShowActivity.class));
-            }
-        });
+//        mShowBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MyMainActivity.this, Context.class));
+//            }
+//        });
 
         mSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override

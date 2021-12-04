@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Plants> plantsArrayList;
     private home_PlantAdapter plantAdapter;
+    private TextView managerplantname, managerplantdate;
     private FirebaseDatabase database;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
@@ -241,6 +242,21 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    /*--------------- 식물관리 --------------------*/
+
+    public void mangerplant(){
+        managerplantname = (TextView) getView().findViewById(R.id.tv_manager_plantname);
+        managerplantdate = (TextView) getView().findViewById(R.id.tv_manager_plantdate);
+        db.collection("Myplnats").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                QuerySnapshot query = task.getResult();
+            }
+        });
+
+
+
+    }
 
     /*-------------인기게시판 불러오는 곳------------------*/
 

@@ -1,5 +1,6 @@
 package com.example.plant01.garden;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +16,17 @@ import com.example.plant01.R;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private ShowActivity activity;
+    private Context context;
     private List<Model> mList;
 
-    public MyAdapter(ShowActivity activity, List<Model> mList){
-        this.activity = activity;
+    public MyAdapter(Context context, List<Model> mList){
+        this.context = context;
         this.mList = mList;
     }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.testitem, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.testitem, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -36,7 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Glide.with(activity).load(mList.get(position).getProfileUri()).into(holder.profile);
+        Glide.with(context).load(mList.get(position).getProfileUri()).into(holder.profile);
         holder.name.setText(mList.get(position).getName());
         holder.location.setText(mList.get(position).getLocation());
         holder.date.setText(mList.get(position).getDate());

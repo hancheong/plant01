@@ -22,7 +22,7 @@
             android:name=".garden.MyMainActivity"
             android:exported="true" />
         <activity
-            android:name=".garden.ShowActivity"
+            android:name=".garden.Context"
             android:exported="true" />
         <activity
             android:name=".home.SearchResult"

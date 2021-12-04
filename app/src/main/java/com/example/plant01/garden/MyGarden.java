@@ -1,10 +1,5 @@
 package com.example.plant01.garden;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,26 +9,40 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plant01.R;
-import com.google.android.exoplayer2.util.Log;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MyGarden extends Fragment {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+//    private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<PlantsDB> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    private RecyclerView main_recyclerView;
+    private FirebaseFirestore db;
+    private MyAdapter myAdapter;
+    private List<Model> list;
 
     TextView tvGarden;
     ImageButton ibnBack;
@@ -63,7 +72,9 @@ public class MyGarden extends Fragment {
 
 
         btnAdd = (Button) view.findViewById(R.id.btnAdd);
-        btnShow = (Button) view.findViewById(R.id.btnShow);
+        FloatingActionButton btnadd2 = (FloatingActionButton)view.findViewById(R.id.btnAdd2);
+        btnadd2.setOnClickListener(onClickListener);
+//        btnShow = (Button) view.findViewById(R.id.btnShow);
 
 //        btnMove.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -72,12 +83,12 @@ public class MyGarden extends Fragment {
 //                startActivity(intent);
 //            }
 //        });
-        btnShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ShowActivity.class));
-            }
-        });
+//        btnShow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getActivity(), Context.class));
+//            }
+//        });
 
         return view;
     }
@@ -87,7 +98,7 @@ public class MyGarden extends Fragment {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.btnAdd:
+                case R.id.btnAdd2:
                     myStartActivity(MyMainActivity.class);
                     break;
             }
@@ -96,10 +107,47 @@ public class MyGarden extends Fragment {
 
 
 
+
     private void myStartActivity(Class c) {
         Intent intent = new Intent(getActivity(), c);
         startActivityForResult(intent, 0);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        main_recyclerView = getView().findViewById((R.id.myplant_recycle));
+        main_recyclerView.setHasFixedSize(true);
+        main_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        db = FirebaseFirestore.getInstance();
+        list = new ArrayList<>();
+        myAdapter = new MyAdapter(getContext(), list);
+        main_recyclerView.setAdapter(myAdapter);
+
+        showData();
+    }
+
+    private void  showData(){
+
+        db.collection("Myplants").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        list.clear();
+                        for (DocumentSnapshot snapshot : task.getResult()){
+                            Model model = new Model(snapshot.getString("id"),snapshot.getString("profileUri"),snapshot.getString("name"),snapshot.getString("location"),snapshot.getString("date"));
+                            list.add(model);
+                        }
+                        myAdapter.notifyDataSetChanged();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(),"something went wrong",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 }

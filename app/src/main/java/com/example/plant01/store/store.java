@@ -8,11 +8,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plant01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,11 +36,23 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.local.QueryResult;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class store extends Fragment {
     private View view;
     private TextView more;
     private FirebaseFirestore db;
+    private ImageButton store_resultback;
+    private RecyclerView recyclerView;
+    private store_GoodsAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private store_GoodsAdapter store_goodsAdapter;
+    private List<StoreGoods> list;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+    private TextView nothing;
 
     TextView store1, title1, review1, price1;
     TextView store2, title2, review2, price2;
@@ -63,6 +78,7 @@ public class store extends Fragment {
             }
         });
         return view;
+
     }
 
 

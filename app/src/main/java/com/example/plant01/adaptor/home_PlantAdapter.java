@@ -1,6 +1,8 @@
 package com.example.plant01.adaptor;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 import com.example.plant01.home.Plants;
+import com.example.plant01.store.StoreSearchResult;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ public class home_PlantAdapter extends RecyclerView.Adapter<home_PlantAdapter.Pl
     @NonNull
     @Override
     public home_PlantAdapter.PlantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        context = parent.getContext();
         View view  = LayoutInflater.from(context).inflate(R.layout.home_item, parent,false);
 
         return new PlantViewHolder(view);
@@ -39,7 +42,6 @@ public class home_PlantAdapter extends RecyclerView.Adapter<home_PlantAdapter.Pl
 
     @Override
     public void onBindViewHolder(@NonNull home_PlantAdapter.PlantViewHolder holder, int position) {
-
 
 
         holder.plantName.setText(plantsArrayList.get(position).getPlantName());
@@ -62,6 +64,21 @@ public class home_PlantAdapter extends RecyclerView.Adapter<home_PlantAdapter.Pl
             super(itemView);
             plantImg = itemView.findViewById(R.id.iv_plantImg);
             plantName = itemView.findViewById(R.id.tv_plantName);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    int currentPos = getAdapterPosition();
+                    Plants plants = plantsArrayList.get(currentPos);
+                    String plantname = plants.getPlantName();
+                    Intent intent = new Intent(context, StoreSearchResult.class);
+                    intent.putExtra("contact_search",plantname);
+                    context.startActivity(intent);
+                    Log.e("plantname", plants.getPlantName());
+
+                }
+            });
 
         }
     }

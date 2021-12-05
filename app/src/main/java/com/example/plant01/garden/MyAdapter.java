@@ -1,27 +1,76 @@
 package com.example.plant01.garden;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private ShowActivity activity;
+    private Activity activity;
     private List<Model> mList;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public MyAdapter(ShowActivity activity, List<Model> mList){
+
+
+    public MyAdapter(Activity activity, List<Model> mList){
         this.activity = activity;
         this.mList = mList;
+
     }
+
+    public void updateData(int position){
+        Model item = mList.get(position);
+        Bundle bundle = new Bundle();
+        bundle.putString("uId" , item.getId());
+        bundle.putString("uName" , item.getName());
+        bundle.putString("uLocation" , item.getLocation());
+        bundle.putString("uDate" , item.getDate());
+        bundle.putString("uProfileUri" , item.getProfileUri());
+        Intent intent = new Intent(activity , MyMainActivity.class);
+        intent.putExtras(bundle);
+        activity.startActivity(intent);
+    }
+
+
+    public void deleteData(int position){
+        Model item = mList.get(position);
+        db.collection("Myplants").document(item.getId()).delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            notifyRemoved(position);
+                            Toast.makeText(activity, "Data Deleted !!", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(activity, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void notifyRemoved(int position){
+        mList.remove(position);
+        notifyItemRemoved(position);
+//        activity.showData();
+    }
+
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -48,6 +97,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         TextView name, location, date;
         ImageView profile;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

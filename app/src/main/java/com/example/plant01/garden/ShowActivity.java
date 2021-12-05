@@ -1,7 +1,11 @@
 package com.example.plant01.garden;
 
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,9 +16,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import android.os.Bundle;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +43,13 @@ public class ShowActivity extends AppCompatActivity {
         adapter = new MyAdapter(this, list);
         main_recyclerView.setAdapter(adapter);
 
+        ItemTouchHelper touchHelper = new ItemTouchHelper(new TouchHelper(adapter));
+        touchHelper.attachToRecyclerView(main_recyclerView);
+
         showData();
     }
 
-    private void  showData(){
+    public void  showData(){
 
         db.collection("Myplants").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

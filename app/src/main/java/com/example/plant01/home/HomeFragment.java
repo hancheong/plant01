@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Plants> plantsArrayList;
     private home_PlantAdapter plantAdapter;
+    private TextView managerplantname, managerplantdate;
     private FirebaseDatabase database;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
@@ -195,7 +196,7 @@ public class HomeFragment extends Fragment {
 
     /*------------------추천상품 보여주는 부분----------------------------------*/
     public void showRecomendPlant() {
-        db.collection("Plants").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("Plants").limit(3).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 plantsArrayList.clear();
@@ -241,6 +242,21 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    /*--------------- 식물관리 --------------------*/
+
+    public void mangerplant(){
+        managerplantname = (TextView) getView().findViewById(R.id.tv_manager_plantname);
+        managerplantdate = (TextView) getView().findViewById(R.id.tv_manager_plantdate);
+        db.collection("Myplnats").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                QuerySnapshot query = task.getResult();
+            }
+        });
+
+
+
+    }
 
     /*-------------인기게시판 불러오는 곳------------------*/
 

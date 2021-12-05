@@ -58,8 +58,8 @@ public class Post_write extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
-//                onBackPressed();
+
+                onBackPressed();
             }
         });
 

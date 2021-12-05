@@ -32,7 +32,7 @@ public class post_FragmentAdapter extends FragmentStateAdapter {
             case 3:
                 return new Post_info();
             default:
-                return createFragment(0);
+                return null;
         }
 
 //        return createFragment(0);

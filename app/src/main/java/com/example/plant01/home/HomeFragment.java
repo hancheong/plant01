@@ -195,7 +195,7 @@ public class HomeFragment extends Fragment {
 
     /*------------------추천상품 보여주는 부분----------------------------------*/
     public void showRecomendPlant() {
-        db.collection("Plants").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("Plants").limit(3).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 plantsArrayList.clear();

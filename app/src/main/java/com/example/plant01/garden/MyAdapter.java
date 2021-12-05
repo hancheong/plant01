@@ -1,5 +1,6 @@
 package com.example.plant01.garden;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,13 +22,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private ShowActivity activity;
+    private Activity activity;
     private List<Model> mList;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
 
-    public MyAdapter(ShowActivity activity, List<Model> mList){
+    public MyAdapter(Activity activity, List<Model> mList){
         this.activity = activity;
         this.mList = mList;
 
@@ -66,7 +67,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private void notifyRemoved(int position){
         mList.remove(position);
         notifyItemRemoved(position);
-        activity.showData();
+//        activity.showData();
     }
 
 

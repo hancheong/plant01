@@ -123,7 +123,7 @@ public class MyGarden extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         list = new ArrayList<>();
-        myAdapter = new MyAdapter(getContext(), list);
+        myAdapter = new MyAdapter(getActivity(), list);
         main_recyclerView.setAdapter(myAdapter);
 
         showData();

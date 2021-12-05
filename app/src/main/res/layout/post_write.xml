@@ -66,9 +66,9 @@
 
                 <ImageView
                     android:id="@+id/post_uploadImg"
-                    android:layout_width="374dp"
-                    android:scaleType="fitXY"
-                    android:layout_height="348dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
                     android:visibility="gone"
                     tools:srcCompat="@tools:sample/avatars" />
             </LinearLayout>

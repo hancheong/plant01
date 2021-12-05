@@ -2,8 +2,7 @@ package com.example.plant01.postpage;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class post_FragmentAdapter extends FragmentStateAdapter {
@@ -13,8 +12,8 @@ public class post_FragmentAdapter extends FragmentStateAdapter {
 
     //카테고리와 연결
 
-    public post_FragmentAdapter(@NonNull FragmentManager fm, @NonNull Lifecycle lifecycle) {
-        super(fm, lifecycle);
+    public post_FragmentAdapter(@NonNull FragmentActivity fm) {
+        super(fm);
     }
 
 
@@ -31,11 +30,11 @@ public class post_FragmentAdapter extends FragmentStateAdapter {
                 return new Post_free();
             case 3:
                 return new Post_info();
-//            default:
-//                return null;
+            default:
+                return createFragment(0);
         }
 
-        return createFragment(0);
+//        return createFragment(0);
     }
 
     @Override

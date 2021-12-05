@@ -1,14 +1,11 @@
 package com.example.plant01.postpage;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,21 +15,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.bumptech.glide.Glide;
 import com.example.plant01.R;
-import com.example.plant01.home.bell;
-import com.example.plant01.usersetting.UserSetting;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Stack;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PostMainActivity extends Fragment {
 
@@ -41,6 +29,7 @@ public class PostMainActivity extends Fragment {
 
     TabLayout tabLayout;
     ViewPager2 pager2;
+    private FloatingActionButton fab;
     post_FragmentAdapter adapter;
     public static Stack<Fragment> fragmentStack;
     private View.OnClickListener cl;
@@ -50,10 +39,23 @@ public class PostMainActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.post_main_fragment, container, false);
-
+        view.findViewById(R.id.add_post_main).setOnClickListener(onClickListener);
 
         return view;
+
     }
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.add_post_main:
+                    Intent intent = new Intent(getActivity(), Post_write.class);
+//                        myStartActivity(Post_write.class);
+                    startActivity(intent);
+                    break;
+            }
+        }
+    };
 
 //    @Override
 //    public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,7 +71,7 @@ public class PostMainActivity extends Fragment {
             pager2 = getView().findViewById(R.id.post_viewpage);
             //FragmentAdapter에서 카테고리 선택하여 페이지 이동
             FragmentManager fm = getFragmentManager();
-            adapter = new post_FragmentAdapter(fm, getActivity().getLifecycle());
+            adapter = new post_FragmentAdapter(getActivity());
 //            fm.beginTransaction().addToBackStack(null).commit();
             pager2.setAdapter(adapter);
             //카테고리 선택

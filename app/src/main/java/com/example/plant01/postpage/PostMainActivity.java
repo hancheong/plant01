@@ -64,14 +64,14 @@ public class PostMainActivity extends Fragment {
 //    }
 
         @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
             tabLayout = getView().findViewById(R.id.tab_layout);
             //게시글 담을 페이지
             pager2 = getView().findViewById(R.id.post_viewpage);
             //FragmentAdapter에서 카테고리 선택하여 페이지 이동
             FragmentManager fm = getFragmentManager();
-            adapter = new post_FragmentAdapter(getActivity());
+            adapter = new post_FragmentAdapter(getChildFragmentManager(), getLifecycle());
 //            fm.beginTransaction().addToBackStack(null).commit();
             pager2.setAdapter(adapter);
             //카테고리 선택

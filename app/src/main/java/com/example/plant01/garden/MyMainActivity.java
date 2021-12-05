@@ -1,9 +1,5 @@
 package com.example.plant01.garden;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plant01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,6 +42,8 @@ public class MyMainActivity extends AppCompatActivity {
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     private Uri imageUri;
     private FirebaseFirestore db;
+    private String uName, uLocation, uDate , uId, uProfileUri;
+
 
 
     @Override
@@ -69,7 +71,22 @@ public class MyMainActivity extends AppCompatActivity {
             }
         });
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null){
+            mSaveBtn.setText("Update");
+            uName = bundle.getString("uName");
+            uId = bundle.getString("uId");
+            uLocation = bundle.getString("uLocation");
+            uDate = bundle.getString("uDate");
+            uProfileUri = bundle.getString("uProfileUri");
+            mName.setText(uName);
+            mLocation.setText(uLocation);
+            mDate.setText(uDate);
+            uProfileUri = mProfile.toString();
 
+        }else{
+            mSaveBtn.setText("Save");
+        }
 
 
         mShowBtn.setOnClickListener(new View.OnClickListener() {
@@ -91,13 +108,40 @@ public class MyMainActivity extends AppCompatActivity {
                 String name = mName.getText().toString();
                 String location = mLocation.getText().toString();
                 String date = mDate.getText().toString();
-                String id = UUID.randomUUID().toString();
                 String profileUri = imageUri.toString();
-                saveToFireStore(id, name, location, date, profileUri);
+
+                Bundle bundle1 = getIntent().getExtras();
+                if (bundle1 != null){
+                    String id  = uId;
+                    updateToFireStore(id, name, location, date, profileUri);
+
+                }else{
+                    String id = UUID.randomUUID().toString();
+                    saveToFireStore(id, name, location, date, profileUri);
+
+                }
+
             }
         });
+    }
+    private void updateToFireStore(String id, String name, String location, String date, String profileuri){
 
-
+        db.collection("Myplants").document(id).update("name", name, "location",location, "date", date, "profileuri", profileuri)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(MyMainActivity.this, "Data Updated!!", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(MyMainActivity.this, "Error : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MyMainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

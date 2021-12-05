@@ -1,10 +1,7 @@
 package com.example.plant01.postpage;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,16 +18,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Post_info extends Fragment {
@@ -68,32 +60,34 @@ public class Post_info extends Fragment {
         adapter = new PostWriteAdapter(getActivity(), list);
         post_recyclerView.setAdapter(adapter);
         showData();
-        db.collection("WritePosts")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            ArrayList<Writeinfo> postList = new ArrayList<>();
-                            for(QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId()+ "=>" + document.getData());
-                                postList.add(new Writeinfo(document.getData().get("UserId").toString(),
-                                        document.getData().get("Title").toString(),
-                                        document.getData().get("Contents").toString()));
-                            }
-                            RecyclerView recyclerView = view.findViewById(R.id.post_recyclerView);
-                            LinearLayoutManager manager = new LinearLayoutManager(getContext());
-                            recyclerView.setLayoutManager(manager);
-                            recyclerView.setHasFixedSize(true);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-                            RecyclerView.Adapter madapter = new PostWriteAdapter(getActivity(), postList);
-                            recyclerView.setAdapter(madapter);
-                        }else{
-                            Log.d(TAG, "Error", task.getException());
-                        }
-                    }
-                });
+//        db.collection("WritePosts")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful()){
+//                            ArrayList<Writeinfo> postList = new ArrayList<>();
+//                            postList.clear();
+//                            for(QueryDocumentSnapshot document : task.getResult()) {
+//                                Log.d(TAG, document.getId()+ "=>" + document.getData());
+//                                postList.add(new Writeinfo(document.getData().get("UserId").toString(),
+//                                        document.getData().get("Title").toString(),
+//                                        document.getData().get("Contents").toString()));
+//                                adapter.notifyDataSetChanged();
+//                            }
+////                            RecyclerView recyclerView = view.findViewById(R.id.post_recyclerView);
+////                            LinearLayoutManager manager = new LinearLayoutManager(getContext());
+////                            recyclerView.setLayoutManager(manager);
+////                            recyclerView.setHasFixedSize(true);
+////                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+////                            adapter = new PostWriteAdapter(getActivity(), postList);
+////                            post_recyclerView.setAdapter(adapter);
+//                        }else{
+//                            Log.d(TAG, "Error", task.getException());
+//                        }
+//                    }
+//                });
 
         return view;
     }
@@ -131,13 +125,13 @@ public class Post_info extends Fragment {
 
     private void showData(){
 
-        db.collection("WritePosts").get()
+        db.collection("Post").whereEqualTo("board", "정보게시판").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            Writeinfo model = new Writeinfo(snapshot.getString("id"),snapshot.getString("title"),snapshot.getString("contents"));
+                            Writeinfo model = new Writeinfo(snapshot.getString("userID"),snapshot.getString("title"),snapshot.getString("content"));
                             list.add(model);
                         }
                         adapter.notifyDataSetChanged();

@@ -7,15 +7,25 @@ public class PostItemWrite {
     private String content;
     private String contentImg;
     private String userID;
+    private String board;
     private Date postDate;
 
 
     public PostItemWrite(){ }
 
-    public PostItemWrite(String content, String contentImg, String userID) {
+    public PostItemWrite(String content, String contentImg, String userID, String board) {
         this.content = content;
         this.contentImg = contentImg;
         this.userID = userID;
+        this.board = board;
+    }
+
+    public String getBoard() {
+        return board;
+    }
+
+    public void setBoard(String board) {
+        this.board = board;
     }
 
     public String getContent() {

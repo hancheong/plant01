@@ -1,11 +1,14 @@
 package com.example.plant01.postpage;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,18 +18,28 @@ import com.example.plant01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class Post_write extends AppCompatActivity {
-    private EditText Title , Contents;
+    private EditText Title, Contents;
     private Button Image, Video, Post;
     private ImageButton back;
     private FirebaseFirestore db;
     View.OnClickListener cl;
     private Object Post_write;
+    private Spinner spinner;
+    private String profilePath, uritxt;
+    private FirebaseStorage storage;
+    private Uri galleryUri;
+    private byte[] data1;
+    private ImageView uploadimg;
+    String postid;
 
 
     @Override
@@ -52,6 +65,8 @@ public class Post_write extends AppCompatActivity {
         Video = (Button) findViewById(R.id.vod);
         Post = (Button) findViewById(R.id.postbtn);
         back = (ImageButton) findViewById(R.id.post_back);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        uploadimg = (ImageView) findViewById(R.id.post_uploadImg);
 
         db = FirebaseFirestore.getInstance();
 
@@ -66,9 +81,10 @@ public class Post_write extends AppCompatActivity {
         Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                Intent intent = new Intent(Intent.ACTION_PICK);
+
                 intent.setType("image/*");
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -88,18 +104,22 @@ public class Post_write extends AppCompatActivity {
                 String title = Title.getText().toString();
                 String contents = Contents.getText().toString();
                 String id = UUID.randomUUID().toString();
+                String board =  spinner.getSelectedItem().toString();
+                Date timestamp = Timestamp.now().toDate();
 
-                saveToFireStore(id, title, contents);
+                saveToFireStore(id, title, contents, board, timestamp);
             }
-            private void saveToFireStore(String userid, String title, String contents) {
-
+            private void saveToFireStore(String userid, String title, String contents, String board, Date timestamp) {
+                String postID = UUID.randomUUID().toString();
                 if (!title.isEmpty() && !contents.isEmpty()) {
                     HashMap<String, Object> map = new HashMap<>();
-                    map.put("UserId", userid);
-                    map.put("Title", title);
-                    map.put("Contents", contents);
+                    map.put("userID", userid);
+                    map.put("title", title);
+                    map.put("content", contents);
+                    map.put("board", board);
+                    map.put("postDate", timestamp);
 
-                    db.collection("WritePosts").document(userid).set(map)
+                    db.collection("Post").document(postID).set(map)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

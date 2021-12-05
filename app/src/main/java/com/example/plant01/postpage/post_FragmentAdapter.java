@@ -31,11 +31,11 @@ public class post_FragmentAdapter extends FragmentStateAdapter {
                 return new Post_free();
             case 3:
                 return new Post_info();
-            default:
-                return null;
+//            default:
+//                return null;
         }
 
-//        return createFragment(0);
+        return createFragment(0);
     }
 
     @Override

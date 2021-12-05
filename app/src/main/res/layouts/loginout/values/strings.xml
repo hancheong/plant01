@@ -6,5 +6,10 @@
 
     <string name="please_grant_permission">권한을 허용해 주세요.</string>
 
+    <string-array name="board">
+        <item>자유게시판</item>
+        <item>정보게시판</item>
+    </string-array>
+
 
 </resources>

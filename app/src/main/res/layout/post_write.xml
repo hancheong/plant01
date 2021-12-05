@@ -27,6 +27,12 @@
                 android:src="@drawable/back"
                 tools:ignore="SpeakableTextPresentCheck" />
 
+            <Spinner
+                android:id="@+id/spinner"
+                android:entries="@array/board"
+                android:layout_width="match_parent"
+                android:layout_height="36dp" />
+
             <EditText
                 android:id="@+id/title"
                 android:layout_width="match_parent"
@@ -57,6 +63,14 @@
                     android:hint="내용을 입력하세요."
                     android:inputType="textMultiLine"
                     tools:ignore="TouchTargetSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/post_uploadImg"
+                    android:layout_width="374dp"
+                    android:scaleType="fitXY"
+                    android:layout_height="348dp"
+                    android:visibility="gone"
+                    tools:srcCompat="@tools:sample/avatars" />
             </LinearLayout>
 
             <LinearLayout

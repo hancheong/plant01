@@ -101,6 +101,7 @@ public class MyMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                uploadToFirebase(imageUri);
                 Log.e("imageUri", imageUri.toString());
 //                if (imageUri != null){
 //
@@ -110,7 +111,7 @@ public class MyMainActivity extends AppCompatActivity {
                 String name = mName.getText().toString();
                 String location = mLocation.getText().toString();
                 String date = mDate.getText().toString();
-                String profileUri = imageUri.toString();
+                String profileUri = null;
                 String userid = user.getUid();
 
                 Bundle bundle1 = getIntent().getExtras();
@@ -129,7 +130,7 @@ public class MyMainActivity extends AppCompatActivity {
     }
     private void updateToFireStore(String id, String name, String location, String date, String profileuri, String userid){
 
-        db.collection("Myplants").document(id).update("name", name, "location",location, "date", date, "profileuri", profileuri, "userID", userid)
+        db.collection("Myplants").document(id).update("name", name, "location",location, "date", date, "profileUri", profileuri, "userID", userid)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -165,7 +166,7 @@ public class MyMainActivity extends AppCompatActivity {
         if (!name.isEmpty() && !location.isEmpty()){
             HashMap<String , Object> map = new HashMap<>();
             map.put("id" , myplantid);
-            map.put("profileUri" , imageUri.toString() );
+            map.put("profileUri" , null);
             map.put("name" , name);
             map.put("location" , location);
             map.put("date" , date);

@@ -66,14 +66,6 @@ public class search2 extends AppCompatActivity {
         classitext=(TextView)findViewById(R.id.classifytext);
 
         //홈프래그먼트에서 이미지 수신
-        Intent intent = getIntent(); /*데이터 수신*/
-        Uri uri = intent.getParcelableExtra("uri");
-        try {
-            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-            imageView.setImageBitmap(bitmap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 //        imageView.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -85,11 +77,7 @@ public class search2 extends AppCompatActivity {
 //            }
 //        });
 
-        try{
-            tflite=new Interpreter(loadmodelfile(search2.this));
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
         Analysis();
 
@@ -125,6 +113,21 @@ public class search2 extends AppCompatActivity {
     }
 
     private void Analysis(){
+        Intent intent = getIntent(); /*데이터 수신*/
+        Uri uri = intent.getParcelableExtra("uri");
+        Log.e("uri", uri.toString());
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+            imageView.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try{
+
+            tflite=new Interpreter(loadmodelfile(search2.this));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         int imageTensorIndex = 0;
         int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
         imageSizeY = imageShape[1];

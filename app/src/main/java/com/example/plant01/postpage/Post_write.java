@@ -34,6 +34,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
@@ -188,19 +189,26 @@ public class Post_write extends AppCompatActivity {
 
         }
     }
+
     private void update() {
 //        profileImageView.setImageBitmap(bitmap);
         FirebaseStorage storage = FirebaseStorage.getInstance();
 //            profileImageView = (RoundedImageView) findViewById(R.id.img_setting_user);
         //현재 유저 받아오기
-
+        Date dateTime = Timestamp.now().toDate();
+        SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy-HH-mm-ss");
+        String date = df.format(dateTime);
+//        String timestamp = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss").format(dateTime);
+//        String timestamp = Timestamp.now().toDate().toString();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //파이어스토어와 연결
         db = FirebaseFirestore.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference mountainImagesRef = storageRef.child("PostImg/"+user.getUid()+"/profile.jpg");
+//        Log.e("timestamp",Timestamp.n;
+        StorageReference mountainImagesRef = storageRef.child("PostImg/"+user.getUid()+"/i.jpg");
         UploadTask uploadTask = mountainImagesRef.putFile(galleryUri);
         Log.e("data1", galleryUri.toString());
+        Log.e("timestmap2", date);
         mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

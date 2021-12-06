@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -21,11 +22,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -43,8 +45,7 @@ public class MyMainActivity extends AppCompatActivity {
     private Uri imageUri;
     private FirebaseFirestore db;
     private String uName, uLocation, uDate , uId, uProfileUri;
-
-
+    String myplantid = UUID.randomUUID().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,39 +100,42 @@ public class MyMainActivity extends AppCompatActivity {
         mSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (imageUri != null){
-                    uploadToFirebase(imageUri);
-                }else{
-                    Toast.makeText(MyMainActivity.this, "Please Select Image", Toast.LENGTH_SHORT).show();
-                }
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                Log.e("imageUri", imageUri.toString());
+//                if (imageUri != null){
+//
+//                }else{
+//                    Toast.makeText(MyMainActivity.this, "Please Select Image", Toast.LENGTH_SHORT).show();
+//                }
                 String name = mName.getText().toString();
                 String location = mLocation.getText().toString();
                 String date = mDate.getText().toString();
                 String profileUri = imageUri.toString();
+                String userid = user.getUid();
 
                 Bundle bundle1 = getIntent().getExtras();
                 if (bundle1 != null){
                     String id  = uId;
-                    updateToFireStore(id, name, location, date, profileUri);
+                    updateToFireStore(id, name, location, date, profileUri, userid);
 
                 }else{
-                    String id = UUID.randomUUID().toString();
-                    saveToFireStore(id, name, location, date, profileUri);
+
+                    saveToFireStore(myplantid, name, location, date, profileUri, userid);
 
                 }
 
             }
         });
     }
-    private void updateToFireStore(String id, String name, String location, String date, String profileuri){
+    private void updateToFireStore(String id, String name, String location, String date, String profileuri, String userid){
 
-        db.collection("Myplants").document(id).update("name", name, "location",location, "date", date, "profileuri", profileuri)
+        db.collection("Myplants").document(id).update("name", name, "location",location, "date", date, "profileuri", profileuri, "userID", userid)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(MyMainActivity.this, "Data Updated!!", Toast.LENGTH_SHORT).show();
+                            uploadToFirebase(imageUri);
                         }else{
                             Toast.makeText(MyMainActivity.this, "Error : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -156,15 +160,16 @@ public class MyMainActivity extends AppCompatActivity {
         }
     }
 
-    private void saveToFireStore(String id , String name , String location, String date, String profileUri){
+    private void saveToFireStore(String id , String name , String location, String date, String profileUri, String userid){
 
         if (!name.isEmpty() && !location.isEmpty()){
             HashMap<String , Object> map = new HashMap<>();
-            map.put("id" , id);
-            map.put("profileUri" ,profileUri );
+            map.put("id" , myplantid);
+            map.put("profileUri" , imageUri.toString() );
             map.put("name" , name);
             map.put("location" , location);
             map.put("date" , date);
+            map.put("userID", userid);
 
             db.collection("Myplants").document(id).set(map)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -172,6 +177,7 @@ public class MyMainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(MyMainActivity.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
+                                uploadToFirebase(imageUri);
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -185,37 +191,46 @@ public class MyMainActivity extends AppCompatActivity {
     }
 
     private void uploadToFirebase(Uri uri){
-
-        StorageReference fileRef = reference.child(System.currentTimeMillis() + "." + getfileExtension(uri));
-        fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        StorageReference fileRef = reference.child("Myplants/"+user.getUid()+"/"+getfileExtension(uri));
+        UploadTask uploadTask = fileRef.putFile(uri);
+        fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-
-                        Model model = new Model(uri.toString());
-                        String modelId = root.push().getKey();
-                        root.child(modelId).setValue(model);
-                        progressBar2.setVisibility(View.INVISIBLE);
-
-                        Toast.makeText(MyMainActivity.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                progressBar2.setVisibility(View.VISIBLE);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressBar2.setVisibility(View.INVISIBLE);
-                Toast.makeText(MyMainActivity.this, "Uploading Failed", Toast.LENGTH_SHORT).show();
+            public void onSuccess(Uri uri) {
+                Log.e("이미지주소", uri.toString());
+                db.collection("Myplants").document(myplantid)
+                        .update("profileUri", uri.toString());
             }
         });
+//        fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                    @Override
+//                    public void onSuccess(Uri uri) {
+//
+//                        Model model = new Model(uri.toString());
+//                        String modelId = root.push().getKey();
+//                        root.child(modelId).setValue(model);
+//                        progressBar2.setVisibility(View.INVISIBLE);
+//
+//                        Toast.makeText(MyMainActivity.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//            }
+//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+//                progressBar2.setVisibility(View.VISIBLE);
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                progressBar2.setVisibility(View.INVISIBLE);
+//                Toast.makeText(MyMainActivity.this, "Uploading Failed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
 

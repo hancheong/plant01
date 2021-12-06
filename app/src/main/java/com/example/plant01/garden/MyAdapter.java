@@ -3,6 +3,7 @@ package com.example.plant01.garden;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +23,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private Activity activity;
-    private List<Model> mList;
+    Activity activity;
+    List<Model> mList;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -93,7 +94,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView name, location, date;
         ImageView profile;
@@ -105,6 +106,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             name = itemView.findViewById(R.id.name_text);
             location = itemView.findViewById(R.id.location_text);
             date = itemView.findViewById(R.id.date_text);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    int currentPos = getAdapterPosition();
+                    Model myplants = mList.get(currentPos);
+                    String myplantsId = myplants.getId();
+                    Intent intent = new Intent(activity, MyPlants.class);
+                    intent.putExtra("myplantid",myplantsId);
+                    activity.startActivity(intent);
+                    Log.e("myplantid", myplants.getId());
+
+                }
+            });
         }
     }
 }

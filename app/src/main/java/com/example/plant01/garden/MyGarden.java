@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -121,10 +122,14 @@ public class MyGarden extends Fragment {
         main_recyclerView.setHasFixedSize(true);
         main_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         db = FirebaseFirestore.getInstance();
         list = new ArrayList<>();
         myAdapter = new MyAdapter(getActivity(), list);
         main_recyclerView.setAdapter(myAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(new TouchHelper(myAdapter));
+        touchHelper.attachToRecyclerView(main_recyclerView);
+
 
         showData();
     }

@@ -1,10 +1,9 @@
 package com.example.plant01.garden;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.plant01.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,6 +31,7 @@ public class AddPlants extends AppCompatActivity {
     Button btnBack, btnSave;
     ImageView ivPlants;
     Intent intent;
+    Uri myplantimgfile;
 
     private static  final int PLANTS_IMAGE_CODE = 1000;
     private static  final int PERMISSION_CODE = 1001;
@@ -63,6 +67,7 @@ public class AddPlants extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                
                 addplants(etName.getText().toString(),etLocation.getText().toString(),etDate.getText().toString());
             }
         });
@@ -103,6 +108,7 @@ public class AddPlants extends AppCompatActivity {
         super.onActivityResult(requestCode,resultCode,data);
         if (resultCode == RESULT_OK && requestCode == PLANTS_IMAGE_CODE) {
             //set Image into ivPlants (ImageView)
+            myplantimgfile = data.getData();
             ivPlants.setImageURI(data.getData());
         }
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null);{

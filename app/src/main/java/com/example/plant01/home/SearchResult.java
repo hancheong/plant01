@@ -76,7 +76,7 @@ public class SearchResult extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchResult.this));
         Intent intent = getIntent(); /*데이터 수신*/
         String getplantname = intent.getExtras().getString("plantName");
-        Query plantinfo = db.collection("Plant").whereEqualTo("plantName", getplantname);
+        Query plantinfo = db.collection("Plants").whereEqualTo("plantName", getplantname);
 
         plantinfo.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

@@ -7,10 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.plant01.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.example.plant01.R;
 
 import java.util.ArrayList;
 
@@ -37,8 +38,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomHold
                 .load(arrayList.get(position).getProfile())
                 .into(holder.iv_PlantsProfile);
         holder.tv_Name.setText(arrayList.get(position).getName());
-        holder.tv_Location.setText(arrayList.get(position).getLocation());
-        holder.tv_Date.setText(String.valueOf(arrayList.get(position).getDate()));
+//        holder.tv_Location.setText(arrayList.get(position).getLocation());
+//        holder.tv_Date.setText(String.valueOf(arrayList.get(position).getDate()));
 
     }
 
@@ -50,15 +51,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomHold
     public class CustomHolder extends RecyclerView.ViewHolder {
         ImageView iv_PlantsProfile;
         TextView tv_Name;
-        TextView tv_Location;
-        TextView tv_Date;
+//        TextView tv_Location;
+//        TextView tv_Date;
 
         public CustomHolder(@NonNull View itemView) {
             super(itemView);
             this.iv_PlantsProfile = itemView.findViewById(R.id.iv_PlantsProfile);
             this.tv_Name = itemView.findViewById(R.id.tv_Name);
-            this.tv_Location = itemView.findViewById(R.id.tv_Location);
-            this.tv_Date = itemView.findViewById(R.id.tv_Date);
+//            this.tv_Location = itemView.findViewById(R.id.tv_Location);
+//            this.tv_Date = itemView.findViewById(R.id.tv_Date);
         }
     }
 }

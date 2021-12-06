@@ -59,7 +59,7 @@ public class MyGarden extends Fragment {
 
 
         View view = inflater.inflate(R.layout.garden_my_garden, container, false);
-        view.findViewById(R.id.btnAdd).setOnClickListener(onClickListener);
+//        view.findViewById(R.id.btnAdd).setOnClickListener(onClickListener);
 
 //        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 //        recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존 성능 강화
@@ -72,7 +72,7 @@ public class MyGarden extends Fragment {
 //        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
 
-        btnAdd = (Button) view.findViewById(R.id.btnAdd);
+//        btnAdd = (Button) view.findViewById(R.id.btnAdd);
         FloatingActionButton btnadd2 = (FloatingActionButton)view.findViewById(R.id.btnAdd2);
         btnadd2.setOnClickListener(onClickListener);
 //        btnShow = (Button) view.findViewById(R.id.btnShow);

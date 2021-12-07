@@ -6,11 +6,14 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
@@ -23,6 +26,7 @@ public class MyPlants extends AppCompatActivity {
 
     TextView tvName, tvLocation, tvDate;
     ImageView ivPlants;
+    Button btnBack2;
     String name, location, date, profile;
     String myplantid;
     FirebaseFirestore db;
@@ -34,6 +38,7 @@ public class MyPlants extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("lemubitApp", Context.MODE_PRIVATE);
         String valueState = sharedPref.getString("lemubit", "Not Activity");
 
+        btnBack2 = findViewById(R.id.btnBack2);
         tvName = (TextView) findViewById(R.id.tvName);
         tvLocation = (TextView) findViewById(R.id.tvLocation);
         tvDate = (TextView) findViewById(R.id.tvDate);
@@ -48,8 +53,14 @@ public class MyPlants extends AppCompatActivity {
 //        tvDate.setText(intent.getStringExtra("date"));
 //        ivPlants.setImageURI(Uri.parse(intent.getStringExtra("profile")));
 
-
-
+        btnBack2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.myPlant, new MyGarden()).commit();
+                btnBack2.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
     public void getmyplantinfo(){

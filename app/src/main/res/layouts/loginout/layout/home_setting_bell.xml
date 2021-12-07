@@ -7,15 +7,6 @@
     tools:context=".home.bell">
 
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
-        android:text="bellbellbell"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        tools:layout_editor_absoluteX="148dp" />
-
     <androidx.appcompat.widget.Toolbar
         android:backgroundTint="@color/maincolor"
         android:id="@+id/toolbar2"
@@ -33,9 +24,25 @@
 
     <Switch
         android:id="@+id/noticeTem"
+        android:layout_width="96dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="49dp"
+        android:text="Switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Switch"
-        tools:layout_editor_absoluteX="274dp"
-        tools:layout_editor_absoluteY="95dp" />
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="122dp"
+        android:text="온/습도 감지알림"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/noticeTem"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

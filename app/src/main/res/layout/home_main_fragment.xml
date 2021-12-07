@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/top"
+                android:id="@+id/post_TopLayout"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:background="@color/backgroud">
@@ -67,7 +67,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/top">
+                android:layout_below="@+id/post_TopLayout">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

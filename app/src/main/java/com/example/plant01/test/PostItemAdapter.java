@@ -1,7 +1,6 @@
 package com.example.plant01.test;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,7 +89,7 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.PostVi
         TextView postusernick, postdate, postlikes, postcontent;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            userprofile = itemView.findViewById(R.id.post_user_img);
+            userprofile = itemView.findViewById(R.id.post_userImage);
             postpic = itemView.findViewById(R.id.post_img);
             postusernick = itemView.findViewById(R.id.post_usernick);
             postdate = itemView.findViewById(R.id.post_date);

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
-import com.example.plant01.test.PostItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -83,7 +82,7 @@ public class post_PostItemAdapter extends RecyclerView.Adapter<post_PostItemAdap
         TextView postusernick, postdate, postlikes, postcontent;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            userprofile = itemView.findViewById(R.id.post_user_img);
+            userprofile = itemView.findViewById(R.id.post_userImage);
             postpic = itemView.findViewById(R.id.post_img);
             postusernick = itemView.findViewById(R.id.post_usernick);
             postdate = itemView.findViewById(R.id.post_date);

@@ -2,7 +2,6 @@ package com.example.plant01.postpage;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +25,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 
@@ -72,7 +70,7 @@ public class Post_best extends Fragment {
     }
     /*-------------인기게시판 불러오는 곳------------------*/
     public void showBoard() {
-        ImageView post_user_img = getView().findViewById(R.id.post_user_img);
+        ImageView post_user_img = getView().findViewById(R.id.post_userImage);
         TextView explain = getView().findViewById(R.id.explain);
         TextView post_like_num = getView().findViewById(R.id.post_like_num);
         TextView post_usernick = getView().findViewById(R.id.post_usernick);

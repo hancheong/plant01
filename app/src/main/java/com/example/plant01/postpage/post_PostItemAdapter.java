@@ -44,8 +44,11 @@ public class post_PostItemAdapter extends RecyclerView.Adapter<post_PostItemAdap
 
 /*----------------PostItem에 있는것들 가져올 때 ---------------------*/
         /*--포스트이미지--*/
-        Glide.with(postViewHolder.postpic).load(postItemArrayList.get(position).getContentImg())
-                .into(postViewHolder.postpic);
+        if(postItemArrayList.get(position).getContentImg() != null){
+            postViewHolder.postpic.setVisibility(View.VISIBLE);
+            Glide.with(postViewHolder.postpic).load(postItemArrayList.get(position).getContentImg())
+                    .into(postViewHolder.postpic);
+        }
         /*--포스트내용--*/
         postViewHolder.postcontent.setText(postItemArrayList.get(position).getContent());
 
@@ -65,7 +68,9 @@ public class post_PostItemAdapter extends RecyclerView.Adapter<post_PostItemAdap
                 String userNick = task.getResult().getString("userNick");
                 String userprofile = task.getResult().getString("userImg");
                 postViewHolder.setPostusernick(userNick);
-                postViewHolder.setUserprofile(userprofile);
+                if(userprofile != null){
+                    postViewHolder.setUserprofile(userprofile);
+                }
             }
         });
 

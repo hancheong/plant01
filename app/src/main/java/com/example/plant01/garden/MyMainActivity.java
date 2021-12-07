@@ -49,7 +49,7 @@ public class MyMainActivity extends AppCompatActivity {
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     private Uri imageUri;
     private FirebaseFirestore db;
-    private String uName, uLocation, uDate , uId, uProfileUri, listsize;
+    private String uName, uLocation, uDate , uId, uProfileUri, listsize, storeuri;
     String myplantid = UUID.randomUUID().toString();
 
     @Override
@@ -58,12 +58,12 @@ public class MyMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_main);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        StorageReference list = reference.child("Myplants/"+user.getUid());
+        StorageReference list = reference.child("Myplants/"+user.getUid()+"/");
         list.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
             public void onSuccess(ListResult listResult) {
-                List<StorageReference> a = listResult.getPrefixes();
-                listsize = String.valueOf(a.size()+1);
+                List<StorageReference> items = listResult.getItems();
+                listsize = String.valueOf(items.size()+1);
                 Log.e("listsize", listsize);
             }
         });
@@ -95,6 +95,7 @@ public class MyMainActivity extends AppCompatActivity {
             mSaveBtn.setText("Update");
             uName = bundle.getString("uName");
             uId = bundle.getString("uId");
+            Log.e("uID", uId);
             uLocation = bundle.getString("uLocation");
             uDate = bundle.getString("uDate");
             uProfileUri = bundle.getString("uProfileUri");
@@ -119,8 +120,8 @@ public class MyMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                uploadToFirebase(imageUri);
-                Log.e("imageUri", imageUri.toString());
+
+//                Log.e("storeuri", storeuri);
 //                if (imageUri != null){
 //
 //                }else{
@@ -129,13 +130,13 @@ public class MyMainActivity extends AppCompatActivity {
                 String name = mName.getText().toString();
                 String location = mLocation.getText().toString();
                 String date = mDate.getText().toString();
-                String profileUri = null;
+                String profileUri = storeuri;
                 String userid = user.getUid();
 
                 Bundle bundle1 = getIntent().getExtras();
                 if (bundle1 != null){
                     String id  = uId;
-                    updateToFireStore(id, name, location, date);
+                    updateToFireStore(name, location, date, profileUri);
 
                 }else{
 
@@ -158,25 +159,37 @@ public class MyMainActivity extends AppCompatActivity {
 
         }
     }
-    private void updateToFireStore(String id, String name, String location, String date){
+    private void updateToFireStore( String name, String location, String date, String profileUri){
 
-        db.collection("Myplants").document(id).update("name", name, "location",location, "date", date)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+        db.collection("Myplants").document(uId).update("name", name, "location",location, "date", date, "profileUri", profileUri)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(MyMainActivity.this, "Data Updated!!", Toast.LENGTH_SHORT).show();
-                            uploadToFirebase(imageUri);
-                        }else{
-                            Toast.makeText(MyMainActivity.this, "Error : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                    public void onSuccess(Void unused) {
+                        uploadToFirebase(imageUri);
+                        Toast.makeText(MyMainActivity.this, "Data Updated!!", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MyMainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyMainActivity.this, "Error : updating document", Toast.LENGTH_SHORT).show();
             }
         });
+//                new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()){
+//                            uploadToFirebase(imageUri);
+//                            Toast.makeText(MyMainActivity.this, "Data Updated!!", Toast.LENGTH_SHORT).show();
+//                        }else{
+//                            Toast.makeText(MyMainActivity.this, "Error : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(MyMainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void saveToFireStore(String id , String name , String location, String date, String profileUri, String userid){
@@ -184,7 +197,7 @@ public class MyMainActivity extends AppCompatActivity {
         if (!name.isEmpty() && !location.isEmpty()){
             HashMap<String , Object> map = new HashMap<>();
             map.put("id" , myplantid);
-            map.put("profileUri" , null);
+            map.put("profileUri" , storeuri);
             map.put("name" , name);
             map.put("location" , location);
             map.put("date" , date);
@@ -226,14 +239,25 @@ public class MyMainActivity extends AppCompatActivity {
 
         StorageReference fileRef = reference.child("Myplants/"+user.getUid()+"/file"+listsize+".jpg");
         UploadTask uploadTask = fileRef.putFile(uri);
-        fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onSuccess(Uri uri) {
-                Log.e("이미지주소", uri.toString());
-                db.collection("Myplants").document(myplantid)
-                        .update("profileUri", uri.toString());
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                            Log.e("이미지주소", uri.toString());
+                            storeuri = uri.toString();
+                            db.collection("Myplants").document(uId)
+                                    .update("profileUri", uri.toString());
+                        }
+
+                    });
             }
         });
+
+    }
+}
+
 //        fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 //            @Override
 //            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -263,12 +287,12 @@ public class MyMainActivity extends AppCompatActivity {
 //                Toast.makeText(MyMainActivity.this, "Uploading Failed", Toast.LENGTH_SHORT).show();
 //            }
 //        });
-    }
-
-
-    private String getfileExtension(Uri mUri){
-        ContentResolver cr = getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(cr.getType(mUri));
-    }
-}
+//    }
+//
+//
+//    private String getfileExtension(Uri mUri){
+//        ContentResolver cr = getContentResolver();
+//        MimeTypeMap mime = MimeTypeMap.getSingleton();
+//        return mime.getExtensionFromMimeType(cr.getType(mUri));
+//    }
+//}

@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -37,6 +38,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class Post_write extends AppCompatActivity {
@@ -47,7 +49,7 @@ public class Post_write extends AppCompatActivity {
     View.OnClickListener cl;
     private Object Post_write;
     private Spinner spinner;
-    private String profilePath, uritxt;
+    private String profilePath, uritxt, listsize;
     private FirebaseStorage storage;
     private Uri galleryUri;
     private byte[] data1;
@@ -63,6 +65,21 @@ public class Post_write extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_write);
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //파이어스토어와 연결
+        StorageReference storageRef = storage.getReference();
+
+        StorageReference list = storageRef.child("Myplants/"+user.getUid()+"/");
+        list.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                List<StorageReference> items = listResult.getItems();
+                listsize = String.valueOf(items.size()+1);
+                Log.e("listsize", listsize);
+            }
+        });
 
         Title = (EditText) findViewById(R.id.post_Title);
         Contents = (EditText) findViewById(R.id.post_Content);
@@ -181,31 +198,31 @@ public class Post_write extends AppCompatActivity {
     private void update() {
 //        profileImageView.setImageBitmap(bitmap);
         FirebaseStorage storage = FirebaseStorage.getInstance();
-//            profileImageView = (RoundedImageView) findViewById(R.id.img_setting_user);
-        //현재 유저 받아오기
-        Date dateTime = Timestamp.now().toDate();
-        SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy-HH-mm-ss");
-        String date = df.format(dateTime);
-//        String timestamp = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss").format(dateTime);
-//        String timestamp = Timestamp.now().toDate().toString();
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //파이어스토어와 연결
         db = FirebaseFirestore.getInstance();
         StorageReference storageRef = storage.getReference();
 //        Log.e("timestamp",Timestamp.n;
-        StorageReference mountainImagesRef = storageRef.child("PostImg/"+user.getUid()+"/i.jpg");
+        StorageReference mountainImagesRef = storageRef.child("PostImg/"+user.getUid()+"/file"+listsize+".jpg");
         if(galleryUri != null){
             UploadTask uploadTask = mountainImagesRef.putFile(galleryUri);
-            Log.e("data1", galleryUri.toString());
-            Log.e("timestmap2", date);
-            mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onSuccess(Uri uri) {
-                    Log.e("이미지주소", uri.toString());
-                    db.collection("Post").document(postID)
-                            .update("contentImg", uri.toString());
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Log.e("이미지주소", uri.toString());
+//                            storeuri = uri.toString();
+                            db.collection("Post").document(postID)
+                                    .update("contentImg", uri.toString());
+                        }
+
+                    });
                 }
             });
+
         }
 
 

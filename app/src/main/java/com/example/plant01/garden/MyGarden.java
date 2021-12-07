@@ -134,6 +134,8 @@ public class MyGarden extends Fragment {
         showData();
     }
 
+
+    //DB에 입력한 데이터 보여주기
     private void  showData(){
 
         db.collection("Myplants").get()

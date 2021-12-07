@@ -48,7 +48,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         activity.startActivity(intent);
     }
 
-
+    //데이터 삭제
     public void deleteData(int position){
         Model item = mList.get(position);
         db.collection("Myplants").document(item.getId()).delete()

@@ -25,6 +25,8 @@ public class TouchHelper extends ItemTouchHelper.SimpleCallback {
         return false;
     }
 
+
+    //왼쪽으로 스와이프 시 데이터수정, 오른쪽으로 스와이프 시 데이터 삭제 실행
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getAdapterPosition();

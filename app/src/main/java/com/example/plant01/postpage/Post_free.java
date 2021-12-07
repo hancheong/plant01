@@ -99,7 +99,7 @@ public class Post_free extends  Fragment {
                         PostItem postItem = doc.getDocument().toObject(PostItem.class);
                         postItemArrayList.add(postItem);
                         adapter.notifyDataSetChanged();
-                        Log.e("포스트 ", value.getDocuments().toString());
+//                        Log.e("포스트 ", value.getDocuments().toString());
                     } else {
                         adapter.notifyDataSetChanged();
                     }

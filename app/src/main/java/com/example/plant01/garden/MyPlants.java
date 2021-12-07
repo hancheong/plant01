@@ -56,8 +56,9 @@ public class MyPlants extends AppCompatActivity {
         btnBack2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.myPlant, new MyGarden()).commit();
+                finish();
+//                FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.myPlant, new MyGarden()).commit();
                 btnBack2.setVisibility(View.INVISIBLE);
             }
         });

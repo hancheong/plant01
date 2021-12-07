@@ -22,16 +22,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class MyMainActivity extends AppCompatActivity {
@@ -44,13 +49,24 @@ public class MyMainActivity extends AppCompatActivity {
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     private Uri imageUri;
     private FirebaseFirestore db;
-    private String uName, uLocation, uDate , uId, uProfileUri;
+    private String uName, uLocation, uDate , uId, uProfileUri, listsize;
     String myplantid = UUID.randomUUID().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_main);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        StorageReference list = reference.child("Myplants/"+user.getUid());
+        list.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                List<StorageReference> a = listResult.getPrefixes();
+                listsize = String.valueOf(a.size()+1);
+                Log.e("listsize", listsize);
+            }
+        });
 
         mProfile = (ImageView) findViewById(R.id.iv_PlantsProfile);
         mName = (EditText) findViewById(R.id.edit_name);
@@ -117,7 +133,7 @@ public class MyMainActivity extends AppCompatActivity {
                 Bundle bundle1 = getIntent().getExtras();
                 if (bundle1 != null){
                     String id  = uId;
-                    updateToFireStore(id, name, location, date, profileUri, userid);
+                    updateToFireStore(id, name, location, date);
 
                 }else{
 
@@ -128,9 +144,21 @@ public class MyMainActivity extends AppCompatActivity {
             }
         });
     }
-    private void updateToFireStore(String id, String name, String location, String date, String profileuri, String userid){
 
-        db.collection("Myplants").document(id).update("name", name, "location",location, "date", date, "profileUri", profileuri, "userID", userid)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2 && resultCode == RESULT_OK && data != null){
+
+            imageUri = data.getData();
+            mProfile.setImageURI(imageUri);
+
+        }
+    }
+    private void updateToFireStore(String id, String name, String location, String date){
+
+        db.collection("Myplants").document(id).update("name", name, "location",location, "date", date)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -147,18 +175,6 @@ public class MyMainActivity extends AppCompatActivity {
                 Toast.makeText(MyMainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 2 && resultCode == RESULT_OK && data != null){
-
-            imageUri = data.getData();
-            mProfile.setImageURI(imageUri);
-
-        }
     }
 
     private void saveToFireStore(String id , String name , String location, String date, String profileUri, String userid){
@@ -193,7 +209,20 @@ public class MyMainActivity extends AppCompatActivity {
 
     private void uploadToFirebase(Uri uri){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        StorageReference fileRef = reference.child("Myplants/"+user.getUid()+"/"+getfileExtension(uri));
+//
+//        StorageReference list = reference.child("Myplants/"+user.getUid());
+//        list.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+//            @Override
+//            public void onSuccess(ListResult listResult) {
+//                List<StorageReference> a = listResult.getPrefixes();
+//                listsize = String.valueOf(a.size()+1);
+//                Log.e("listsize", listsize);
+//            }
+//        });
+
+        Log.e("listsize2", listsize);
+
+        StorageReference fileRef = reference.child("Myplants/"+user.getUid()+"/file"+listsize+".jpg");
         UploadTask uploadTask = fileRef.putFile(uri);
         fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

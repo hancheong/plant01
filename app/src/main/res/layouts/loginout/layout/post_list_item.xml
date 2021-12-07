@@ -72,6 +72,8 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/plant1"
                 android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/post_TopLayout" />
 
             <TextView

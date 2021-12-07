@@ -44,11 +44,11 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.PostVi
 /*----------------PostItem에 있는것들 가져올 때 ---------------------*/
         /*--포스트이미지--*/
         if(postItemArrayList.get(position).getContentImg() !=  null){
-
-            postViewHolder.postpic.setVisibility(View.VISIBLE);
-
             Glide.with(postViewHolder.postpic).load(postItemArrayList.get(position).getContentImg())
                     .into(postViewHolder.postpic);
+            postViewHolder.postpic.setVisibility(View.VISIBLE);
+
+
         }
         /*--포스트내용--*/
         postViewHolder.postcontent.setText(postItemArrayList.get(position).getContent());

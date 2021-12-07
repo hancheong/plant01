@@ -146,6 +146,8 @@ public class MyGarden extends Fragment {
 //        showModify();
     }
 
+
+    //DB에 입력한 데이터 보여주기
     private void  showData(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         db.collection("Myplants").whereEqualTo("userID", user.getUid()).get()

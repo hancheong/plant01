@@ -78,6 +78,8 @@ public class MyMainActivity extends AppCompatActivity {
         progressBar2.setVisibility(View.INVISIBLE);
         db= FirebaseFirestore.getInstance();
 
+
+        //이미지 갤러리에서 가져오기
         mProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,7 +104,7 @@ public class MyMainActivity extends AppCompatActivity {
             uProfileUri = mProfile.toString();
 
         }else{
-            mSaveBtn.setText("Save");
+            mSaveBtn.setText("Save");// 업데이트할 데이터가 없을 경우
         }
 
 

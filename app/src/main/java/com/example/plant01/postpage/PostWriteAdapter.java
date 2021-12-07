@@ -36,6 +36,14 @@ public class PostWriteAdapter extends RecyclerView.Adapter<PostWriteAdapter.Post
         this.mList = list;
     }
 
+//        static class PostViewHolder extends RecyclerView.ViewHolder {
+//        CardView cardView;
+//        PostViewHolder(CardView v) {
+//            super(v);
+//            cardView = v;
+//        }
+//    }
+
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

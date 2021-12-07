@@ -100,18 +100,14 @@
              android:layout_height="25dp"
              android:layout_margin="3dp"
              android:src="@drawable/post_ic_share" />
-
-
-
       </LinearLayout>
+
       <RelativeLayout
           android:layout_width="match_parent"
           android:layout_height="1dp"
           android:layout_marginTop="5dp"
           android:layout_marginBottom="5dp"
           android:background="#DDDDDD" />
-
-
    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -49,7 +49,7 @@ public class Post_info extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.post_info, container, false);
-        view.findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
+//        view.findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
 
         post_recyclerView = view.findViewById((R.id.post_recyclerView));
         post_recyclerView.setHasFixedSize(true);
@@ -122,7 +122,7 @@ public class Post_info extends Fragment {
 //                    }
 //                });
 //    }
-
+    //정보게시판 게시글 보여줌
     private void showData(){
 
         db.collection("Post").whereEqualTo("board", "정보게시판").get()
@@ -148,16 +148,16 @@ public class Post_info extends Fragment {
 
 
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.floatingActionButton:
-                    myStartActivity(Post_write.class);
-                    break;
-            }
-        }
-    };
+//    View.OnClickListener onClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            switch (view.getId()) {
+//                case R.id.floatingActionButton:
+//                    myStartActivity(Post_write.class);
+//                    break;
+//            }
+//        }
+//    };
 
 
     @Override
@@ -165,10 +165,10 @@ public class Post_info extends Fragment {
         super.onStop();
     }
 
-    private void myStartActivity(Class c) {
-        Intent intent = new Intent(getActivity(), c);
-        startActivityForResult(intent, 0);
-    }
+//    private void myStartActivity(Class c) {
+//        Intent intent = new Intent(getActivity(), c);
+//        startActivityForResult(intent, 0);
+//    }
 }
 
 /*

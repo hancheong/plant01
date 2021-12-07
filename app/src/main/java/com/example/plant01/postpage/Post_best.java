@@ -46,22 +46,22 @@ public class Post_best extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.post_best, container, true);
-        view.findViewById(R.id.add_post).setOnClickListener(onClickListener);
-//        showBoard();
+//        view.findViewById(R.id.add_post).setOnClickListener(onClickListener);
+
         return view;
     }
-    //작성페이지로 이동하는 버튼
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.add_post:
-                    //startActivity(new Intent(testPostData.this, Post_write.class));
-                    myStartActivity(Post_write.class);
-                    break;
-            }
-        }
-    };
+//    //작성페이지로 이동하는 버튼
+//    View.OnClickListener onClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            switch (view.getId()) {
+//                case R.id.add_post:
+//                    //startActivity(new Intent(testPostData.this, Post_write.class));
+//                    myStartActivity(Post_write.class);
+//                    break;
+//            }
+//        }
+//    };
 
     @Override
     public void onStart() {
@@ -186,8 +186,8 @@ public class Post_best extends Fragment {
         super.onStop();
     }
 
-    private void myStartActivity(Class c) {
-        Intent intent = new Intent(getActivity(), c);
-        startActivityForResult(intent, 0);
-    }
+//    private void myStartActivity(Class c) {
+//        Intent intent = new Intent(getActivity(), c);
+//        startActivityForResult(intent, 0);
+//    }
 }

@@ -43,8 +43,8 @@ public class Post_free extends  Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.test_post_data, container, false);
-        view.findViewById(R.id.add_post).setOnClickListener(onClickListener);
+        view = inflater.inflate(R.layout.post_data, container, false);
+//        view.findViewById(R.id.add_post).setOnClickListener(onClickListener);
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
@@ -73,17 +73,17 @@ public class Post_free extends  Fragment {
 
         return view;
     }
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.add_post:
-                    //startActivity(new Intent(testPostData.this, Post_write.class));
-                    myStartActivity(Post_write.class);
-                    break;
-            }
-        }
-    };
+//    View.OnClickListener onClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            switch (view.getId()) {
+//                case R.id.add_post:
+//                    //startActivity(new Intent(testPostData.this, Post_write.class));
+//                    myStartActivity(Post_write.class);
+//                    break;
+//            }
+//        }
+//    };
 
     /*-----------------어댑터와 데이터 연결----------------------*/
     public void showPost(){
@@ -108,10 +108,10 @@ public class Post_free extends  Fragment {
             }
         });
     }
-    private void myStartActivity(Class c) {
-        Intent intent = new Intent(getActivity(), c);
-        startActivityForResult(intent, 0);
-    }
+//    private void myStartActivity(Class c) {
+//        Intent intent = new Intent(getActivity(), c);
+//        startActivityForResult(intent, 0);
+//    }
 
 }
 

@@ -52,17 +52,10 @@ public class Post_write extends AppCompatActivity {
     private Uri galleryUri;
     private byte[] data1;
     private ImageView uploadimg;
-//    String postid;
     String postID = UUID.randomUUID().toString();
 
     @Override
     public void onBackPressed() {
-//        if(Post_write != null){ //상세정보창 프래그먼트를 킨 상태면 뒤로가기했을 때 해당 프래그먼트를 삭제해줌
-//            getSupportFragmentManager().beginTransaction().remove((Fragment) Post_write).commit();
-//            Post_write = null;
-//        }else {
-//            super.onBackPressed();
-//        }
         super.onBackPressed();
     }
 
@@ -71,14 +64,13 @@ public class Post_write extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_write);
 
-
-        Title = (EditText) findViewById(R.id.title);
-        Contents = (EditText) findViewById(R.id.contentEditText);
-        Image = (Button) findViewById(R.id.img);
-        Video = (Button) findViewById(R.id.vod);
-        Post = (Button) findViewById(R.id.postbtn);
-        back = (ImageButton) findViewById(R.id.post_back);
-        spinner = (Spinner) findViewById(R.id.spinner);
+        Title = (EditText) findViewById(R.id.post_Title);
+        Contents = (EditText) findViewById(R.id.post_Content);
+        Image = (Button) findViewById(R.id.post_AddImage);
+        Video = (Button) findViewById(R.id.post_AddVideo);
+        Post = (Button) findViewById(R.id.post_Btn);
+        back = (ImageButton) findViewById(R.id.post_Back);
+        spinner = (Spinner) findViewById(R.id.post_Spinner);
         uploadimg = (ImageView) findViewById(R.id.post_uploadImg);
 
         db = FirebaseFirestore.getInstance();
@@ -86,7 +78,6 @@ public class Post_write extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 onBackPressed();
             }
         });
@@ -95,7 +86,6 @@ public class Post_write extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
-
                 intent.setType("image/*");
                 startActivityForResult(intent, 1);
             }
@@ -185,8 +175,6 @@ public class Post_write extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 

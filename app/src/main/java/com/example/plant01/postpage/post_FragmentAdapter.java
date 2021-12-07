@@ -12,12 +12,10 @@ public class post_FragmentAdapter extends FragmentStateAdapter {
 //    }
 
     //카테고리와 연결
-
     public post_FragmentAdapter(@NonNull FragmentManager fm, Lifecycle lifecycle) {
         super(fm, lifecycle);
     }
-
-
+    //카테고리 이동부분
     @NonNull
     @Override
     public Fragment createFragment(int position) {

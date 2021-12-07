@@ -8,7 +8,7 @@
     tools:ignore="MissingDefaultResource">
 
     <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/postdrawerLayout"
+        android:id="@+id/post_drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,13 +18,13 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/post_top"
+                android:id="@+id/post_Top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/more"
+                    android:id="@+id/post_More"
                     android:layout_width="35dp"
                     android:layout_height="48dp"
                     android:layout_marginTop="7dp"
@@ -33,7 +33,7 @@
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <TextView
-                    android:id="@+id/Post"
+                    android:id="@+id/post_Post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
@@ -47,20 +47,21 @@
                     android:layout_weight="1" />
 
                 <ImageButton
-                    android:id="@+id/search"
+                    android:id="@+id/post_Search"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/post_search" />
             </LinearLayout>
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
+                android:id="@+id/post_TabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/post_top">
+                android:layout_below="@id/post_Top">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
@@ -75,19 +76,19 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="질문게시판" />
+                    android:text="자유게시판" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="자유게시판" />
+                    android:text="정보게시판" />
             </com.google.android.material.tabs.TabLayout>
 
             <LinearLayout
                 android:id="@+id/post_vp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/tab_layout">
+                android:layout_below="@id/post_TabLayout">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/post_viewpage"
@@ -113,14 +114,14 @@
     </androidx.drawerlayout.widget.DrawerLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_post_main"
+        android:id="@+id/post_AddButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom|right"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:clickable="true"
         android:contentDescription="TODO"
         android:minWidth="48dp"

@@ -39,7 +39,7 @@ public class PostMainActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.post_main_fragment, container, false);
-        view.findViewById(R.id.add_post_main).setOnClickListener(onClickListener);
+        view.findViewById(R.id.post_AddButton).setOnClickListener(onClickListener);
 
         return view;
 
@@ -48,7 +48,7 @@ public class PostMainActivity extends Fragment {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.add_post_main:
+                case R.id.post_AddButton:
                     Intent intent = new Intent(getActivity(), Post_write.class);
 //                        myStartActivity(Post_write.class);
                     startActivity(intent);
@@ -57,16 +57,10 @@ public class PostMainActivity extends Fragment {
         }
     };
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//    }
-
         @Override
     public void onResume() {
         super.onResume();
-            tabLayout = getView().findViewById(R.id.tab_layout);
+            tabLayout = getView().findViewById(R.id.post_TabLayout);
             //게시글 담을 페이지
             pager2 = getView().findViewById(R.id.post_viewpage);
             //FragmentAdapter에서 카테고리 선택하여 페이지 이동
@@ -82,12 +76,10 @@ public class PostMainActivity extends Fragment {
                 public void onTabSelected(TabLayout.Tab tab) {
                     pager2.setCurrentItem(tab.getPosition());
                 }
-
                 @Override
                 public void onTabUnselected(TabLayout.Tab tab) {
 
                 }
-
                 @Override
                 public void onTabReselected(TabLayout.Tab tab) {
 
@@ -102,7 +94,7 @@ public class PostMainActivity extends Fragment {
                 }
             });
             //드로워
-            final DrawerLayout drawerLayout = (DrawerLayout) getView().findViewById(R.id.postdrawerLayout);
+            final DrawerLayout drawerLayout = (DrawerLayout) getView().findViewById(R.id.post_drawerLayout);
             NavigationView navigationView = getView().findViewById(R.id.post_drawer);
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -125,27 +117,12 @@ public class PostMainActivity extends Fragment {
                 @Override
                 public void onClick(View v) {
                     switch (v.getId()) {
-                        case R.id.more: //햄버거 버튼
+                        case R.id.post_More: //햄버거 버튼
                             drawerLayout.openDrawer(GravityCompat.START);
                     }
-
                 }
             };
-            getView().findViewById(R.id.more).setOnClickListener(cl);
-
-
+            getView().findViewById(R.id.post_More).setOnClickListener(cl);
         }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//    }
 }
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        //post_activitiy_main에서 상단 카테고리 목록
-//
-//}

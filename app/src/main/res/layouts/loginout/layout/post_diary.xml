@@ -90,19 +90,19 @@
         android:text="몬스테라(학명: Monstera deliciosa 몬스테라 델리키오사)는 천남성과의 반덩굴성 식물로 열대 아메리카가 원산지이다. \n약 20여 종의 큰 목본 덩굴식물인 몬스테라는 다른 식물을 타고 올라가면서 자라는 착생식물이다."
         tools:ignore="MissingConstraints" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:foregroundGravity="center"
-        app:backgroundTint="#A6E85A"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/add_post"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="end"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:clickable="true"-->
+<!--        android:foregroundGravity="center"-->
+<!--        app:backgroundTint="#A6E85A"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:srcCompat="@android:drawable/ic_menu_edit"-->
+<!--        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

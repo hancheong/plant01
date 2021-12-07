@@ -12,18 +12,18 @@
         tools:listitem="@layout/post_list_item"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:foregroundGravity="center"
-        app:backgroundTint="#A6E85A"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/add_post"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="end"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:clickable="true"-->
+<!--        android:foregroundGravity="center"-->
+<!--        app:backgroundTint="#A6E85A"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:srcCompat="@android:drawable/ic_menu_edit"-->
+<!--        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

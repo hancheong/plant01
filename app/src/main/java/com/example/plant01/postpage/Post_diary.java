@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plant01.R;
-import com.example.plant01.test.PostItem;
-import com.example.plant01.test.PostItemAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
@@ -35,16 +33,16 @@ public class Post_diary extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
     private FloatingActionButton fab;
-    private PostItemAdapter adapter;
-    private ArrayList<PostItem> postItemArrayList;
+    private post_PostItemAdapter adapter;
+    private ArrayList<post_PostItem> postItemArrayList;
     private Query query;
     private ListenerRegistration listenerRegistration;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.test_post_data, container, false);
-        view.findViewById(R.id.add_post).setOnClickListener(onClickListener);
+        view = inflater.inflate(R.layout.post_data, container, false);
+//        view.findViewById(R.id.add_post).setOnClickListener(onClickListener);
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
@@ -53,8 +51,8 @@ public class Post_diary extends Fragment {
         mRecyclerView = view.findViewById(R.id.post_recyclerview);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        postItemArrayList = new ArrayList<PostItem>();
-        adapter = new PostItemAdapter(getContext(),postItemArrayList);
+        postItemArrayList = new ArrayList<post_PostItem>();
+        adapter = new post_PostItemAdapter(getContext(),postItemArrayList);
         mRecyclerView.setAdapter(adapter);
         showPost();
 
@@ -71,16 +69,16 @@ public class Post_diary extends Fragment {
         });
         return view;
     }
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.add_post:
-                    myStartActivity(Post_write.class);
-                    break;
-            }
-        }
-    };
+//    View.OnClickListener onClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            switch (view.getId()) {
+//                case R.id.add_post:
+//                    myStartActivity(Post_write.class);
+//                    break;
+//            }
+//        }
+//    };
 
     /*-----------------어댑터와 데이터 연결----------------------*/
     public void showPost(){
@@ -93,7 +91,7 @@ public class Post_diary extends Fragment {
                 postItemArrayList.clear();
                 for (DocumentChange doc : value.getDocumentChanges()) {
                     if (doc.getType() == DocumentChange.Type.ADDED) {
-                        PostItem postItem = doc.getDocument().toObject(PostItem.class);
+                        post_PostItem postItem = doc.getDocument().toObject(post_PostItem.class);
                         postItemArrayList.add(postItem);
                         adapter.notifyDataSetChanged();
 //                        Log.e("포스트 ", value.getDocuments().toString());
@@ -106,10 +104,10 @@ public class Post_diary extends Fragment {
         });
     }
 
-    private void myStartActivity(Class c) {
-        Intent intent = new Intent(getActivity(), c);
-        startActivityForResult(intent, 0);
-    }
+//    private void myStartActivity(Class c) {
+//        Intent intent = new Intent(getActivity(), c);
+//        startActivityForResult(intent, 0);
+//    }
 
 }
 

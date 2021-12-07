@@ -11,21 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
-        android:clickable="true"
-        android:contentDescription="TODO"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:backgroundTint="#A6E85A"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:ignore="SpeakableTextPresentCheck" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/floatingActionButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginEnd="2dp"-->
+<!--        android:layout_marginBottom="2dp"-->
+<!--        android:clickable="true"-->
+<!--        android:contentDescription="TODO"-->
+<!--        android:minWidth="48dp"-->
+<!--        android:minHeight="48dp"-->
+<!--        app:backgroundTint="#A6E85A"-->
+<!--        app:srcCompat="@android:drawable/ic_menu_edit"-->
+<!--        tools:ignore="SpeakableTextPresentCheck" />-->
 
 </RelativeLayout>
 

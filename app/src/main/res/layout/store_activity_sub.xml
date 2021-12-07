@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
 <!-- 사용자 설정 -->
+    <!--로고-->
     <ImageView
         android:id="@+id/HamBurger"
         android:layout_width="74dp"
@@ -20,8 +21,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-<!--로고-->
+        app:layout_constraintVertical_bias="0.011" />
+
+    <!--검색창-->
+    <!--카테고리-->
     <TextView
         android:id="@+id/StoreTitle"
         android:layout_width="wrap_content"
@@ -36,27 +39,27 @@
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintHorizontal_bias="0.198"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-<!--검색창-->
+        app:layout_constraintVertical_bias="0.011" />
+
     <ImageButton
         android:id="@+id/store_search"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="35dp"
+        android:layout_height="38dp"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025"
-        android:background="@android:color/transparent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/post_search" />
-<!--카테고리-->
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabla"
         android:layout_width="match_parent"

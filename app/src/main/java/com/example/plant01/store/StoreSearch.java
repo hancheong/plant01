@@ -92,6 +92,9 @@ public class StoreSearch extends AppCompatActivity {
         list.add("test 3");
         list.add("test 4");
         list.add("test 5");
+        list.add("초보집사");
+        list.add("옥잠화");
+
     }
 }
 

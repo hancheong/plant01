@@ -194,17 +194,20 @@ public class Post_write extends AppCompatActivity {
         StorageReference storageRef = storage.getReference();
 //        Log.e("timestamp",Timestamp.n;
         StorageReference mountainImagesRef = storageRef.child("PostImg/"+user.getUid()+"/i.jpg");
-        UploadTask uploadTask = mountainImagesRef.putFile(galleryUri);
-        Log.e("data1", galleryUri.toString());
-        Log.e("timestmap2", date);
-        mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Log.e("이미지주소", uri.toString());
-                db.collection("Post").document(postID)
-                        .update("contentImg", uri.toString());
-            }
-        });
+        if(galleryUri != null){
+            UploadTask uploadTask = mountainImagesRef.putFile(galleryUri);
+            Log.e("data1", galleryUri.toString());
+            Log.e("timestmap2", date);
+            mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Log.e("이미지주소", uri.toString());
+                    db.collection("Post").document(postID)
+                            .update("contentImg", uri.toString());
+                }
+            });
+        }
+
 
     }
 }

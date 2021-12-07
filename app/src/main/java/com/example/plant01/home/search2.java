@@ -114,14 +114,12 @@ public class search2 extends AppCompatActivity {
 
     private void Analysis(){
         Intent intent = getIntent(); /*데이터 수신*/
-        Uri uri = intent.getParcelableExtra("uri");
+        Bitmap uri = intent.getParcelableExtra("uri");
         Log.e("uri", uri.toString());
-        try {
-            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-            imageView.setImageBitmap(bitmap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        bitmap = uri;
+//        imageView.setImageBitmap(bitmap);
+
         try{
 
             tflite=new Interpreter(loadmodelfile(search2.this));
@@ -166,7 +164,7 @@ public class search2 extends AppCompatActivity {
     }
 
     private MappedByteBuffer loadmodelfile(Activity activity) throws IOException {
-        AssetFileDescriptor fileDescriptor=activity.getAssets().openFd("model_unquant.tflite");
+        AssetFileDescriptor fileDescriptor=activity.getAssets().openFd("model.tflite");
         FileInputStream inputStream=new FileInputStream(fileDescriptor.getFileDescriptor());
         FileChannel fileChannel=inputStream.getChannel();
         long startoffset = fileDescriptor.getStartOffset();

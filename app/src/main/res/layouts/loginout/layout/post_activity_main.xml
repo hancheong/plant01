@@ -67,6 +67,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/post_viewpage"
             android:layout_width="413dp"
+            android:background="@color/backgroud"
             android:layout_height="627dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

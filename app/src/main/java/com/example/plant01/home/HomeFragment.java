@@ -2,9 +2,14 @@ package com.example.plant01.home;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -65,7 +70,6 @@ public class HomeFragment extends Fragment {
     private FirebaseDatabase database;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
-    private static  final int PERMISSION_CODE = 1001;
     private DatabaseReference databaserf;
     private FirebaseFirestore db;
     private View.OnClickListener cl;
@@ -172,21 +176,26 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void PickImageFromGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent,1 );
+    public void PickImageFromGallery() {
+        Intent intent=new Intent();
+            if(getActivity().checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED){
+                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(Intent.createChooser(intent,"Select Picture"),12);
+            }else {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
+            }
+
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
+        if (requestCode==12 && resultCode==RESULT_OK && data!=null) {
 
-            searchimg = data.getData();
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             Intent intent = new Intent(getActivity(),search2.class);
-            intent.putExtra("uri",searchimg);
+            intent.putExtra("uri", bitmap);
             startActivity(intent);
 
         }

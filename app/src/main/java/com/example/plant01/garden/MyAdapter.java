@@ -48,7 +48,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         activity.startActivity(intent);
     }
 
-
+    //데이터 삭제
     public void deleteData(int position){
         Model item = mList.get(position);
         db.collection("Myplants").document(item.getId()).delete()
@@ -88,8 +88,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Glide.with(activity).load(mList.get(position).getProfileUri()).into(holder.profile);
         holder.name.setText(mList.get(position).getName());
-        holder.location.setText(mList.get(position).getLocation());
-        holder.date.setText(mList.get(position).getDate());
+//        holder.location.setText(mList.get(position).getLocation());
+//        holder.date.setText(mList.get(position).getDate());
 
 
     }

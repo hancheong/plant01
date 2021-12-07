@@ -2,6 +2,7 @@ package com.example.plant01.garden;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +13,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plant01.R;
+import com.example.plant01.test.PostItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.MetadataChanges;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -115,12 +125,13 @@ public class MyGarden extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
 
         main_recyclerView = getView().findViewById((R.id.myplant_recycle));
         main_recyclerView.setHasFixedSize(true);
         main_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Log.e("내정원", "내정원");
 
 
         db = FirebaseFirestore.getInstance();
@@ -132,27 +143,59 @@ public class MyGarden extends Fragment {
 
 
         showData();
+//        showModify();
     }
 
-    private void  showData(){
 
-        db.collection("Myplants").get()
+    //DB에 입력한 데이터 보여주기
+    private void  showData(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        db.collection("Myplants").whereEqualTo("userID", user.getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
-                        for (DocumentSnapshot snapshot : task.getResult()){
-                            Model model = new Model(snapshot.getString("id"),snapshot.getString("profileUri"),snapshot.getString("name"),snapshot.getString("location"),snapshot.getString("date"));
+                        for (DocumentSnapshot snapshot : task.getResult()) {
+                            Model model = new Model(snapshot.getString("id"), snapshot.getString("profileUri"), snapshot.getString("name"), snapshot.getString("location"), snapshot.getString("date"));
                             list.add(model);
                         }
                         myAdapter.notifyDataSetChanged();
+//                    }
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(),"something went wrong",Toast.LENGTH_SHORT).show();
-            }
-        });
+                    });
+
+
+//                    list.add(model);
+//                    myAdapter.notifyDataSetChanged();
+//                for (DocumentChange doc : query.getDocumentChanges()) {
+////                    if (doc.getType() == DocumentChange.Type.ADDED) {
+//                        Model model = doc.getDocument().toObject(Model.class);
+////                        PostItem postItem = doc.getDocument().toObject(PostItem.class);
+//                        list.add(model);
+//                        myAdapter.notifyDataSetChanged();
+////                        Log.e("포스트 ", value.getDocuments().toString());
+////                    } else {
+////                        myAdapter.notifyDataSetChanged();
+////                    }
+//                }
+//            }
+//        });
+//        {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        list.clear();
+//                        for (DocumentSnapshot snapshot : task.getResult()){
+//                            Model model = new Model(snapshot.getString("id"),snapshot.getString("profileUri"),snapshot.getString("name"),snapshot.getString("location"),snapshot.getString("date"));
+//                            list.add(model);
+//                        }
+//                        myAdapter.notifyDataSetChanged();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(getActivity(),"something went wrong",Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 }

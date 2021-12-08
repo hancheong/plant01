@@ -17,15 +17,15 @@ public class store_categoryadapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0 :
-                return store.newInstance();
+                return store_Main.newInstance();
             case 1 :
-                return store_recommendgoods.newInstance();
+                return store_RecommendGoods.newInstance();
             case 2 :
-                return store_recommendgoods.newInstance();
+                return store_RecommendGoods.newInstance();
             case 3 :
-                return store_recommendgoods.newInstance();
+                return store_RecommendGoods.newInstance();
             case 4 :
-                return store_recommendgoods.newInstance();
+                return store_RecommendGoods.newInstance();
             default :
                 return null;
         }

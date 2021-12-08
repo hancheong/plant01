@@ -1,11 +1,11 @@
 package com.example.plant01.store;
 
-public class StoreGoods {
+public class store_Goods {
     String goodsImg, storeName, goodsTitle, goodsReview, goodsPrice;
 
-    public StoreGoods(String s){}
+    public store_Goods(String s){}
 
-    public StoreGoods(String goodsImg, String storeName, String goodsTitle, String goodsReview, String goodsPrice) {
+    public store_Goods(String goodsImg, String storeName, String goodsTitle, String goodsReview, String goodsPrice) {
         this.goodsImg = goodsImg;
         this.storeName = storeName;
         this.goodsTitle = goodsTitle;

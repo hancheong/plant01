@@ -1,6 +1,5 @@
 package com.example.plant01.store;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +15,7 @@ import com.example.plant01.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreSearch extends AppCompatActivity {
+public class store_Search extends AppCompatActivity {
 
     private List<String> list;          // 데이터를 넣은 리스트변수
     private AutoCompleteTextView search;
@@ -54,7 +52,7 @@ public class StoreSearch extends AppCompatActivity {
             public boolean onKey(View v, int keyCode, KeyEvent event){
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    Intent intent = new Intent(getApplicationContext(),StoreSearchResult.class);
+                    Intent intent = new Intent(getApplicationContext(), store_SearchResult.class);
                     intent.putExtra("contact_search", search.getText().toString());
                     startActivity(intent);//액티비티 띄우기
                     return true;

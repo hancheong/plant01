@@ -24,13 +24,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Store_RecommendList extends AppCompatActivity {
+public class store_RecommendList extends AppCompatActivity {
 
     ImageButton store_back, img1, img2, img3, img4, img5;
     private RecyclerView recyclerView;
     private FirebaseFirestore db;
     private store_GoodsAdapter2 store_goodsAdapter2;
-    private List <StoreGoods> list;
+    private List <store_Goods> list;
     private ImageButton store_resultback;
     private store_GoodsAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -79,7 +79,7 @@ public class Store_RecommendList extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
                             list.add(storeGoods);
                         }
                         store_goodsAdapter2.notifyDataSetChanged();
@@ -87,7 +87,7 @@ public class Store_RecommendList extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Store_RecommendList.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_RecommendList.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
     }

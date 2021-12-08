@@ -74,7 +74,7 @@
             android:exported="true" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".store.MainActivity"
+            android:name=".store.navi_MainActivity"
             android:exported="true" />
         <activity
             android:name=".postpage.GalleryActivity"
@@ -89,18 +89,18 @@
             android:name=".postpage.post_DrawerNotice"
             android:exported="true" />
         <activity
-            android:name=".store.Recommend"
+            android:name=".store.store_Recommend"
             android:exported="true" />
         <activity
-            android:name=".store.Store_RecommendList"
+            android:name=".store.store_RecommendList"
             android:exported="true" />
         <activity
-            android:name=".store.StoreSearch"
+            android:name=".store.store_Search"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity
-            android:name=".store.StoreSearchResult"
+            android:name=".store.store_SearchResult"
             android:exported="true" />
         <activity
             android:name=".store.intro"

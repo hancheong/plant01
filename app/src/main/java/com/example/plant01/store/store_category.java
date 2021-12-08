@@ -8,12 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.plant01.R;
@@ -24,8 +21,8 @@ public class store_category extends Fragment {
 
     int i=0;
     ViewPager viewPager;
-    private store category1;
-    private store_recommendgoods category2;
+    private store_Main category1;
+    private store_RecommendGoods category2;
     private ImageButton btn_search;
     public store_category(){
     }
@@ -49,7 +46,7 @@ public class store_category extends Fragment {
         btn_search.setOnClickListener(new View.OnClickListener() { // 검색 버튼 눌러서 검색페이지 이동
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), StoreSearch.class);
+                Intent intent = new Intent(getActivity(), store_Search.class);
                 startActivity(intent);
             }
         });

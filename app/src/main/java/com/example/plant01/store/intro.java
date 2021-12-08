@@ -21,7 +21,7 @@ public class intro extends Activity {
 // 4초뒤에 다음화면(PostMainActivity)으로 넘어가기 Handler 사용
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if(user != null){
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), navi_MainActivity.class);
                 startActivity(intent); // 다음화면으로 넘어가기
                 finish(); // Activity 화면 제거
             }else {

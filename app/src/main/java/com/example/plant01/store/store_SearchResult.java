@@ -26,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreSearchResult extends AppCompatActivity {
+public class store_SearchResult extends AppCompatActivity {
 
     private ImageButton store_resultback;
     private RecyclerView recyclerView;
@@ -34,7 +34,7 @@ public class StoreSearchResult extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private FirebaseFirestore db;
     private store_GoodsAdapter store_goodsAdapter;
-    private List<StoreGoods> list;
+    private List<store_Goods> list;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private TextView nothing;
@@ -97,7 +97,7 @@ public class StoreSearchResult extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("StoreName"),snapshot.getString("GoodsTitle"),snapshot.getString("GoodsReview"),snapshot.getString("GoodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("StoreName"),snapshot.getString("GoodsTitle"),snapshot.getString("GoodsReview"),snapshot.getString("GoodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();
@@ -105,7 +105,7 @@ public class StoreSearchResult extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StoreSearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_SearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -121,7 +121,7 @@ public class StoreSearchResult extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();
@@ -129,7 +129,7 @@ public class StoreSearchResult extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StoreSearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_SearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -144,7 +144,7 @@ public class StoreSearchResult extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();
@@ -152,7 +152,7 @@ public class StoreSearchResult extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StoreSearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_SearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -167,7 +167,7 @@ public class StoreSearchResult extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();
@@ -175,7 +175,7 @@ public class StoreSearchResult extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StoreSearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_SearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -188,7 +188,7 @@ public class StoreSearchResult extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();
@@ -196,7 +196,7 @@ public class StoreSearchResult extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StoreSearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_SearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
     }

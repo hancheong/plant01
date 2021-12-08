@@ -16,10 +16,10 @@ import java.util.List;
 
 public class store_GoodsAdapter2 extends RecyclerView.Adapter<store_GoodsAdapter2.store_viewholder> {
 
-    private Store_RecommendList activity;
-    private List<StoreGoods> goodsList;
+    private store_RecommendList activity;
+    private List<store_Goods> goodsList;
 
-    public store_GoodsAdapter2(Store_RecommendList activity, List<StoreGoods> goodsList){
+    public store_GoodsAdapter2(store_RecommendList activity, List<store_Goods> goodsList){
         this.activity = activity;
         this.goodsList = goodsList;
     }

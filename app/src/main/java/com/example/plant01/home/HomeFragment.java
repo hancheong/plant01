@@ -168,17 +168,6 @@ public class HomeFragment extends Fragment {
                     case R.id.home_btn_search:
                         PickImageFromGallery();
 
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-//                            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-//                                    == PackageManager.PERMISSION_DENIED) {
-//                                String [] permission = {Manifest.permission.READ_EXTERNAL_STORAGE};
-//                                requestPermissions(permission, PERMISSION_CODE);
-//                            }
-//
-//                            else {PickImageFromGallery();}
-//                        }
-//                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                        startActivityForResult(intent, 1);
                         break;
                 }
 
@@ -189,6 +178,7 @@ public class HomeFragment extends Fragment {
 
     }
 
+    /*--------------------------카메라 권한--------------------------------*/
     public void PickImageFromGallery() {
         Intent intent=new Intent();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -281,7 +271,7 @@ public class HomeFragment extends Fragment {
                 Log.e("myplantnicktxt", myplantnicktxt);
                 Log.e("문서아이디", doc.getId());
                 String myplantimgtxt = (String) doc.get("profileUri");
-                String myplantplantname = (String) doc.get("plantName");
+                String myplantplantname = (String) doc.get("type");
                 String myplantrecentWater = (String) doc.get("recentWater");
 
                 manager.setOnClickListener(new View.OnClickListener() {
@@ -293,7 +283,7 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-
+                /*-----------------내 식물 물주기 남은 날짜 가져오기-----------------------------------*/
                 db.collection("Plants").whereEqualTo("plantName", myplantplantname)
                         .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -316,11 +306,10 @@ public class HomeFragment extends Fragment {
                             cal.setTime(date);
                             cal.add(Calendar.DATE, + plantWaterCycle);
                             long chai = cal.getTimeInMillis();
-                            Log.e("차이", String.valueOf(chai));
                             long now_day = today.getTimeInMillis();
-                            Log.e("오늘", String.valueOf(now_day));
                             long d_day = (chai - now_day) / (60*60*24*1000);
-                            Log.e("남은날짜", String.valueOf(d_day));
+
+
                             managerplantdate.setText(String.valueOf(d_day));
                             managerplantname.setText(myplantnicktxt);
                             Glide.with(getContext())
@@ -335,24 +324,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-//        db.collection("Myplnats").whereEqualTo("userID", user.getUid()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                ArrayList<String> myplantRecentWater = new ArrayList<>();
-//                ArrayList<String> myplantPlantID = new ArrayList<>();
-//                for (QueryDocumentSnapshot document : task.getResult()) {
-//                    myplantidlist.add(document.getId());
-//                    db.collection("Myplants").document(document.getId()).get()
-//
-//                }
-//                for(int i = 0; i < myplantidlist.size(); i++) {
-//                    db.collection("Myplants").document(myplantidlist.get(i)).get().addOnCompleteListener(new OnCompleteListener<>())
-//
-//                }
-//
-//
-//            }
-//        });
 
 
 

@@ -74,7 +74,6 @@
                     android:layout_height="wrap_content">
 
 
-                    //내 식물 관리
 
                     <com.smarteist.autoimageslider.SliderView
                         android:id="@+id/main_slider"
@@ -114,7 +113,7 @@
                         android:textStyle="bold" />
 
 
-                    //식물추천
+                    //내식물 관리
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/myplant_manage_card"
@@ -128,14 +127,14 @@
 
                         <ImageView
                             android:id="@+id/home_mangerImg"
-                            android:layout_width="170dp"
+                            android:layout_width="155dp"
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
-                            android:src="@drawable/store_img6" />
+                            android:src="@mipmap/store_icon" />
 
                         <ImageView
-                            android:id="@+id/btn_et_myplant"
+                            android:id="@+id/btn_myplant"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="bottom|right"
@@ -148,7 +147,7 @@
                             android:layout_width="182dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|end"
-                            android:layout_marginRight="15dp">
+                            android:layout_marginRight="25dp">
 
                             <TextView
                                 android:id="@+id/textView4"
@@ -165,7 +164,6 @@
                                 android:id="@+id/tv_manager_plantname"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="뿌리지아"
                                 android:textColor="@color/maincolor"
                                 android:textSize="25dp"
                                 android:textStyle="bold"
@@ -177,7 +175,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="12dp"
-                                android:text="10"
                                 android:textColor="@color/maincolor"
                                 android:textSize="25dp"
                                 android:textStyle="bold"

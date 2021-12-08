@@ -83,10 +83,12 @@ public class search2 extends AppCompatActivity {
 
         try{
 
+            /*----------------검색 준비 ------------*/
             tflite=new Interpreter(loadmodelfile(search2.this));
         }catch (Exception e) {
             e.printStackTrace();
         }
+        /*------------------이미지를 텐서플로우가 인식할 수 있도록 바꾸는 설정값들---------*/
         int imageTensorIndex = 0;
         int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
         imageSizeY = imageShape[1];
@@ -102,9 +104,13 @@ public class search2 extends AppCompatActivity {
         outputProbabilityBuffer = TensorBuffer.createFixedSize(probabilityShape, probabilityDataType);
         probabilityProcessor = new TensorProcessor.Builder().add(getPostprocessNormalizeOp()).build();
 
+        /*------이미지를 텐서플로우에 인식하는 이미지로 -------------*/
         inputImageBuffer = loadImage(bitmap);
 
+        /*------------텐서플로우에 이미지 넣고 돌리기기------------------*/
         tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
+
+        /*-----------결과 보여주기-----------------*/
         showresult();
     }
 
@@ -115,6 +121,9 @@ public class search2 extends AppCompatActivity {
         // Creates processor for the TensorImage.
         int cropSize = Math.min(bitmap.getWidth(), bitmap.getHeight());
         // TODO(b/143564309): Fuse ops inside ImageProcessor.
+
+
+        /*-----------이미지를 텐서플로우에 입력할 수 있는 만큼의 크기로 설정하는 부분 ---------------*/
         ImageProcessor imageProcessor =
                 new ImageProcessor.Builder()
                         .add(new ResizeWithCropOrPadOp(cropSize, cropSize))
@@ -124,6 +133,7 @@ public class search2 extends AppCompatActivity {
         return imageProcessor.process(inputImageBuffer);
     }
 
+    /*----------------------학습된 파일 열기---------------------------------*/
     private MappedByteBuffer loadmodelfile(Activity activity) throws IOException {
         AssetFileDescriptor fileDescriptor=activity.getAssets().openFd("model.tflite");
         FileInputStream inputStream=new FileInputStream(fileDescriptor.getFileDescriptor());
@@ -142,16 +152,23 @@ public class search2 extends AppCompatActivity {
 
     public void showresult(){
 
+        /*--------------------------assets에있는 labels.txt를 가져옴--------------------------------*/
         try{
             labels = FileUtil.loadLabels(this,"labels.txt");
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        /*----------------------결과값이 이미지의 확률정보를 순서대로 나열함 -------------------------*/
         Map<String, Float> labeledProbability =
                 new TensorLabel(labels, probabilityProcessor.process(outputProbabilityBuffer))
                         .getMapWithFloatValue();
+        /*---------------분석해서 확률정보가 가장 큰것을 저장--------------*/
         float maxValueInMap =(Collections.max(labeledProbability.values()));
 
+
+        /*----------------Map.Entry에 저장하고, 그 값이  maxValue인것의 이름을 가져와 결과화면으로 값 전다 ------------*/
+        //labeledProbability의 키와 값 만큼 반복
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
             if (entry.getValue()==maxValueInMap) {
                 Intent intent1 = new Intent(search2.this, SearchResult.class);

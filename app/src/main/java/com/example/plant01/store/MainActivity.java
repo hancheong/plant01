@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.store_activity_main);
 
 
-        bottomNavigationView = findViewById(R.id.Navigation); // 네비게이션 아이콘을 누를시 해당 화면으로 이동
+        bottomNavigationView = findViewById(R.id.store_Navigation); // 네비게이션 아이콘을 누를시 해당 화면으로 이동
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -86,19 +86,19 @@ public class MainActivity extends AppCompatActivity {
         ft = fm.beginTransaction();
         switch (n) {
             case 0:
-                ft.replace(R.id.Frame, HomeFragment);
+                ft.replace(R.id.store_Frame, HomeFragment);
                 ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.Frame, MyGarden);
+                ft.replace(R.id.store_Frame, MyGarden);
                 ft.commit();
                 break;
             case 2:
-                ft.replace(R.id.Frame, mainActivity);
+                ft.replace(R.id.store_Frame, mainActivity);
                 ft.commit();
                 break;
             case 3:
-                ft.replace(R.id.Frame, store_category);
+                ft.replace(R.id.store_Frame, store_category);
                 ft.commit();
                 break;
 

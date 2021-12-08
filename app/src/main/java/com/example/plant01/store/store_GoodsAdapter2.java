@@ -27,7 +27,7 @@ public class store_GoodsAdapter2 extends RecyclerView.Adapter<store_GoodsAdapter
     @NonNull
     @Override
     public store_viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(activity).inflate(R.layout.regoods, parent,false);
+        View v = LayoutInflater.from(activity).inflate(R.layout.store_regoods, parent,false);
         return new store_viewholder(v);
     }
 
@@ -55,11 +55,11 @@ public class store_GoodsAdapter2 extends RecyclerView.Adapter<store_GoodsAdapter
         public store_viewholder(@NonNull View itemView) {
             super(itemView);
 
-            img0 = itemView.findViewById(R.id.recommend_img0);
-            store0 = itemView.findViewById(R.id.recommend_store0);
-            title0 = itemView.findViewById(R.id.recommend_title0);
-            review0 = itemView.findViewById(R.id.recommend_review0);
-            price0 = itemView.findViewById(R.id.recommend_price0);
+            img0 = itemView.findViewById(R.id.store_RecommendImg0);
+            store0 = itemView.findViewById(R.id.store_RecommendStore0);
+            title0 = itemView.findViewById(R.id.store_RecommendTitle0);
+            review0 = itemView.findViewById(R.id.store_RecommendReview0);
+            price0 = itemView.findViewById(R.id.store_RecommendPrice0);
         }
     }
 }

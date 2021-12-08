@@ -9,7 +9,7 @@
 <!-- 사용자 설정 -->
     <!--로고-->
     <ImageView
-        android:id="@+id/HamBurger"
+        android:id="@+id/store_HamBurger"
         android:layout_width="74dp"
         android:layout_height="46dp"
         android:layout_alignParentStart="true"
@@ -26,7 +26,7 @@
     <!--검색창-->
     <!--카테고리-->
     <TextView
-        android:id="@+id/StoreTitle"
+        android:id="@+id/store_Title"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_row="0"
@@ -45,7 +45,7 @@
         app:layout_constraintVertical_bias="0.011" />
 
     <ImageButton
-        android:id="@+id/store_search"
+        android:id="@+id/store_Search"
         android:layout_width="35dp"
         android:layout_height="38dp"
         android:layout_alignParentRight="true"
@@ -61,12 +61,12 @@
         app:srcCompat="@drawable/post_search" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabla"
+        android:id="@+id/store_Tabla"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StoreTitle"
+        app:layout_constraintTop_toBottomOf="@+id/store_Title"
         app:tabIndicatorColor="#878787"
         app:tabTextColor="#878787">
 
@@ -99,7 +99,7 @@
     </com.google.android.material.tabs.TabLayout>
 <!--카테고리에 따라 스토어 화면 넘겨주는 뷰페이저-->
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/ViewPager"
+        android:id="@+id/store_ViewPager"
         android:layout_width="match_parent"
         android:layout_height="620dp"
         android:layout_marginTop="12dp"
@@ -107,7 +107,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabla"
+        app:layout_constraintTop_toBottomOf="@+id/store_Tabla"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

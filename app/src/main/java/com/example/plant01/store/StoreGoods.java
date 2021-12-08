@@ -1,17 +1,16 @@
 package com.example.plant01.store;
 
 public class StoreGoods {
-    String goodsImg, StoreName, GoodsTitle, GoodsReview, GoodsPrice;
+    String goodsImg, storeName, goodsTitle, goodsReview, goodsPrice;
 
-//    public StoreGoods(String storeName, String goodsTitle, String goodsReview, String goodsPrice){}
     public StoreGoods(String s){}
 
-    public StoreGoods(String goodsImg, String StoreName, String GoodsTitle, String GoodsReview, String GoodsPrice) {
+    public StoreGoods(String goodsImg, String storeName, String goodsTitle, String goodsReview, String goodsPrice) {
         this.goodsImg = goodsImg;
-        this.StoreName = StoreName;
-        this.GoodsTitle = GoodsTitle;
-        this.GoodsReview = GoodsReview;
-        this.GoodsPrice = GoodsPrice;
+        this.storeName = storeName;
+        this.goodsTitle = goodsTitle;
+        this.goodsReview = goodsReview;
+        this.goodsPrice = goodsPrice;
     }
     public String getGoodsImg() {
         return goodsImg;
@@ -22,35 +21,35 @@ public class StoreGoods {
     }
 
     public String getStoreName() {
-        return StoreName;
+        return storeName;
     }
 
     public void setStoreName(String storeName) {
-        this.StoreName = storeName;
+        this.storeName = storeName;
     }
 
     public String getGoodsTitle() {
-        return GoodsTitle;
+        return goodsTitle;
     }
 
     public void setGoodsTitle(String goodsTitle) {
-        this.GoodsTitle = goodsTitle;
+        this.goodsTitle = goodsTitle;
     }
 
     public String getGoodsReview() {
-        return GoodsReview;
+        return goodsReview;
     }
 
     public void setGoodsReview(String goodsReview) {
-        this.GoodsReview = goodsReview;
+        this.goodsReview = goodsReview;
     }
 
     public String getGoodsPrice() {
-        return GoodsPrice;
+        return goodsPrice;
     }
 
     public void setGoodsPrice(String goodsPrice) {
-        this.GoodsPrice = goodsPrice;
+        this.goodsPrice = goodsPrice;
     }
 
 }

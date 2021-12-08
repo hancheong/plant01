@@ -38,14 +38,14 @@ public class store_category extends Fragment {
         View view = inflater.inflate(R.layout.store_activity_sub, container, false);
 
         // 뷰페이저 세팅
-        ViewPager viewPager = view.findViewById(R.id.ViewPager);
+        ViewPager viewPager = view.findViewById(R.id.store_ViewPager);
         fragmentPagerAdapter = new store_categoryadapter(getChildFragmentManager());
 
-        TabLayout tabLayout = view.findViewById(R.id.tabla);
+        TabLayout tabLayout = view.findViewById(R.id.store_Tabla);
         viewPager.setAdapter(fragmentPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        btn_search = view.findViewById(R.id.store_search);
+        btn_search = view.findViewById(R.id.store_Search);
         btn_search.setOnClickListener(new View.OnClickListener() { // 검색 버튼 눌러서 검색페이지 이동
             @Override
             public void onClick(View v) {

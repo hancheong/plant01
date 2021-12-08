@@ -28,7 +28,7 @@ public class StoreSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_search);
 
-        store_searchback = (ImageButton) findViewById(R.id.store_searchback);
+        store_searchback = (ImageButton) findViewById(R.id.store_SearchBack);
         store_searchback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,13 +42,13 @@ public class StoreSearch extends AppCompatActivity {
         // 리스트에 검색될 데이터(단어)를 추가한다.
         settingList();
 
-        final AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.store_searchbar);
+        final AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.store_SearchBar);
 
         // AutoCompleteTextView 에 아답터를 연결한다.
         autoCompleteTextView.setAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line,  list ));
 
-        search = findViewById(R.id.store_searchbar);
+        search = findViewById(R.id.store_SearchBar);
         search.setOnKeyListener(new View.OnKeyListener(){
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event){

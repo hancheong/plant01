@@ -25,11 +25,15 @@
 
                 <ImageButton
                     android:id="@+id/post_More"
-                    android:layout_width="35dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="7dp"
-                    android:background="#fff"
-                    android:src="@drawable/post_more"
+                    android:layout_width="51dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+
+                    android:tint="@color/colortext"
+                    android:src="@drawable/store_ic_hamburger"
+                    android:background="@android:color/transparent"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <TextView
@@ -48,8 +52,8 @@
 
                 <ImageButton
                     android:id="@+id/post_Search"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="35dp"
+                    android:layout_height="38dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
@@ -61,7 +65,9 @@
                 android:id="@+id/post_TabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/post_Top">
+                android:layout_below="@id/post_Top"
+                app:tabIndicatorColor="#878787"
+                app:tabTextColor="#878787">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"

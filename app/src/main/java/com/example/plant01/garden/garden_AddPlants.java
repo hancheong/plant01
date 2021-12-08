@@ -37,7 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-public class MyMainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class garden_AddPlants extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private EditText mName , mLocation, mDate;
     private ProgressBar progressBar2;
@@ -178,12 +178,12 @@ public class MyMainActivity extends AppCompatActivity implements AdapterView.OnI
                     @Override
                     public void onSuccess(Void unused) {
                         uploadToFirebase(imageUri);
-                        Toast.makeText(MyMainActivity.this, "Data Updated!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(garden_AddPlants.this, "Data Updated!!", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MyMainActivity.this, "Error : updating document", Toast.LENGTH_SHORT).show();
+                Toast.makeText(garden_AddPlants.this, "Error : updating document", Toast.LENGTH_SHORT).show();
             }
         });
 //                new OnCompleteListener<Void>() {
@@ -222,14 +222,14 @@ public class MyMainActivity extends AppCompatActivity implements AdapterView.OnI
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
-                                Toast.makeText(MyMainActivity.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(garden_AddPlants.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
                                 uploadToFirebasefirst(imageUri);
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(MyMainActivity.this, "Failed !!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(garden_AddPlants.this, "Failed !!", Toast.LENGTH_SHORT).show();
                 }
             });
         }else

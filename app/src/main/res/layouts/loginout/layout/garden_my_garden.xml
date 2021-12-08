@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    tools:context=".garden.MyGarden">
+    tools:context=".garden.garden_MyGarden">
 
     <TextView
         android:id="@+id/tvGarden"
@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="328dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="#0C9869"
         android:clickable="true"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"

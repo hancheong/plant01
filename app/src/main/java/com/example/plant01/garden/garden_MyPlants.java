@@ -29,7 +29,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyPlants extends AppCompatActivity {
+public class garden_MyPlants extends AppCompatActivity {
 
     TextView tvType, tvName, tvLocation, tvDate, tvWaterDate;
     ImageView ivPlants;

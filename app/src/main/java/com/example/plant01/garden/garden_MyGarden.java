@@ -33,18 +33,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MyGarden extends Fragment {
+public class garden_MyGarden extends Fragment {
 
     private RecyclerView recyclerView;
 //    private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<PlantsDB> arrayList;
+    private ArrayList<garden_PlantsDB> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private RecyclerView main_recyclerView;
     private FirebaseFirestore db;
-    private MyAdapter myAdapter;
-    private List<Model> list;
+    private garden_MyAdapter gardenMyAdapter;
+    private List<garden_Model> list;
 
     TextView tvGarden;
     ImageButton ibnBack;
@@ -101,7 +101,7 @@ public class MyGarden extends Fragment {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btnAdd2:
-                    myStartActivity(MyMainActivity.class);
+                    myStartActivity(garden_AddPlants.class);
                     break;
             }
         }
@@ -127,9 +127,9 @@ public class MyGarden extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         list = new ArrayList<>();
-        myAdapter = new MyAdapter(getActivity(), list);
-        main_recyclerView.setAdapter(myAdapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(new TouchHelper(myAdapter));
+        gardenMyAdapter = new garden_MyAdapter(getActivity(), list);
+        main_recyclerView.setAdapter(gardenMyAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(new garden_TouchHelper(gardenMyAdapter));
         touchHelper.attachToRecyclerView(main_recyclerView);
 
 
@@ -147,10 +147,10 @@ public class MyGarden extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()) {
-                            Model model = new Model(snapshot.getString("id"), snapshot.getString("profileUri"), snapshot.getString("type"), snapshot.getString("name"), snapshot.getString("location"), snapshot.getString("date"));
-                            list.add(model);
+                            garden_Model gardenModel = new garden_Model(snapshot.getString("id"), snapshot.getString("profileUri"), snapshot.getString("type"), snapshot.getString("name"), snapshot.getString("location"), snapshot.getString("date"));
+                            list.add(gardenModel);
                         }
-                        myAdapter.notifyDataSetChanged();
+                        gardenMyAdapter.notifyDataSetChanged();
 //                    }
                     }
                     });

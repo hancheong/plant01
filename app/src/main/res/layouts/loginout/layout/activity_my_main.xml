@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".garden.MyMainActivity">
+    tools:context=".garden.garden_AddPlants">
 
     <EditText
         android:id="@+id/edit_name"
@@ -73,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#0C9869"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

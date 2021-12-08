@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -19,17 +20,28 @@ import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyPlants extends AppCompatActivity {
 
-    TextView tvName, tvLocation, tvDate;
+    TextView tvName, tvLocation, tvDate, tvWaterDate;
     ImageView ivPlants;
-    Button btnBack2;
+    Button btnBack2, btnUpdateWater, btnOnWater;
     String name, location, date, profile;
     String myplantid;
-    FirebaseFirestore db;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DatabaseReference myplantsdata = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +55,9 @@ public class MyPlants extends AppCompatActivity {
         tvLocation = (TextView) findViewById(R.id.tvLocation);
         tvDate = (TextView) findViewById(R.id.tvDate);
         ivPlants = (ImageView) findViewById(R.id.ivPlants);
-
+        tvWaterDate= (TextView)findViewById(R.id.tvWaterDate);
+        btnUpdateWater = (Button)findViewById(R.id.btnUpdateWater);
+        btnOnWater = (Button)findViewById(R.id.btnOnWater);
         Intent intent = getIntent();
         myplantid = intent.getStringExtra("myplantid");
         Log.e("String myplant", myplantid);
@@ -52,6 +66,33 @@ public class MyPlants extends AppCompatActivity {
 //        tvLocation.setText(intent.getStringExtra("location"));
 //        tvDate.setText(intent.getStringExtra("date"));
 //        ivPlants.setImageURI(Uri.parse(intent.getStringExtra("profile")));
+
+        btnUpdateWater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Date timestamp = Timestamp.now().toDate();
+                SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                String date = df.format(timestamp);
+                db.collection("Myplants").document(myplantid).update("recentWater", date);
+            }
+        });
+
+        btnOnWater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Date timestamp = Timestamp.now().toDate();
+                SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                String date = df.format(timestamp);
+                db.collection("Myplants").document(myplantid).update("recentWater", date);
+                Map<String, Object> childUpdates = new HashMap<>();
+                childUpdates.put("/MyDevice/aksjcnejas/motorPower", "ON");
+                myplantsdata.updateChildren(childUpdates);
+////                myplantsdata.child("MyDevice").child("aksjcnejas").child("motorPower").updateChildren();
+////                childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
+//
+//                mDatabase.updateChildren(childUpdates);
+            }
+        });
 
         btnBack2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,24 +107,46 @@ public class MyPlants extends AppCompatActivity {
 
     public void getmyplantinfo(){
         db = FirebaseFirestore.getInstance();
-        db.collection("Myplants").document(myplantid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+        db.collection("Myplants").document(myplantid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot doc = task.getResult();
-                Log.e("taskgetResult", task.getResult().toString());
+            public void onEvent(@Nullable DocumentSnapshot doc, @Nullable FirebaseFirestoreException e) {
                 tvName.setText(doc.get("name").toString());
                 tvLocation.setText(doc.get("location").toString());
                 tvDate.setText(doc.get("date").toString());
+                if(doc.get("recentWater") != null){
+                    tvWaterDate.setText(doc.get("recentWater").toString());
+                }
                 if(doc.get("profileUri").toString() != null){
                     Glide.with(getApplicationContext())
                             .load(Uri.parse(doc.get("profileUri").toString()))
                             .into(ivPlants);
 //                    ivPlants.setImageURI(Uri.parse(doc.get("profileUri").toString()));
                 }
-
-
             }
         });
+
+//        db.collection("Myplants").document(myplantid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                DocumentSnapshot doc = task.getResult();
+//                Log.e("taskgetResult", task.getResult().toString());
+//                tvName.setText(doc.get("name").toString());
+//                tvLocation.setText(doc.get("location").toString());
+//                tvDate.setText(doc.get("date").toString());
+//                if(doc.get("recentWater") != null){
+//                    tvWaterDate.setText(doc.get("recentWater").toString());
+//                }
+//                if(doc.get("profileUri").toString() != null){
+//                    Glide.with(getApplicationContext())
+//                            .load(Uri.parse(doc.get("profileUri").toString()))
+//                            .into(ivPlants);
+////                    ivPlants.setImageURI(Uri.parse(doc.get("profileUri").toString()));
+//                }
+//
+//
+//            }
+//        });
     }
 
 

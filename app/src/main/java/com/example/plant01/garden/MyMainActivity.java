@@ -35,6 +35,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -91,6 +92,7 @@ public class MyMainActivity extends AppCompatActivity {
         });
 
         Bundle bundle = getIntent().getExtras();
+//        uId = bundle.getString("uId");
         if (bundle != null){
             mSaveBtn.setText("Update");
             uName = bundle.getString("uName");
@@ -140,7 +142,7 @@ public class MyMainActivity extends AppCompatActivity {
 
                 }else{
 
-                    saveToFireStore(myplantid, name, location, date, profileUri, userid);
+                    saveToFireStore(myplantid, name, location, date, profileUri, userid, null);
 
                 }
 
@@ -192,16 +194,17 @@ public class MyMainActivity extends AppCompatActivity {
 //        });
     }
 
-    private void saveToFireStore(String id , String name , String location, String date, String profileUri, String userid){
+    private void saveToFireStore(String id , String name , String location, String date, String profileUri, String userid, String recentDate){
 
         if (!name.isEmpty() && !location.isEmpty()){
             HashMap<String , Object> map = new HashMap<>();
             map.put("id" , myplantid);
-            map.put("profileUri" , storeuri);
+            map.put("profileUri" , null);
             map.put("name" , name);
             map.put("location" , location);
             map.put("date" , date);
             map.put("userID", userid);
+            map.put("recentWater", null);
 
             db.collection("Myplants").document(id).set(map)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -209,7 +212,7 @@ public class MyMainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(MyMainActivity.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
-                                uploadToFirebase(imageUri);
+                                uploadToFirebasefirst(imageUri);
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -224,16 +227,6 @@ public class MyMainActivity extends AppCompatActivity {
 
     private void uploadToFirebase(Uri uri){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//        StorageReference list = reference.child("Myplants/"+user.getUid());
-//        list.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
-//            @Override
-//            public void onSuccess(ListResult listResult) {
-//                List<StorageReference> a = listResult.getPrefixes();
-//                listsize = String.valueOf(a.size()+1);
-//                Log.e("listsize", listsize);
-//            }
-//        });
 
         Log.e("listsize2", listsize);
 
@@ -252,6 +245,30 @@ public class MyMainActivity extends AppCompatActivity {
                         }
 
                     });
+            }
+        });
+
+    }
+    private void uploadToFirebasefirst(Uri uri){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        Log.e("listsize2", listsize);
+
+        StorageReference fileRef = reference.child("Myplants/"+user.getUid()+"/file"+listsize+".jpg");
+        UploadTask uploadTask = fileRef.putFile(uri);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.e("이미지주소", uri.toString());
+                        storeuri = uri.toString();
+                        db.collection("Myplants").document(myplantid)
+                                .update("profileUri", uri.toString());
+                    }
+
+                });
             }
         });
 

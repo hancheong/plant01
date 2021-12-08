@@ -204,6 +204,8 @@ public class UserSetting extends AppCompatActivity {
 
         }
     }
+
+
     private void update() {
 //        profileImageView.setImageBitmap(bitmap);
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -215,16 +217,19 @@ public class UserSetting extends AppCompatActivity {
         StorageReference storageRef = storage.getReference();
         StorageReference mountainImagesRef = storageRef.child("userprofile/"+user.getUid()+"/profile.jpg");
         UploadTask uploadTask = mountainImagesRef.putBytes(data1);
-        Log.e("data1", data1.toString());
-        mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onSuccess(Uri uri) {
-                Log.e("이미지주소", uri.toString());
-                db.collection("Users").document(user.getUid())
-                        .update("userImg", uri.toString());
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.e("이미지주소", uri.toString());
+                        db.collection("Users").document(user.getUid())
+                                .update("userImg", uri.toString());
+                    }
+                });
             }
         });
-
     }
 
 }

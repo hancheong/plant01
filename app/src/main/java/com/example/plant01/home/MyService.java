@@ -1,5 +1,6 @@
 package com.example.plant01.home;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -31,12 +32,14 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MyService extends Service {
     NotificationManager Notifi_M;
-    ServiceThread thread;
+    ServiceThread thread, thread1;
     Notification Notifi;
     FirebaseDatabase db;
-    String maxTemper, minTemper;
+    String maxTemper, minTemper, soilmoisture;
     String myPlantID;
     DatabaseReference databaseReference;
+    public static final String CHANNEL_1_ID ="channel1";
+    public static final String CHANNEL_2_ID ="channel2";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -50,10 +53,11 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Notifi_M = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        myServiceHandler handler = new myServiceHandler();
+        createNotifivationChannels();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+
+/*-------------------------온습도 데이터 받아오고 기준에 해당되면 쓰레드 실행-------------------------------------*/
         db = FirebaseDatabase.getInstance();
         databaseReference = db.getReference("MyDevice");
         databaseReference.child("aksjcnejas").addValueEventListener(new ValueEventListener() {
@@ -62,37 +66,42 @@ public class MyService extends Service {
                 maxTemper = dataSnapshot.child("temperMaxGap").getValue().toString();
                 minTemper = dataSnapshot.child("temperMinGap").getValue().toString();
                 myPlantID = (String) dataSnapshot.child("myPlantID").getValue();
-
-                Log.e("Myservice", String.valueOf(maxTemper));
+                soilmoisture = dataSnapshot.child("soilMoisture").getValue().toString();
                 if(Double.parseDouble(maxTemper) < 0.0 ){
+                    myServiceHandler handler = new myServiceHandler();
                     thread = new ServiceThread(handler);
                     thread.start();
                 }
-                else if (Double.parseDouble(minTemper) < 0.0){
+                if(Double.parseDouble(soilmoisture) < 40 ){
+                    myPlantHum handler1 = new myPlantHum();
+                    thread1 = new ServiceThread(handler1);
+                    thread1.start();
 
                 }
-
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-
         });
-
-
-//        databaseReference.child("aksjcnejas").child("temperMaxGap").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                maxTemper = dataSnapshot.getValue().toString();
+//
+//                if(Double.parseDouble(soilmoisture) < 40){
+//                    myPlantHum handler1 = new myPlantHum();
+//                    thread = new ServiceThread(handler1);
+//                    thread.start();
+//                }
+//
 //                Log.e("Myservice", String.valueOf(maxTemper));
 //                if(Double.parseDouble(maxTemper) < 0.0 ){
 //                    myServiceHandler handler = new myServiceHandler();
 //                    thread = new ServiceThread(handler);
 //                    thread.start();
 //                }
+//                else if (Double.parseDouble(minTemper) < 0.0){
+//
+//                }
+//
 //
 //            }
 //
@@ -102,6 +111,7 @@ public class MyService extends Service {
 //            }
 //
 //        });
+
 
 
 
@@ -131,72 +141,146 @@ public class MyService extends Service {
         myServiceHandler handler = new myServiceHandler();
 
         thread = new ServiceThread(handler);
-        thread.stopForever();
+
     }
 
+    @SuppressLint("HandlerLeak")
     public class myServiceHandler extends Handler {
         @Override
         public void handleMessage(android.os.Message msg) {
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(MyService.this, "default");
-            builder.setSmallIcon(R.mipmap.store_icon);
-            builder.setContentTitle("온도경고");
-            builder.setContentText("온도가 너무 높아요! 확인해주세요");
+
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(MyService.this, CHANNEL_1_ID);
+            builder.setSmallIcon(R.drawable.plantnotice);
+            builder.setContentTitle("🚨🚨🚨온도경고🚨🚨🚨");
+            builder.setContentText("온도가 너무 높아요!🌡️🌡️🌡️🌡️ 확인해주세요");
 
             Intent intent = new Intent(MyService.this, MyPlants.class);
             intent.putExtra("myplantid", myPlantID);
-//            startActivity(intent);
-            Log.e("myplantid", myPlantID);
-            PendingIntent pendingIntent = PendingIntent.getActivity(MyService.this,10,intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            //            startActivity(intent);
+            Log.e("온도myplantid", myPlantID);
+            PendingIntent pendingIntent = PendingIntent.getActivity(MyService.this, 10, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(pendingIntent);
 
-            Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.mipmap.store_icon);
+
+            Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.plantnotice);
             builder.setLargeIcon(largeIcon);
             Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(MyService.this, RingtoneManager.TYPE_NOTIFICATION);
             builder.setSound(ringtoneUri);
 
-            long[] vibrate = {0,100,200,300};
+            long[] vibrate = {0, 100, 200, 300};
             builder.setVibrate(vibrate);
             builder.setAutoCancel(true);
 
             NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                manager.createNotificationChannel(new NotificationChannel("default", "기본채널", NotificationManager.IMPORTANCE_DEFAULT));
-            }
-            manager.notify(10, builder.build());
-            thread.stopForever();
-//            assert manager != null;
-
-//            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//            Intent intent = new Intent(MyService.this, bell.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(MyService.this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-//            Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//                @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel("my_notification", "n_channel", NotificationManager.IMPORTANCE_MAX);
-//                notificationChannel.setDescription("description");
-//                notificationChannel.setName("Channel Name");
-//                assert notificationManager != null;
-//                notificationManager.createNotificationChannel(notificationChannel);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                manager.createNotificationChannel(new NotificationChannel(CHANNEL_1_ID, "기본채널", NotificationManager.IMPORTANCE_DEFAULT));
 //            }
-//            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(MyService.this)
-//                    .setSmallIcon(R.drawable.appicon)
-//                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.appicon))
-//                    .setContentTitle("Title").setContentText("ContentText")
-//                    .setAutoCancel(true).setSound(soundUri)
-//                    .setContentIntent(pendingIntent)
-//                    .setDefaults(Notification.DEFAULT_ALL)
-//                    .setOnlyAlertOnce(true).setChannelId("my_notification")
-//                    .setColor(Color.parseColor("#ffffff")); //
-//            // .setProgress(100,50,false);
-//            assert notificationManager != null;
-////            int m = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
-//            Calendar cal = Calendar.getInstance(); int hour = cal.get( Calendar.HOUR_OF_DAY );
-//            if (hour == 18) { notificationManager.notify( m, notificationBuilder.build() );
-//            thread.stopForever(); } else if (hour == 22) { notificationManager.notify( m, notificationBuilder.build() );
-//            thread.stopForever(); } } } }
+            if(Double.parseDouble(maxTemper) < 0.0 ){
+//                        myServiceHandler handler = new myServiceHandler();
+                manager.notify(1, builder.build());
+            }
+            else if (Double.parseDouble(minTemper) < 0.0){
+
+            }
+//            db = FirebaseDatabase.getInstance();
+//            databaseReference = db.getReference("MyDevice");
+//            databaseReference.child("aksjcnejas").addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    maxTemper = dataSnapshot.child("temperMaxGap").getValue().toString();
+//                    minTemper = dataSnapshot.child("temperMinGap").getValue().toString();
+//                    myPlantID = (String) dataSnapshot.child("myPlantID").getValue();
+//                    soilmoisture = dataSnapshot.child("soilMoisture").getValue().toString();
+//
+////                    if(Double.parseDouble(soilmoisture) < 40){
+////                        myPlantHum handler1 = new myPlantHum();
+////                        thread = new ServiceThread(handler1);
+////                        thread.start();
+////                    }
+//
+//                    Log.e("Myservice", String.valueOf(maxTemper));
+//
+//
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//
+//            });
+
+
+//            thread.isTemRun = false;
+            thread.stopForever();
+//            onDestroy();
         }
     }
+    @SuppressLint("HandlerLeak")
+    public class myPlantHum extends Handler {
+
+
+        @Override
+        public void handleMessage(android.os.Message msg) {
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(MyService.this, CHANNEL_2_ID);
+            builder.setSmallIcon(R.drawable.plantnotice);
+            builder.setContentTitle("🚨🚨🚨습도경고🚨🚨🚨");
+            builder.setContentText("습도토양습도가 너무 건조해요! 물을 주세요 💧💧💧💧");
+
+            Intent intent = new Intent(MyService.this, MyPlants.class);
+            intent.putExtra("myplantid", myPlantID);
+//            startActivity(intent);
+            Log.e("습도myplantid", myPlantID);
+            PendingIntent pendingIntent = PendingIntent.getActivity(MyService.this, 10, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(pendingIntent);
+
+            Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.plantnotice);
+            builder.setLargeIcon(largeIcon);
+            Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(MyService.this, RingtoneManager.TYPE_NOTIFICATION);
+            builder.setSound(ringtoneUri);
+
+            long[] vibrate = {0, 100, 200, 300};
+            builder.setVibrate(vibrate);
+            builder.setAutoCancel(true);
+
+            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                manager.createNotificationChannel(new NotificationChannel("1", "기본채널", NotificationManager.IMPORTANCE_DEFAULT));
+//            }
+
+            if(Double.parseDouble(soilmoisture) < 40 ){
+//                        myServiceHandler handler = new myServiceHandler();
+                manager.notify(2, builder.build());
+
+            }
+            else if (Double.parseDouble(minTemper) < 0.0){
+
+            }
+
+            thread1.stopForever();
+//            onDestroy();
+        }
+    }
+
+
+    public void createNotifivationChannels(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel1 = new NotificationChannel(CHANNEL_1_ID, "Channel1", NotificationManager.IMPORTANCE_DEFAULT);
+            channel1.setDescription("This is Channel1");
+
+            NotificationChannel channel2 = new NotificationChannel(CHANNEL_2_ID, "Channel2", NotificationManager.IMPORTANCE_DEFAULT);
+            channel2.setDescription("This is Channel2");
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel1);
+            manager.createNotificationChannel(channel2);
+        }
+    }
+
 }
 
 

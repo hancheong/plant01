@@ -60,7 +60,7 @@ public class searchAdapter extends RecyclerView.Adapter<searchAdapter.TipViewHol
         SpannableString spannableString = new SpannableString(text);
         String word ="햇빛";
         int start = 0;
-        int end = 5;
+        int end = 9;
         spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#2b5d5b")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(new RelativeSizeSpan(1.3f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);

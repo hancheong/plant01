@@ -71,6 +71,7 @@ public class HomeFragment extends Fragment {
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaserf;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private FirebaseFirestore db;
     private View.OnClickListener cl;
 
@@ -89,7 +90,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         sliderView = getView().findViewById(R.id.main_slider);
 
@@ -178,12 +179,14 @@ public class HomeFragment extends Fragment {
 
     public void PickImageFromGallery() {
         Intent intent=new Intent();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if(getActivity().checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED){
                 intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(Intent.createChooser(intent,"Select Picture"),12);
             }else {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
             }
+        }
 
     }
 
@@ -256,13 +259,15 @@ public class HomeFragment extends Fragment {
     public void mangerplant(){
         managerplantname = (TextView) getView().findViewById(R.id.tv_manager_plantname);
         managerplantdate = (TextView) getView().findViewById(R.id.tv_manager_plantdate);
-        db.collection("Myplnats").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("Myplnats").whereEqualTo("userID", user.getUid()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                QuerySnapshot query = task.getResult();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                }
+
+
             }
         });
-
 
 
     }
@@ -271,7 +276,7 @@ public class HomeFragment extends Fragment {
 
     public void showBoard(){
         RoundedImageView freeuserprofile = getView().findViewById(R.id.free_userpfile);
-        TextView free_content = getView().findViewById(R.id.freeDetail);
+        TextView free_content = getView().findViewById(R.id.free_content);
         TextView free_count = getView().findViewById(R.id.free_likecount);
         TextView free_usernick = getView().findViewById(R.id.free_usernic);
 

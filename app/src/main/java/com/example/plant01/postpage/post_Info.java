@@ -1,6 +1,5 @@
 package com.example.plant01.postpage;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,21 +24,21 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Post_info extends Fragment {
+public class post_Info extends Fragment {
     private View view;
+    private RecyclerView InfoRecyclerView;
+    private FirebaseFirestore db;
+    private post_WriteAdapter WriteAdapter;
+    private List<post_WriteInfo> list;
     private FloatingActionButton floatingActionButton;
     private View.OnClickListener cl;
-    //    private FirebaseUser firebaseUser;
+//    private FirebaseUser firebaseUser;
 //    private FirebaseFirestore firebaseFirestore;
 //    private RecyclerView recyclerView;
-//
-    private RecyclerView post_recyclerView;
-    private FirebaseFirestore db;
-    private PostWriteAdapter adapter;
-    private List<Writeinfo> list;
 
-    public static Post_info newInstance(){
-        Post_info post_info = new Post_info();
+
+    public static post_Info newInstance(){
+        post_Info post_info = new post_Info();
         return post_info;
     }
 
@@ -51,14 +50,14 @@ public class Post_info extends Fragment {
         view = inflater.inflate(R.layout.post_info, container, false);
 //        view.findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
 
-        post_recyclerView = view.findViewById((R.id.post_recyclerView));
-        post_recyclerView.setHasFixedSize(true);
-        post_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        InfoRecyclerView = view.findViewById((R.id.post_InfoRecyclerView));
+        InfoRecyclerView.setHasFixedSize(true);
+        InfoRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         db = FirebaseFirestore.getInstance();
         list = new ArrayList<>();
-        adapter = new PostWriteAdapter(getActivity(), list);
-        post_recyclerView.setAdapter(adapter);
+        WriteAdapter = new post_WriteAdapter(getActivity(), list);
+        InfoRecyclerView.setAdapter(WriteAdapter);
         showData();
 //        db.collection("WritePosts")
 //                .get()
@@ -131,10 +130,10 @@ public class Post_info extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            Writeinfo model = new Writeinfo(snapshot.getString("userID"),snapshot.getString("title"),snapshot.getString("content"));
+                            post_WriteInfo model = new post_WriteInfo(snapshot.getString("userID"),snapshot.getString("title"),snapshot.getString("content"));
                             list.add(model);
                         }
-                        adapter.notifyDataSetChanged();
+                        WriteAdapter.notifyDataSetChanged();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

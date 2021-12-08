@@ -1,6 +1,7 @@
 package com.example.plant01.postpage;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,23 +45,24 @@ public class post_PostItemAdapter extends RecyclerView.Adapter<post_PostItemAdap
 /*----------------PostItem에 있는것들 가져올 때 ---------------------*/
         /*--포스트이미지--*/
         if(postItemArrayList.get(position).getContentImg() != null){
-            Glide.with(postViewHolder.postpic).load(postItemArrayList.get(position).getContentImg())
-                    .into(postViewHolder.postpic);
-            postViewHolder.postpic.setVisibility(View.VISIBLE);
+            Glide.with(postViewHolder.PostImage).load(postItemArrayList.get(position).getContentImg())
+                    .into(postViewHolder.PostImage);
+            postViewHolder.PostImage.setVisibility(View.VISIBLE);
 
         }
         /*--포스트내용--*/
-        postViewHolder.postcontent.setText(postItemArrayList.get(position).getContent());
+        postViewHolder.PostExplain.setText(postItemArrayList.get(position).getContent());
 
 
         /*--날짜가져오기--*/
         Date milliseconds = postItemArrayList.get(position).getPostDate();
         SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         String date = df.format(milliseconds);
-        postViewHolder.postdate.setText(date);
+        postViewHolder.PostDate.setText(date);
 
 /*------------------PostItem에 없는 닉네임과 이미지를 포스트의 userid로 가져오기 ------------------------*/
         String userid = postItemArrayList.get(position).getUserID();
+//        Log.e("userid", userid);
         firestore = FirebaseFirestore.getInstance();
         firestore.collection("Users").document(userid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -84,26 +86,26 @@ public class post_PostItemAdapter extends RecyclerView.Adapter<post_PostItemAdap
     //보여져야한는것들을 여기에 넣는다,,,
     public class PostViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView userprofile, postpic, likepic, commentpic;
-        TextView postusernick, postdate, postlikes, postcontent;
+        ImageView UserImg, PostImage, likepic, commentpic;
+        TextView UserNick, PostDate, postlikes, PostExplain;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            userprofile = itemView.findViewById(R.id.post_userImage);
-            postpic = itemView.findViewById(R.id.post_img);
-            postusernick = itemView.findViewById(R.id.post_usernick);
-            postdate = itemView.findViewById(R.id.post_date);
-            postcontent = itemView.findViewById(R.id.explain);
+            UserImg = itemView.findViewById(R.id.post_UserImg);
+            PostImage = itemView.findViewById(R.id.post_PostImage);
+            UserNick = itemView.findViewById(R.id.post_UserNick);
+            PostDate = itemView.findViewById(R.id.post_PostDate);
+            PostExplain = itemView.findViewById(R.id.post_PostExplain);
 
         }
 
 
         /*------------PostItem에 없는것 가져와야할 때 setter 만들어주기--------------*/
         public void setUserprofile(String userprofiletxt) {
-            Glide.with(context).load(userprofiletxt).into(userprofile);
+            Glide.with(context).load(userprofiletxt).into(UserImg);
         }
 
         public void setPostusernick(String postusernicktxt) {
-            postusernick.setText(postusernicktxt);
+            UserNick.setText(postusernicktxt);
         }
     }
 }

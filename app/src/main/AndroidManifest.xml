@@ -80,13 +80,13 @@
             android:name=".postpage.GalleryActivity"
             android:exported="true" />
         <activity
-            android:name=".postpage.PostMainActivity"
+            android:name=".postpage.post_MainActivity"
             android:exported="true" />
         <activity
-            android:name=".postpage.Post_write"
+            android:name=".postpage.post_Write"
             android:exported="true" />
         <activity
-            android:name=".postpage.PostNotice"
+            android:name=".postpage.post_DrawerNotice"
             android:exported="true" />
         <activity
             android:name=".store.Recommend"

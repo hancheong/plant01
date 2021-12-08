@@ -4,12 +4,12 @@ package com.example.plant01.postpage;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Writeinfo {
+public class post_WriteInfo {
 
     String id, title, contents;
-    public Writeinfo(){}
+    public post_WriteInfo(){}
 
-    public Writeinfo(String id, String title, String contents){
+    public post_WriteInfo(String id, String title, String contents){
         this.id = id;
         this.title = title;
         this.contents = contents;

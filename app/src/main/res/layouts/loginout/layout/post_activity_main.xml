@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".postpage.PostMainActivity">
+    tools:context=".postpage.post_MainActivity">
 
     <LinearLayout
         android:id="@+id/post_Top"
@@ -54,7 +54,7 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/post_vp"
+        android:id="@+id/post_ViewpageLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/post_viewpage"
+            android:id="@+id/post_MainViewPage"
             android:layout_width="413dp"
             android:background="@color/backgroud"
             android:layout_height="627dp"

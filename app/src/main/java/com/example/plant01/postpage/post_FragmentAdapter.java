@@ -22,13 +22,13 @@ public class post_FragmentAdapter extends FragmentStateAdapter {
 
         switch (position){
             case 0:
-                return new Post_diary();
+                return new post_RealTime();
             case 1:
-                return new Post_best();
+                return new post_Best();
             case 2:
-                return new Post_free();
+                return new post_Free();
             case 3:
-                return new Post_info();
+                return new post_Info();
 //            default:
 //                return null;
         }

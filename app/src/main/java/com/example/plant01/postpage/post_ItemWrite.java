@@ -2,7 +2,7 @@ package com.example.plant01.postpage;
 
 import java.util.Date;
 
-public class PostItemWrite {
+public class post_ItemWrite {
 
     private String content;
     private String contentImg;
@@ -11,9 +11,9 @@ public class PostItemWrite {
     private Date postDate;
 
 
-    public PostItemWrite(){ }
+    public post_ItemWrite(){ }
 
-    public PostItemWrite(String content, String contentImg, String userID, String board) {
+    public post_ItemWrite(String content, String contentImg, String userID, String board) {
         this.content = content;
         this.contentImg = contentImg;
         this.userID = userID;

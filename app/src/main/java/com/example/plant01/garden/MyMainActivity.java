@@ -1,16 +1,17 @@
 package com.example.plant01.garden;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -33,13 +33,11 @@ import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-public class MyMainActivity extends AppCompatActivity {
+public class MyMainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private EditText mName , mLocation, mDate;
     private ProgressBar progressBar2;
@@ -49,8 +47,14 @@ public class MyMainActivity extends AppCompatActivity {
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     private Uri imageUri;
     private FirebaseFirestore db;
-    private String uName, uLocation, uDate , uId, uProfileUri, listsize, storeuri;
+    private String uName, uLocation, uDate , uType, uId, uProfileUri, listsize, storeuri;
+    private Spinner spinner;
+
     String myplantid = UUID.randomUUID().toString();
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,10 +77,16 @@ public class MyMainActivity extends AppCompatActivity {
         mLocation = (EditText) findViewById(R.id.edit_location);
         mDate = (EditText) findViewById(R.id.edit_date);
         mSaveBtn = (Button) findViewById(R.id.save_btn);
-        mShowBtn = (Button) findViewById(R.id.showall_btn);
+//        mShowBtn = (Button) findViewById(R.id.showall_btn);
+        spinner = (Spinner) findViewById(R.id.spinner);
         progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
         progressBar2.setVisibility(View.INVISIBLE);
         db= FirebaseFirestore.getInstance();
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.type_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
 
         //이미지 갤러리에서 가져오기
@@ -91,6 +101,7 @@ public class MyMainActivity extends AppCompatActivity {
         });
 
         Bundle bundle = getIntent().getExtras();
+//        uId = bundle.getString("uId");
         if (bundle != null){
             mSaveBtn.setText("Update");
             uName = bundle.getString("uName");
@@ -132,15 +143,16 @@ public class MyMainActivity extends AppCompatActivity {
                 String date = mDate.getText().toString();
                 String profileUri = storeuri;
                 String userid = user.getUid();
+                String type = spinner.getSelectedItem().toString();
 
                 Bundle bundle1 = getIntent().getExtras();
                 if (bundle1 != null){
                     String id  = uId;
-                    updateToFireStore(name, location, date, profileUri);
+                    updateToFireStore(type, name, location, date, profileUri);
 
                 }else{
 
-                    saveToFireStore(myplantid, name, location, date, profileUri, userid);
+                    saveToFireStore(myplantid, type, name, location, date, profileUri, userid, null);
 
                 }
 
@@ -159,7 +171,7 @@ public class MyMainActivity extends AppCompatActivity {
 
         }
     }
-    private void updateToFireStore( String name, String location, String date, String profileUri){
+    private void updateToFireStore( String type, String name, String location, String date, String profileUri){
 
         db.collection("Myplants").document(uId).update("name", name, "location",location, "date", date, "profileUri", profileUri)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -192,16 +204,18 @@ public class MyMainActivity extends AppCompatActivity {
 //        });
     }
 
-    private void saveToFireStore(String id , String name , String location, String date, String profileUri, String userid){
+    private void saveToFireStore(String id , String type, String name , String location, String date, String profileUri, String userid, String recentDate){
 
         if (!name.isEmpty() && !location.isEmpty()){
             HashMap<String , Object> map = new HashMap<>();
             map.put("id" , myplantid);
-            map.put("profileUri" , storeuri);
+            map.put("profileUri" , null);
+            map.put("type" , type);
             map.put("name" , name);
             map.put("location" , location);
             map.put("date" , date);
             map.put("userID", userid);
+            map.put("recentWater", null);
 
             db.collection("Myplants").document(id).set(map)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -209,7 +223,7 @@ public class MyMainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(MyMainActivity.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
-                                uploadToFirebase(imageUri);
+                                uploadToFirebasefirst(imageUri);
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -224,16 +238,6 @@ public class MyMainActivity extends AppCompatActivity {
 
     private void uploadToFirebase(Uri uri){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//        StorageReference list = reference.child("Myplants/"+user.getUid());
-//        list.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
-//            @Override
-//            public void onSuccess(ListResult listResult) {
-//                List<StorageReference> a = listResult.getPrefixes();
-//                listsize = String.valueOf(a.size()+1);
-//                Log.e("listsize", listsize);
-//            }
-//        });
 
         Log.e("listsize2", listsize);
 
@@ -254,6 +258,40 @@ public class MyMainActivity extends AppCompatActivity {
                     });
             }
         });
+
+    }
+    private void uploadToFirebasefirst(Uri uri){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        Log.e("listsize2", listsize);
+
+        StorageReference fileRef = reference.child("Myplants/"+user.getUid()+"/file"+listsize+".jpg");
+        UploadTask uploadTask = fileRef.putFile(uri);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.e("이미지주소", uri.toString());
+                        storeuri = uri.toString();
+                        db.collection("Myplants").document(myplantid)
+                                .update("profileUri", uri.toString());
+                    }
+
+                });
+            }
+        });
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

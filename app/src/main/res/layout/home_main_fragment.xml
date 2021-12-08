@@ -37,7 +37,7 @@
 
                 <ImageView
                     android:layout_width="150dp"
-                    android:layout_height="45dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/logo"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +165,7 @@
                                 android:id="@+id/tv_manager_plantname"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="옥잠화"
+                                android:text="뿌리지아"
                                 android:textColor="@color/maincolor"
                                 android:textSize="25dp"
                                 android:textStyle="bold"
@@ -239,16 +239,19 @@
                         android:textStyle="bold" />
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="389dp"
-                        android:layout_height="290dp"
+                        android:layout_width="380dp"
+                        android:layout_height="wrap_content"
                         android:layout_below="@+id/recommand_com"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="3dp"
-                        app:cardBackgroundColor="@color/white">
+                        android:layout_marginBottom="5dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="20dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="0dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -273,11 +276,11 @@
                                     android:layout_marginTop="9dp"
                                     android:background="#FFFFFF"
                                     android:scaleType="fitXY"
-                                    android:src="@drawable/five"
+                                    android:src="@mipmap/store_icon"
                                     app:riv_corner_radius="10dp" />
 
                                 <TextView
-                                    android:id="@+id/freeDetail"
+                                    android:id="@+id/free_content"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/free_userpfile"
@@ -302,8 +305,8 @@
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="36dp"
-                                    android:layout_below="@id/freeDetail"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/free_content"
                                     android:layout_alignParentBottom="true"
                                     android:layout_marginTop="5dp"
                                     android:layout_marginBottom="0dp">
@@ -345,7 +348,7 @@
                                         android:id="@+id/btn_like"
                                         android:layout_width="wrap_content"
                                         android:layout_height="20dp"
-                                        android:layout_marginStart="280dp"
+                                        android:layout_marginStart="270dp"
                                         android:adjustViewBounds="true"
                                         android:src="@drawable/home_ic_like"
                                         app:layout_constraintBottom_toBottomOf="parent"
@@ -377,7 +380,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="100dp">
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp">
 
                                 <com.makeramen.roundedimageview.RoundedImageView
                                     android:id="@+id/quest_userprofile"
@@ -388,7 +392,7 @@
                                     android:layout_marginTop="9dp"
                                     android:background="#FFFFFF"
                                     android:scaleType="fitXY"
-                                    android:src="@drawable/five"
+                                    android:src="@mipmap/store_icon"
                                     app:riv_corner_radius="10dp" />
 
                                 <TextView
@@ -415,49 +419,58 @@
                                     android:text="마음" />
 
 
-                                <ImageView
-                                    android:id="@+id/btn_like1"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="111dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:adjustViewBounds="true"
-                                    android:src="@drawable/home_ic_like" />
-
-                                <TextView
-                                    android:id="@+id/quest_likecount"
-                                    android:layout_width="wrap_content"
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
+                                    android:layout_below="@id/quset_content"
                                     android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="85dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="124"
-                                    android:textColor="#151515" />
+                                    android:layout_marginTop="0dp">
 
-                                <ImageView
-                                    android:id="@+id/btn_reply1"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="54dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:adjustViewBounds="true"
-                                    android:src="@drawable/home_ic_reply" />
+                                    <TextView
+                                        android:id="@+id/replycount1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_marginStart="5dp"
+                                        android:text="3"
+                                        android:textAlignment="textStart"
+                                        android:textColor="#151515"
+                                        app:layout_constraintBottom_toBottomOf="@+id/btn_reply1"
+                                        app:layout_constraintStart_toEndOf="@+id/btn_reply1"
+                                        app:layout_constraintTop_toTopOf="@+id/btn_reply1" />
 
-                                <TextView
-                                    android:id="@+id/replycount1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="38dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="3"
-                                    android:textColor="#151515" />
+                                    <ImageView
+                                        android:id="@+id/btn_reply1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginStart="12dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/home_ic_reply"
+                                        app:layout_constraintBottom_toBottomOf="@+id/quest_likecount"
+                                        app:layout_constraintStart_toEndOf="@+id/quest_likecount"
+                                        app:layout_constraintTop_toTopOf="@+id/quest_likecount" />
+
+                                    <TextView
+                                        android:id="@+id/quest_likecount"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:text="124"
+                                        android:textAlignment="textStart"
+                                        android:textColor="#151515"
+                                        app:layout_constraintBottom_toBottomOf="@+id/btn_like1"
+                                        app:layout_constraintStart_toEndOf="@+id/btn_like1"
+                                        app:layout_constraintTop_toTopOf="@+id/btn_like1" />
+
+                                    <ImageView
+                                        android:id="@+id/btn_like1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="20dp"
+                                        android:layout_marginStart="270dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/home_ic_like"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                             </RelativeLayout>
@@ -466,8 +479,11 @@
                                 android:id="@+id/view1"
                                 android:layout_width="370dp"
                                 android:layout_height="3dp"
+                                android:layout_alignParentBottom="true"
                                 android:layout_gravity="center"
-                                android:background="#787474" />
+                                android:layout_marginTop="5dp"
+                                android:background="#787474"
+                                android:visibility="gone" />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>

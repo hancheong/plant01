@@ -39,6 +39,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Model item = mList.get(position);
         Bundle bundle = new Bundle();
         bundle.putString("uId" , item.getId());
+        bundle.putString("uType" , item.getType());
         bundle.putString("uName" , item.getName());
         bundle.putString("uLocation" , item.getLocation());
         bundle.putString("uDate" , item.getDate());
@@ -75,7 +76,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.testitem, parent, false);
+        View view = LayoutInflater.from(activity).inflate(R.layout.garden_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -104,8 +105,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
             profile = itemView.findViewById(R.id.iv_PlantsProfile);
             name = itemView.findViewById(R.id.name_text);
-            location = itemView.findViewById(R.id.location_text);
-            date = itemView.findViewById(R.id.date_text);
+//            location = itemView.findViewById(R.id.location_text);
+//            date = itemView.findViewById(R.id.date_text);
 
             itemView.setOnClickListener(new View.OnClickListener(){
 

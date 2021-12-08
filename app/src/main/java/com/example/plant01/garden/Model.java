@@ -5,6 +5,13 @@ public class Model {
     String id, profileUri , type,  name, location, date;
     public Model(String s){}
 
+    public Model(String id, String profileUri, String name, String location, String date) {
+        this.id = id;
+        this.profileUri = profileUri;
+        this.name = name;
+        this.location = location;
+        this.date = date;
+    }
 
     public Model(String id, String profileUri, String type, String name, String location, String date){
         this.id = id;

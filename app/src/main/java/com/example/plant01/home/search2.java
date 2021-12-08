@@ -65,60 +65,21 @@ public class search2 extends AppCompatActivity {
         buclassify=(Button)findViewById(R.id.classify);
         classitext=(TextView)findViewById(R.id.classifytext);
 
-        //홈프래그먼트에서 이미지 수신
-
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(Intent.createChooser(intent,"Select Picture"),12);
-//            }
-//        });
-
 
 
         Analysis();
 
-
-//        buclassify.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                int imageTensorIndex = 0;
-//                int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
-//                imageSizeY = imageShape[1];
-//                imageSizeX = imageShape[2];
-//                DataType imageDataType = tflite.getInputTensor(imageTensorIndex).dataType();
-//
-//                int probabilityTensorIndex = 0;
-//                int[] probabilityShape =
-//                        tflite.getOutputTensor(probabilityTensorIndex).shape(); // {1, NUM_CLASSES}
-//                DataType probabilityDataType = tflite.getOutputTensor(probabilityTensorIndex).dataType();
-//
-//                inputImageBuffer = new TensorImage(imageDataType);
-//                outputProbabilityBuffer = TensorBuffer.createFixedSize(probabilityShape, probabilityDataType);
-//                probabilityProcessor = new TensorProcessor.Builder().add(getPostprocessNormalizeOp()).build();
-//
-//                inputImageBuffer = loadImage(bitmap);
-//
-//                tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
-//                showresult();
-//            }
-//        });
 
 
 
     }
 
     private void Analysis(){
-        Intent intent = getIntent(); /*데이터 수신*/
+        /* 홈에서 찍은 사진 값 데이터 수신*/
+        Intent intent = getIntent();
         Bitmap uri = intent.getParcelableExtra("uri");
         Log.e("uri", uri.toString());
-
         bitmap = uri;
-//        imageView.setImageBitmap(bitmap);
 
         try{
 
@@ -205,20 +166,4 @@ public class search2 extends AppCompatActivity {
         }
     }
 
-//    @Nullable
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if(requestCode==12 && resultCode==RESULT_OK && data!=null) {
-//            imageuri = data.getData();
-//            try {
-//                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageuri);
-//                imageView.setImageBitmap(bitmap);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//    }
 }

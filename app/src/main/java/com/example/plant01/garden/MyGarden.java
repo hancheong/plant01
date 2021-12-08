@@ -147,7 +147,7 @@ public class MyGarden extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()) {
-                            Model model = new Model(snapshot.getString("id"), snapshot.getString("profileUri"), snapshot.getString("type"), snapshot.getString("name"), snapshot.getString("location"), snapshot.getString("date"));
+                            Model model = new Model(snapshot.getString("id"), snapshot.getString("profileUri"), snapshot.getString("name"), snapshot.getString("location"), snapshot.getString("date"));
                             list.add(model);
                         }
                         myAdapter.notifyDataSetChanged();

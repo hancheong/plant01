@@ -22,17 +22,17 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.Stack;
 
-public class PostMainActivity extends Fragment {
+public class post_MainActivity extends Fragment {
 
-    public PostMainActivity() {
+    public post_MainActivity() {
     }
 
-    TabLayout tabLayout;
-    ViewPager2 pager2;
-    private FloatingActionButton fab;
-    post_FragmentAdapter adapter;
-    public static Stack<Fragment> fragmentStack;
+    TabLayout TabLayout;
+    ViewPager2 MainViewPage;
+    post_FragmentAdapter FragmentAdapter;
     private View.OnClickListener cl;
+    public static Stack<Fragment> fragmentStack;
+    private FloatingActionButton fab;
 
     @Nullable
     @Override
@@ -49,7 +49,7 @@ public class PostMainActivity extends Fragment {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.post_AddButton:
-                    Intent intent = new Intent(getActivity(), Post_write.class);
+                    Intent intent = new Intent(getActivity(), post_Write.class);
 //                        myStartActivity(Post_write.class);
                     startActivity(intent);
                     break;
@@ -60,21 +60,21 @@ public class PostMainActivity extends Fragment {
         @Override
     public void onResume() {
         super.onResume();
-            tabLayout = getView().findViewById(R.id.post_TabLayout);
+            TabLayout = getView().findViewById(R.id.post_TabLayout);
             //게시글 담을 페이지
-            pager2 = getView().findViewById(R.id.post_viewpage);
+            MainViewPage = getView().findViewById(R.id.post_MainViewPage);
             //FragmentAdapter에서 카테고리 선택하여 페이지 이동
             FragmentManager fm = getFragmentManager();
-            adapter = new post_FragmentAdapter(getChildFragmentManager(), getLifecycle());
-            pager2.setSaveEnabled(false);
+            FragmentAdapter = new post_FragmentAdapter(getChildFragmentManager(), getLifecycle());
+            MainViewPage.setSaveEnabled(false);
 //            fm.beginTransaction().addToBackStack(null).commit();
-            pager2.setAdapter(adapter);
+            MainViewPage.setAdapter(FragmentAdapter);
             //카테고리 선택
 
-            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            TabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
-                    pager2.setCurrentItem(tab.getPosition());
+                    MainViewPage.setCurrentItem(tab.getPosition());
                 }
                 @Override
                 public void onTabUnselected(TabLayout.Tab tab) {
@@ -86,22 +86,22 @@ public class PostMainActivity extends Fragment {
                 }
             });
             //카테고리 선택할 때마다 페이지 이동
-            pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            MainViewPage.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
                 @Override
                 public void onPageSelected(int position) {
                     super.onPageSelected(position);
-                    tabLayout.selectTab(tabLayout.getTabAt(position));
+                    TabLayout.selectTab(TabLayout.getTabAt(position));
                 }
             });
             //드로워
-            final DrawerLayout drawerLayout = (DrawerLayout) getView().findViewById(R.id.post_drawerLayout);
-            NavigationView navigationView = getView().findViewById(R.id.post_drawer);
+            final DrawerLayout drawerLayout = (DrawerLayout) getView().findViewById(R.id.post_PostLayout);
+            NavigationView navigationView = getView().findViewById(R.id.post_DrawerPage);
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.btn_notice:
-                            Intent intent1 = new Intent(getActivity(), PostNotice.class);
+                            Intent intent1 = new Intent(getActivity(), post_DrawerNotice.class);
                             startActivity(intent1);
                             break;
 //                        case R.id.btn_post:

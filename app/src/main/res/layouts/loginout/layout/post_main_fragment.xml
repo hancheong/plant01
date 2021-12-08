@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".postpage.PostMainActivity"
+    tools:context=".postpage.post_MainActivity"
     tools:ignore="MissingDefaultResource">
 
     <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/post_drawerLayout"
+        android:id="@+id/post_PostLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -91,13 +91,13 @@
             </com.google.android.material.tabs.TabLayout>
 
             <LinearLayout
-                android:id="@+id/post_vp"
+                android:id="@+id/post_ViewpageLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/post_TabLayout">
 
                 <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/post_viewpage"
+                    android:id="@+id/post_MainViewPage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -110,7 +110,7 @@
         </RelativeLayout>
 
         <com.google.android.material.navigation.NavigationView
-            android:id="@+id/post_drawer"
+            android:id="@+id/post_DrawerPage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"

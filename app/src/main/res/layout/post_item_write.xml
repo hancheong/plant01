@@ -19,13 +19,13 @@
           android:orientation="horizontal">
 
          <ImageView
-             android:id="@+id/post_userimg"
+             android:id="@+id/post_UserImageWrite"
              android:layout_width="40dp"
              android:layout_height="40dp"
-             tools:srcCompat="@tools:sample/avatars" />
+             tools:srcCompat="@mipmap/store_icon" />
 
          <TextView
-             android:id="@+id/post_user"
+             android:id="@+id/post_UserNameWrite"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_weight="1"
@@ -35,7 +35,7 @@
              android:textSize="15dp" />
 
          <TextView
-             android:id="@+id/createdAtTextView"
+             android:id="@+id/post_PostDateWrite"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_weight="1"
@@ -51,7 +51,7 @@
           android:padding="5dp">
 
          <TextView
-             android:id="@+id/titleTextView"
+             android:id="@+id/post_TitleWrite"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_weight="1"
@@ -61,7 +61,7 @@
              tools:text="title" />
 
          <TextView
-             android:id="@+id/contnetsTextView"
+             android:id="@+id/post_ContentWrite"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_weight="1"
@@ -77,25 +77,27 @@
           android:layout_height="match_parent"
           android:orientation="horizontal">
          <ImageView
-             android:id="@+id/imageView2"
+             android:id="@+id/post_LikeWrite"
              android:layout_width="wrap_content"
              android:layout_height="25dp"
              android:layout_margin="3dp"
              android:src="@drawable/post_ic_eplant" />
+
          <TextView
+             android:id="@+id/post_LikeNumWrite"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:textSize="15dp"
              android:layout_marginTop="7dp"
-             android:hint=" "/>
+             android:hint=" "
+             android:textSize="15dp" />
          <ImageView
-             android:id="@+id/chat"
+             android:id="@+id/post_ChatWrite"
              android:layout_width="wrap_content"
              android:layout_height="25dp"
              android:layout_margin="3dp"
              android:src="@drawable/post_ic_chat" />
          <ImageView
-             android:id="@+id/share"
+             android:id="@+id/post_ShareWrite"
              android:layout_width="wrap_content"
              android:layout_height="25dp"
              android:layout_margin="3dp"

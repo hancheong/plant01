@@ -1,38 +1,36 @@
 package com.example.plant01.postpage;
 
-import static com.example.plant01.usersetting.Util.INTENT_PATH;
-
-import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class PostWriteAdapter extends RecyclerView.Adapter<PostWriteAdapter.PostViewHolder> {
-    private Post_info activity;
-    private FragmentActivity factivity;
-    private List<Writeinfo> mList;
+public class post_WriteAdapter extends RecyclerView.Adapter<post_WriteAdapter.PostViewHolder> {
+    private post_Info post_info;
+    Context context;
+    private FragmentActivity fragmentActivity;
+    private List<post_WriteInfo> mList;
+    //
+    private FirebaseFirestore firestore;
 
-    public PostWriteAdapter(Post_info activity, List<Writeinfo> mList){
-        this.activity = activity;
+    public post_WriteAdapter(post_Info post_info, List<post_WriteInfo> mList){
+        this.post_info = post_info;
         this.mList = mList;
     }
 
-    public PostWriteAdapter(FragmentActivity factivity, List<Writeinfo> list) {
-        this.factivity = factivity;
+    public post_WriteAdapter(FragmentActivity fragmentActivity, List<post_WriteInfo> list) {
+        this.fragmentActivity = fragmentActivity;
         this.mList = list;
     }
 
@@ -47,7 +45,7 @@ public class PostWriteAdapter extends RecyclerView.Adapter<PostWriteAdapter.Post
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(factivity).inflate(R.layout.post_item_write, parent, false);
+        View view = LayoutInflater.from(fragmentActivity).inflate(R.layout.post_item_write, parent, false);
         return new PostViewHolder(view);
     }
 
@@ -59,22 +57,24 @@ public class PostWriteAdapter extends RecyclerView.Adapter<PostWriteAdapter.Post
     }
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        holder.userID.setText(mList.get(position).getTitle());
-        holder.title.setText(mList.get(position).getTitle());
-        holder.contents.setText(mList.get(position).getcontents());
+        holder.UserNameWrite.setText(mList.get(position).getTitle());
+        holder.TitleWrite.setText(mList.get(position).getTitle());
+        holder.ContentWrite.setText(mList.get(position).getcontents());
     }
-
+    //작성한 부분 넣기
     public static class PostViewHolder extends RecyclerView.ViewHolder{
 
-        TextView title, contents, userID;
+        TextView TitleWrite, ContentWrite, UserNameWrite;
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            title = itemView.findViewById(R.id.titleTextView);
-            contents = itemView.findViewById(R.id.contnetsTextView);
-            userID = itemView.findViewById(R.id.post_user);
+
+            TitleWrite = itemView.findViewById(R.id.post_TitleWrite);
+            ContentWrite = itemView.findViewById(R.id.post_ContentWrite);
+            UserNameWrite = itemView.findViewById(R.id.post_UserNameWrite);
         }
+
     }
 }
 

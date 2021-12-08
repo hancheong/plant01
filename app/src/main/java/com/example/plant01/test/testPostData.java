@@ -53,7 +53,7 @@ public class testPostData extends AppCompatActivity {
 
 
 /*--------------------게시판 보여주는 리사이클러뷰와 클래스  --------------------------*/
-        mRecyclerView = findViewById(R.id.post_recyclerview);
+        mRecyclerView = findViewById(R.id.post_PostRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(testPostData.this));
         postItemArrayList = new ArrayList<PostItem>();

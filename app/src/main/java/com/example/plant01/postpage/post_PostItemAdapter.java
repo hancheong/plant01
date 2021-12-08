@@ -1,6 +1,7 @@
 package com.example.plant01.postpage;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ public class post_PostItemAdapter extends RecyclerView.Adapter<post_PostItemAdap
 
 /*------------------PostItem에 없는 닉네임과 이미지를 포스트의 userid로 가져오기 ------------------------*/
         String userid = postItemArrayList.get(position).getUserID();
+//        Log.e("userid", userid);
         firestore = FirebaseFirestore.getInstance();
         firestore.collection("Users").document(userid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override

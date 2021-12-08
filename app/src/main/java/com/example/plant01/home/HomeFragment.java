@@ -15,10 +15,12 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -29,10 +31,12 @@ import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 import com.example.plant01.adaptor.SliderAdapter;
 import com.example.plant01.adaptor.home_PlantAdapter;
+import com.example.plant01.garden.MyPlants;
 import com.example.plant01.usersetting.UserSetting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -50,7 +54,14 @@ import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnima
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -71,6 +82,7 @@ public class HomeFragment extends Fragment {
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaserf;
+
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private FirebaseFirestore db;
     private View.OnClickListener cl;
@@ -140,7 +152,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ///
+        mangerplant();
 
 
 
@@ -256,21 +268,93 @@ public class HomeFragment extends Fragment {
 
     /*--------------- 식물관리 --------------------*/
 
-    public void mangerplant(){
+    public void mangerplant() {
         managerplantname = (TextView) getView().findViewById(R.id.tv_manager_plantname);
         managerplantdate = (TextView) getView().findViewById(R.id.tv_manager_plantdate);
-        db.collection("Myplnats").whereEqualTo("userID", user.getUid()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        ImageView managerplantimg = (ImageView) getView().findViewById(R.id.home_mangerImg);
+        CardView manager = (CardView) getView().findViewById(R.id.myplant_manage_card);
+        db.collection("Myplants").document("ce9cf6da-94a6-4af5-88ab-1b222440d650").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                }
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot doc = task.getResult();
+                String myplantnicktxt = (String) doc.get("name");
+                Log.e("myplantnicktxt", myplantnicktxt);
+                Log.e("문서아이디", doc.getId());
+                String myplantimgtxt = (String) doc.get("profileUri");
+                String myplantplantname = (String) doc.get("plantName");
+                String myplantrecentWater = (String) doc.get("recentWater");
 
+                manager.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), MyPlants.class);
+                        intent.putExtra("myplantid", doc.getId());
+                        startActivity(intent);
+                    }
+                });
+
+
+                db.collection("Plants").whereEqualTo("plantName", myplantplantname)
+                        .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot document : task.getResult()){
+                            long plantWaterCycletxt = (long) document.get("plantWaterC");
+                            int plantWaterCycle = Integer.valueOf(String.valueOf(plantWaterCycletxt));
+                            Log.e("plant", String.valueOf(plantWaterCycletxt));
+
+                            Calendar cal = Calendar.getInstance();
+                            Calendar today = Calendar.getInstance();
+                            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+
+                            Date date = null;
+                            try {
+                                date = sdf.parse(myplantrecentWater );
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            cal.setTime(date);
+                            cal.add(Calendar.DATE, + plantWaterCycle);
+                            long chai = cal.getTimeInMillis();
+                            Log.e("차이", String.valueOf(chai));
+                            long now_day = today.getTimeInMillis();
+                            Log.e("오늘", String.valueOf(now_day));
+                            long d_day = (chai - now_day) / (60*60*24*1000);
+                            Log.e("남은날짜", String.valueOf(d_day));
+                            managerplantdate.setText(String.valueOf(d_day));
+                            managerplantname.setText(myplantnicktxt);
+                            Glide.with(getContext())
+                                    .load(Uri.parse(myplantimgtxt))
+                                    .into(managerplantimg);
+                        }
+
+
+                    }
+                });
 
             }
         });
-
-
     }
+//        db.collection("Myplnats").whereEqualTo("userID", user.getUid()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                ArrayList<String> myplantRecentWater = new ArrayList<>();
+//                ArrayList<String> myplantPlantID = new ArrayList<>();
+//                for (QueryDocumentSnapshot document : task.getResult()) {
+//                    myplantidlist.add(document.getId());
+//                    db.collection("Myplants").document(document.getId()).get()
+//
+//                }
+//                for(int i = 0; i < myplantidlist.size(); i++) {
+//                    db.collection("Myplants").document(myplantidlist.get(i)).get().addOnCompleteListener(new OnCompleteListener<>())
+//
+//                }
+//
+//
+//            }
+//        });
+
+
 
     /*-------------인기게시판 불러오는 곳------------------*/
 

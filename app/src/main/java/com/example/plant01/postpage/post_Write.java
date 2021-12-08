@@ -35,26 +35,25 @@ import com.google.firebase.storage.UploadTask;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-public class Post_write extends AppCompatActivity {
-    private EditText Title, Contents;
-    private Button Image, Video, Post;
-    private ImageButton back;
+public class post_Write extends AppCompatActivity {
+    private EditText Title, Content;
+    private Button AddImage, AddVideo, PostBtn;
+    private ImageButton BackBtn;
     private FirebaseFirestore db;
-    View.OnClickListener cl;
-    private Object Post_write;
-    private Spinner spinner;
+    private Spinner Spinner;
     private String profilePath, uritxt, listsize;
     private FirebaseStorage storage;
     private Uri galleryUri;
     private byte[] data1;
-    private ImageView uploadimg;
+    private ImageView UploadImg;
     String postID = UUID.randomUUID().toString();
+    View.OnClickListener cl;
+    private Object Post_write;
 
     @Override
     public void onBackPressed() {
@@ -70,7 +69,6 @@ public class Post_write extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //파이어스토어와 연결
         StorageReference storageRef = storage.getReference();
-
         StorageReference list = storageRef.child("Myplants/"+user.getUid()+"/");
         list.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
@@ -82,24 +80,24 @@ public class Post_write extends AppCompatActivity {
         });
 
         Title = (EditText) findViewById(R.id.post_Title);
-        Contents = (EditText) findViewById(R.id.post_Content);
-        Image = (Button) findViewById(R.id.post_AddImage);
-        Video = (Button) findViewById(R.id.post_AddVideo);
-        Post = (Button) findViewById(R.id.post_Btn);
-        back = (ImageButton) findViewById(R.id.post_Back);
-        spinner = (Spinner) findViewById(R.id.post_Spinner);
-        uploadimg = (ImageView) findViewById(R.id.post_uploadImg);
+        Content = (EditText) findViewById(R.id.post_Content);
+        AddImage = (Button) findViewById(R.id.post_AddImage);
+        AddVideo = (Button) findViewById(R.id.post_AddVideo);
+        PostBtn = (Button) findViewById(R.id.post_PostBtn);
+        BackBtn = (ImageButton) findViewById(R.id.post_BackBtn);
+        Spinner = (Spinner) findViewById(R.id.post_Spinner);
+        UploadImg = (ImageView) findViewById(R.id.post_UploadImg);
 
         db = FirebaseFirestore.getInstance();
 
-        back.setOnClickListener(new View.OnClickListener() {
+        BackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
 
-        Image.setOnClickListener(new View.OnClickListener() {
+        AddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -108,7 +106,7 @@ public class Post_write extends AppCompatActivity {
             }
         });
 
-        Video.setOnClickListener(new View.OnClickListener() {
+        AddVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent1 = new Intent();
@@ -118,15 +116,15 @@ public class Post_write extends AppCompatActivity {
             }
         });
 
-        Post.setOnClickListener(new View.OnClickListener() {
+        PostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String title = Title.getText().toString();
-                String contents = Contents.getText().toString();
+                String contents = Content.getText().toString();
 //                String userid
                 String id = user.getUid();
-                String board = spinner.getSelectedItem().toString();
+                String board = Spinner.getSelectedItem().toString();
                 Date timestamp = Timestamp.now().toDate();
                 String contentimg = null;
 
@@ -149,14 +147,14 @@ public class Post_write extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(Post_write.this, "Post Data!!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(post_Write.this, "Post Data!!", Toast.LENGTH_SHORT).show();
                                         update();
                                     }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Post_write.this, "Failed !!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(post_Write.this, "Failed !!", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -172,7 +170,7 @@ public class Post_write extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
 //            profilePath = data.getStringExtra("profilePath");
             //파이어스토리지와 연결
-            uploadimg.setVisibility(View.VISIBLE);
+            UploadImg.setVisibility(View.VISIBLE);
             galleryUri = data.getData();
 
 //            Bitmap bitmap = (Bitmap) data.getParcelableExtra("data");
@@ -184,9 +182,7 @@ public class Post_write extends AppCompatActivity {
                 InputStream in = getContentResolver().openInputStream(data.getData());
                 Bitmap bitmap = BitmapFactory.decodeStream(in);
                 in.close();
-                uploadimg.setImageBitmap(bitmap);
-
-
+                UploadImg.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

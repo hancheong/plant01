@@ -263,7 +263,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/post_LikeWrite"
         android:layout_width="400dp"
         android:layout_height="380dp"
         android:scaleType="fitXY"

@@ -89,11 +89,11 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.PostVi
         TextView postusernick, postdate, postlikes, postcontent;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            userprofile = itemView.findViewById(R.id.post_userImage);
-            postpic = itemView.findViewById(R.id.post_img);
-            postusernick = itemView.findViewById(R.id.post_usernick);
-            postdate = itemView.findViewById(R.id.post_date);
-            postcontent = itemView.findViewById(R.id.explain);
+            userprofile = itemView.findViewById(R.id.post_UserImg);
+            postpic = itemView.findViewById(R.id.post_PostImage);
+            postusernick = itemView.findViewById(R.id.post_UserNick);
+            postdate = itemView.findViewById(R.id.post_PostDate);
+            postcontent = itemView.findViewById(R.id.post_PostExplain);
 
         }
 

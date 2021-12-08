@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/postwrite"
+    android:id="@+id/post_PostWrite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/post_Back"
+                android:id="@+id/post_BackBtn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="#fff"
@@ -43,7 +43,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <LinearLayout
-                android:id="@+id/contentsLayout"
+                android:id="@+id/post_ContentsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -65,7 +65,7 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <ImageView
-                    android:id="@+id/post_uploadImg"
+                    android:id="@+id/post_UploadImg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
@@ -94,7 +94,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/post_Btn"
+                android:id="@+id/post_PostBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="올리기" />

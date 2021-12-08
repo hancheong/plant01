@@ -28,15 +28,15 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class Post_best extends Fragment {
+public class post_Best extends Fragment {
     private View view;
+    private FirebaseFirestore db;
     private FloatingActionButton floatingActionButton;
     private View.OnClickListener cl;
-    private FirebaseFirestore db;
 
-    public Post_best(){}
-    public static Post_best newInstance(){
-        Post_best post_best = new Post_best();
+    public post_Best(){}
+    public static post_Best newInstance(){
+        post_Best post_best = new post_Best();
         return post_best;
     }
 
@@ -70,10 +70,10 @@ public class Post_best extends Fragment {
     }
     /*-------------인기게시판 불러오는 곳------------------*/
     public void showBoard() {
-        ImageView post_user_img = getView().findViewById(R.id.post_userImage);
-        TextView explain = getView().findViewById(R.id.explain);
-        TextView post_like_num = getView().findViewById(R.id.post_like_num);
-        TextView post_usernick = getView().findViewById(R.id.post_usernick);
+        ImageView UserImg = getView().findViewById(R.id.post_UserImg);
+        TextView PostExplain = getView().findViewById(R.id.post_PostExplain);
+        TextView LikeNum = getView().findViewById(R.id.post_LikeNum);
+        TextView UserNick = getView().findViewById(R.id.post_UserNick);
 
 //        RoundedImageView questuserprofile = getView().findViewById(R.id.quest_userprofile);
 //        TextView quest_content = getView().findViewById(R.id.quset_content);
@@ -96,11 +96,11 @@ public class Post_best extends Fragment {
 
                         //int를 String으로 바꾸는 방법
                         String likes = String.valueOf(list.size());
-                        post_like_num.setText(likes);
+                        LikeNum.setText(likes);
 
                         //컨텐츠 내용 가져오기
                         String content = (String) document.get("postContent");
-                        explain.setText(content);
+                        PostExplain.setText(content);
 
                         //postUserID로 userNick가져오기
                         String UserUID = (String) document.get("postUserUID");
@@ -112,12 +112,12 @@ public class Post_best extends Fragment {
 
                                     // 닉네임과 이미지
                                     String userNick = (String) doc.get("userNick");
-                                    post_usernick.setText(userNick);
+                                    UserNick.setText(userNick);
                                     String userImg = (String) doc.get("userImg");
                                     if (userImg != null) {
                                         Glide.with(getContext())
                                                 .load(Uri.parse(userImg))
-                                                .into(post_user_img);
+                                                .into(UserImg);
                                     }
 
                                     Log.e(TAG, doc.getId() + " " + UserUID + userNick);

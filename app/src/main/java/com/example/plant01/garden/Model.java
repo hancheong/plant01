@@ -2,17 +2,26 @@ package com.example.plant01.garden;
 
 public class Model {
 
-    String id, profileUri , name, location, date;
+    String id, profileUri , type,  name, location, date;
     public Model(String s){}
 
 
-    public Model(String id, String profileUri, String name, String location, String date){
+    public Model(String id, String profileUri, String type, String name, String location, String date){
         this.id = id;
         this.name = name;
+        this.type = type;
         this.location = location;
         this.date = date;
         this.profileUri = profileUri;
 
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getId() {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="main_slider" type="id" />
-    <item name="recyclerView" type="id" />
+    <item name="post_FreeRecyclerView" type="id" />
     <item name="UserBirth" type="id" />
     <item name="Birth" type="id" />
     <item name="Sex" type="id" />

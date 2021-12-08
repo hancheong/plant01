@@ -10,7 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.plant01.R;
 
-public class PostNotice extends AppCompatActivity {
+public class post_DrawerNotice extends AppCompatActivity {
 
     Toolbar toolbar;
 

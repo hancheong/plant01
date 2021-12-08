@@ -416,20 +416,15 @@ public class HomeFragment extends Fragment {
                                    }
 
                                    Log.e(TAG, doc.getId() + " " + UserUID + userNick);
-
-
-
                                }
                            }
                        });
-
 
                        Log.e(TAG, "자유게시판"+document.getId() + " => " + document.getData()+ " " + UserUID + " "  );
                    }
                } else {
                    Log.d(TAG, "Error getting documents: ", task.getException());
                }
-
            }
        });
 

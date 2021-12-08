@@ -17,14 +17,14 @@ import com.example.plant01.R;
 import com.google.android.material.tabs.TabLayout;
 
 
-public class store_category extends Fragment {
+public class store_Category extends Fragment {
 
     int i=0;
     ViewPager viewPager;
     private store_Main category1;
     private store_RecommendGoods category2;
     private ImageButton btn_search;
-    public store_category(){
+    public store_Category(){
     }
     private FragmentPagerAdapter fragmentPagerAdapter;
 
@@ -36,7 +36,7 @@ public class store_category extends Fragment {
 
         // 뷰페이저 세팅
         ViewPager viewPager = view.findViewById(R.id.store_ViewPager);
-        fragmentPagerAdapter = new store_categoryadapter(getChildFragmentManager());
+        fragmentPagerAdapter = new store_CategoryAdapter(getChildFragmentManager());
 
         TabLayout tabLayout = view.findViewById(R.id.store_Tabla);
         viewPager.setAdapter(fragmentPagerAdapter);

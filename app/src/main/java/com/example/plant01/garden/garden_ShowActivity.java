@@ -20,12 +20,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowActivity extends AppCompatActivity {
+public class garden_ShowActivity extends AppCompatActivity {
 
     private RecyclerView main_recyclerView;
     private FirebaseFirestore db;
-    private MyAdapter adapter;
-    private List<Model> list;
+    private garden_MyAdapter adapter;
+    private List<garden_Model> list;
 
 
 
@@ -40,10 +40,10 @@ public class ShowActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         list = new ArrayList<>();
-        adapter = new MyAdapter(this, list);
+        adapter = new garden_MyAdapter(this, list);
         main_recyclerView.setAdapter(adapter);
 
-        ItemTouchHelper touchHelper = new ItemTouchHelper(new TouchHelper(adapter));
+        ItemTouchHelper touchHelper = new ItemTouchHelper(new garden_TouchHelper(adapter));
         touchHelper.attachToRecyclerView(main_recyclerView);
 
         showData();
@@ -57,15 +57,15 @@ public class ShowActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            Model model = new Model(snapshot.getString("id"),snapshot.getString("profileUri"),snapshot.getString("type"),snapshot.getString("name"),snapshot.getString("location"),snapshot.getString("date"));
-                            list.add(model);
+                            garden_Model gardenModel = new garden_Model(snapshot.getString("id"),snapshot.getString("profileUri"),snapshot.getString("type"),snapshot.getString("name"),snapshot.getString("location"),snapshot.getString("date"));
+                            list.add(gardenModel);
                         }
                         adapter.notifyDataSetChanged();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ShowActivity.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(garden_ShowActivity.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
 

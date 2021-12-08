@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    tools:context=".garden.MyPlants">
+    tools:context=".garden.garden_MyPlants">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -166,6 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="#0C9869"
         android:text="Back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -176,6 +177,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="12dp"
+        android:backgroundTint="#0C9869"
         android:text="자동급수"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
@@ -186,6 +188,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="35dp"
+        android:backgroundTint="#0C9869"
         android:text="물 줌"
         app:layout_constraintEnd_toStartOf="@+id/btnOnWater"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />

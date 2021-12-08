@@ -22,21 +22,21 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class garden_MyAdapter extends RecyclerView.Adapter<garden_MyAdapter.MyViewHolder> {
     Activity activity;
-    List<Model> mList;
+    List<garden_Model> mList;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
 
-    public MyAdapter(Activity activity, List<Model> mList){
+    public garden_MyAdapter(Activity activity, List<garden_Model> mList){
         this.activity = activity;
         this.mList = mList;
 
     }
 
     public void updateData(int position){
-        Model item = mList.get(position);
+        garden_Model item = mList.get(position);
         Bundle bundle = new Bundle();
         bundle.putString("uId" , item.getId());
         bundle.putString("uType" , item.getType());
@@ -44,14 +44,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         bundle.putString("uLocation" , item.getLocation());
         bundle.putString("uDate" , item.getDate());
         bundle.putString("uProfileUri" , item.getProfileUri());
-        Intent intent = new Intent(activity , MyMainActivity.class);
+        Intent intent = new Intent(activity , garden_AddPlants.class);
         intent.putExtras(bundle);
         activity.startActivity(intent);
     }
 
     //데이터 삭제
     public void deleteData(int position){
-        Model item = mList.get(position);
+        garden_Model item = mList.get(position);
         db.collection("Myplants").document(item.getId()).delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -113,9 +113,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 @Override
                 public void onClick(View v) {
                     int currentPos = getAdapterPosition();
-                    Model myplants = mList.get(currentPos);
+                    garden_Model myplants = mList.get(currentPos);
                     String myplantsId = myplants.getId();
-                    Intent intent = new Intent(activity, MyPlants.class);
+                    Intent intent = new Intent(activity, garden_MyPlants.class);
                     intent.putExtra("myplantid",myplantsId);
                     activity.startActivity(intent);
                     Log.e("myplantid", myplants.getId());

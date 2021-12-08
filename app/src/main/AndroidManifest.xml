@@ -23,7 +23,7 @@
             android:name=".home.notification"
             android:exported="false" />
         <activity
-            android:name=".garden.MyMainActivity"
+            android:name=".garden.garden_AddPlants"
             android:exported="true" />
         <activity
             android:name=".garden.Context"
@@ -55,10 +55,10 @@
         <!-- android:name=".home.notification" -->
         <!-- android:exported="true" /> -->
         <activity
-            android:name=".garden.MyPlants"
+            android:name=".garden.garden_MyPlants"
             android:exported="true" />
         <activity
-            android:name=".garden.MyGarden"
+            android:name=".garden.garden_MyGarden"
             android:exported="true" />
         <activity
             android:name=".garden.AddPlants"

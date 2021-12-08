@@ -11,15 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,7 +31,7 @@ import java.util.Map;
 
 public class MyPlants extends AppCompatActivity {
 
-    TextView tvName, tvLocation, tvDate, tvWaterDate;
+    TextView tvType, tvName, tvLocation, tvDate, tvWaterDate;
     ImageView ivPlants;
     Button btnBack2, btnUpdateWater, btnOnWater;
     String name, location, date, profile;
@@ -58,6 +54,7 @@ public class MyPlants extends AppCompatActivity {
         tvWaterDate= (TextView)findViewById(R.id.tvWaterDate);
         btnUpdateWater = (Button)findViewById(R.id.btnUpdateWater);
         btnOnWater = (Button)findViewById(R.id.btnOnWater);
+        tvType = (TextView) findViewById(R.id.tvType);
         Intent intent = getIntent();
         myplantid = intent.getStringExtra("myplantid");
         Log.e("String myplant", myplantid);
@@ -111,6 +108,7 @@ public class MyPlants extends AppCompatActivity {
         db.collection("Myplants").document(myplantid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot doc, @Nullable FirebaseFirestoreException e) {
+                tvType.setText(doc.get("type").toString());
                 tvName.setText(doc.get("name").toString());
                 tvLocation.setText(doc.get("location").toString());
                 tvDate.setText(doc.get("date").toString());

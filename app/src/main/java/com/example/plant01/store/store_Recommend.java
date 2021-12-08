@@ -3,7 +3,7 @@ package com.example.plant01.store;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -11,9 +11,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.plant01.R;
 
-public class Recommend extends AppCompatActivity {
+public class store_Recommend extends AppCompatActivity {
 
-    private Button btn_recommend;
+    private ImageButton btn_recommend;
     private FragmentPagerAdapter fragmentPagerAdapter;
 
     ViewPager viewPager;
@@ -23,11 +23,11 @@ public class Recommend extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_recommendgoods);
 
-        btn_recommend = (Button) findViewById(R.id.store_recommend_btn);
+        btn_recommend = (ImageButton) findViewById(R.id.store_RecommendBtn);
         btn_recommend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Recommend.this, Store_RecommendList.class);
+                Intent intent = new Intent(store_Recommend.this, store_RecommendList.class);
                 startActivity(intent); // 추천상품 목록 이동
             }
         });

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="type_array">
+        <item>구절초</item>
+        <item>백량금</item>
         <item>선인장</item>
         <item>스투키</item>
-        <item>아이템2</item>
-        <item>아이템3</item>
-        <item>아이템4</item>
+        <item>옥잠화</item>
     </string-array>
 </resources>

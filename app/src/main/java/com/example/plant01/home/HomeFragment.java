@@ -31,12 +31,11 @@ import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 import com.example.plant01.adaptor.SliderAdapter;
 import com.example.plant01.adaptor.home_PlantAdapter;
-import com.example.plant01.garden.MyPlants;
+import com.example.plant01.garden.garden_MyPlants;
 import com.example.plant01.usersetting.UserSetting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -56,12 +55,9 @@ import com.smarteist.autoimageslider.SliderView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -277,7 +273,7 @@ public class HomeFragment extends Fragment {
                 manager.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), MyPlants.class);
+                        Intent intent = new Intent(getActivity(), garden_MyPlants.class);
                         intent.putExtra("myplantid", doc.getId());
                         startActivity(intent);
                     }
@@ -387,20 +383,15 @@ public class HomeFragment extends Fragment {
                                    }
 
                                    Log.e(TAG, doc.getId() + " " + UserUID + userNick);
-
-
-
                                }
                            }
                        });
-
 
                        Log.e(TAG, "자유게시판"+document.getId() + " => " + document.getData()+ " " + UserUID + " "  );
                    }
                } else {
                    Log.d(TAG, "Error getting documents: ", task.getException());
                }
-
            }
        });
 

@@ -26,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreSearchResult extends AppCompatActivity {
+public class store_SearchResult extends AppCompatActivity {
 
     private ImageButton store_resultback;
     private RecyclerView recyclerView;
@@ -34,7 +34,7 @@ public class StoreSearchResult extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private FirebaseFirestore db;
     private store_GoodsAdapter store_goodsAdapter;
-    private List<StoreGoods> list;
+    private List<store_Goods> list;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private TextView nothing;
@@ -46,7 +46,7 @@ public class StoreSearchResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_searchresult);
 
-        store_resultback = (ImageButton) findViewById(R.id.store_resultback);
+        store_resultback = (ImageButton) findViewById(R.id.store_ResultBack);
         store_resultback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,8 +54,8 @@ public class StoreSearchResult extends AppCompatActivity {
             }
         });
 
-        nothing = findViewById(R.id.store_nothing);
-        recyclerView = findViewById(R.id.store_resultview); // 리사이클러뷰에 LinearLayoutManager 객체 지정
+        nothing = findViewById(R.id.store_Nothing);
+        recyclerView = findViewById(R.id.store_ResultView); // 리사이클러뷰에 LinearLayoutManager 객체 지정
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -68,7 +68,7 @@ public class StoreSearchResult extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        TextView result = (TextView) findViewById(R.id.store_resulttext);
+        TextView result = (TextView) findViewById(R.id.store_ResultText);
         String search = intent.getStringExtra("contact_search");
         if (search != null){
             result.setText(search);
@@ -97,7 +97,7 @@ public class StoreSearchResult extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("StoreName"),snapshot.getString("GoodsTitle"),snapshot.getString("GoodsReview"),snapshot.getString("GoodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("StoreName"),snapshot.getString("GoodsTitle"),snapshot.getString("GoodsReview"),snapshot.getString("GoodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();
@@ -105,7 +105,7 @@ public class StoreSearchResult extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StoreSearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_SearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -121,7 +121,7 @@ public class StoreSearchResult extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("StoreName"),snapshot.getString("GoodsTitle"),snapshot.getString("GoodsReview"),snapshot.getString("GoodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();
@@ -129,10 +129,9 @@ public class StoreSearchResult extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StoreSearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_SearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void  showFlower(){ // 상품 종류가 꽃인 데이터 불러오기
@@ -145,7 +144,7 @@ public class StoreSearchResult extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("StoreName"),snapshot.getString("GoodsTitle"),snapshot.getString("GoodsReview"),snapshot.getString("GoodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();
@@ -153,7 +152,7 @@ public class StoreSearchResult extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StoreSearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_SearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -162,13 +161,13 @@ public class StoreSearchResult extends AppCompatActivity {
     private void  showRecomand1(){
         CollectionReference goodsRef = db.collection("StoreGoods"); // 상품 데이터 객체 생성
 
-        db.collection("StoreGoods").whereEqualTo("goodsKind", "옥잠화").get() // 검색 조건. goodsKind가 꽃인 상품만 검색
+        db.collection("StoreGoods").whereEqualTo("goodsKind", "옥잠화").get() // 검색 조건. goodsKind가 옥잠화인 상품만 검색
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("StoreName"),snapshot.getString("GoodsTitle"),snapshot.getString("GoodsReview"),snapshot.getString("GoodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();
@@ -176,20 +175,20 @@ public class StoreSearchResult extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StoreSearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_SearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
     }
     private void  showRecomand2(){
         CollectionReference goodsRef = db.collection("StoreGoods"); // 상품 데이터 객체 생성
 
-        db.collection("StoreGoods").whereEqualTo("goodsKind", "필로덴드론").get() // 검색 조건. goodsKind가 꽃인 상품만 검색
+        db.collection("StoreGoods").whereEqualTo("goodsKind", "필로덴드론").get() // 검색 조건. goodsKind가 필로덴드론인 상품만 검색
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            StoreGoods storeGoods = new StoreGoods(snapshot.getString("goodsImg"),snapshot.getString("StoreName"),snapshot.getString("GoodsTitle"),snapshot.getString("GoodsReview"),snapshot.getString("GoodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();
@@ -197,7 +196,7 @@ public class StoreSearchResult extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StoreSearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(store_SearchResult.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
     }

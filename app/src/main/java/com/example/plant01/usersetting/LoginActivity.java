@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.plant01.R;
-import com.example.plant01.store.MainActivity;
+import com.example.plant01.store.navi_MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mFirebaseAuth.getCurrentUser();
                                 Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, navi_MainActivity.class);
                                 startActivity(intent);
                                 finish();
 

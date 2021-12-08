@@ -23,7 +23,7 @@
             android:name=".home.notification"
             android:exported="false" />
         <activity
-            android:name=".garden.MyMainActivity"
+            android:name=".garden.garden_AddPlants"
             android:exported="true" />
         <activity
             android:name=".garden.Context"
@@ -55,10 +55,10 @@
         <!-- android:name=".home.notification" -->
         <!-- android:exported="true" /> -->
         <activity
-            android:name=".garden.MyPlants"
+            android:name=".garden.garden_MyPlants"
             android:exported="true" />
         <activity
-            android:name=".garden.MyGarden"
+            android:name=".garden.garden_MyGarden"
             android:exported="true" />
         <activity
             android:name=".garden.AddPlants"
@@ -74,7 +74,7 @@
             android:exported="true" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".store.MainActivity"
+            android:name=".store.navi_MainActivity"
             android:exported="true" />
         <activity
             android:name=".postpage.GalleryActivity"
@@ -89,18 +89,18 @@
             android:name=".postpage.post_DrawerNotice"
             android:exported="true" />
         <activity
-            android:name=".store.Recommend"
+            android:name=".store.store_Recommend"
             android:exported="true" />
         <activity
-            android:name=".store.Store_RecommendList"
+            android:name=".store.store_RecommendList"
             android:exported="true" />
         <activity
-            android:name=".store.StoreSearch"
+            android:name=".store.store_Search"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity
-            android:name=".store.StoreSearchResult"
+            android:name=".store.store_SearchResult"
             android:exported="true" />
         <activity
             android:name=".store.intro"

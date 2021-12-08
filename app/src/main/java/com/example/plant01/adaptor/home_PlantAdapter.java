@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
 import com.example.plant01.home.Plants;
-import com.example.plant01.store.StoreSearchResult;
+import com.example.plant01.store.store_SearchResult;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class home_PlantAdapter extends RecyclerView.Adapter<home_PlantAdapter.Pl
                     int currentPos = getAdapterPosition();
                     Plants plants = plantsArrayList.get(currentPos);
                     String plantname = plants.getPlantName();
-                    Intent intent = new Intent(context, StoreSearchResult.class);
+                    Intent intent = new Intent(context, store_SearchResult.class);
                     intent.putExtra("contact_search",plantname);
                     context.startActivity(intent);
                     Log.e("plantname", plants.getPlantName());

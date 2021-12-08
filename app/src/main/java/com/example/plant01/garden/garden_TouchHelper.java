@@ -12,10 +12,10 @@ import com.example.plant01.R;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 
-public class TouchHelper extends ItemTouchHelper.SimpleCallback {
+public class garden_TouchHelper extends ItemTouchHelper.SimpleCallback {
 
-    private MyAdapter adapter;
-    public TouchHelper(MyAdapter adapter) {
+    private garden_MyAdapter adapter;
+    public garden_TouchHelper(garden_MyAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
     }

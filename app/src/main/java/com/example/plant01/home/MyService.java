@@ -21,7 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import com.example.plant01.R;
-import com.example.plant01.garden.MyPlants;
+import com.example.plant01.garden.garden_MyPlants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -156,7 +156,7 @@ public class MyService extends Service {
             builder.setContentTitle("🚨🚨🚨온도경고🚨🚨🚨");
             builder.setContentText("온도가 너무 높아요!🌡️🌡️🌡️🌡️ 확인해주세요");
 
-            Intent intent = new Intent(MyService.this, MyPlants.class);
+            Intent intent = new Intent(MyService.this, garden_MyPlants.class);
             intent.putExtra("myplantid", myPlantID);
             //            startActivity(intent);
             Log.e("온도myplantid", myPlantID);
@@ -231,7 +231,7 @@ public class MyService extends Service {
             builder.setContentTitle("🚨🚨🚨습도경고🚨🚨🚨");
             builder.setContentText("습도토양습도가 너무 건조해요! 물을 주세요 💧💧💧💧");
 
-            Intent intent = new Intent(MyService.this, MyPlants.class);
+            Intent intent = new Intent(MyService.this, garden_MyPlants.class);
             intent.putExtra("myplantid", myPlantID);
 //            startActivity(intent);
             Log.e("습도myplantid", myPlantID);

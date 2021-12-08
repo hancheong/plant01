@@ -8,17 +8,17 @@
 
 
     <FrameLayout
-        android:id="@+id/Frame"
+        android:id="@+id/store_Frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/Navigation"
+        app:layout_constraintBottom_toTopOf="@+id/store_Navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/Navigation"
+        android:id="@+id/store_Navigation"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:itemIconTint="#0c9869"

@@ -1,9 +1,9 @@
 package com.example.plant01.garden;
 
-public class Model {
+public class garden_Model {
 
     String id, profileUri , type,  name, location, date;
-    public Model(String s){}
+    public garden_Model(String s){}
 
     public Model(String id, String profileUri, String name, String location, String date) {
         this.id = id;
@@ -13,7 +13,7 @@ public class Model {
         this.date = date;
     }
 
-    public Model(String id, String profileUri, String type, String name, String location, String date){
+    public garden_Model(String id, String profileUri, String type, String name, String location, String date){
         this.id = id;
         this.name = name;
         this.type = type;

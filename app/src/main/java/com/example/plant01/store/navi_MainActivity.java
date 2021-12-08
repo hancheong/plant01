@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.plant01.R;
-import com.example.plant01.garden.MyGarden;
+import com.example.plant01.garden.garden_MyGarden;
 import com.example.plant01.home.HomeFragment;
 
 import com.example.plant01.postpage.post_MainActivity;
@@ -22,7 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity {
+public class navi_MainActivity extends AppCompatActivity {
 
 
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
     private post_MainActivity mainActivity;
     private HomeFragment HomeFragment;
-    private store_category store_category;
-    private MyGarden MyGarden;
+    private store_Category store_category;
+    private garden_MyGarden garden_MyGarden;
     private FragmentPagerAdapter fragmentPagerAdapter;
 
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.store_activity_main);
 
 
-        bottomNavigationView = findViewById(R.id.Navigation); // 네비게이션 아이콘을 누를시 해당 화면으로 이동
+        bottomNavigationView = findViewById(R.id.store_Navigation); // 네비게이션 아이콘을 누를시 해당 화면으로 이동
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         });
         HomeFragment = new HomeFragment();
         mainActivity = new post_MainActivity();
-        MyGarden = new MyGarden();
-        store_category = new store_category();
+        store_category = new store_Category();
+        garden_MyGarden = new garden_MyGarden();
         setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택
 
     }
@@ -84,19 +84,19 @@ public class MainActivity extends AppCompatActivity {
         ft = fm.beginTransaction();
         switch (n) {
             case 0:
-                ft.replace(R.id.Frame, HomeFragment);
+                ft.replace(R.id.store_Frame, HomeFragment);
                 ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.Frame, MyGarden);
+                ft.replace(R.id.store_Frame, garden_MyGarden);
                 ft.commit();
                 break;
             case 2:
-                ft.replace(R.id.Frame, mainActivity);
+                ft.replace(R.id.store_Frame, mainActivity);
                 ft.commit();
                 break;
             case 3:
-                ft.replace(R.id.Frame, store_category);
+                ft.replace(R.id.store_Frame, store_category);
                 ft.commit();
                 break;
 

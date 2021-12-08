@@ -83,6 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#0C9869"
                     android:text="이미지" />
 
                 <Button
@@ -90,6 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#0C9869"
                     android:text="동영상" />
             </LinearLayout>
 
@@ -97,6 +99,7 @@
                 android:id="@+id/post_PostBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#0C9869"
                 android:text="올리기" />
 
         </LinearLayout>

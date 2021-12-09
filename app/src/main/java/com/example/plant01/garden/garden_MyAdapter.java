@@ -87,7 +87,9 @@ public class garden_MyAdapter extends RecyclerView.Adapter<garden_MyAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Glide.with(activity).load(mList.get(position).getProfileUri()).into(holder.profile);
+        if(mList.get(position).getProfileUri() != null){
+            Glide.with(activity).load(mList.get(position).getProfileUri()).into(holder.profile);
+        }
         holder.name.setText(mList.get(position).getName());
 //        holder.location.setText(mList.get(position).getLocation());
 //        holder.date.setText(mList.get(position).getDate());

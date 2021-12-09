@@ -296,6 +296,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="35dp"
+                android:backgroundTint="@color/maincolor"
                 android:text="수정하기"
                 app:layout_constraintTop_toBottomOf="@id/setting_user"
                 tools:layout_editor_absoluteX="2dp" />

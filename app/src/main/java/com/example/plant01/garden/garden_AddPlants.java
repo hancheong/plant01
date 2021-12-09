@@ -223,8 +223,13 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
+                                if( imageUri != null){
+                                    uploadToFirebasefirst(imageUri);
+                                }
+                                Toast.makeText(garden_AddPlants.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
+                                finish();
 
-                                uploadToFirebasefirst(imageUri);
+
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -280,8 +285,8 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
                         storeuri = uri.toString();
                         db.collection("Myplants").document(myplantid)
                                 .update("profileUri", uri.toString());
-                        Toast.makeText(garden_AddPlants.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
-                        finish();
+
+
                     }
 
                 });

@@ -115,7 +115,7 @@ public class garden_MyPlants extends AppCompatActivity {
                 if(doc.get("recentWater") != null){
                     tvWaterDate.setText(doc.get("recentWater").toString());
                 }
-                if(doc.get("profileUri").toString() != null){
+                if(doc.get("profileUri") != null){
                     Glide.with(garden_MyPlants.this)
                             .load(Uri.parse(doc.get("profileUri").toString()))
                             .into(ivPlants);

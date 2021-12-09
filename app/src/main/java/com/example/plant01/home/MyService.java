@@ -72,7 +72,7 @@ public class MyService extends Service {
                     thread = new ServiceThread(handler);
                     thread.start();
                 }
-                if(Double.parseDouble(soilmoisture) < 40 ){
+                if(Double.parseDouble(soilmoisture) > 850 ){
                     myPlantHum handler1 = new myPlantHum();
                     thread1 = new ServiceThread(handler1);
                     thread1.start();
@@ -252,7 +252,7 @@ public class MyService extends Service {
 //                manager.createNotificationChannel(new NotificationChannel("1", "기본채널", NotificationManager.IMPORTANCE_DEFAULT));
 //            }
 
-            if(Double.parseDouble(soilmoisture) < 40 ){
+            if(Double.parseDouble(soilmoisture) > 850 ){
 //                        myServiceHandler handler = new myServiceHandler();
                 manager.notify(2, builder.build());
 

@@ -130,6 +130,7 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
         mSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 //                Log.e("storeuri", storeuri);
@@ -222,7 +223,7 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
-                                Toast.makeText(garden_AddPlants.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
+
                                 uploadToFirebasefirst(imageUri);
                             }
                         }
@@ -277,6 +278,7 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
                         storeuri = uri.toString();
                         db.collection("Myplants").document(myplantid)
                                 .update("profileUri", uri.toString());
+                        Toast.makeText(garden_AddPlants.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
                     }
 
                 });

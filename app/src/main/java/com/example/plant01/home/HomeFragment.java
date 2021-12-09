@@ -239,7 +239,7 @@ public class HomeFragment extends Fragment {
                     String userNick = (String) doc.get("userNick");
                     usernick.setText(userNick);
                     if( userImg != null){
-                        Glide.with(getContext())
+                        Glide.with(getActivity())
                                 .load(Uri.parse(userImg))
                                 .into(userprofile);
 
@@ -308,7 +308,7 @@ public class HomeFragment extends Fragment {
 
                             managerplantdate.setText(String.valueOf(d_day));
                             managerplantname.setText(myplantnicktxt);
-                            Glide.with(getContext())
+                            Glide.with(getActivity())
                                     .load(Uri.parse(myplantimgtxt))
                                     .into(managerplantimg);
                         }
@@ -377,7 +377,7 @@ public class HomeFragment extends Fragment {
                                    free_usernick.setText(userNick);
                                    String userImg = (String) doc.get("userImg");
                                    if(userImg != null){
-                                       Glide.with(getContext())
+                                       Glide.with(getActivity())
                                                .load(Uri.parse(userImg))
                                                .into(freeuserprofile);
                                    }
@@ -425,7 +425,7 @@ public class HomeFragment extends Fragment {
 
                                     String userImg = (String) doc.get("userImg");
                                     if(userImg != null){
-                                        Glide.with(getContext())
+                                        Glide.with(getActivity())
                                                 .load(Uri.parse(userImg))
                                                 .into(questuserprofile);
                                     }

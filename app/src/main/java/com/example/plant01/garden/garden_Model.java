@@ -5,7 +5,7 @@ public class garden_Model {
     String id, profileUri , type,  name, location, date;
     public garden_Model(String s){}
 
-    public Model(String id, String profileUri, String name, String location, String date) {
+    public garden_Model(String id, String profileUri, String name, String location, String date) {
         this.id = id;
         this.profileUri = profileUri;
         this.name = name;

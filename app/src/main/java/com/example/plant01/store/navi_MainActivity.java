@@ -46,7 +46,6 @@ public class navi_MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_activity_main);
 
-
         bottomNavigationView = findViewById(R.id.store_Navigation); // 네비게이션 아이콘을 누를시 해당 화면으로 이동
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

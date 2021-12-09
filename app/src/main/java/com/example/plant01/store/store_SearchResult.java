@@ -97,7 +97,7 @@ public class store_SearchResult extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for (DocumentSnapshot snapshot : task.getResult()){
-                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("StoreName"),snapshot.getString("GoodsTitle"),snapshot.getString("GoodsReview"),snapshot.getString("GoodsPrice"));
+                            store_Goods storeGoods = new store_Goods(snapshot.getString("goodsImg"),snapshot.getString("storeName"),snapshot.getString("goodsTitle"),snapshot.getString("goodsReview"),snapshot.getString("goodsPrice"));
                             list.add(storeGoods);
                         }
                         adapter.notifyDataSetChanged();

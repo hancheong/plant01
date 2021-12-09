@@ -49,7 +49,7 @@ public class search extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_search2);
 
 //        result = findViewById(R.id.result);
 //        confidence = findViewById(R.id.confidence);

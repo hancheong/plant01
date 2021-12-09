@@ -34,7 +34,7 @@ public class noticebar extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.noticebar);
+        setContentView(R.layout.activity_notification);
 
         db = FirebaseDatabase.getInstance();
         databaseReference = db.getReference("MyDevice");

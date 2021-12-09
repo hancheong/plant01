@@ -129,6 +129,7 @@ public class post_Write extends AppCompatActivity {
                 String contentimg = null;
 
                 saveToFireStore(id, title, contents, board, timestamp, contentimg);
+                onBackPressed();
             }
 
             private void saveToFireStore(String userid, String title, String contents, String board, Date timestamp, String contentimg) {
@@ -172,7 +173,6 @@ public class post_Write extends AppCompatActivity {
             //파이어스토리지와 연결
             UploadImg.setVisibility(View.VISIBLE);
             galleryUri = data.getData();
-
 //            Bitmap bitmap = (Bitmap) data.getParcelableExtra("data");
 //            ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);

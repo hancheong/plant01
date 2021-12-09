@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +27,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -141,21 +144,33 @@ public class garden_MyGarden extends Fragment {
     //DB에 입력한 데이터 보여주기
     private void  showData(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        db.collection("Myplants").whereEqualTo("userID", user.getUid()).get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        list.clear();
-                        for (DocumentSnapshot snapshot : task.getResult()) {
+        db.collection("Myplants").whereEqualTo("userID", user.getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                list.clear();
+                        for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
 
                             garden_Model gardenModel = new garden_Model(snapshot.getString("id"), snapshot.getString("profileUri"), snapshot.getString("type"), snapshot.getString("name"), snapshot.getString("location"), snapshot.getString("date"));
                             list.add(gardenModel);
 
                         }
                         gardenMyAdapter.notifyDataSetChanged();
+            }
+        });
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        list.clear();
+//                        for (DocumentSnapshot snapshot : task.getResult()) {
+//
+//                            garden_Model gardenModel = new garden_Model(snapshot.getString("id"), snapshot.getString("profileUri"), snapshot.getString("type"), snapshot.getString("name"), snapshot.getString("location"), snapshot.getString("date"));
+//                            list.add(gardenModel);
+//
+//                        }
+//                        gardenMyAdapter.notifyDataSetChanged();
+////                    }
 //                    }
-                    }
-                    });
+//                    });
 
 
 //                    list.add(model);

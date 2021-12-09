@@ -254,6 +254,8 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
                             storeuri = uri.toString();
                             db.collection("Myplants").document(uId)
                                     .update("profileUri", uri.toString());
+                         Toast.makeText(garden_AddPlants.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
+                         finish();
                         }
 
                     });
@@ -279,6 +281,7 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
                         db.collection("Myplants").document(myplantid)
                                 .update("profileUri", uri.toString());
                         Toast.makeText(garden_AddPlants.this, "Data Saved !!", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                 });

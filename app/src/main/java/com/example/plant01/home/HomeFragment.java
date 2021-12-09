@@ -3,6 +3,7 @@ package com.example.plant01.home;
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -79,6 +80,7 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaserf;
 
+
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private FirebaseFirestore db;
     private View.OnClickListener cl;
@@ -93,6 +95,7 @@ public class HomeFragment extends Fragment {
 
     //  private FirebaseDatabase database;
 //    private DatabaseReference databaseReference;
+
 
 
     @Override

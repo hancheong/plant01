@@ -311,6 +311,9 @@ public class HomeFragment extends Fragment {
 
                             managerplantdate.setText(String.valueOf(d_day));
                             managerplantname.setText(myplantnicktxt);
+                            if (getActivity() == null) {
+                                return;
+                            }
                             Glide.with(getActivity())
                                     .load(Uri.parse(myplantimgtxt))
                                     .into(managerplantimg);

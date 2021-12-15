@@ -59,7 +59,7 @@ public class usersetting_UserSetting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_setting_user);
+        setContentView(R.layout.usersetting_usersetting);
         toolbar = findViewById(R.id.toolbar2);
 
         setSupportActionBar(toolbar);

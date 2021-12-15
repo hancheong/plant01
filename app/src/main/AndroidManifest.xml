@@ -61,7 +61,6 @@
         <activity
             android:name=".usersetting.usersetting_RegisterActivity"
             android:exported="true" />
-        <activity android:name=".MainActivity" />
         <activity
             android:name=".store.navi_MainActivity"
             android:exported="true" />

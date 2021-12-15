@@ -68,6 +68,5 @@ public class garden_ShowActivity extends AppCompatActivity {
                 Toast.makeText(garden_ShowActivity.this,"something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

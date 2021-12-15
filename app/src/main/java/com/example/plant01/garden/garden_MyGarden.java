@@ -41,7 +41,6 @@ public class garden_MyGarden extends Fragment {
     private RecyclerView recyclerView;
 //    private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<garden_PlantsDB> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private RecyclerView main_recyclerView;

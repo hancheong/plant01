@@ -172,6 +172,8 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
 
         }
     }
+
+    //수정 기능
     private void updateToFireStore( String type, String name, String location, String date, String profileUri){
 
         db.collection("Myplants").document(uId).update("name", name, "location",location, "date", date, "profileUri", profileUri)
@@ -205,6 +207,7 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
 //        });
     }
 
+    //저장
     private void saveToFireStore(String id , String type, String name , String location, String date, String profileUri, String userid, String recentDate){
 
         if (!name.isEmpty() && !location.isEmpty()){
@@ -242,6 +245,7 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
             Toast.makeText(this, "Empty Fields not Allowed", Toast.LENGTH_SHORT).show();
     }
 
+    //이미지 업로드
     private void uploadToFirebase(Uri uri){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 

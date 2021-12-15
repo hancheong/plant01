@@ -20,31 +20,28 @@
         android:theme="@style/Theme.plant01">
 
         <activity
-            android:name=".home.notification"
-            android:exported="false" />
-        <activity
             android:name=".garden.garden_AddPlants"
             android:exported="true" />
         <activity
             android:name=".garden.Context"
             android:exported="true" />
         <activity
-            android:name=".home.SearchResult"
+            android:name=".home.home_SearchResult"
             android:exported="false" />
         <activity
-            android:name=".home.SearchPlantPage"
-            android:exported="false" />
-        <activity
-            android:name=".home.search2"
+            android:name=".home.home_Search2"
             android:exported="true" />
         <activity
             android:name=".test.testPostData"
             android:exported="true" />
         <activity
-            android:name=".usersetting.UserSetting"
+            android:name=".usersetting.usersetting_UserSetting"
             android:exported="true" />
         <activity
-            android:name=".home.bell"
+            android:name=".home.home_DrawerBell"
+            android:exported="true" />
+        <activity
+            android:name=".home.home_Search"
             android:exported="true" />
         <!-- <activity -->
         <!-- android:name=".home.notification" -->
@@ -59,13 +56,10 @@
             android:name=".garden.AddPlants"
             android:exported="true" />
         <activity
-            android:name=".usersetting.LoginActivity"
+            android:name=".usersetting.usersetting_LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".usersetting.RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".usersetting.CameraActivity"
+            android:name=".usersetting.usersetting_RegisterActivity"
             android:exported="true" />
         <activity android:name=".MainActivity" />
         <activity
@@ -108,7 +102,7 @@
         </activity>
 
         <service
-            android:name=".home.MyService"
+            android:name=".home.home_MyService"
             android:enabled="true"
             android:exported="true" />
     </application>

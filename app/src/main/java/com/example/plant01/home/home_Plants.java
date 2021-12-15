@@ -1,14 +1,14 @@
 package com.example.plant01.home;
 
-public class Plants {
+public class home_Plants {
     String plantName, plantImg, plantWaterD, plantSize, plantSun, plantOrigin;
     String plantTem, plantHum, plantLevel, plantKeyWord;
 //    ArrayList plantTip;
     int plantWaterC;
 
-    Plants(){}
+    home_Plants(){}
 
-    public Plants(String plantName, String plantImg, String plantWaterD, String plantSize, String plantSun
+    public home_Plants(String plantName, String plantImg, String plantWaterD, String plantSize, String plantSun
             , String plantOrigin, String plantTem, String plantHum, String plantLevel, String plantKeyWord, int plantWaterC) {
         this.plantName = plantName;
         this.plantImg = plantImg;

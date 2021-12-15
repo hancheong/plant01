@@ -105,7 +105,7 @@ public class post_MainActivity extends Fragment {
                             startActivity(intent1);
                             break;
 //                        case R.id.btn_post:
-//                            Intent intent2 = new Intent(getActivity(), bell.class);
+//                            Intent intent2 = new Intent(getActivity(), home_DrawerBell.class);
 //                            startActivity(intent2);
 //                            break;
                     }

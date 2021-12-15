@@ -79,7 +79,7 @@
         android:layout_width="324dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:hint="Types of plants"
+        android:hint="Types of homePlants"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etDate" />

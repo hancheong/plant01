@@ -3,7 +3,6 @@ package com.example.plant01.home;
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -30,10 +29,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
-import com.example.plant01.adaptor.SliderAdapter;
+import com.example.plant01.adaptor.home_SliderAdapter;
 import com.example.plant01.adaptor.home_PlantAdapter;
 import com.example.plant01.garden.garden_MyPlants;
-import com.example.plant01.usersetting.UserSetting;
+import com.example.plant01.usersetting.usersetting_UserSetting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -63,8 +62,8 @@ import java.util.Date;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class HomeFragment extends Fragment {
-    private static final String TAG = "HomeFragment";
+public class home_MainFragment extends Fragment {
+    private static final String TAG = "home_MainFragment";
 
     private SliderView sliderView;
     private int[] images = {R.drawable.home_ad1,
@@ -72,7 +71,7 @@ public class HomeFragment extends Fragment {
     private Uri searchimg;
 
     private RecyclerView recyclerView;
-    private ArrayList<Plants> plantsArrayList;
+    private ArrayList<home_Plants> homePlantsArrayList;
     private home_PlantAdapter plantAdapter;
     private TextView managerplantname, managerplantdate;
     private FirebaseDatabase database;
@@ -105,9 +104,9 @@ public class HomeFragment extends Fragment {
 
         sliderView = getView().findViewById(R.id.main_slider);
 
-        SliderAdapter sliderAdapter = new SliderAdapter(images);
+        home_SliderAdapter homeSliderAdapter = new home_SliderAdapter(images);
 
-        sliderView.setSliderAdapter(sliderAdapter);
+        sliderView.setSliderAdapter(homeSliderAdapter);
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
         sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
         sliderView.startAutoCycle();
@@ -120,8 +119,8 @@ public class HomeFragment extends Fragment {
         recyclerView = getView().findViewById(R.id.homerecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-        plantsArrayList = new ArrayList<Plants>();
-        plantAdapter = new home_PlantAdapter(getContext(), plantsArrayList);
+        homePlantsArrayList = new ArrayList<home_Plants>();
+        plantAdapter = new home_PlantAdapter(getContext(), homePlantsArrayList);
         recyclerView.setAdapter(plantAdapter);
         db = FirebaseFirestore.getInstance();
         showRecomendPlant();
@@ -139,11 +138,11 @@ public class HomeFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.btn_profile:
-                        Intent intent1 = new Intent(getActivity(), UserSetting.class);
+                        Intent intent1 = new Intent(getActivity(), usersetting_UserSetting.class);
                         startActivity(intent1);
                         break;
                     case R.id.btn_bell:
-                        Intent intent2 = new Intent(getActivity(), bell.class);
+                        Intent intent2 = new Intent(getActivity(), home_DrawerBell.class);
                         startActivity(intent2);
                         break;
                 }
@@ -165,7 +164,9 @@ public class HomeFragment extends Fragment {
                         showUserProfile();
                         break;
                     case R.id.home_btn_search:
-                        PickImageFromGallery();
+                        Intent intent = new Intent(getActivity(), home_Search.class);
+                        startActivity(intent);
+//                        PickImageFromGallery();
 
                         break;
                 }
@@ -198,7 +199,7 @@ public class HomeFragment extends Fragment {
         if (requestCode==12 && resultCode==RESULT_OK && data!=null) {
 
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            Intent intent = new Intent(getActivity(),search2.class);
+            Intent intent = new Intent(getActivity(), home_Search2.class);
             intent.putExtra("uri", bitmap);
             startActivity(intent);
 
@@ -209,13 +210,13 @@ public class HomeFragment extends Fragment {
 
     /*------------------추천상품 보여주는 부분----------------------------------*/
     public void showRecomendPlant() {
-        db.collection("Plants").orderBy("likes", Query.Direction.DESCENDING).limit(3).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("home_Plants").orderBy("likes", Query.Direction.DESCENDING).limit(3).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                plantsArrayList.clear();
+                homePlantsArrayList.clear();
                 for (DocumentChange dc : value.getDocumentChanges()) {
                     if (dc.getType() == DocumentChange.Type.ADDED) {
-                        plantsArrayList.add(dc.getDocument().toObject(Plants.class));
+                        homePlantsArrayList.add(dc.getDocument().toObject(home_Plants.class));
                     }
 
                     plantAdapter.notifyDataSetChanged();
@@ -283,7 +284,7 @@ public class HomeFragment extends Fragment {
                 });
 
                 /*-----------------내 식물 물주기 남은 날짜 가져오기-----------------------------------*/
-                db.collection("Plants").whereEqualTo("plantName", myplantplantname)
+                db.collection("home_Plants").whereEqualTo("plantName", myplantplantname)
                         .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

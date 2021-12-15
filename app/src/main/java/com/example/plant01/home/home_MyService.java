@@ -30,9 +30,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MyService extends Service {
+public class home_MyService extends Service {
     NotificationManager Notifi_M;
-    ServiceThread thread, thread1;
+    home_ServiceThread thread, thread1;
     Notification Notifi;
     FirebaseDatabase db;
     String maxTemper, minTemper, soilmoisture;
@@ -69,12 +69,12 @@ public class MyService extends Service {
                 soilmoisture = dataSnapshot.child("soilMoisture").getValue().toString();
                 if(Double.parseDouble(maxTemper) < 0.0 ){
                     myServiceHandler handler = new myServiceHandler();
-                    thread = new ServiceThread(handler);
+                    thread = new home_ServiceThread(handler);
                     thread.start();
                 }
                 if(Double.parseDouble(soilmoisture) > 850 ){
                     myPlantHum handler1 = new myPlantHum();
-                    thread1 = new ServiceThread(handler1);
+                    thread1 = new home_ServiceThread(handler1);
                     thread1.start();
 
                 }
@@ -88,14 +88,14 @@ public class MyService extends Service {
 //
 //                if(Double.parseDouble(soilmoisture) < 40){
 //                    myPlantHum handler1 = new myPlantHum();
-//                    thread = new ServiceThread(handler1);
+//                    thread = new home_ServiceThread(handler1);
 //                    thread.start();
 //                }
 //
 //                Log.e("Myservice", String.valueOf(maxTemper));
 //                if(Double.parseDouble(maxTemper) < 0.0 ){
 //                    myServiceHandler handler = new myServiceHandler();
-//                    thread = new ServiceThread(handler);
+//                    thread = new home_ServiceThread(handler);
 //                    thread.start();
 //                }
 //                else if (Double.parseDouble(minTemper) < 0.0){
@@ -127,20 +127,20 @@ public class MyService extends Service {
 //
 //        출처: https://twinw.tistory.com/50 [흰고래의꿈]
 //        myServiceHandler handler = new myServiceHandler();
-//        thread = new ServiceThread(handler);
+//        thread = new home_ServiceThread(handler);
 //        thread.start();
     }
 
     public void start() {
         myServiceHandler handler = new myServiceHandler();
-        thread = new ServiceThread(handler);
+        thread = new home_ServiceThread(handler);
         thread.start();
     }
 
     public void stop() {
         myServiceHandler handler = new myServiceHandler();
 
-        thread = new ServiceThread(handler);
+        thread = new home_ServiceThread(handler);
 
     }
 
@@ -151,22 +151,22 @@ public class MyService extends Service {
 
 
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(MyService.this, CHANNEL_1_ID);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(home_MyService.this, CHANNEL_1_ID);
             builder.setSmallIcon(R.drawable.plantnotice);
             builder.setContentTitle("🚨🚨🚨온도경고🚨🚨🚨");
             builder.setContentText("온도가 너무 높아요!🌡️🌡️🌡️🌡️ 확인해주세요");
 
-            Intent intent = new Intent(MyService.this, garden_MyPlants.class);
+            Intent intent = new Intent(home_MyService.this, garden_MyPlants.class);
             intent.putExtra("myplantid", myPlantID);
             //            startActivity(intent);
             Log.e("온도myplantid", myPlantID);
-            PendingIntent pendingIntent = PendingIntent.getActivity(MyService.this, 10, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getActivity(home_MyService.this, 10, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(pendingIntent);
 
 
             Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.plantnotice);
             builder.setLargeIcon(largeIcon);
-            Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(MyService.this, RingtoneManager.TYPE_NOTIFICATION);
+            Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(home_MyService.this, RingtoneManager.TYPE_NOTIFICATION);
             builder.setSound(ringtoneUri);
 
             long[] vibrate = {0, 100, 200, 300};
@@ -196,7 +196,7 @@ public class MyService extends Service {
 //
 ////                    if(Double.parseDouble(soilmoisture) < 40){
 ////                        myPlantHum handler1 = new myPlantHum();
-////                        thread = new ServiceThread(handler1);
+////                        thread = new home_ServiceThread(handler1);
 ////                        thread.start();
 ////                    }
 //
@@ -226,21 +226,21 @@ public class MyService extends Service {
         @Override
         public void handleMessage(android.os.Message msg) {
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(MyService.this, CHANNEL_2_ID);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(home_MyService.this, CHANNEL_2_ID);
             builder.setSmallIcon(R.drawable.plantnotice);
             builder.setContentTitle("🚨🚨🚨습도경고🚨🚨🚨");
             builder.setContentText("습도토양습도가 너무 건조해요! 물을 주세요 💧💧💧💧");
 
-            Intent intent = new Intent(MyService.this, garden_MyPlants.class);
+            Intent intent = new Intent(home_MyService.this, garden_MyPlants.class);
             intent.putExtra("myplantid", myPlantID);
 //            startActivity(intent);
             Log.e("습도myplantid", myPlantID);
-            PendingIntent pendingIntent = PendingIntent.getActivity(MyService.this, 10, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getActivity(home_MyService.this, 10, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(pendingIntent);
 
             Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.plantnotice);
             builder.setLargeIcon(largeIcon);
-            Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(MyService.this, RingtoneManager.TYPE_NOTIFICATION);
+            Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(home_MyService.this, RingtoneManager.TYPE_NOTIFICATION);
             builder.setSound(ringtoneUri);
 
             long[] vibrate = {0, 100, 200, 300};
@@ -332,7 +332,7 @@ public class MyService extends Service {
 ////        });
 //
 //        myServiceHandler handler = new myServiceHandler();
-//        thread = new ServiceThread(handler);
+//        thread = new home_ServiceThread(handler);
 //        thread.start();
 //        return START_STICKY;
 //    }
@@ -347,8 +347,8 @@ public class MyService extends Service {
 //    class myServiceHandler extends Handler {
 //        @Override
 //        public void handleMessage(android.os.Message msg) {
-//            Intent intent = new Intent(MyService.this, noticebar.class);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(MyService.this, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+//            Intent intent = new Intent(home_MyService.this, noticebar.class);
+//            PendingIntent pendingIntent = PendingIntent.getActivity(home_MyService.this, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
 //
 //            Notifi = new Notification.Builder(getApplicationContext())
 //                    .setContentTitle("Content Title")
@@ -371,7 +371,7 @@ public class MyService extends Service {
 //            Notifi_M.notify( 777 , Notifi);
 //
 //            //토스트 띄우기
-//            Toast.makeText(MyService.this, "뜸?", Toast.LENGTH_LONG).show();
+//            Toast.makeText(home_MyService.this, "뜸?", Toast.LENGTH_LONG).show();
 //        }
 //    };
 //}

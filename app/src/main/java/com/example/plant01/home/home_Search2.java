@@ -6,7 +6,6 @@ import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,7 +36,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class search2 extends AppCompatActivity {
+public class home_Search2 extends AppCompatActivity {
     protected Interpreter tflite;
     private MappedByteBuffer tfliteModel;
     private TensorImage inputImageBuffer;
@@ -59,7 +58,7 @@ public class search2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search2);
+        setContentView(R.layout.home_search2);
 
         imageView=(ImageView)findViewById(R.id.image);
         buclassify=(Button)findViewById(R.id.classify);
@@ -84,7 +83,7 @@ public class search2 extends AppCompatActivity {
         try{
 
             /*----------------검색 준비 ------------*/
-            tflite=new Interpreter(loadmodelfile(search2.this));
+            tflite=new Interpreter(loadmodelfile(home_Search2.this));
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -158,24 +157,25 @@ public class search2 extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-        /*----------------------결과값이 이미지의 확률정보를 순서대로 나열함 -------------------------*/
+        /*----------------------텐서플로우의 결과인 키(식물이름)와, 분석 확률정보를 자료구조에 저장함 -------------------------*/
         Map<String, Float> labeledProbability =
                 new TensorLabel(labels, probabilityProcessor.process(outputProbabilityBuffer))
                         .getMapWithFloatValue();
-        /*---------------분석해서 확률정보가 가장 큰것을 저장--------------*/
+
+        /*---------------분석결과의 최대치값을 저장--------------*/
         float maxValueInMap =(Collections.max(labeledProbability.values()));
 
-
-        /*----------------Map.Entry에 저장하고, 그 값이  maxValue인것의 이름을 가져와 결과화면으로 값 전다 ------------*/
-        //labeledProbability의 키와 값 만큼 반복
+        /*----------------키값을 가져오기 위해 새로운 자료구조인 entry에 위의 결과값 만큼 -----------*/
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
+            //반복하여 저장하다가
+            //entry의 float값이 분석결과의 최대치와  같다면
             if (entry.getValue()==maxValueInMap) {
-                Intent intent1 = new Intent(search2.this, SearchResult.class);
+                //entry의 키 즉 식물이름을 가져옴다.
                 String plantname = entry.getKey();
+
+                //가져온 식물 이름을 결과화면으로 발송
+                Intent intent1 = new Intent(home_Search2.this, home_SearchResult.class);
                 intent1.putExtra("plantName", plantname);
-//                classitext.setText(entry.getKey());
-                Log.e("결과", entry.getKey() + " "+ plantname );
                 startActivity(intent1);
                 finish();
 

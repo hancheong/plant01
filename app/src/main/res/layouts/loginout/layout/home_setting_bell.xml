@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.bell">
+    tools:context=".home.home_DrawerBell">
 
 
     <androidx.appcompat.widget.Toolbar

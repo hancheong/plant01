@@ -224,7 +224,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".home.SearchResult">
+            tools:context=".home.home_SearchResult">
 
             <View
                 android:id="@+id/view2"

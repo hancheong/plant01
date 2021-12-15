@@ -17,7 +17,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.example.plant01.R;
 
-public class bell extends AppCompatActivity {
+public class home_DrawerBell extends AppCompatActivity {
 
     Toolbar toolbar;
     private NotificationManagerCompat notificationManager;
@@ -42,11 +42,11 @@ public class bell extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     Toast.makeText(getApplicationContext(),"Service 시작",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(bell.this,MyService.class);
+                    Intent intent = new Intent(home_DrawerBell.this, home_MyService.class);
                     startService(intent);
 
                 }else {
-                    Intent intent = new Intent(bell.this,MyService.class);
+                    Intent intent = new Intent(home_DrawerBell.this, home_MyService.class);
                     stopService(intent);
 
 
@@ -94,7 +94,7 @@ public class bell extends AppCompatActivity {
 //
 ////                    if(Double.parseDouble(soilmoisture) < 40){
 ////                        myPlantHum handler1 = new myPlantHum();
-////                        thread = new ServiceThread(handler1);
+////                        thread = new home_ServiceThread(handler1);
 ////                        thread.start();
 ////                    }
 //

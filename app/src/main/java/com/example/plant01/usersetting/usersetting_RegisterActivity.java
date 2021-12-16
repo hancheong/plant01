@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
 
-public class RegisterActivity extends AppCompatActivity
+public class usersetting_RegisterActivity extends AppCompatActivity
 {
     private FirebaseAuth mFirebaseAuth;  //파이어베이스 인증
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_register);
+        setContentView(R.layout.usersetting_register);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("PlanT");
@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity
                     register();
                     break;
                 case  R.id.btn_cancle:
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(usersetting_RegisterActivity.this, usersetting_LoginActivity.class);
                     startActivity(intent);
                     break;
             }
@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity
 
 
         /*--------------------파이어베이스 회원가입 기능을 이용한 회원가입과, firestore에 정보저장------------------------------*/
-        mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>()
+        mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(usersetting_RegisterActivity.this, new OnCompleteListener<AuthResult>()
         {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task)
@@ -129,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
-                    UserAccount account = new UserAccount();
+                    usersetting_UserAccount account = new usersetting_UserAccount();
                     account.setIdToken(firebaseUser.getUid());
                     account.setUserEmail(firebaseUser.getEmail());
                     account.setUserPassword(strPwd);
@@ -148,11 +148,11 @@ public class RegisterActivity extends AppCompatActivity
 
                     Log.e("성공","성공");
 
-                    Toast.makeText(RegisterActivity.this,"회원가입 성공", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(usersetting_RegisterActivity.this,"회원가입 성공", Toast.LENGTH_SHORT).show();
 
                 }
                 else {
-                    Toast.makeText(RegisterActivity.this,"회원가입실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(usersetting_RegisterActivity.this,"회원가입실패", Toast.LENGTH_SHORT).show();
                     Log.e("실패","실패");
 
                 }

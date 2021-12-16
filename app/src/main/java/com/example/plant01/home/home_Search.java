@@ -22,7 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.plant01.R;
 
-public class home_search extends AppCompatActivity {
+public class home_Search extends AppCompatActivity {
     // 데이터를 넣은 리스트변수
     private AutoCompleteTextView search;
     private ImageButton store_searchback;
@@ -68,7 +68,7 @@ public class home_search extends AppCompatActivity {
             public boolean onKey(View v, int keyCode, KeyEvent event){
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    Intent intent = new Intent(getApplicationContext(), SearchResult.class);
+                    Intent intent = new Intent(getApplicationContext(), home_SearchResult.class);
                     intent.putExtra("plantName", search.getText().toString());
                     startActivity(intent);//액티비티 띄우기
                     return true;
@@ -110,7 +110,7 @@ public class home_search extends AppCompatActivity {
         if (requestCode==12 && resultCode==RESULT_OK && data!=null) {
 
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            Intent intent = new Intent(home_search.this,search2.class);
+            Intent intent = new Intent(home_Search.this, home_Search2.class);
             intent.putExtra("uri", bitmap);
             startActivity(intent);
 

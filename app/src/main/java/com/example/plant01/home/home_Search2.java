@@ -6,7 +6,6 @@ import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,7 +36,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class search2 extends AppCompatActivity {
+public class home_Search2 extends AppCompatActivity {
     protected Interpreter tflite;
     private MappedByteBuffer tfliteModel;
     private TensorImage inputImageBuffer;
@@ -59,7 +58,7 @@ public class search2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search2);
+        setContentView(R.layout.home_search2);
 
         imageView=(ImageView)findViewById(R.id.image);
         buclassify=(Button)findViewById(R.id.classify);
@@ -84,7 +83,7 @@ public class search2 extends AppCompatActivity {
         try{
 
             /*----------------검색 준비 ------------*/
-            tflite=new Interpreter(loadmodelfile(search2.this));
+            tflite=new Interpreter(loadmodelfile(home_Search2.this));
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -175,7 +174,7 @@ public class search2 extends AppCompatActivity {
                 String plantname = entry.getKey();
 
                 //가져온 식물 이름을 결과화면으로 발송
-                Intent intent1 = new Intent(search2.this, SearchResult.class);
+                Intent intent1 = new Intent(home_Search2.this, home_SearchResult.class);
                 intent1.putExtra("plantName", plantname);
                 startActivity(intent1);
                 finish();

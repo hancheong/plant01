@@ -3,7 +3,6 @@ package com.example.plant01.home;
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -30,10 +29,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
-import com.example.plant01.adaptor.SliderAdapter;
+import com.example.plant01.adaptor.home_SliderAdapter;
 import com.example.plant01.adaptor.home_PlantAdapter;
 import com.example.plant01.garden.garden_MyPlants;
-import com.example.plant01.usersetting.UserSetting;
+import com.example.plant01.usersetting.usersetting_UserSetting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -63,8 +62,8 @@ import java.util.Date;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class HomeFragment extends Fragment {
-    private static final String TAG = "HomeFragment";
+public class home_HomeFragment extends Fragment {
+    private static final String TAG = "home_HomeFragment";
 
     private SliderView sliderView;
     private int[] images = {R.drawable.home_ad1,
@@ -105,9 +104,9 @@ public class HomeFragment extends Fragment {
 
         sliderView = getView().findViewById(R.id.main_slider);
 
-        SliderAdapter sliderAdapter = new SliderAdapter(images);
+        home_SliderAdapter homeSliderAdapter = new home_SliderAdapter(images);
 
-        sliderView.setSliderAdapter(sliderAdapter);
+        sliderView.setSliderAdapter(homeSliderAdapter);
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
         sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
         sliderView.startAutoCycle();
@@ -139,11 +138,11 @@ public class HomeFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.btn_profile:
-                        Intent intent1 = new Intent(getActivity(), UserSetting.class);
+                        Intent intent1 = new Intent(getActivity(), usersetting_UserSetting.class);
                         startActivity(intent1);
                         break;
                     case R.id.btn_bell:
-                        Intent intent2 = new Intent(getActivity(), bell.class);
+                        Intent intent2 = new Intent(getActivity(), home_Bell.class);
                         startActivity(intent2);
                         break;
                 }
@@ -165,7 +164,7 @@ public class HomeFragment extends Fragment {
                         showUserProfile();
                         break;
                     case R.id.home_btn_search:
-                        Intent intent = new Intent(getActivity(), home_search.class);
+                        Intent intent = new Intent(getActivity(), home_Search.class);
                         startActivity(intent);
 //                        PickImageFromGallery();
 
@@ -200,7 +199,7 @@ public class HomeFragment extends Fragment {
         if (requestCode==12 && resultCode==RESULT_OK && data!=null) {
 
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            Intent intent = new Intent(getActivity(),search2.class);
+            Intent intent = new Intent(getActivity(), home_Search2.class);
             intent.putExtra("uri", bitmap);
             startActivity(intent);
 

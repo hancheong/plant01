@@ -1,6 +1,6 @@
 package com.example.plant01.usersetting;
 
-public class UserAccount {
+public class usersetting_UserAccount {
     private String idToken;
     public String userNick;
     public String userPh;
@@ -12,12 +12,12 @@ public class UserAccount {
     public String userPostalCode;
     public String userAdr, joinDate;
 
-    public UserAccount(String userNick, String userImg) {
+    public usersetting_UserAccount(String userNick, String userImg) {
         this.userNick = userNick;
         this.userImg = userImg;
     }
 
-//    public UserAccount(String userNick, String userPh, String userGender, String userImg, String userBirth, String userEmail, String userPassword, String userPostalCode, String userAdr) {
+//    public usersetting_UserAccount(String userNick, String userPh, String userGender, String userImg, String userBirth, String userEmail, String userPassword, String userPostalCode, String userAdr) {
 //        this.userNick = userNick;
 //        this.userPh = userPh;
 //        this.userGender = userGender;
@@ -29,8 +29,8 @@ public class UserAccount {
 //        this.userAdr = userAdr;
 //    }
 
-    public UserAccount(){}
-//    public UserAccount(String idToken, String userNick, String userPh, String userGender
+    public usersetting_UserAccount(){}
+//    public usersetting_UserAccount(String idToken, String userNick, String userPh, String userGender
 //            , String userImg, String userBirth, String userEmail, String userPassword, String userPostalCode, String userAdr) {
 //        this.idToken = idToken;
 //        UserNick = userNick;

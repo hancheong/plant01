@@ -41,7 +41,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.io.ByteArrayOutputStream;
 
-public class UserSetting extends AppCompatActivity {
+public class usersetting_UserSetting extends AppCompatActivity {
 
     private ImageView btnCamera, btnGallery;
     private RoundedImageView profileImageView;
@@ -59,7 +59,7 @@ public class UserSetting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_setting_user);
+        setContentView(R.layout.usersetting_usersetting);
         toolbar = findViewById(R.id.toolbar2);
 
         setSupportActionBar(toolbar);
@@ -99,7 +99,7 @@ public class UserSetting extends AppCompatActivity {
                     break;
                 case R.id.btn_setting:
                     update();
-                    Toast.makeText(UserSetting.this, "수정완료", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(usersetting_UserSetting.this, "수정완료", Toast.LENGTH_SHORT).show();
                     break;
 
             }
@@ -110,8 +110,8 @@ public class UserSetting extends AppCompatActivity {
 
     /*-----------프로필사진 누르면 뜨는 다이어로그 -----------------*/
     public void showcameraDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(UserSetting.this, R.style.AlterDialogTheme);
-        View view = LayoutInflater.from(UserSetting.this).inflate(R.layout.home_dialog_camera
+        AlertDialog.Builder builder = new AlertDialog.Builder(usersetting_UserSetting.this, R.style.AlterDialogTheme);
+        View view = LayoutInflater.from(usersetting_UserSetting.this).inflate(R.layout.home_dialog_camera
                 , (ConstraintLayout) findViewById(R.id.layoutDialogContainer));
         builder.setView(view);
         AlertDialog alterDialog = builder.create();

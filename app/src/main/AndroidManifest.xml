@@ -61,10 +61,13 @@
         <activity
             android:name=".usersetting.usersetting_RegisterActivity"
             android:exported="true" />
+<<<<<<< HEAD
         <activity
             android:name=".usersetting.CameraActivity"
             android:exported="true" />
         <activity android:name=".MainActivity" />
+=======
+>>>>>>> be240c70af3b0d3ddfa939d177999c55c7441e2d
         <activity
             android:name=".store.navi_MainActivity"
             android:exported="true" />

@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.plant01.R;
 import com.example.plant01.garden.garden_MyGarden;
-import com.example.plant01.home.home_MainFragment;
+import com.example.plant01.home.HomeFragment;
 
 import com.example.plant01.postpage.post_MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,7 +31,7 @@ public class navi_MainActivity extends AppCompatActivity {
     private FragmentManager fm;
     private FragmentTransaction ft;
     private post_MainActivity mainActivity;
-    private home_MainFragment home_MainFragment;
+    private HomeFragment HomeFragment;
     private store_Category store_category;
     private garden_MyGarden garden_MyGarden;
     private FragmentPagerAdapter fragmentPagerAdapter;
@@ -69,7 +69,7 @@ public class navi_MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        home_MainFragment = new home_MainFragment();
+        HomeFragment = new HomeFragment();
         mainActivity = new post_MainActivity();
         store_category = new store_Category();
         garden_MyGarden = new garden_MyGarden();
@@ -83,7 +83,7 @@ public class navi_MainActivity extends AppCompatActivity {
         ft = fm.beginTransaction();
         switch (n) {
             case 0:
-                ft.replace(R.id.store_Frame, home_MainFragment);
+                ft.replace(R.id.store_Frame, HomeFragment);
                 ft.commit();
                 break;
             case 1:

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.plant01.R;
-import com.example.plant01.usersetting.usersetting_LoginActivity;
+import com.example.plant01.usersetting.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -25,7 +25,7 @@ public class intro extends Activity {
                 startActivity(intent); // 다음화면으로 넘어가기
                 finish(); // Activity 화면 제거
             }else {
-                Intent intent = new Intent(getApplicationContext(), usersetting_LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent); // 다음화면으로 넘어가기
                 finish(); // Activity 화면 제거
             }

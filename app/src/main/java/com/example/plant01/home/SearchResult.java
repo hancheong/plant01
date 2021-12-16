@@ -27,17 +27,17 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 
-public class home_SearchResult extends AppCompatActivity {
+public class SearchResult extends AppCompatActivity {
     private FirebaseFirestore db;
     RecyclerView recyclerView;
     ImageView level;
     TextView sun, water, like, plantshort, plantname, keyword0, keyword1, keyword2, keyword3;
     RoundedImageView plantImg;
     Toolbar toolbar;
-    home_SearchAdapter adapter;
+    searchAdapter adapter;
     private ArrayList<String> tipArrayList;
 
-    public home_SearchResult() {
+    public SearchResult() {
     }
 
     @Override
@@ -73,10 +73,10 @@ public class home_SearchResult extends AppCompatActivity {
         /*-------분석에서 결과 받아오기 ------*/
         db = FirebaseFirestore.getInstance();
         recyclerView = findViewById(R.id.tipRecyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(home_SearchResult.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(SearchResult.this));
         Intent intent = getIntent(); /*데이터 수신*/
         String getplantname = intent.getExtras().getString("plantName");
-        Query plantinfo = db.collection("home_Plants").whereEqualTo("plantName", getplantname);
+        Query plantinfo = db.collection("Plants").whereEqualTo("plantName", getplantname);
 
         plantinfo.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -105,12 +105,12 @@ public class home_SearchResult extends AppCompatActivity {
                     plantshort.setText(plantshorttxt);
 
                     String plantImgurl = (String) document.get("plantImg");
-                    Glide.with(home_SearchResult.this)
+                    Glide.with(SearchResult.this)
                             .load(Uri.parse(plantImgurl))
                             .into(plantImg);
 
                     String levelurl = (String) document.get("plantLevel");
-                    Glide.with(home_SearchResult.this)
+                    Glide.with(SearchResult.this)
                             .load(Uri.parse(levelurl))
                             .into(level);
 
@@ -120,7 +120,7 @@ public class home_SearchResult extends AppCompatActivity {
                         tipArrayList.add(list.get(i).toString());
                     }
                     Log.e("TEST", tipArrayList.toString());
-                    adapter = new home_SearchAdapter(tipArrayList);
+                    adapter = new searchAdapter(tipArrayList);
                     recyclerView.setAdapter(adapter);
                 }
             }

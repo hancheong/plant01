@@ -26,22 +26,25 @@
             android:name=".garden.Context"
             android:exported="true" />
         <activity
-            android:name=".home.home_SearchResult"
+            android:name=".home.SearchResult"
             android:exported="false" />
         <activity
-            android:name=".home.home_Search2"
+            android:name=".home.SearchPlantPage"
+            android:exported="false" />
+        <activity
+            android:name=".home.search2"
             android:exported="true" />
         <activity
             android:name=".test.testPostData"
             android:exported="true" />
         <activity
-            android:name=".usersetting.usersetting_UserSetting"
+            android:name=".usersetting.UserSetting"
             android:exported="true" />
         <activity
-            android:name=".home.home_DrawerBell"
+            android:name=".home.bell"
             android:exported="true" />
         <activity
-            android:name=".home.home_Search"
+            android:name=".home.home_search"
             android:exported="true" />
         <!-- <activity -->
         <!-- android:name=".home.notification" -->
@@ -56,10 +59,13 @@
             android:name=".garden.AddPlants"
             android:exported="true" />
         <activity
-            android:name=".usersetting.usersetting_LoginActivity"
+            android:name=".usersetting.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".usersetting.usersetting_RegisterActivity"
+            android:name=".usersetting.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".usersetting.CameraActivity"
             android:exported="true" />
         <activity android:name=".MainActivity" />
         <activity
@@ -102,7 +108,7 @@
         </activity>
 
         <service
-            android:name=".home.home_MyService"
+            android:name=".home.MyService"
             android:enabled="true"
             android:exported="true" />
     </application>

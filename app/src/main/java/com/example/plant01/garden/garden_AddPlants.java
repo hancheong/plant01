@@ -59,7 +59,7 @@ public class garden_AddPlants extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_my_main);
+        setContentView(R.layout.activity_my_main);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         StorageReference list = reference.child("Myplants/"+user.getUid()+"/");

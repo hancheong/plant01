@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.plant01.R;
-import com.example.plant01.home.home_Plants;
+import com.example.plant01.home.Plants;
 import com.example.plant01.store.store_SearchResult;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -22,11 +22,11 @@ import java.util.ArrayList;
 public class home_PlantAdapter extends RecyclerView.Adapter<home_PlantAdapter.PlantViewHolder> {
 
     Context context;
-    ArrayList<home_Plants> homePlantsArrayList;
+    ArrayList<Plants> plantsArrayList;
 
-    public home_PlantAdapter(Context context, ArrayList<home_Plants> homePlantsArrayList) {
+    public home_PlantAdapter(Context context, ArrayList<Plants> plantsArrayList) {
         this.context = context;
-        this.homePlantsArrayList = homePlantsArrayList;
+        this.plantsArrayList = plantsArrayList;
     }
 
 
@@ -44,16 +44,16 @@ public class home_PlantAdapter extends RecyclerView.Adapter<home_PlantAdapter.Pl
     public void onBindViewHolder(@NonNull home_PlantAdapter.PlantViewHolder holder, int position) {
 
 
-        holder.plantName.setText(homePlantsArrayList.get(position).getPlantName());
+        holder.plantName.setText(plantsArrayList.get(position).getPlantName());
         Glide.with(holder.plantImg)
-                .load(homePlantsArrayList.get(position).getPlantImg())
+                .load(plantsArrayList.get(position).getPlantImg())
                 .into(holder.plantImg);
 
     }
 
     @Override
     public int getItemCount() {
-        return homePlantsArrayList.size();
+        return plantsArrayList.size();
     }
 
     public class PlantViewHolder extends RecyclerView.ViewHolder {
@@ -70,12 +70,12 @@ public class home_PlantAdapter extends RecyclerView.Adapter<home_PlantAdapter.Pl
                 @Override
                 public void onClick(View v) {
                     int currentPos = getAdapterPosition();
-                    home_Plants homePlants = homePlantsArrayList.get(currentPos);
-                    String plantname = homePlants.getPlantName();
+                    Plants plants = plantsArrayList.get(currentPos);
+                    String plantname = plants.getPlantName();
                     Intent intent = new Intent(context, store_SearchResult.class);
                     intent.putExtra("contact_search",plantname);
                     context.startActivity(intent);
-                    Log.e("plantname", homePlants.getPlantName());
+                    Log.e("plantname", plants.getPlantName());
 
                 }
             });

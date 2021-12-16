@@ -2,11 +2,11 @@ package com.example.plant01.home;
 
 import android.os.Handler;
 
-public class home_ServiceThread extends Thread{
+public class ServiceThread extends Thread{
     Handler handler;
     boolean isRun = true;
 
-    public home_ServiceThread(Handler handler){
+    public ServiceThread(Handler handler){
         this.handler = handler;
     }
 

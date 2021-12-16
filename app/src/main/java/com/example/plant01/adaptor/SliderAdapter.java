@@ -8,11 +8,11 @@ import android.widget.ImageView;
 import com.example.plant01.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
-public class home_SliderAdapter extends SliderViewAdapter<home_SliderAdapter.Holder>{
+public class SliderAdapter extends SliderViewAdapter<SliderAdapter.Holder>{
 
     int[] images;
 
-    public home_SliderAdapter(int[] images){
+    public SliderAdapter(int[] images){
 
         this.images = images;
 

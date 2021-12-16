@@ -20,12 +20,12 @@ import com.example.plant01.R;
 
 import java.util.ArrayList;
 
-public class home_SearchAdapter extends RecyclerView.Adapter<home_SearchAdapter.TipViewHolder> {
+public class searchAdapter extends RecyclerView.Adapter<searchAdapter.TipViewHolder> {
 
 
     ArrayList<String> tipArrayList = null;
 
-    public home_SearchAdapter(ArrayList<String> tipArrayList) {
+    public searchAdapter(ArrayList<String> tipArrayList) {
         this.tipArrayList = tipArrayList;
     }
 
@@ -33,19 +33,19 @@ public class home_SearchAdapter extends RecyclerView.Adapter<home_SearchAdapter.
 
     @NonNull
     @Override
-    public home_SearchAdapter.TipViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public searchAdapter.TipViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Context context = viewGroup.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
 
         View view = inflater.inflate(R.layout.result_tip_item,viewGroup, false) ;
-        home_SearchAdapter.TipViewHolder vh = new home_SearchAdapter.TipViewHolder(view) ;
+        searchAdapter.TipViewHolder vh = new searchAdapter.TipViewHolder(view) ;
 
 
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull home_SearchAdapter.TipViewHolder tipViewHolder, int position) {
+    public void onBindViewHolder(@NonNull searchAdapter.TipViewHolder tipViewHolder, int position) {
         String text = tipArrayList.get(position) ;
 
 //        for(int i=0; i< tipArrayList.size(); i++){

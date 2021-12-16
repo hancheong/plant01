@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class usersetting_LoginActivity extends AppCompatActivity
+public class LoginActivity extends AppCompatActivity
 {
     private FirebaseAuth mFirebaseAuth;  //파이어베이스 인증
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
@@ -52,7 +52,7 @@ public class usersetting_LoginActivity extends AppCompatActivity
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_intoRegister:
-                    Intent intent = new Intent(usersetting_LoginActivity.this, usersetting_RegisterActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                     startActivity(intent);
                     break;
 
@@ -79,20 +79,20 @@ public class usersetting_LoginActivity extends AppCompatActivity
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                                Toast.makeText(usersetting_LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(usersetting_LoginActivity.this, navi_MainActivity.class);
+                                Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginActivity.this, navi_MainActivity.class);
                                 startActivity(intent);
                                 finish();
 
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(usersetting_LoginActivity.this, "로그인 실패",
+                                Toast.makeText(LoginActivity.this, "로그인 실패",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         }else{
-            Toast.makeText(usersetting_LoginActivity.this, "이메일 또는 비밀번호를 입력해 주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "이메일 또는 비밀번호를 입력해 주세요", Toast.LENGTH_SHORT).show();
         }
 
 
